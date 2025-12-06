@@ -295,8 +295,8 @@ text3 72EE 731D CODE 72EE 0
 cinit 72D8 72ED CODE 72D8 0
 text2 72C4 72D7 CODE 72C4 0
 %locals
-dist/default/debug/piee2.X.debug.o
-/tmp/xcZ5RlQyz/driver_tmp_1.s
+dist/default/production/piee2.X.production.o
+/tmp/xc3G1Qj3c/driver_tmp_1.s
 1052 72D8 0 CODE 0
 1054 72D8 0 CODE 0
 1057 72D8 0 CODE 0
