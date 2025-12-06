@@ -1508,16 +1508,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 372:         case 1:
 [e :U 431 ]
 "373
-[; ;main_piee2.c: 373:             LCD_String_xy(1,7,"       UNIUBE       ");
+[; ;main_piee2.c: 373:             LCD_String_xy(1,7,"UNIUBE");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 7 `i `uc :s 9C ]
 "374
-[; ;main_piee2.c: 374:             LCD_String_xy(2,0,"Engenharia Eletrica ");
+[; ;main_piee2.c: 374:             LCD_String_xy(2,0,"Engenharia Eletrica");
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc :s 10C ]
 "375
-[; ;main_piee2.c: 375:             LCD_String_xy(3,2," Projeto Integrado  ");
+[; ;main_piee2.c: 375:             LCD_String_xy(3,2,"Projeto Integrado");
 [e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 2 `i `uc :s 11C ]
 "376
-[; ;main_piee2.c: 376:             LCD_String_xy(4,3,"   Em Eletrica II   ");
+[; ;main_piee2.c: 376:             LCD_String_xy(4,3,"Em Eletrica II");
 [e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 12C ]
 "377
 [; ;main_piee2.c: 377:             break;
@@ -1526,16 +1526,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 378:         case 2:
 [e :U 432 ]
 "379
-[; ;main_piee2.c: 379:             LCD_String_xy(1,2," Welington Correia  ");
+[; ;main_piee2.c: 379:             LCD_String_xy(1,2,"Welington Correia");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 13C ]
 "380
-[; ;main_piee2.c: 380:             LCD_String_xy(2,4,"   RA : 1063677     ");
+[; ;main_piee2.c: 380:             LCD_String_xy(2,4,"RA : 1063677");
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 4 `i `uc :s 14C ]
 "381
-[; ;main_piee2.c: 381:             LCD_String_xy(3,1," Seq.Eletr.Limpeza  ");
+[; ;main_piee2.c: 381:             LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
 [e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 15C ]
 "382
-[; ;main_piee2.c: 382:             LCD_String_xy(4,3,"  Filtro de Manga   ");
+[; ;main_piee2.c: 382:             LCD_String_xy(4,3,"Filtro de Manga");
 [e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 16C ]
 "383
 [; ;main_piee2.c: 383:             break;
@@ -1544,40 +1544,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 384:         case 3:
 [e :U 433 ]
 "385
-[; ;main_piee2.c: 385:             LCD_String_xy(1,1,"  Seja Bem Vindo!   ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 17C ]
+[; ;main_piee2.c: 385:             LCD_String_xy(1,2,"Seja Bem Vindo!");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 17C ]
 "386
-[; ;main_piee2.c: 386:             LCD_String_xy(2,1,"                    ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 18C ]
+[; ;main_piee2.c: 386:             break;
+[e $U 429  ]
 "387
-[; ;main_piee2.c: 387:             LCD_String_xy(3,1,"                    ");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 19C ]
-"388
-[; ;main_piee2.c: 388:             LCD_String_xy(4,1,"                    ");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 1 `i `uc :s 20C ]
-"389
-[; ;main_piee2.c: 389:             break;
-[e $U 429  ]
-"390
-[; ;main_piee2.c: 390:         case 4:
+[; ;main_piee2.c: 387:         case 4:
 [e :U 434 ]
+"388
+[; ;main_piee2.c: 388:             LCD_String_xy(1,1,"Rele Estr-Triangulo");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 18C ]
+"389
+[; ;main_piee2.c: 389:             LCD_String_xy(2,1,"Status:");
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 19C ]
+"390
+[; ;main_piee2.c: 390:             LCD_String_xy(3,1,"Temp. Motor:##,#");
+[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 20C ]
 "391
-[; ;main_piee2.c: 391:             LCD_String_xy(1,1,"Rele Estr-Triangulo");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 21C ]
+[; ;main_piee2.c: 391:             LCD_String_xy(4,1,"Temp. Macal:##,#");
+[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 1 `i `uc :s 21C ]
 "392
-[; ;main_piee2.c: 392:             LCD_String_xy(2,1,"Status:");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 22C ]
-"393
-[; ;main_piee2.c: 393:             LCD_String_xy(3,1,"Temp. Motor:##,#");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 23C ]
-"394
-[; ;main_piee2.c: 394:             LCD_String_xy(4,1,"Temp. Macal:##,#");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 1 `i `uc :s 24C ]
-"395
-[; ;main_piee2.c: 395:             break;
+[; ;main_piee2.c: 392:             break;
 [e $U 429  ]
-"396
-[; ;main_piee2.c: 396:     }
+"393
+[; ;main_piee2.c: 393:     }
 }
 [e $U 429  ]
 [e :U 430 ]
@@ -1587,357 +1578,357 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 4 `i `ui 434
  429 ]
 [e :U 429 ]
-"398
-[; ;main_piee2.c: 398: }
+"395
+[; ;main_piee2.c: 395: }
 [e :UE 428 ]
 }
-"401
-[; ;main_piee2.c: 401: void Beep(unsigned val){
+"398
+[; ;main_piee2.c: 398: void Beep(unsigned val){
 [v _Beep `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _Beep ]
 [v _val `ui ~T0 @X0 1 r1 ]
 [f ]
-"402
-[; ;main_piee2.c: 402:  unsigned int i;
+"399
+[; ;main_piee2.c: 399:  unsigned int i;
 [v _i `ui ~T0 @X0 1 a ]
-"403
-[; ;main_piee2.c: 403:  for(i=0;i<val;i++)
+"400
+[; ;main_piee2.c: 400:  for(i=0;i<val;i++)
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 439  ]
 [e :U 436 ]
-"404
-[; ;main_piee2.c: 404:     {
+"401
+[; ;main_piee2.c: 401:     {
 {
-"405
-[; ;main_piee2.c: 405:      LATD0 = 1;
+"402
+[; ;main_piee2.c: 402:      LATD0 = 1;
 [e = _LATD0 -> -> 1 `i `b ]
-"406
-[; ;main_piee2.c: 406:      MSdelay(500);
+"403
+[; ;main_piee2.c: 403:      MSdelay(500);
 [e ( _MSdelay (1 -> -> 500 `i `ui ]
-"407
-[; ;main_piee2.c: 407:      LATD0 = 0;
+"404
+[; ;main_piee2.c: 404:      LATD0 = 0;
 [e = _LATD0 -> -> 0 `i `b ]
-"408
-[; ;main_piee2.c: 408:      MSdelay(500);
+"405
+[; ;main_piee2.c: 405:      MSdelay(500);
 [e ( _MSdelay (1 -> -> 500 `i `ui ]
-"409
-[; ;main_piee2.c: 409:     }
+"406
+[; ;main_piee2.c: 406:     }
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 439 ]
 [e $ < _i _val 436  ]
 [e :U 437 ]
 }
-"412
-[; ;main_piee2.c: 412: }
+"409
+[; ;main_piee2.c: 409: }
 [e :UE 435 ]
 }
-"414
-[; ;main_piee2.c: 414: void LCD_Init()
+"411
+[; ;main_piee2.c: 411: void LCD_Init()
 [v _LCD_Init `(v ~T0 @X0 1 ef ]
-"415
-[; ;main_piee2.c: 415: {
+"412
+[; ;main_piee2.c: 412: {
 {
 [e :U _LCD_Init ]
 [f ]
-"416
-[; ;main_piee2.c: 416:     TRISB = 0;
+"413
+[; ;main_piee2.c: 413:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
-"417
-[; ;main_piee2.c: 417:     MSdelay(15);
+"414
+[; ;main_piee2.c: 414:     MSdelay(15);
 [e ( _MSdelay (1 -> -> 15 `i `ui ]
-"418
-[; ;main_piee2.c: 418:     LCD_Command(0x02);
+"415
+[; ;main_piee2.c: 415:     LCD_Command(0x02);
 [e ( _LCD_Command (1 -> -> 2 `i `uc ]
-"419
-[; ;main_piee2.c: 419:     LCD_Command(0x28);
+"416
+[; ;main_piee2.c: 416:     LCD_Command(0x28);
 [e ( _LCD_Command (1 -> -> 40 `i `uc ]
-"421
-[; ;main_piee2.c: 421:  LCD_Command(0x01);
+"418
+[; ;main_piee2.c: 418:  LCD_Command(0x01);
 [e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"422
-[; ;main_piee2.c: 422:     LCD_Command(0x0c);
+"419
+[; ;main_piee2.c: 419:     LCD_Command(0x0c);
 [e ( _LCD_Command (1 -> -> 12 `i `uc ]
-"423
-[; ;main_piee2.c: 423:  LCD_Command(0x06);
+"420
+[; ;main_piee2.c: 420:  LCD_Command(0x06);
 [e ( _LCD_Command (1 -> -> 6 `i `uc ]
-"424
-[; ;main_piee2.c: 424: }
+"421
+[; ;main_piee2.c: 421: }
 [e :UE 440 ]
 }
-"426
-[; ;main_piee2.c: 426: void LCD_Command(unsigned char cmd )
+"423
+[; ;main_piee2.c: 423: void LCD_Command(unsigned char cmd )
 [v _LCD_Command `(v ~T0 @X0 1 ef1`uc ]
-"427
-[; ;main_piee2.c: 427: {
+"424
+[; ;main_piee2.c: 424: {
 {
 [e :U _LCD_Command ]
-"426
-[; ;main_piee2.c: 426: void LCD_Command(unsigned char cmd )
+"423
+[; ;main_piee2.c: 423: void LCD_Command(unsigned char cmd )
 [v _cmd `uc ~T0 @X0 1 r1 ]
-"427
-[; ;main_piee2.c: 427: {
+"424
+[; ;main_piee2.c: 424: {
 [f ]
-"428
-[; ;main_piee2.c: 428:  LATB = (LATB & 0x0f) |(0xF0 & cmd);
+"425
+[; ;main_piee2.c: 425:  LATB = (LATB & 0x0f) |(0xF0 & cmd);
 [e = _LATB -> | & -> _LATB `i -> 15 `i & -> 240 `i -> _cmd `i `uc ]
-"429
-[; ;main_piee2.c: 429:  LATB0 = 0;
+"426
+[; ;main_piee2.c: 426:  LATB0 = 0;
 [e = _LATB0 -> -> 0 `i `b ]
+"427
+[; ;main_piee2.c: 427:  LATB1 = 1;
+[e = _LATB1 -> -> 1 `i `b ]
+"428
+[; ;main_piee2.c: 428:  __nop();
+[e ( ___nop ..  ]
+"429
+[; ;main_piee2.c: 429:  LATB1 = 0;
+[e = _LATB1 -> -> 0 `i `b ]
 "430
-[; ;main_piee2.c: 430:  LATB1 = 1;
-[e = _LATB1 -> -> 1 `i `b ]
-"431
-[; ;main_piee2.c: 431:  __nop();
-[e ( ___nop ..  ]
-"432
-[; ;main_piee2.c: 432:  LATB1 = 0;
-[e = _LATB1 -> -> 0 `i `b ]
-"433
-[; ;main_piee2.c: 433:  MSdelay(1);
+[; ;main_piee2.c: 430:  MSdelay(1);
 [e ( _MSdelay (1 -> -> 1 `i `ui ]
-"434
-[; ;main_piee2.c: 434:     LATB = (LATB & 0x0f) | (cmd<<4);
+"431
+[; ;main_piee2.c: 431:     LATB = (LATB & 0x0f) | (cmd<<4);
 [e = _LATB -> | & -> _LATB `i -> 15 `i << -> _cmd `i -> 4 `i `uc ]
-"435
-[; ;main_piee2.c: 435:  LATB1 = 1;
+"432
+[; ;main_piee2.c: 432:  LATB1 = 1;
 [e = _LATB1 -> -> 1 `i `b ]
-"436
-[; ;main_piee2.c: 436:  __nop();
+"433
+[; ;main_piee2.c: 433:  __nop();
 [e ( ___nop ..  ]
-"437
-[; ;main_piee2.c: 437:  LATB1 = 0;
+"434
+[; ;main_piee2.c: 434:  LATB1 = 0;
 [e = _LATB1 -> -> 0 `i `b ]
-"438
-[; ;main_piee2.c: 438:  MSdelay(3);
+"435
+[; ;main_piee2.c: 435:  MSdelay(3);
 [e ( _MSdelay (1 -> -> 3 `i `ui ]
-"439
-[; ;main_piee2.c: 439: }
+"436
+[; ;main_piee2.c: 436: }
 [e :UE 441 ]
 }
-"442
-[; ;main_piee2.c: 442: void LCD_Char(unsigned char dat)
+"439
+[; ;main_piee2.c: 439: void LCD_Char(unsigned char dat)
 [v _LCD_Char `(v ~T0 @X0 1 ef1`uc ]
-"443
-[; ;main_piee2.c: 443: {
+"440
+[; ;main_piee2.c: 440: {
 {
 [e :U _LCD_Char ]
-"442
-[; ;main_piee2.c: 442: void LCD_Char(unsigned char dat)
+"439
+[; ;main_piee2.c: 439: void LCD_Char(unsigned char dat)
 [v _dat `uc ~T0 @X0 1 r1 ]
-"443
-[; ;main_piee2.c: 443: {
+"440
+[; ;main_piee2.c: 440: {
 [f ]
-"444
-[; ;main_piee2.c: 444:  LATB = (LATB & 0x0f) | (0xF0 & dat);
+"441
+[; ;main_piee2.c: 441:  LATB = (LATB & 0x0f) | (0xF0 & dat);
 [e = _LATB -> | & -> _LATB `i -> 15 `i & -> 240 `i -> _dat `i `uc ]
-"445
-[; ;main_piee2.c: 445:  LATB0 = 1;
+"442
+[; ;main_piee2.c: 442:  LATB0 = 1;
 [e = _LATB0 -> -> 1 `i `b ]
+"443
+[; ;main_piee2.c: 443:  LATB1 = 1;
+[e = _LATB1 -> -> 1 `i `b ]
+"444
+[; ;main_piee2.c: 444:  __nop();
+[e ( ___nop ..  ]
+"445
+[; ;main_piee2.c: 445:  LATB1 = 0;
+[e = _LATB1 -> -> 0 `i `b ]
 "446
-[; ;main_piee2.c: 446:  LATB1 = 1;
-[e = _LATB1 -> -> 1 `i `b ]
-"447
-[; ;main_piee2.c: 447:  __nop();
-[e ( ___nop ..  ]
-"448
-[; ;main_piee2.c: 448:  LATB1 = 0;
-[e = _LATB1 -> -> 0 `i `b ]
-"449
-[; ;main_piee2.c: 449:  MSdelay(1);
+[; ;main_piee2.c: 446:  MSdelay(1);
 [e ( _MSdelay (1 -> -> 1 `i `ui ]
-"450
-[; ;main_piee2.c: 450:     LATB = (LATB & 0x0f) | (dat<<4);
+"447
+[; ;main_piee2.c: 447:     LATB = (LATB & 0x0f) | (dat<<4);
 [e = _LATB -> | & -> _LATB `i -> 15 `i << -> _dat `i -> 4 `i `uc ]
-"451
-[; ;main_piee2.c: 451:  LATB1 = 1;
+"448
+[; ;main_piee2.c: 448:  LATB1 = 1;
 [e = _LATB1 -> -> 1 `i `b ]
-"452
-[; ;main_piee2.c: 452:  __nop();
+"449
+[; ;main_piee2.c: 449:  __nop();
 [e ( ___nop ..  ]
-"453
-[; ;main_piee2.c: 453:  LATB1 = 0;
+"450
+[; ;main_piee2.c: 450:  LATB1 = 0;
 [e = _LATB1 -> -> 0 `i `b ]
-"454
-[; ;main_piee2.c: 454:  MSdelay(3);
+"451
+[; ;main_piee2.c: 451:  MSdelay(3);
 [e ( _MSdelay (1 -> -> 3 `i `ui ]
-"455
-[; ;main_piee2.c: 455: }
+"452
+[; ;main_piee2.c: 452: }
 [e :UE 442 ]
 }
-"457
-[; ;main_piee2.c: 457: void LCD_String(const char *msg)
+"454
+[; ;main_piee2.c: 454: void LCD_String(const char *msg)
 [v _LCD_String `(v ~T0 @X0 1 ef1`*Cuc ]
-"458
-[; ;main_piee2.c: 458: {
+"455
+[; ;main_piee2.c: 455: {
 {
 [e :U _LCD_String ]
-"457
-[; ;main_piee2.c: 457: void LCD_String(const char *msg)
+"454
+[; ;main_piee2.c: 454: void LCD_String(const char *msg)
 [v _msg `*Cuc ~T0 @X0 1 r1 ]
-"458
-[; ;main_piee2.c: 458: {
+"455
+[; ;main_piee2.c: 455: {
 [f ]
-"459
-[; ;main_piee2.c: 459:  while((*msg)!=0)
+"456
+[; ;main_piee2.c: 456:  while((*msg)!=0)
 [e $U 444  ]
 [e :U 445 ]
-"460
-[; ;main_piee2.c: 460:  {
+"457
+[; ;main_piee2.c: 457:  {
 {
-"461
-[; ;main_piee2.c: 461:    LCD_Char(*msg);
+"458
+[; ;main_piee2.c: 458:    LCD_Char(*msg);
 [e ( _LCD_Char (1 -> *U _msg `uc ]
-"462
-[; ;main_piee2.c: 462:    msg++;
+"459
+[; ;main_piee2.c: 459:    msg++;
 [e ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
-"463
-[; ;main_piee2.c: 463:     }
+"460
+[; ;main_piee2.c: 460:     }
 }
 [e :U 444 ]
-"459
-[; ;main_piee2.c: 459:  while((*msg)!=0)
+"456
+[; ;main_piee2.c: 456:  while((*msg)!=0)
 [e $ != -> *U _msg `i -> 0 `i 445  ]
 [e :U 446 ]
-"464
-[; ;main_piee2.c: 464: }
+"461
+[; ;main_piee2.c: 461: }
 [e :UE 443 ]
 }
-"466
-[; ;main_piee2.c: 466: void LCD_String_xy(char row,char pos,const char *msg)
+"463
+[; ;main_piee2.c: 463: void LCD_String_xy(char row,char pos,const char *msg)
 [v _LCD_String_xy `(v ~T0 @X0 1 ef3`uc`uc`*Cuc ]
-"467
-[; ;main_piee2.c: 467: {
+"464
+[; ;main_piee2.c: 464: {
 {
 [e :U _LCD_String_xy ]
-"466
-[; ;main_piee2.c: 466: void LCD_String_xy(char row,char pos,const char *msg)
+"463
+[; ;main_piee2.c: 463: void LCD_String_xy(char row,char pos,const char *msg)
 [v _row `uc ~T0 @X0 1 r1 ]
 [v _pos `uc ~T0 @X0 1 r2 ]
 [v _msg `*Cuc ~T0 @X0 1 r3 ]
-"467
-[; ;main_piee2.c: 467: {
+"464
+[; ;main_piee2.c: 464: {
 [f ]
-"468
-[; ;main_piee2.c: 468:     char location=0;
+"465
+[; ;main_piee2.c: 465:     char location=0;
 [v _location `uc ~T0 @X0 1 a ]
 [e = _location -> -> 0 `i `uc ]
-"469
-[; ;main_piee2.c: 469:     if(row==1)
+"466
+[; ;main_piee2.c: 466:     if(row==1)
 [e $ ! == -> _row `i -> 1 `i 448  ]
-"470
-[; ;main_piee2.c: 470:     {
+"467
+[; ;main_piee2.c: 467:     {
 {
-"471
-[; ;main_piee2.c: 471:         location=(0x80) | ((pos) & 0x0f);
+"468
+[; ;main_piee2.c: 468:         location=(0x80) | ((pos) & 0x0f);
 [e = _location -> | -> 128 `i & -> _pos `i -> 15 `i `uc ]
-"472
-[; ;main_piee2.c: 472:         LCD_Command(location);
+"469
+[; ;main_piee2.c: 469:         LCD_Command(location);
 [e ( _LCD_Command (1 -> _location `uc ]
-"473
-[; ;main_piee2.c: 473:     }
+"470
+[; ;main_piee2.c: 470:     }
 }
 [e :U 448 ]
-"474
-[; ;main_piee2.c: 474:     if(row==2)
+"471
+[; ;main_piee2.c: 471:     if(row==2)
 [e $ ! == -> _row `i -> 2 `i 449  ]
-"475
-[; ;main_piee2.c: 475:     {
+"472
+[; ;main_piee2.c: 472:     {
 {
-"476
-[; ;main_piee2.c: 476:         location=(0xC0) | ((pos) & 0x0f);
+"473
+[; ;main_piee2.c: 473:         location=(0xC0) | ((pos) & 0x0f);
 [e = _location -> | -> 192 `i & -> _pos `i -> 15 `i `uc ]
-"477
-[; ;main_piee2.c: 477:         LCD_Command(location);
+"474
+[; ;main_piee2.c: 474:         LCD_Command(location);
 [e ( _LCD_Command (1 -> _location `uc ]
-"478
-[; ;main_piee2.c: 478:     }
+"475
+[; ;main_piee2.c: 475:     }
 }
 [e :U 449 ]
-"479
-[; ;main_piee2.c: 479:     if(row==3)
+"476
+[; ;main_piee2.c: 476:     if(row==3)
 [e $ ! == -> _row `i -> 3 `i 450  ]
-"480
-[; ;main_piee2.c: 480:     {
+"477
+[; ;main_piee2.c: 477:     {
 {
-"481
-[; ;main_piee2.c: 481:         location=(0x94) | ((pos) & 0x0f);
+"478
+[; ;main_piee2.c: 478:         location=(0x94) | ((pos) & 0x0f);
 [e = _location -> | -> 148 `i & -> _pos `i -> 15 `i `uc ]
-"482
-[; ;main_piee2.c: 482:         LCD_Command(location);
+"479
+[; ;main_piee2.c: 479:         LCD_Command(location);
 [e ( _LCD_Command (1 -> _location `uc ]
-"483
-[; ;main_piee2.c: 483:     }
+"480
+[; ;main_piee2.c: 480:     }
 }
 [e :U 450 ]
-"484
-[; ;main_piee2.c: 484:     if(row==4)
+"481
+[; ;main_piee2.c: 481:     if(row==4)
 [e $ ! == -> _row `i -> 4 `i 451  ]
-"485
-[; ;main_piee2.c: 485:     {
+"482
+[; ;main_piee2.c: 482:     {
 {
-"486
-[; ;main_piee2.c: 486:         location=(0xD4) | ((pos) & 0x0f);
+"483
+[; ;main_piee2.c: 483:         location=(0xD4) | ((pos) & 0x0f);
 [e = _location -> | -> 212 `i & -> _pos `i -> 15 `i `uc ]
-"487
-[; ;main_piee2.c: 487:         LCD_Command(location);
+"484
+[; ;main_piee2.c: 484:         LCD_Command(location);
 [e ( _LCD_Command (1 -> _location `uc ]
-"488
-[; ;main_piee2.c: 488:     }
+"485
+[; ;main_piee2.c: 485:     }
 }
 [e :U 451 ]
-"490
-[; ;main_piee2.c: 490:     LCD_String(msg);
+"487
+[; ;main_piee2.c: 487:     LCD_String(msg);
 [e ( _LCD_String (1 _msg ]
-"491
-[; ;main_piee2.c: 491: }
+"488
+[; ;main_piee2.c: 488: }
 [e :UE 447 ]
 }
-"493
-[; ;main_piee2.c: 493: void LCD_Clear()
+"490
+[; ;main_piee2.c: 490: void LCD_Clear()
 [v _LCD_Clear `(v ~T0 @X0 1 ef ]
-"494
-[; ;main_piee2.c: 494: {
+"491
+[; ;main_piee2.c: 491: {
 {
 [e :U _LCD_Clear ]
 [f ]
-"495
-[; ;main_piee2.c: 495:     LCD_Command(0x01);
+"492
+[; ;main_piee2.c: 492:     LCD_Command(0x01);
 [e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"496
-[; ;main_piee2.c: 496:     MSdelay(3);
+"493
+[; ;main_piee2.c: 493:     MSdelay(3);
 [e ( _MSdelay (1 -> -> 3 `i `ui ]
-"497
-[; ;main_piee2.c: 497: }
+"494
+[; ;main_piee2.c: 494: }
 [e :UE 452 ]
 }
-"499
-[; ;main_piee2.c: 499: void MSdelay(unsigned int val)
+"496
+[; ;main_piee2.c: 496: void MSdelay(unsigned int val)
 [v _MSdelay `(v ~T0 @X0 1 ef1`ui ]
-"500
-[; ;main_piee2.c: 500: {
+"497
+[; ;main_piee2.c: 497: {
 {
 [e :U _MSdelay ]
-"499
-[; ;main_piee2.c: 499: void MSdelay(unsigned int val)
+"496
+[; ;main_piee2.c: 496: void MSdelay(unsigned int val)
 [v _val `ui ~T0 @X0 1 r1 ]
-"500
-[; ;main_piee2.c: 500: {
+"497
+[; ;main_piee2.c: 497: {
 [f ]
-"501
-[; ;main_piee2.c: 501:  unsigned int i,j;
+"498
+[; ;main_piee2.c: 498:  unsigned int i,j;
 [v _i `ui ~T0 @X0 1 a ]
 [v _j `ui ~T0 @X0 1 a ]
-"502
-[; ;main_piee2.c: 502:  for(i=0;i<val;i++)
+"499
+[; ;main_piee2.c: 499:  for(i=0;i<val;i++)
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 457  ]
 [e :U 454 ]
-"503
-[; ;main_piee2.c: 503:      for(j=0;j<165;j++);
+"500
+[; ;main_piee2.c: 500:      for(j=0;j<165;j++);
 {
 [e = _j -> -> 0 `i `ui ]
 [e $ < _j -> -> 165 `i `ui 458  ]
@@ -1952,31 +1943,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ < _i _val 454  ]
 [e :U 455 ]
 }
-"504
-[; ;main_piee2.c: 504: }
+"501
+[; ;main_piee2.c: 501: }
 [e :UE 453 ]
 }
-[a 21C 82 101 108 101 32 69 115 116 114 45 84 114 105 97 110 103 117 108 111 0 ]
+[a 18C 82 101 108 101 32 69 115 116 114 45 84 114 105 97 110 103 117 108 111 0 ]
 [a 1C 83 116 97 116 117 115 58 32 73 110 105 99 105 97 108 105 122 97 110 100 111 0 ]
-[a 22C 83 116 97 116 117 115 58 0 ]
-[a 23C 84 101 109 112 46 32 77 111 116 111 114 58 35 35 44 35 0 ]
-[a 24C 84 101 109 112 46 32 77 97 99 97 108 58 35 35 44 35 0 ]
+[a 11C 80 114 111 106 101 116 111 32 73 110 116 101 103 114 97 100 111 0 ]
+[a 15C 83 101 113 46 69 108 101 116 114 46 76 105 109 112 101 122 97 0 ]
+[a 13C 87 101 108 105 110 103 116 111 110 32 67 111 114 114 101 105 97 0 ]
+[a 16C 70 105 108 116 114 111 32 100 101 32 77 97 110 103 97 0 ]
+[a 10C 69 110 103 101 110 104 97 114 105 97 32 69 108 101 116 114 105 99 97 0 ]
+[a 12C 69 109 32 69 108 101 116 114 105 99 97 32 73 73 0 ]
+[a 9C 85 78 73 85 66 69 0 ]
+[a 19C 83 116 97 116 117 115 58 0 ]
+[a 14C 82 65 32 58 32 49 48 54 51 54 55 55 0 ]
+[a 20C 84 101 109 112 46 32 77 111 116 111 114 58 35 35 44 35 0 ]
+[a 21C 84 101 109 112 46 32 77 97 99 97 108 58 35 35 44 35 0 ]
+[a 17C 83 101 106 97 32 66 101 109 32 86 105 110 100 111 33 0 ]
 [a 8C 83 116 97 116 117 115 58 32 68 101 115 99 111 110 104 101 99 105 100 111 32 0 ]
-[a 10C 69 110 103 101 110 104 97 114 105 97 32 69 108 101 116 114 105 99 97 32 0 ]
 [a 4C 83 116 97 116 117 115 58 32 70 117 110 99 105 111 110 97 110 100 111 32 32 0 ]
-[a 11C 32 80 114 111 106 101 116 111 32 73 110 116 101 103 114 97 100 111 32 32 0 ]
-[a 15C 32 83 101 113 46 69 108 101 116 114 46 76 105 109 112 101 122 97 32 32 0 ]
-[a 13C 32 87 101 108 105 110 103 116 111 110 32 67 111 114 114 101 105 97 32 32 0 ]
-[a 16C 32 32 70 105 108 116 114 111 32 100 101 32 77 97 110 103 97 32 32 32 0 ]
-[a 12C 32 32 32 69 109 32 69 108 101 116 114 105 99 97 32 73 73 32 32 32 0 ]
-[a 17C 32 32 83 101 106 97 32 66 101 109 32 86 105 110 100 111 33 32 32 32 0 ]
 [a 6C 83 116 97 116 117 115 58 32 66 108 111 113 117 101 97 100 111 32 32 32 32 0 ]
 [a 3C 83 116 97 116 117 115 58 32 80 97 114 116 105 110 100 111 32 32 32 32 32 0 ]
-[a 14C 32 32 32 82 65 32 58 32 49 48 54 51 54 55 55 32 32 32 32 32 0 ]
 [a 5C 83 116 97 116 117 115 58 32 80 97 114 97 110 100 111 32 32 32 32 32 32 0 ]
 [a 2C 83 116 97 116 117 115 58 32 80 114 111 110 116 111 32 32 32 32 32 32 32 0 ]
-[a 9C 32 32 32 32 32 32 32 85 78 73 85 66 69 32 32 32 32 32 32 32 0 ]
 [a 7C 83 116 97 116 117 115 58 32 70 97 108 104 97 32 32 32 32 32 32 32 32 0 ]
-[a 18C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 19C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 20C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

@@ -370,22 +370,19 @@ void Message(unsigned int msg){
     LCD_Clear();
     switch(msg){
         case 1:
-            LCD_String_xy(1,7,"       UNIUBE       ");
-            LCD_String_xy(2,0,"Engenharia Eletrica ");
-            LCD_String_xy(3,2," Projeto Integrado  ");
-            LCD_String_xy(4,3,"   Em Eletrica II   ");
+            LCD_String_xy(1,7,"UNIUBE");
+            LCD_String_xy(2,0,"Engenharia Eletrica");
+            LCD_String_xy(3,2,"Projeto Integrado");
+            LCD_String_xy(4,3,"Em Eletrica II");
             break;
         case 2:
-            LCD_String_xy(1,2," Welington Correia  ");
-            LCD_String_xy(2,4,"   RA : 1063677     ");
-            LCD_String_xy(3,1," Seq.Eletr.Limpeza  ");
-            LCD_String_xy(4,3,"  Filtro de Manga   ");
+            LCD_String_xy(1,2,"Welington Correia");
+            LCD_String_xy(2,4,"RA : 1063677");
+            LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
+            LCD_String_xy(4,3,"Filtro de Manga");
             break;
         case 3:
-            LCD_String_xy(1,1,"  Seja Bem Vindo!   ");
-            LCD_String_xy(2,1,"                    ");
-            LCD_String_xy(3,1,"                    ");
-            LCD_String_xy(4,1,"                    ");
+            LCD_String_xy(1,2,"Seja Bem Vindo!");
             break;
         case 4:
             LCD_String_xy(1,1,"Rele Estr-Triangulo");
