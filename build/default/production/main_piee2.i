@@ -5864,11 +5864,7 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 2 3
 # 34 "./config_header.h" 2
-
-
-
-
-
+# 44 "./config_header.h"
 #pragma config PLLDIV = 1
 #pragma config CPUDIV = OSC1_PLL2
 #pragma config USBDIV = 1
@@ -5950,19 +5946,40 @@ void LCD_String_xy(char, char, const char *);
 void LCD_Clear();
 # 16 "main_piee2.c" 2
 # 1 "./i2c.h" 1
-# 37 "./i2c.h"
-# 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
-# 38 "./i2c.h" 2
+# 36 "./i2c.h"
+# 1 "./stdutils.h" 1
+# 48 "./stdutils.h"
+typedef signed char sint8_t;
+typedef unsigned char uint8_t;
 
+typedef int sint16_t;
+typedef unsigned short uint16_t;
 
+typedef signed long int sint32_t;
+typedef unsigned long uint32_t;
+# 143 "./stdutils.h"
+typedef enum
+{
+   E_FALSE,
+   E_TRUE
+}Boolean_et;
 
+typedef enum
+{
+    E_FAILED,
+    E_SUCCESS,
+    E_BUSY,
+    E_TIMEOUT
+}Status_et;
 
-
-
-
-
+typedef enum
+{
+ E_BINARY=2,
+ E_DECIMAL = 10,
+ E_HEX = 16
+}NumericSystem_et;
+# 37 "./i2c.h" 2
+# 51 "./i2c.h"
 void I2C_Init();
 void I2C_Start();
 void I2C_Stop(void);
@@ -6001,10 +6018,7 @@ typedef struct {
     unsigned char last_desliga_state;
     unsigned char last_interlock_state;
 } fsm_data_t;
-
-
-
-
+# 88 "main_piee2.c"
 void Message(unsigned int);
 void Beep(unsigned int);
 

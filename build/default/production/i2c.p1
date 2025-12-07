@@ -1,15 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"6812 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6812:     struct {
-[s S282 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S282 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
-"6811
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6811: typedef union {
-[u S281 `S282 1 ]
-[n S281 . . ]
-"6823
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6823: extern volatile SSPCON2bits_t SSPCON2bits __attribute__((address(0xFC5)));
-[v _SSPCON2bits `VS281 ~T0 @X0 0 e@4037 ]
+"10519 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10519: extern volatile __bit RSEN __attribute__((address(0x7E29)));
+[v _RSEN `Vb ~T0 @X0 0 e@32297 ]
 "3636
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 3636:     struct {
 [s S148 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -34,6 +26,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7186
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 7186: extern volatile unsigned char SSPADD __attribute__((address(0xFC8)));
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
+"6812
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6812:     struct {
+[s S282 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S282 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+"6811
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6811: typedef union {
+[u S281 `S282 1 ]
+[n S281 . . ]
+"6823
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 6823: extern volatile SSPCON2bits_t SSPCON2bits __attribute__((address(0xFC5)));
+[v _SSPCON2bits `VS281 ~T0 @X0 0 e@4037 ]
 "10279
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10279: extern volatile __bit PEN __attribute__((address(0x7E2A)));
 [v _PEN `Vb ~T0 @X0 0 e@32298 ]
@@ -58,9 +61,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "10564 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10564: extern volatile __bit SEN __attribute__((address(0x7E28)));
 [v _SEN `Vb ~T0 @X0 0 e@32296 ]
-"10519
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10519: extern volatile __bit RSEN __attribute__((address(0x7E29)));
-[v _RSEN `Vb ~T0 @X0 0 e@32297 ]
 "10543
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10543: extern volatile __bit R_W __attribute__((address(0x7E3A)));
 [v _R_W `Vb ~T0 @X0 0 e@32314 ]
@@ -580,81 +580,81 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"39 ./config_header.h
+"44 ./config_header.h
 [p x PLLDIV  =  1        ]
-"40
-[p x CPUDIV  =  OSC1_PLL2 ]
-"41
-[p x USBDIV  =  1        ]
-"44
-[p x FOSC  =  INTOSC_EC  ]
 "45
-[p x FCMEN  =  OFF       ]
+[p x CPUDIV  =  OSC1_PLL2 ]
 "46
-[p x IESO  =  OFF        ]
+[p x USBDIV  =  1        ]
 "49
-[p x PWRT  =  OFF        ]
+[p x FOSC  =  INTOSC_EC  ]
 "50
-[p x BOR  =  OFF          ]
+[p x FCMEN  =  OFF       ]
 "51
-[p x BORV  =  3          ]
-"52
-[p x VREGEN  =  OFF      ]
+[p x IESO  =  OFF        ]
+"54
+[p x PWRT  =  OFF        ]
 "55
-[p x WDT  =  OFF         ]
+[p x BOR  =  OFF          ]
 "56
-[p x WDTPS  =  32768     ]
-"59
-[p x CCP2MX  =  ON       ]
+[p x BORV  =  3          ]
+"57
+[p x VREGEN  =  OFF      ]
 "60
-[p x PBADEN  =  OFF      ]
+[p x WDT  =  OFF         ]
 "61
-[p x LPT1OSC  =  OFF     ]
-"62
-[p x MCLRE  =  OFF        ]
+[p x WDTPS  =  32768     ]
+"64
+[p x CCP2MX  =  ON       ]
 "65
-[p x STVREN  =  ON       ]
+[p x PBADEN  =  OFF      ]
 "66
-[p x LVP  =  OFF          ]
+[p x LPT1OSC  =  OFF     ]
 "67
-[p x ICPRT  =  OFF       ]
-"68
-[p x XINST  =  OFF       ]
+[p x MCLRE  =  OFF        ]
+"70
+[p x STVREN  =  ON       ]
 "71
-[p x CP0  =  OFF         ]
+[p x LVP  =  OFF          ]
 "72
-[p x CP1  =  OFF         ]
+[p x ICPRT  =  OFF       ]
 "73
-[p x CP2  =  OFF         ]
-"74
-[p x CP3  =  OFF         ]
+[p x XINST  =  OFF       ]
+"76
+[p x CP0  =  OFF         ]
 "77
-[p x CPB  =  OFF         ]
+[p x CP1  =  OFF         ]
 "78
-[p x CPD  =  OFF         ]
-"81
-[p x WRT0  =  OFF        ]
+[p x CP2  =  OFF         ]
+"79
+[p x CP3  =  OFF         ]
 "82
-[p x WRT1  =  OFF        ]
+[p x CPB  =  OFF         ]
 "83
-[p x WRT2  =  OFF        ]
-"84
-[p x WRT3  =  OFF        ]
+[p x CPD  =  OFF         ]
+"86
+[p x WRT0  =  OFF        ]
 "87
-[p x WRTC  =  OFF        ]
+[p x WRT1  =  OFF        ]
 "88
-[p x WRTB  =  OFF        ]
+[p x WRT2  =  OFF        ]
 "89
-[p x WRTD  =  OFF        ]
+[p x WRT3  =  OFF        ]
 "92
-[p x EBTR0  =  OFF       ]
+[p x WRTC  =  OFF        ]
 "93
-[p x EBTR1  =  OFF       ]
+[p x WRTB  =  OFF        ]
 "94
-[p x EBTR2  =  OFF       ]
-"95
-[p x EBTR3  =  OFF       ]
+[p x WRTD  =  OFF        ]
+"97
+[p x EBTR0  =  OFF       ]
 "98
+[p x EBTR1  =  OFF       ]
+"99
+[p x EBTR2  =  OFF       ]
+"100
+[p x EBTR3  =  OFF       ]
+"103
 [p x EBTRB  =  OFF       ]
 "33 i2c.c
 [; ;i2c.c: 33: void I2C_Restart()
@@ -665,14 +665,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _I2C_Restart ]
 [f ]
 "35
-[; ;i2c.c: 35:  SSPCON2bits.SEN = 1;
-[e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
+[; ;i2c.c: 35:  RSEN = 1;
+[e = _RSEN -> -> 1 `i `b ]
 "36
-[; ;i2c.c: 36:  while(SSPCON2bits.SEN);
+[; ;i2c.c: 36:  while(RSEN);
 [e $U 368  ]
 [e :U 369 ]
 [e :U 368 ]
-[e $ != -> . . _SSPCON2bits 0 0 `i -> 0 `i 369  ]
+[e $ _RSEN 369  ]
 [e :U 370 ]
 "37
 [; ;i2c.c: 37: }
@@ -687,11 +687,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _I2C_Init ]
 [f ]
 "48
-[; ;i2c.c: 48:  (TRISBbits.TRISB1) = 1;
-[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
+[; ;i2c.c: 48:  (TRISBbits.TRISB1) = 0x01u;
+[e = . . _TRISBbits 0 1 -> -> 1 `ui `uc ]
 "49
-[; ;i2c.c: 49:  (TRISBbits.TRISB0) = 1;
-[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
+[; ;i2c.c: 49:  (TRISBbits.TRISB0) = 0x01u;
+[e = . . _TRISBbits 0 0 -> -> 1 `ui `uc ]
 "51
 [; ;i2c.c: 51:  SSPSTAT = 0x80;
 [e = _SSPSTAT -> -> 128 `i `uc ]
@@ -699,8 +699,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;i2c.c: 52:  SSPCON1 = 0x28;
 [e = _SSPCON1 -> -> 40 `i `uc ]
 "53
-[; ;i2c.c: 53:  SSPADD = 50;
-[e = _SSPADD -> -> 50 `i `uc ]
+[; ;i2c.c: 53:  SSPADD = 60;
+[e = _SSPADD -> -> 60 `i `uc ]
 "54
 [; ;i2c.c: 54: }
 [e :UE 371 ]

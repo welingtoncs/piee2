@@ -5,7 +5,7 @@
  * Created on December 7, 2025, 9:07 AM
  */
 
-//#include "delay.h"
+#include "delay.h"
 #include "i2c.h"
 #include "config_header.h" 
 
@@ -32,8 +32,8 @@ static void i2c_NoAck();
 ***************************************************************************************************/
 void I2C_Restart()
 {
-	SSPCON2bits.SEN = 1;        /* Repeated start enabled */
-	while(SSPCON2bits.SEN);     /* wait for condition to finish */
+	RSEN = 1;        /* Repeated start enabled */
+	while(RSEN);     /* wait for condition to finish */
 }
 /***************************************************************************************************
                          void I2C_Init()
@@ -45,11 +45,16 @@ void I2C_Restart()
 ***************************************************************************************************/
 void I2C_Init()
 {
-	TRIS_SCL = 1;
-	TRIS_SDA = 1;
+	TRIS_SCL = C_PinInput_U8;
+	TRIS_SDA = C_PinInput_U8;
 
 	SSPSTAT = 0x80;  /* Slew rate disabled */
 	SSPCON1 = 0x28;    /* SSPEN = 1, I2C Master mode, clock = FOSC/(4 * (SSPADD + 1)) */
+    
+//    SSPCON2=0;
+//    SSPADD=BITRATE;                    /*clock 100 kHz*/  
+//    SSPIE=1;                            /*enable SSPIF interrupt*/
+//    SSPIF=0;
 	SSPADD = 50;//(GetInstructionClock()/(4 * 100000)) - 1; //60;      /* 100Khz @ 20Mhz Fosc */
 }
 /***************************************************************************************************

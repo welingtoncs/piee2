@@ -8,6 +8,8 @@
       <itemPath>i2c.h</itemPath>
       <itemPath>lcd_4b.h</itemPath>
       <itemPath>msdelay.h</itemPath>
+      <itemPath>stdutils.h</itemPath>
+      <itemPath>delay.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,6 +22,7 @@
       <itemPath>i2c.c</itemPath>
       <itemPath>lcd_4b.c</itemPath>
       <itemPath>msdelay.c</itemPath>
+      <itemPath>delay.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

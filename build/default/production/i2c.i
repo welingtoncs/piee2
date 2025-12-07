@@ -14,7 +14,45 @@
 
 
 
+# 1 "./delay.h" 1
+# 44 "./delay.h"
+# 1 "./stdutils.h" 1
+# 48 "./stdutils.h"
+typedef signed char sint8_t;
+typedef unsigned char uint8_t;
 
+typedef int sint16_t;
+typedef unsigned short uint16_t;
+
+typedef signed long int sint32_t;
+typedef unsigned long uint32_t;
+# 143 "./stdutils.h"
+typedef enum
+{
+   E_FALSE,
+   E_TRUE
+}Boolean_et;
+
+typedef enum
+{
+    E_FAILED,
+    E_SUCCESS,
+    E_BUSY,
+    E_TIMEOUT
+}Status_et;
+
+typedef enum
+{
+ E_BINARY=2,
+ E_DECIMAL = 10,
+ E_HEX = 16
+}NumericSystem_et;
+# 45 "./delay.h" 2
+# 63 "./delay.h"
+void DELAY_us(uint16_t us_count);
+void DELAY_ms(uint16_t ms_count);
+void DELAY_sec(uint16_t var_delaySecCount_u16);
+# 9 "i2c.c" 2
 # 1 "./i2c.h" 1
 # 34 "./i2c.h"
 # 1 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 1 3
@@ -5724,20 +5762,7 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 2 3
 # 35 "./i2c.h" 2
-
-
-# 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
-# 38 "./i2c.h" 2
-
-
-
-
-
-
-
-
+# 51 "./i2c.h"
 void I2C_Init();
 void I2C_Start();
 void I2C_Stop(void);
@@ -5745,7 +5770,7 @@ void I2C_Write(uint8_t );
 uint8_t I2C_Read(uint8_t);
 # 10 "i2c.c" 2
 # 1 "./config_header.h" 1
-# 39 "./config_header.h"
+# 44 "./config_header.h"
 #pragma config PLLDIV = 1
 #pragma config CPUDIV = OSC1_PLL2
 #pragma config USBDIV = 1
@@ -5814,18 +5839,18 @@ static void i2c_NoAck();
 # 33 "i2c.c"
 void I2C_Restart()
 {
- SSPCON2bits.SEN = 1;
- while(SSPCON2bits.SEN);
+ RSEN = 1;
+ while(RSEN);
 }
 # 46 "i2c.c"
 void I2C_Init()
 {
- (TRISBbits.TRISB1) = 1;
- (TRISBbits.TRISB0) = 1;
+ (TRISBbits.TRISB1) = 0x01u;
+ (TRISBbits.TRISB0) = 0x01u;
 
  SSPSTAT = 0x80;
  SSPCON1 = 0x28;
- SSPADD = 50;
+ SSPADD = 60;
 }
 # 72 "i2c.c"
 void I2C_Start()

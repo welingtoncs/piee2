@@ -509,81 +509,81 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"39 ./config_header.h
+"44 ./config_header.h
 [p x PLLDIV  =  1        ]
-"40
-[p x CPUDIV  =  OSC1_PLL2 ]
-"41
-[p x USBDIV  =  1        ]
-"44
-[p x FOSC  =  INTOSC_EC  ]
 "45
-[p x FCMEN  =  OFF       ]
+[p x CPUDIV  =  OSC1_PLL2 ]
 "46
-[p x IESO  =  OFF        ]
+[p x USBDIV  =  1        ]
 "49
-[p x PWRT  =  OFF        ]
+[p x FOSC  =  INTOSC_EC  ]
 "50
-[p x BOR  =  OFF          ]
+[p x FCMEN  =  OFF       ]
 "51
-[p x BORV  =  3          ]
-"52
-[p x VREGEN  =  OFF      ]
+[p x IESO  =  OFF        ]
+"54
+[p x PWRT  =  OFF        ]
 "55
-[p x WDT  =  OFF         ]
+[p x BOR  =  OFF          ]
 "56
-[p x WDTPS  =  32768     ]
-"59
-[p x CCP2MX  =  ON       ]
+[p x BORV  =  3          ]
+"57
+[p x VREGEN  =  OFF      ]
 "60
-[p x PBADEN  =  OFF      ]
+[p x WDT  =  OFF         ]
 "61
-[p x LPT1OSC  =  OFF     ]
-"62
-[p x MCLRE  =  OFF        ]
+[p x WDTPS  =  32768     ]
+"64
+[p x CCP2MX  =  ON       ]
 "65
-[p x STVREN  =  ON       ]
+[p x PBADEN  =  OFF      ]
 "66
-[p x LVP  =  OFF          ]
+[p x LPT1OSC  =  OFF     ]
 "67
-[p x ICPRT  =  OFF       ]
-"68
-[p x XINST  =  OFF       ]
+[p x MCLRE  =  OFF        ]
+"70
+[p x STVREN  =  ON       ]
 "71
-[p x CP0  =  OFF         ]
+[p x LVP  =  OFF          ]
 "72
-[p x CP1  =  OFF         ]
+[p x ICPRT  =  OFF       ]
 "73
-[p x CP2  =  OFF         ]
-"74
-[p x CP3  =  OFF         ]
+[p x XINST  =  OFF       ]
+"76
+[p x CP0  =  OFF         ]
 "77
-[p x CPB  =  OFF         ]
+[p x CP1  =  OFF         ]
 "78
-[p x CPD  =  OFF         ]
-"81
-[p x WRT0  =  OFF        ]
+[p x CP2  =  OFF         ]
+"79
+[p x CP3  =  OFF         ]
 "82
-[p x WRT1  =  OFF        ]
+[p x CPB  =  OFF         ]
 "83
-[p x WRT2  =  OFF        ]
-"84
-[p x WRT3  =  OFF        ]
+[p x CPD  =  OFF         ]
+"86
+[p x WRT0  =  OFF        ]
 "87
-[p x WRTC  =  OFF        ]
+[p x WRT1  =  OFF        ]
 "88
-[p x WRTB  =  OFF        ]
+[p x WRT2  =  OFF        ]
 "89
-[p x WRTD  =  OFF        ]
+[p x WRT3  =  OFF        ]
 "92
-[p x EBTR0  =  OFF       ]
+[p x WRTC  =  OFF        ]
 "93
-[p x EBTR1  =  OFF       ]
+[p x WRTB  =  OFF        ]
 "94
-[p x EBTR2  =  OFF       ]
-"95
-[p x EBTR3  =  OFF       ]
+[p x WRTD  =  OFF        ]
+"97
+[p x EBTR0  =  OFF       ]
 "98
+[p x EBTR1  =  OFF       ]
+"99
+[p x EBTR2  =  OFF       ]
+"100
+[p x EBTR3  =  OFF       ]
+"103
 [p x EBTRB  =  OFF       ]
 "14 msdelay.c
 [; ;msdelay.c: 14: void MSdelay(unsigned int val)

@@ -35,6 +35,11 @@
 
 #define _XTAL_FREQ 8000000
 
+//algumas definiçoes usadas para TICK, UAT, e SPI
+#define GetSystemClock()		(8000000ul) // Hz
+#define GetInstructionClock()	(GetSystemClock()/4)
+#define GetPeripheralClock()	GetInstructionClock()
+
 // CONFIG1L
 #pragma config PLLDIV = 1       // PLL Prescaler Selection bits (No prescale (4 MHz oscillator input drives PLL directly))
 #pragma config CPUDIV = OSC1_PLL2// System Clock Postscaler Selection bits ([Primary Oscillator Src: /1][96 MHz PLL Src: /2])

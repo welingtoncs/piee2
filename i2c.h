@@ -33,8 +33,13 @@
 
 #include <xc.h> // include processor files - each processor file is guarded. 
 #include <pic18f4550.h>
-//#include "stdutils.h"
-#include "msdelay.h"
+#include "stdutils.h"
+//#include "msdelay.h"
+
+//#define F_OSC 8000000                       /* define F_OSC for finding bit rate 
+//                                               here oscillator frequency is 8 MHz so define as 800000 */
+//#define I2C_CLOCK 100000                    /* I2C clock frequency is 100 kHz*/
+//#define BITRATE ((F_OSC/(4*I2C_CLOCK))-1)  /* find bit rate to assign this value to SSPADD register*/
 
 #define SCL	(PORTBbits.RB1)//SCL Connected to PORTC.3
 #define SDA (PORTBbits.RB0)//SDA Connected to PORTC.4

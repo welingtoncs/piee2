@@ -72,6 +72,15 @@ typedef struct {
     unsigned char   last_desliga_state;
     unsigned char   last_interlock_state;
 } fsm_data_t;
+
+
+#define C_Ds1307ReadMode_U8   0xD1u  // DS1307 ID
+#define C_Ds1307WriteMode_U8  0xD0u  // DS1307 ID
+
+#define C_Ds1307SecondRegAddress_U8   0x00u   // Address to access Ds1307 SEC register
+#define C_Ds1307DateRegAddress_U8     0x04u   // Address to access Ds1307 DATE register
+#define C_Ds1307ControlRegAddress_U8  0x07u   // Address to access Ds1307 CONTROL register
+
 /*********************Declarações Proto-Type*****************************/
 
      
