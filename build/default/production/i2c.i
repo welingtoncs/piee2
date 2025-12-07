@@ -14,9 +14,47 @@
 
 
 
+# 1 "./delay.h" 1
+# 44 "./delay.h"
+# 1 "./stdutils.h" 1
+# 48 "./stdutils.h"
+typedef signed char sint8_t;
+typedef unsigned char uint8_t;
 
+typedef int sint16_t;
+typedef unsigned short uint16_t;
+
+typedef signed long int sint32_t;
+typedef unsigned long uint32_t;
+# 143 "./stdutils.h"
+typedef enum
+{
+   E_FALSE,
+   E_TRUE
+}Boolean_et;
+
+typedef enum
+{
+    E_FAILED,
+    E_SUCCESS,
+    E_BUSY,
+    E_TIMEOUT
+}Status_et;
+
+typedef enum
+{
+ E_BINARY=2,
+ E_DECIMAL = 10,
+ E_HEX = 16
+}NumericSystem_et;
+# 45 "./delay.h" 2
+# 63 "./delay.h"
+void DELAY_us(uint16_t us_count);
+void DELAY_ms(uint16_t ms_count);
+void DELAY_sec(uint16_t var_delaySecCount_u16);
+# 9 "i2c.c" 2
 # 1 "./i2c.h" 1
-# 12 "./i2c.h"
+# 34 "./i2c.h"
 # 1 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 1 3
 # 18 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5723,136 +5761,166 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 2 3
-# 13 "./i2c.h" 2
-
-
-
-
-
-
-void I2C_Ready();
+# 35 "./i2c.h" 2
+# 51 "./i2c.h"
 void I2C_Init();
-char I2C_Start(char);
-void I2C_Start_Wait(char);
-
-char I2C_Repeated_Start(char);
-char I2C_Stop();
-char I2C_Write(unsigned char);
-void I2C_Ack();
-void I2C_Nack();
-char I2C_Read(char flag);
+void I2C_Start();
+void I2C_Stop(void);
+void I2C_Write(uint8_t );
+uint8_t I2C_Read(uint8_t);
 # 10 "i2c.c" 2
+# 1 "./config_header.h" 1
+# 44 "./config_header.h"
+#pragma config PLLDIV = 1
+#pragma config CPUDIV = OSC1_PLL2
+#pragma config USBDIV = 1
 
 
-char I2C_Read(char flag)
+#pragma config FOSC = INTOSC_EC
+#pragma config FCMEN = OFF
+#pragma config IESO = OFF
 
+
+#pragma config PWRT = OFF
+#pragma config BOR = OFF
+#pragma config BORV = 3
+#pragma config VREGEN = OFF
+
+
+#pragma config WDT = OFF
+#pragma config WDTPS = 32768
+
+
+#pragma config CCP2MX = ON
+#pragma config PBADEN = OFF
+#pragma config LPT1OSC = OFF
+#pragma config MCLRE = OFF
+
+
+#pragma config STVREN = ON
+#pragma config LVP = OFF
+#pragma config ICPRT = OFF
+#pragma config XINST = OFF
+
+
+#pragma config CP0 = OFF
+#pragma config CP1 = OFF
+#pragma config CP2 = OFF
+#pragma config CP3 = OFF
+
+
+#pragma config CPB = OFF
+#pragma config CPD = OFF
+
+
+#pragma config WRT0 = OFF
+#pragma config WRT1 = OFF
+#pragma config WRT2 = OFF
+#pragma config WRT3 = OFF
+
+
+#pragma config WRTC = OFF
+#pragma config WRTB = OFF
+#pragma config WRTD = OFF
+
+
+#pragma config EBTR0 = OFF
+#pragma config EBTR1 = OFF
+#pragma config EBTR2 = OFF
+#pragma config EBTR3 = OFF
+
+
+#pragma config EBTRB = OFF
+# 11 "i2c.c" 2
+# 21 "i2c.c"
+static void i2c_WaitForIdle();
+static void i2c_Ack();
+static void i2c_NoAck();
+# 33 "i2c.c"
+void I2C_Restart()
 {
-        char buffer;
-        RCEN = 1;
-        while(!SSPSTATbits.BF);
-
-        buffer = SSPBUF;
-
-        if(flag==0)
-            I2C_Ack();
-        else
-            I2C_Nack();
-        I2C_Ready();
-        return(buffer);
+ RSEN = 1;
+ while(RSEN);
 }
-
+# 46 "i2c.c"
 void I2C_Init()
 {
-    TRISB0=1;
- TRISB1=1;
- SSPSTAT=80;
-    SSPCON1=0x28;
+ (TRISBbits.TRISB1) = 0x01u;
+ (TRISBbits.TRISB0) = 0x01u;
 
- SSPCON2=0;
-    SSPADD=((8000000/(4*100000))-1);
-    SSPIE=1;
-    SSPIF=0;
+ SSPSTAT = 0x80;
+ SSPCON1 = 0x28;
+    SSPCON2 = 0x00;
+
+
+
+
+
+ SSPADD = 4;
 }
-
-
-void I2C_Ready()
+# 78 "i2c.c"
+void I2C_Start()
 {
-    while(!SSPIF);
-    SSPIF=0;
-}
-
-void I2C_Start_Wait(char slave_write_address)
-{
-  while(1)
-  {
-    SSPCON2bits.SEN=1;
-    while(SSPCON2bits.SEN);
-    SSPIF=0;
- if(!SSPSTATbits.S)
-        continue;
-    I2C_Write(slave_write_address);
-    if(ACKSTAT)
-    {
-        I2C_Stop();
-        continue;
-    }
-    break;
-  }
-}
-
-char I2C_Start(char slave_write_address)
-{
-    SSPCON2bits.SEN=1;
-    while(SSPCON2bits.SEN);
- SSPIF=0;
-    if(!SSPSTATbits.S)
-    return 0;
-    return (I2C_Write(slave_write_address));
+ SSPCON2bits.SEN = 1;
+ while(SSPCON2bits.SEN == 1);
 
 }
-
-char I2C_Repeated_Start(char slave_read_address)
+# 102 "i2c.c"
+void I2C_Stop(void)
 {
-    RSEN = 1;
-    while(RSEN);
-    SSPIF = 0;
- if(!SSPSTATbits.S)
-    return 0;
-    I2C_Write(slave_read_address);
-    if (ACKSTAT)
-     return 1;
-    else
-     return 2;
+ PEN = 1;
+ while(PEN == 1);
 }
-
-char I2C_Stop()
+# 126 "i2c.c"
+void I2C_Write(uint8_t v_i2cData_u8)
 {
-    PEN = 1;
-    while(PEN);
-    if(!SSPSTATbits.P);
-    return 0;
+
+
+    SSPBUF = v_i2cData_u8;
+    while(BF==1);
+    i2c_WaitForIdle();
 }
-
-char I2C_Write(unsigned char data)
+# 155 "i2c.c"
+uint8_t I2C_Read(uint8_t v_ackOption_u8)
 {
-      SSPBUF = data;
-      I2C_Ready();
-      if (ACKSTAT)
-        return 1;
-      else
-        return 2;
+ uint8_t v_i2cData_u8=0x00;
+
+ RCEN = 1;
+ while(SSPSTATbits.BF==0);
+ v_i2cData_u8 = SSPBUF;
+ i2c_WaitForIdle();
+
+ if(v_ackOption_u8==1)
+ {
+  i2c_Ack();
+ }
+ else
+ {
+  i2c_NoAck();
+ }
+
+ return v_i2cData_u8;
 }
-
-void I2C_Ack()
+# 186 "i2c.c"
+static void i2c_WaitForIdle()
 {
-    ACKDT=0;
- ACKEN=1;
-    while(ACKEN);
+
+
+
+    while ( (SEN == 1) || (RSEN == 1) || (PEN == 1) || (RCEN == 1) || (R_W == 1) );
+
 }
-
-void I2C_Nack()
+# 203 "i2c.c"
+static void i2c_Ack()
 {
-    ACKDT=1;
- ACKEN=1;
-    while(ACKEN);
+ ACKDT = 0;
+ ACKEN = 1;
+ while(ACKEN == 1);
+}
+# 218 "i2c.c"
+static void i2c_NoAck()
+{
+ ACKDT = 1;
+ ACKEN = 1;
+ while(ACKEN == 1);
 }

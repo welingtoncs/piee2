@@ -6,7 +6,10 @@
  */
 
 #include "lcd_4b.h"
-#include "msdelay.h"
+#include <pic18f4550.h>"
+
+
+
 
 void LCD_Init()
 {
