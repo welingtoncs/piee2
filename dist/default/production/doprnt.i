@@ -842,15 +842,7 @@ static char dbuf[32];
 static void pad(FILE *fp, char *buf, int p)
 {
     int i, w;
-
-
-
-    if (flags & (1 << 0)) {
-        fputs((const char *)buf, fp);
-    }
-
-
-
+# 164 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
     w = (p < 0) ? 0 : p;
     i = 0;
     while (i < w) {
@@ -860,11 +852,11 @@ static void pad(FILE *fp, char *buf, int p)
 
 
 
-    if (!(flags & (1 << 0))) {
+
 
         fputs((const char *)buf, fp);
 
-    }
+
 
 
 
@@ -878,16 +870,7 @@ static void xtoa(FILE *fp, vfpf_uint_t d)
 {
  char c;
     int i, p, w;
-
-
-
-
-
-
-    if (!(prec < 0)) {
-        flags &= ~(1 << 1);
-    }
-
+# 971 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
     p = (0 <= prec) ? prec : 1;
     w = width;
 # 981 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
@@ -895,7 +878,7 @@ static void xtoa(FILE *fp, vfpf_uint_t d)
     dbuf[i] = '\0';
     while (!(i < 2) && (d || (0 < p)
 
-    || ((0 < w) && (flags & (1 << 1)))
+
 
     )) {
         --i;
@@ -911,28 +894,7 @@ static void xtoa(FILE *fp, vfpf_uint_t d)
 # 1023 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
     return (void) pad(fp, &dbuf[i], w);
 }
-
-
-
-static int
-read_prec_or_width (const char **fmt, va_list *ap) {
-    int n = 0;
-    if ((*fmt)[0] == '*') {
-        ++*fmt;
-        n = (*(int *)__va_arg(*(int **)*ap, (int)0));
-    } else {
-        unsigned char c;
-        while ((c = ((unsigned)(*fmt)[0]) - '0') < 10) {
-            n = n * 10 + c;
-            ++*fmt;
-        }
-    }
-    return n;
-}
-
-
-
-
+# 1047 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
 static void
 vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 {
@@ -953,35 +915,6 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
         flags = width = 0;
         prec = -1;
-
-
-
-        done = 0;
-        while (!done) {
-            switch ((*fmt)[0]) {
-
-
-
-
-
-
-
-                case '0' :
-                    flags |= (1 << 1);
-                    ++*fmt;
-                    break;
-# 1103 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-                default:
-                    done = 1;
-                    break;
-            }
-        }
-# 1117 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-  width = read_prec_or_width(fmt, ap);
-  if (width < 0) {
-   flags |= (1 << 0);
-   width = -width;
-  }
 # 1143 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
   cp = *fmt;
 # 1265 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"

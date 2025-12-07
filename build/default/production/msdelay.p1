@@ -509,81 +509,81 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"44 ./config_header.h
+"17 ./config_header.h
 [p x PLLDIV  =  1        ]
-"45
+"18
 [p x CPUDIV  =  OSC1_PLL2 ]
-"46
+"19
 [p x USBDIV  =  1        ]
-"49
+"22
 [p x FOSC  =  INTOSC_EC  ]
-"50
+"23
 [p x FCMEN  =  OFF       ]
-"51
+"24
 [p x IESO  =  OFF        ]
-"54
+"27
 [p x PWRT  =  OFF        ]
-"55
-[p x BOR  =  OFF          ]
-"56
+"28
+[p x BOR  =  ON          ]
+"29
 [p x BORV  =  3          ]
-"57
+"30
 [p x VREGEN  =  OFF      ]
-"60
+"33
 [p x WDT  =  OFF         ]
-"61
+"34
 [p x WDTPS  =  32768     ]
-"64
+"37
 [p x CCP2MX  =  ON       ]
-"65
-[p x PBADEN  =  OFF      ]
-"66
+"38
+[p x PBADEN  =  OFF       ]
+"39
 [p x LPT1OSC  =  OFF     ]
-"67
-[p x MCLRE  =  OFF        ]
-"70
+"40
+[p x MCLRE  =  OFF       ]
+"43
 [p x STVREN  =  ON       ]
-"71
+"44
 [p x LVP  =  OFF          ]
-"72
+"45
 [p x ICPRT  =  OFF       ]
-"73
+"46
 [p x XINST  =  OFF       ]
-"76
+"49
 [p x CP0  =  OFF         ]
-"77
+"50
 [p x CP1  =  OFF         ]
-"78
+"51
 [p x CP2  =  OFF         ]
-"79
+"52
 [p x CP3  =  OFF         ]
-"82
+"55
 [p x CPB  =  OFF         ]
-"83
+"56
 [p x CPD  =  OFF         ]
-"86
+"59
 [p x WRT0  =  OFF        ]
-"87
+"60
 [p x WRT1  =  OFF        ]
-"88
+"61
 [p x WRT2  =  OFF        ]
-"89
+"62
 [p x WRT3  =  OFF        ]
-"92
+"65
 [p x WRTC  =  OFF        ]
-"93
+"66
 [p x WRTB  =  OFF        ]
-"94
+"67
 [p x WRTD  =  OFF        ]
-"97
+"70
 [p x EBTR0  =  OFF       ]
-"98
+"71
 [p x EBTR1  =  OFF       ]
-"99
+"72
 [p x EBTR2  =  OFF       ]
-"100
+"73
 [p x EBTR3  =  OFF       ]
-"103
+"76
 [p x EBTRB  =  OFF       ]
 "14 msdelay.c
 [; ;msdelay.c: 14: void MSdelay(unsigned int val)

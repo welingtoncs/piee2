@@ -5870,7 +5870,7 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 11 "msdelay.c" 2
 # 1 "./config_header.h" 1
-# 44 "./config_header.h"
+# 17 "./config_header.h"
 #pragma config PLLDIV = 1
 #pragma config CPUDIV = OSC1_PLL2
 #pragma config USBDIV = 1
@@ -5882,7 +5882,7 @@ char *tempnam(const char *, const char *);
 
 
 #pragma config PWRT = OFF
-#pragma config BOR = OFF
+#pragma config BOR = ON
 #pragma config BORV = 3
 #pragma config VREGEN = OFF
 

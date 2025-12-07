@@ -1,165 +1,44 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"85 main_piee2.c
-[; ;main_piee2.c: 85: {
-[s S370 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S370 . sec min hour weekDay date month year ]
-"132
-[; ;main_piee2.c: 132: fsm_data_t system_fsm;
-[c E3566 0 1 2 3 4 5 6 7 .. ]
-[n E3566 . STATE_IDLE STATE_INIT STATE_READY STATE_STARTING STATE_RUNNING STATE_STOPPING STATE_BLOCKED STATE_FAILURE  ]
-"71
-[; ;main_piee2.c: 71: typedef struct {
-[s S369 `E3566 1 `E3566 1 `ui 1 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `uc 1 ]
-[n S369 . current_state next_state timer_counter start_timer blink_counter beep_counter last_liga_state last_desliga_state last_interlock_state ]
+"21 ./i2c.h
+[; ;./i2c.h: 21: char I2C_Start(char);
+[v _I2C_Start `(uc ~T0 @X0 0 ef1`uc ]
+"26
+[; ;./i2c.h: 26: char I2C_Write(unsigned char);
+[v _I2C_Write `(uc ~T0 @X0 0 ef1`uc ]
+"24
+[; ;./i2c.h: 24: char I2C_Repeated_Start(char);
+[v _I2C_Repeated_Start `(uc ~T0 @X0 0 ef1`uc ]
+"29
+[; ;./i2c.h: 29: char I2C_Read(char flag);
+[v _I2C_Read `(uc ~T0 @X0 0 ef1`uc ]
+"25
+[; ;./i2c.h: 25: char I2C_Stop();
+[v _I2C_Stop `(uc ~T0 @X0 0 e? ]
 [p mainexit ]
 "7986 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 7986: extern volatile unsigned char OSCCON __attribute__((address(0xFD3)));
 [v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
-"45 ./lcd_4b.h
-[; ;./lcd_4b.h: 45: void LCD_Init();
+"20 ./i2c.h
+[; ;./i2c.h: 20: void I2C_Init();
+[v _I2C_Init `(v ~T0 @X0 0 e? ]
+"47 ./lcd_4b.h
+[; ;./lcd_4b.h: 47: void LCD_Init();
 [v _LCD_Init `(v ~T0 @X0 0 e? ]
-"114 main_piee2.c
-[; ;main_piee2.c: 114: void RTC_Init(void);
-[v _RTC_Init `(v ~T0 @X0 0 ef ]
-"115
-[; ;main_piee2.c: 115: void RTC_SetDateTime(rtc_t *rtc);
-[v _RTC_SetDateTime `(v ~T0 @X0 0 ef1`*S370 ]
-"4001 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 4001: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"3847
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 3847: extern volatile unsigned char TRISC __attribute__((address(0xF94)));
-[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
-"2563
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2563: extern volatile unsigned char PORTC __attribute__((address(0xF82)));
-[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
-"124 main_piee2.c
-[; ;main_piee2.c: 124: void FSM_Init(fsm_data_t *fsm);
-[v _FSM_Init `(v ~T0 @X0 0 ef1`*S369 ]
-"110
-[; ;main_piee2.c: 110: void Beep(unsigned int);
-[v _Beep `(v ~T0 @X0 0 ef1`ui ]
-"109
-[; ;main_piee2.c: 109: void Message(unsigned int);
-[v _Message `(v ~T0 @X0 0 ef1`ui ]
-"36 ./msdelay.h
-[; ;./msdelay.h: 36: void MSdelay(unsigned int);
-[; ;./msdelay.h: 36: void MSdelay(unsigned int);
-[v _MSdelay `(v ~T0 @X0 0 ef1`ui ]
-"125 main_piee2.c
-[; ;main_piee2.c: 125: void FSM_Update(fsm_data_t *fsm);
-[v _FSM_Update `(v ~T0 @X0 0 ef1`*S369 ]
-"10000 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10000: extern volatile __bit LATD3 __attribute__((address(0x7C63)));
-[v _LATD3 `Vb ~T0 @X0 0 e@31843 ]
-"9997
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9997: extern volatile __bit LATD2 __attribute__((address(0x7C62)));
-[v _LATD2 `Vb ~T0 @X0 0 e@31842 ]
-"9994
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9994: extern volatile __bit LATD1 __attribute__((address(0x7C61)));
-[v _LATD1 `Vb ~T0 @X0 0 e@31841 ]
-"127 main_piee2.c
-[; ;main_piee2.c: 127: void FSM_CheckTransitions(fsm_data_t *fsm);
-[v _FSM_CheckTransitions `(v ~T0 @X0 0 ef1`*S369 ]
-"126
-[; ;main_piee2.c: 126: void FSM_ExecuteState(fsm_data_t *fsm);
-[v _FSM_ExecuteState `(v ~T0 @X0 0 ef1`*S369 ]
-"128
-[; ;main_piee2.c: 128: void FSM_UpdateDisplay(fsm_data_t *fsm);
-[v _FSM_UpdateDisplay `(v ~T0 @X0 0 ef1`*S369 ]
-"2569 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2569:     struct {
-[s S113 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S113 . RC0 RC1 RC2 . RC4 RC5 RC6 RC7 ]
-"2579
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2579:     struct {
-[s S114 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S114 . T1OSO T1OSI CCP1 . TX RX ]
-"2587
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2587:     struct {
-[s S115 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S115 . T13CKI . P1A . CK DT ]
-"2595
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2595:     struct {
-[s S116 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S116 . . CCP2 PA1 ]
-"2600
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2600:     struct {
-[s S117 :1 `uc 1 :1 `uc 1 ]
-[n S117 . . PA2 ]
-"2568
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2568: typedef union {
-[u S112 `S113 1 `S114 1 `S115 1 `S116 1 `S117 1 ]
-[n S112 . . . . . . ]
-"2605
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2605: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
-[v _PORTCbits `VS112 ~T0 @X0 0 e@3970 ]
-"129 main_piee2.c
-[; ;main_piee2.c: 129: void atualiza_data();
-[v _atualiza_data `(v ~T0 @X0 0 e? ]
-"49 ./lcd_4b.h
-[; ;./lcd_4b.h: 49: void LCD_String_xy(char, char, const char *);
-[v _LCD_String_xy `(v ~T0 @X0 0 ef3`uc`uc`*Cuc ]
-"50
-[; ;./lcd_4b.h: 50: void LCD_Clear();
+"52
+[; ;./lcd_4b.h: 52: void LCD_Clear();
 [v _LCD_Clear `(v ~T0 @X0 0 e? ]
-"9991 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9991: extern volatile __bit LATD0 __attribute__((address(0x7C60)));
-[v _LATD0 `Vb ~T0 @X0 0 e@31840 ]
-"116 main_piee2.c
-[; ;main_piee2.c: 116: void RTC_GetDateTime(rtc_t *rtc);
-[v _RTC_GetDateTime `(v ~T0 @X0 0 ef1`*S370 ]
+"46
+[; ;./lcd_4b.h: 46: void MSdelay(unsigned int );
+[v _MSdelay `(v ~T0 @X0 0 ef1`ui ]
+"51
+[; ;./lcd_4b.h: 51: void LCD_String_xy(char, char, const char *);
+[v _LCD_String_xy `(v ~T0 @X0 0 ef3`uc`uc`*Cuc ]
 "111 /Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [; ;/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h: 111: int sprintf(char *restrict, const char *restrict, ...);
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"51 ./i2c.h
-[; ;./i2c.h: 51: void I2C_Init();
-[v _I2C_Init `(v ~T0 @X0 0 e? ]
-"52
-[; ;./i2c.h: 52: void I2C_Start();
-[v _I2C_Start `(v ~T0 @X0 0 e? ]
-"54
-[; ;./i2c.h: 54: void I2C_Write(uint8_t );
-[v _I2C_Write `(v ~T0 @X0 0 ef1`uc ]
-"53
-[; ;./i2c.h: 53: void I2C_Stop(void);
-[v _I2C_Stop `(v ~T0 @X0 0 ef ]
-"55
-[; ;./i2c.h: 55: uint8_t I2C_Read(uint8_t);
-[v _I2C_Read `(uc ~T0 @X0 0 ef1`uc ]
-"46 ./lcd_4b.h
-[; ;./lcd_4b.h: 46: void LCD_Command(unsigned char);
-[v _LCD_Command `(v ~T0 @X0 0 ef1`uc ]
-"2320 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2320:     struct {
-[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S103 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 ]
-"2329
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2329:     struct {
-[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S104 . AN0 AN1 AN2 AN3 T0CKI AN4 OSC2 ]
-"2338
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2338:     struct {
-[s S105 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S105 . . VREFM VREFP . LVDIN ]
-"2345
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2345:     struct {
-[s S106 :5 `uc 1 :1 `uc 1 ]
-[n S106 . . HLVDIN ]
-"2349
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2349:     struct {
-[s S107 :1 `uc 1 ]
-[n S107 . ULPWUIN ]
-"2319
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2319: typedef union {
-[u S102 `S103 1 `S104 1 `S105 1 `S106 1 `S107 1 ]
-[n S102 . . . . . . ]
-"2353
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
-[v _PORTAbits `VS102 ~T0 @X0 0 e@3968 ]
-"119 main_piee2.c
-[; ;main_piee2.c: 119: void converteDecToHex(int converte);
-[v _converteDecToHex `(v ~T0 @X0 0 ef1`i ]
+"50 ./lcd_4b.h
+[; ;./lcd_4b.h: 50: void LCD_String(const char *);
+[v _LCD_String `(v ~T0 @X0 0 ef1`*Cuc ]
 "54 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 54: __asm("SPPDATA equ 0F62h");
 [; <" SPPDATA equ 0F62h ;# ">
@@ -670,2487 +549,534 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"44 ./config_header.h
+"17 ./config_header.h
 [p x PLLDIV  =  1        ]
-"45
+"18
 [p x CPUDIV  =  OSC1_PLL2 ]
-"46
+"19
 [p x USBDIV  =  1        ]
-"49
+"22
 [p x FOSC  =  INTOSC_EC  ]
-"50
+"23
 [p x FCMEN  =  OFF       ]
-"51
+"24
 [p x IESO  =  OFF        ]
-"54
+"27
 [p x PWRT  =  OFF        ]
-"55
-[p x BOR  =  OFF          ]
-"56
+"28
+[p x BOR  =  ON          ]
+"29
 [p x BORV  =  3          ]
-"57
+"30
 [p x VREGEN  =  OFF      ]
-"60
+"33
 [p x WDT  =  OFF         ]
-"61
+"34
 [p x WDTPS  =  32768     ]
-"64
+"37
 [p x CCP2MX  =  ON       ]
-"65
-[p x PBADEN  =  OFF      ]
-"66
+"38
+[p x PBADEN  =  OFF       ]
+"39
 [p x LPT1OSC  =  OFF     ]
-"67
-[p x MCLRE  =  OFF        ]
-"70
+"40
+[p x MCLRE  =  OFF       ]
+"43
 [p x STVREN  =  ON       ]
-"71
+"44
 [p x LVP  =  OFF          ]
-"72
+"45
 [p x ICPRT  =  OFF       ]
-"73
+"46
 [p x XINST  =  OFF       ]
-"76
+"49
 [p x CP0  =  OFF         ]
-"77
+"50
 [p x CP1  =  OFF         ]
-"78
+"51
 [p x CP2  =  OFF         ]
-"79
+"52
 [p x CP3  =  OFF         ]
-"82
+"55
 [p x CPB  =  OFF         ]
-"83
+"56
 [p x CPD  =  OFF         ]
-"86
+"59
 [p x WRT0  =  OFF        ]
-"87
+"60
 [p x WRT1  =  OFF        ]
-"88
+"61
 [p x WRT2  =  OFF        ]
-"89
+"62
 [p x WRT3  =  OFF        ]
-"92
+"65
 [p x WRTC  =  OFF        ]
-"93
+"66
 [p x WRTB  =  OFF        ]
-"94
+"67
 [p x WRTD  =  OFF        ]
-"97
+"70
 [p x EBTR0  =  OFF       ]
-"98
+"71
 [p x EBTR1  =  OFF       ]
-"99
+"72
 [p x EBTR2  =  OFF       ]
-"100
+"73
 [p x EBTR3  =  OFF       ]
-"103
+"76
 [p x EBTRB  =  OFF       ]
-"95 main_piee2.c
-[; ;main_piee2.c: 95: rtc_t rtc;
-[v _rtc `S370 ~T0 @X0 1 e ]
-"96
-[; ;main_piee2.c: 96: char data[50];
-[v _data `uc ~T0 @X0 -> 50 `i e ]
-"121
-[; ;main_piee2.c: 121: uint8_t acerto;
-[v _acerto `uc ~T0 @X0 1 e ]
-"132
-[; ;main_piee2.c: 132: fsm_data_t system_fsm;
-[v _system_fsm `S369 ~T0 @X0 1 e ]
+"17
+[p x PLLDIV  =  1        ]
+"18
+[p x CPUDIV  =  OSC1_PLL2 ]
+"19
+[p x USBDIV  =  1        ]
+"22
+[p x FOSC  =  INTOSC_EC  ]
+"23
+[p x FCMEN  =  OFF       ]
+"24
+[p x IESO  =  OFF        ]
+"27
+[p x PWRT  =  OFF        ]
+"28
+[p x BOR  =  ON          ]
+"29
+[p x BORV  =  3          ]
+"30
+[p x VREGEN  =  OFF      ]
+"33
+[p x WDT  =  OFF         ]
+"34
+[p x WDTPS  =  32768     ]
+"37
+[p x CCP2MX  =  ON       ]
+"38
+[p x PBADEN  =  OFF       ]
+"39
+[p x LPT1OSC  =  OFF     ]
+"40
+[p x MCLRE  =  OFF       ]
+"43
+[p x STVREN  =  ON       ]
+"44
+[p x LVP  =  OFF          ]
+"45
+[p x ICPRT  =  OFF       ]
+"46
+[p x XINST  =  OFF       ]
+"49
+[p x CP0  =  OFF         ]
+"50
+[p x CP1  =  OFF         ]
+"51
+[p x CP2  =  OFF         ]
+"52
+[p x CP3  =  OFF         ]
+"55
+[p x CPB  =  OFF         ]
+"56
+[p x CPD  =  OFF         ]
+"59
+[p x WRT0  =  OFF        ]
+"60
+[p x WRT1  =  OFF        ]
+"61
+[p x WRT2  =  OFF        ]
+"62
+[p x WRT3  =  OFF        ]
+"65
+[p x WRTC  =  OFF        ]
+"66
+[p x WRTB  =  OFF        ]
+"67
+[p x WRTD  =  OFF        ]
+"70
+[p x EBTR0  =  OFF       ]
+"71
+[p x EBTR1  =  OFF       ]
+"72
+[p x EBTR2  =  OFF       ]
+"73
+[p x EBTR3  =  OFF       ]
+"76
+[p x EBTRB  =  OFF       ]
+"16 main_piee2.c
+[; ;main_piee2.c: 16: int sec,min,hour;
+[v _sec `i ~T0 @X0 1 e ]
+[v _min `i ~T0 @X0 1 e ]
+[v _hour `i ~T0 @X0 1 e ]
+"17
+[; ;main_piee2.c: 17: int Day,Date,Month,Year;
+[v _Day `i ~T0 @X0 1 e ]
+[v _Date `i ~T0 @X0 1 e ]
+[v _Month `i ~T0 @X0 1 e ]
+[v _Year `i ~T0 @X0 1 e ]
+"19
+[; ;main_piee2.c: 19: void RTC_Read_Clock(char read_clock_address)
+[v _RTC_Read_Clock `(v ~T0 @X0 1 ef1`uc ]
+"20
+[; ;main_piee2.c: 20: {
+{
+[e :U _RTC_Read_Clock ]
+"19
+[; ;main_piee2.c: 19: void RTC_Read_Clock(char read_clock_address)
+[v _read_clock_address `uc ~T0 @X0 1 r1 ]
+"20
+[; ;main_piee2.c: 20: {
+[f ]
+"21
+[; ;main_piee2.c: 21:     I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"22
+[; ;main_piee2.c: 22:     I2C_Write(read_clock_address);
+[e ( _I2C_Write (1 -> _read_clock_address `uc ]
+"23
+[; ;main_piee2.c: 23:     I2C_Repeated_Start(0xD1);
+[e ( _I2C_Repeated_Start (1 -> -> 209 `i `uc ]
+"24
+[; ;main_piee2.c: 24:     sec = I2C_Read(0);
+[e = _sec -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"25
+[; ;main_piee2.c: 25:     min = I2C_Read(0);
+[e = _min -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"26
+[; ;main_piee2.c: 26:     hour= I2C_Read(1);
+[e = _hour -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+"28
+[; ;main_piee2.c: 28: }
+[e :UE 369 ]
+}
+"30
+[; ;main_piee2.c: 30: void RTC_Read_Calendar(char read_calendar_address)
+[v _RTC_Read_Calendar `(v ~T0 @X0 1 ef1`uc ]
+"31
+[; ;main_piee2.c: 31: {
+{
+[e :U _RTC_Read_Calendar ]
+"30
+[; ;main_piee2.c: 30: void RTC_Read_Calendar(char read_calendar_address)
+[v _read_calendar_address `uc ~T0 @X0 1 r1 ]
+"31
+[; ;main_piee2.c: 31: {
+[f ]
+"32
+[; ;main_piee2.c: 32:     I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"33
+[; ;main_piee2.c: 33:     I2C_Write(read_calendar_address);
+[e ( _I2C_Write (1 -> _read_calendar_address `uc ]
+"34
+[; ;main_piee2.c: 34:     I2C_Repeated_Start(0xD1);
+[e ( _I2C_Repeated_Start (1 -> -> 209 `i `uc ]
+"35
+[; ;main_piee2.c: 35:     Day = I2C_Read(0);
+[e = _Day -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"36
+[; ;main_piee2.c: 36:     Date = I2C_Read(0);
+[e = _Date -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"37
+[; ;main_piee2.c: 37:     Month = I2C_Read(0);
+[e = _Month -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"38
+[; ;main_piee2.c: 38:     Year = I2C_Read(1);
+[e = _Year -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+"39
+[; ;main_piee2.c: 39:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"40
+[; ;main_piee2.c: 40: }
+[e :UE 370 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"134
-[; ;main_piee2.c: 134: int main(void)
-[v _main `(i ~T0 @X0 1 ef ]
-"135
-[; ;main_piee2.c: 135: {
+"42
+[; ;main_piee2.c: 42: void main()
+[v _main `(v ~T0 @X0 1 ef ]
+"43
+[; ;main_piee2.c: 43: {
 {
 [e :U _main ]
 [f ]
-"137
-[; ;main_piee2.c: 137:     OSCCON = 0x72;
+"45
+[; ;main_piee2.c: 45:     char secs[10],mins[10],hours[10];
+[v _secs `uc ~T0 @X0 -> 10 `i a ]
+[v _mins `uc ~T0 @X0 -> 10 `i a ]
+[v _hours `uc ~T0 @X0 -> 10 `i a ]
+"46
+[; ;main_piee2.c: 46:     char date[10],month[10],year[10];
+[v _date `uc ~T0 @X0 -> 10 `i a ]
+[v _month `uc ~T0 @X0 -> 10 `i a ]
+[v _year `uc ~T0 @X0 -> 10 `i a ]
+"47
+[; ;main_piee2.c: 47:     char Clock_type = 0x06;
+[v _Clock_type `uc ~T0 @X0 1 a ]
+[e = _Clock_type -> -> 6 `i `uc ]
+"48
+[; ;main_piee2.c: 48:     char AM_PM = 0x05;
+[v _AM_PM `uc ~T0 @X0 1 a ]
+[e = _AM_PM -> -> 5 `i `uc ]
+[v F3571 `uc ~T0 @X0 -> 7 `i s ]
+[i F3571
+:U ..
+"49
+[; ;main_piee2.c: 49:     char days[7] = {'S','M','T','W','t','F','s'};
+-> -> 83 `ui `uc
+-> -> 77 `ui `uc
+-> -> 84 `ui `uc
+-> -> 87 `ui `uc
+-> -> 116 `ui `uc
+-> -> 70 `ui `uc
+-> -> 115 `ui `uc
+..
+]
+[v _days `uc ~T0 @X0 -> 7 `i a ]
+[e = _days F3571 ]
+"50
+[; ;main_piee2.c: 50:     OSCCON=0x72;
 [e = _OSCCON -> -> 114 `i `uc ]
-"140
-[; ;main_piee2.c: 140:     LCD_Init();
+"52
+[; ;main_piee2.c: 52:     I2C_Init();
+[e ( _I2C_Init ..  ]
+"53
+[; ;main_piee2.c: 53:     LCD_Init();
 [e ( _LCD_Init ..  ]
-"142
-[; ;main_piee2.c: 142:     RTC_Init();
-[e ( _RTC_Init ..  ]
-"143
-[; ;main_piee2.c: 143:     rtc.hour = 0x19;
-[e = . _rtc 2 -> -> 25 `i `uc ]
-"144
-[; ;main_piee2.c: 144:     rtc.min = 0x31;
-[e = . _rtc 1 -> -> 49 `i `uc ]
-"145
-[; ;main_piee2.c: 145:     rtc.sec = 0x30;
-[e = . _rtc 0 -> -> 48 `i `uc ]
-"147
-[; ;main_piee2.c: 147:     rtc.date = 0x03;
-[e = . _rtc 4 -> -> 3 `i `uc ]
-"148
-[; ;main_piee2.c: 148:     rtc.month = 0x03;
-[e = . _rtc 5 -> -> 3 `i `uc ]
-"149
-[; ;main_piee2.c: 149:     rtc.year = 0x21;
-[e = . _rtc 6 -> -> 33 `i `uc ]
-"150
-[; ;main_piee2.c: 150:     rtc.weekDay = 3;
-[e = . _rtc 3 -> -> 3 `i `uc ]
-"152
-[; ;main_piee2.c: 152:     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"154
-[; ;main_piee2.c: 154:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
-"155
-[; ;main_piee2.c: 155:     TRISC = 0x00;
-[e = _TRISC -> -> 0 `i `uc ]
-"156
-[; ;main_piee2.c: 156:     PORTC = 0x00;
-[e = _PORTC -> -> 0 `i `uc ]
-"162
-[; ;main_piee2.c: 162:     FSM_Init(&system_fsm);
-[e ( _FSM_Init (1 &U _system_fsm ]
-"165
-[; ;main_piee2.c: 165:     Beep(2);
-[e ( _Beep (1 -> -> 2 `i `ui ]
-"166
-[; ;main_piee2.c: 166:     Message(1);
-[e ( _Message (1 -> -> 1 `i `ui ]
-"167
-[; ;main_piee2.c: 167:     MSdelay(3000);
-[e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"168
-[; ;main_piee2.c: 168:     Message(2);
-[e ( _Message (1 -> -> 2 `i `ui ]
-"169
-[; ;main_piee2.c: 169:     MSdelay(3000);
-[e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"170
-[; ;main_piee2.c: 170:     Message(3);
-[e ( _Message (1 -> -> 3 `i `ui ]
-"171
-[; ;main_piee2.c: 171:     MSdelay(3000);
-[e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"172
-[; ;main_piee2.c: 172:     Message(4);
-[e ( _Message (1 -> -> 4 `i `ui ]
-"173
-[; ;main_piee2.c: 173:     Beep(1);
-[e ( _Beep (1 -> -> 1 `i `ui ]
-"174
-[; ;main_piee2.c: 174:     MSdelay(3000);
-[e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"177
-[; ;main_piee2.c: 177:  while(1){
-[e :U 373 ]
-{
-"182
-[; ;main_piee2.c: 182:         FSM_Update(&system_fsm);
-[e ( _FSM_Update (1 &U _system_fsm ]
-"185
-[; ;main_piee2.c: 185:         MSdelay(10);
+"54
+[; ;main_piee2.c: 54:     LCD_Clear();
+[e ( _LCD_Clear ..  ]
+"55
+[; ;main_piee2.c: 55:     MSdelay(10);
 [e ( _MSdelay (1 -> -> 10 `i `ui ]
-"186
-[; ;main_piee2.c: 186:     }
+"56
+[; ;main_piee2.c: 56:     while(1)
+[e :U 373 ]
+"57
+[; ;main_piee2.c: 57:     {
+{
+"58
+[; ;main_piee2.c: 58:         RTC_Read_Clock(0);
+[e ( _RTC_Read_Clock (1 -> -> 0 `i `uc ]
+"59
+[; ;main_piee2.c: 59:         I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"60
+[; ;main_piee2.c: 60:         if(hour & (1<<Clock_type)){
+[e $ ! != & _hour << -> 1 `i -> _Clock_type `i -> 0 `i 375  ]
+{
+"62
+[; ;main_piee2.c: 62:             if(hour & (1<<AM_PM)){
+[e $ ! != & _hour << -> 1 `i -> _AM_PM `i -> 0 `i 376  ]
+{
+"63
+[; ;main_piee2.c: 63:                 LCD_String_xy(1,14,"PM");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 1C ]
+"64
+[; ;main_piee2.c: 64:             }
+}
+[e $U 377  ]
+"65
+[; ;main_piee2.c: 65:             else{
+[e :U 376 ]
+{
+"66
+[; ;main_piee2.c: 66:                 LCD_String_xy(1,14,"AM");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 2C ]
+"67
+[; ;main_piee2.c: 67:             }
+}
+[e :U 377 ]
+"69
+[; ;main_piee2.c: 69:             hour = hour & (0x1f);
+[e = _hour & _hour -> 31 `i ]
+"70
+[; ;main_piee2.c: 70:             sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 3C _sec ]
+"71
+[; ;main_piee2.c: 71:             sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 4C _min ]
+"72
+[; ;main_piee2.c: 72:             sprintf(hours,"Tim:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 5C _hour ]
+"73
+[; ;main_piee2.c: 73:             LCD_String_xy(0,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+"74
+[; ;main_piee2.c: 74:             LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+"75
+[; ;main_piee2.c: 75:             LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"76
+[; ;main_piee2.c: 76:         }
+}
+[e $U 378  ]
+"77
+[; ;main_piee2.c: 77:         else{
+[e :U 375 ]
+{
+"79
+[; ;main_piee2.c: 79:             hour = hour & (0x3f);
+[e = _hour & _hour -> 63 `i ]
+"80
+[; ;main_piee2.c: 80:             sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 6C _sec ]
+"81
+[; ;main_piee2.c: 81:             sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 7C _min ]
+"82
+[; ;main_piee2.c: 82:             sprintf(hours,"Tim:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 8C _hour ]
+"83
+[; ;main_piee2.c: 83:             LCD_String_xy(0,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+"84
+[; ;main_piee2.c: 84:             LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+"85
+[; ;main_piee2.c: 85:             LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"86
+[; ;main_piee2.c: 86:         }
+}
+[e :U 378 ]
+"88
+[; ;main_piee2.c: 88:         RTC_Read_Calendar(3);
+[e ( _RTC_Read_Calendar (1 -> -> 3 `i `uc ]
+"89
+[; ;main_piee2.c: 89:         I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"90
+[; ;main_piee2.c: 90:         sprintf(date,"Cal %x-",Date);
+[e ( _sprintf (1 , (. , &U _date :s 9C _Date ]
+"91
+[; ;main_piee2.c: 91:         sprintf(month,"%x-",Month);
+[e ( _sprintf (1 , (. , &U _month :s 10C _Month ]
+"92
+[; ;main_piee2.c: 92:         sprintf(year,"%x ",Year);
+[e ( _sprintf (1 , (. , &U _year :s 11C _Year ]
+"93
+[; ;main_piee2.c: 93:         LCD_String_xy(2,0,date);
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _date `*Cuc ]
+"94
+[; ;main_piee2.c: 94:         LCD_String(month);
+[e ( _LCD_String (1 -> &U _month `*Cuc ]
+"95
+[; ;main_piee2.c: 95:         LCD_String(year);
+[e ( _LCD_String (1 -> &U _year `*Cuc ]
+"98
+[; ;main_piee2.c: 98:         switch(days[Day])
+[e $U 380  ]
+"99
+[; ;main_piee2.c: 99:         {
+{
+"100
+[; ;main_piee2.c: 100:             case 'S':
+[e :U 381 ]
+"101
+[; ;main_piee2.c: 101:                         LCD_String("Sun");
+[e ( _LCD_String (1 :s 12C ]
+"102
+[; ;main_piee2.c: 102:                         break;
+[e $U 379  ]
+"103
+[; ;main_piee2.c: 103:             case 'M':
+[e :U 382 ]
+"104
+[; ;main_piee2.c: 104:                         LCD_String("Mon");
+[e ( _LCD_String (1 :s 13C ]
+"105
+[; ;main_piee2.c: 105:                         break;
+[e $U 379  ]
+"106
+[; ;main_piee2.c: 106:             case 'T':
+[e :U 383 ]
+"107
+[; ;main_piee2.c: 107:                         LCD_String("Tue");
+[e ( _LCD_String (1 :s 14C ]
+"108
+[; ;main_piee2.c: 108:                         break;
+[e $U 379  ]
+"109
+[; ;main_piee2.c: 109:             case 'W':
+[e :U 384 ]
+"110
+[; ;main_piee2.c: 110:                         LCD_String("Wed");
+[e ( _LCD_String (1 :s 15C ]
+"111
+[; ;main_piee2.c: 111:                         break;
+[e $U 379  ]
+"112
+[; ;main_piee2.c: 112:             case 't':
+[e :U 385 ]
+"113
+[; ;main_piee2.c: 113:                         LCD_String("Thu");
+[e ( _LCD_String (1 :s 16C ]
+"114
+[; ;main_piee2.c: 114:                         break;
+[e $U 379  ]
+"115
+[; ;main_piee2.c: 115:             case 'F':
+[e :U 386 ]
+"116
+[; ;main_piee2.c: 116:                         LCD_String("Fri");
+[e ( _LCD_String (1 :s 17C ]
+"117
+[; ;main_piee2.c: 117:                         break;
+[e $U 379  ]
+"118
+[; ;main_piee2.c: 118:             case 's':
+[e :U 387 ]
+"119
+[; ;main_piee2.c: 119:                         LCD_String("Sat");
+[e ( _LCD_String (1 :s 18C ]
+"120
+[; ;main_piee2.c: 120:                         break;
+[e $U 379  ]
+"121
+[; ;main_piee2.c: 121:             default:
+[e :U 388 ]
+"122
+[; ;main_piee2.c: 122:                         break;
+[e $U 379  ]
+"124
+[; ;main_piee2.c: 124:         }
+}
+[e $U 379  ]
+[e :U 380 ]
+[e [\ -> *U + &U _days * -> -> _Day `ui `ux -> -> # *U &U _days `ui `ux `i , $ -> -> 83 `ui `i 381
+ , $ -> -> 77 `ui `i 382
+ , $ -> -> 84 `ui `i 383
+ , $ -> -> 87 `ui `i 384
+ , $ -> -> 116 `ui `i 385
+ , $ -> -> 70 `ui `i 386
+ , $ -> -> 115 `ui `i 387
+ 388 ]
+[e :U 379 ]
+"126
+[; ;main_piee2.c: 126:     }
 }
 [e :U 372 ]
 [e $U 373  ]
 [e :U 374 ]
-"187
-[; ;main_piee2.c: 187: }
+"127
+[; ;main_piee2.c: 127: }
 [e :UE 371 ]
 }
-"191
-[; ;main_piee2.c: 191: void FSM_Init(fsm_data_t *fsm)
-[v _FSM_Init `(v ~T0 @X0 1 ef1`*S369 ]
-"192
-[; ;main_piee2.c: 192: {
-{
-[e :U _FSM_Init ]
-"191
-[; ;main_piee2.c: 191: void FSM_Init(fsm_data_t *fsm)
-[v _fsm `*S369 ~T0 @X0 1 r1 ]
-"192
-[; ;main_piee2.c: 192: {
-[f ]
-"193
-[; ;main_piee2.c: 193:     fsm->current_state = STATE_INIT;
-[e = . *U _fsm 0 . `E3566 1 ]
-"194
-[; ;main_piee2.c: 194:     fsm->next_state = STATE_INIT;
-[e = . *U _fsm 1 . `E3566 1 ]
-"195
-[; ;main_piee2.c: 195:     fsm->timer_counter = 0;
-[e = . *U _fsm 2 -> -> 0 `i `ui ]
-"196
-[; ;main_piee2.c: 196:     fsm->start_timer = 0;
-[e = . *U _fsm 3 -> -> 0 `i `ui ]
-"197
-[; ;main_piee2.c: 197:     fsm->blink_counter = 0;
-[e = . *U _fsm 4 -> -> 0 `i `ui ]
-"198
-[; ;main_piee2.c: 198:     fsm->beep_counter = 0;
-[e = . *U _fsm 5 -> -> 0 `i `ui ]
-"199
-[; ;main_piee2.c: 199:     fsm->last_liga_state = 1;
-[e = . *U _fsm 6 -> -> 1 `i `uc ]
-"200
-[; ;main_piee2.c: 200:     fsm->last_desliga_state = 1;
-[e = . *U _fsm 7 -> -> 1 `i `uc ]
-"201
-[; ;main_piee2.c: 201:     fsm->last_interlock_state = 1;
-[e = . *U _fsm 8 -> -> 1 `i `uc ]
-"205
-[; ;main_piee2.c: 205:     LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"206
-[; ;main_piee2.c: 206:     LATD2 = 0;
-[e = _LATD2 -> -> 0 `i `b ]
-"207
-[; ;main_piee2.c: 207:     LATD1 = 0;
-[e = _LATD1 -> -> 0 `i `b ]
-"208
-[; ;main_piee2.c: 208: }
-[e :UE 375 ]
-}
-"210
-[; ;main_piee2.c: 210: void FSM_Update(fsm_data_t *fsm)
-[v _FSM_Update `(v ~T0 @X0 1 ef1`*S369 ]
-"211
-[; ;main_piee2.c: 211: {
-{
-[e :U _FSM_Update ]
-"210
-[; ;main_piee2.c: 210: void FSM_Update(fsm_data_t *fsm)
-[v _fsm `*S369 ~T0 @X0 1 r1 ]
-"211
-[; ;main_piee2.c: 211: {
-[f ]
-"213
-[; ;main_piee2.c: 213:     FSM_CheckTransitions(fsm);
-[e ( _FSM_CheckTransitions (1 _fsm ]
-"216
-[; ;main_piee2.c: 216:     FSM_ExecuteState(fsm);
-[e ( _FSM_ExecuteState (1 _fsm ]
-"219
-[; ;main_piee2.c: 219:     FSM_UpdateDisplay(fsm);
-[e ( _FSM_UpdateDisplay (1 _fsm ]
-"222
-[; ;main_piee2.c: 222:     fsm->timer_counter++;
-[e ++ . *U _fsm 2 -> -> 1 `i `ui ]
-"223
-[; ;main_piee2.c: 223:     fsm->blink_counter++;
-[e ++ . *U _fsm 4 -> -> 1 `i `ui ]
-"226
-[; ;main_piee2.c: 226:     if(fsm->blink_counter >= 50) {
-[e $ ! >= . *U _fsm 4 -> -> 50 `i `ui 377  ]
-{
-"227
-[; ;main_piee2.c: 227:         fsm->blink_counter = 0;
-[e = . *U _fsm 4 -> -> 0 `i `ui ]
-"228
-[; ;main_piee2.c: 228:         LATD1 ^= 1;
-[e =^ _LATD1 -> -> -> 1 `i `b `Vb ]
-"229
-[; ;main_piee2.c: 229:     }
-}
-[e :U 377 ]
-"230
-[; ;main_piee2.c: 230: }
-[e :UE 376 ]
-}
-"231
-[; ;main_piee2.c: 231: void FSM_CheckTransitions(fsm_data_t *fsm)
-[v _FSM_CheckTransitions `(v ~T0 @X0 1 ef1`*S369 ]
-"232
-[; ;main_piee2.c: 232: {
-{
-[e :U _FSM_CheckTransitions ]
-"231
-[; ;main_piee2.c: 231: void FSM_CheckTransitions(fsm_data_t *fsm)
-[v _fsm `*S369 ~T0 @X0 1 r1 ]
-"232
-[; ;main_piee2.c: 232: {
-[f ]
-"233
-[; ;main_piee2.c: 233:     unsigned char current_interlock = PORTCbits.RC2;
-[v _current_interlock `uc ~T0 @X0 1 a ]
-[e = _current_interlock . . _PORTCbits 0 2 ]
-"236
-[; ;main_piee2.c: 236:     unsigned char interlock_pressed = (fsm->last_interlock_state == 1 && current_interlock == 0);
-[v _interlock_pressed `uc ~T0 @X0 1 a ]
-[e = _interlock_pressed -> -> && == -> . *U _fsm 8 `i -> 1 `i == -> _current_interlock `i -> 0 `i `i `uc ]
-"237
-[; ;main_piee2.c: 237:     fsm->last_interlock_state = current_interlock;
-[e = . *U _fsm 8 _current_interlock ]
-"240
-[; ;main_piee2.c: 240:     unsigned char liga_pressed = (fsm->last_liga_state == 1 && PORTCbits.RC0 == 0);
-[v _liga_pressed `uc ~T0 @X0 1 a ]
-[e = _liga_pressed -> -> && == -> . *U _fsm 6 `i -> 1 `i == -> . . _PORTCbits 0 0 `i -> 0 `i `i `uc ]
-"241
-[; ;main_piee2.c: 241:     fsm->last_liga_state = PORTCbits.RC0;
-[e = . *U _fsm 6 . . _PORTCbits 0 0 ]
-"244
-[; ;main_piee2.c: 244:     unsigned char desliga_pressed = (fsm->last_desliga_state == 1 && PORTCbits.RC1 == 0);
-[v _desliga_pressed `uc ~T0 @X0 1 a ]
-[e = _desliga_pressed -> -> && == -> . *U _fsm 7 `i -> 1 `i == -> . . _PORTCbits 0 1 `i -> 0 `i `i `uc ]
-"245
-[; ;main_piee2.c: 245:     fsm->last_desliga_state = PORTCbits.RC1;
-[e = . *U _fsm 7 . . _PORTCbits 0 1 ]
-"248
-[; ;main_piee2.c: 248:     switch(fsm->current_state)
-[e $U 380  ]
-"249
-[; ;main_piee2.c: 249:     {
-{
-"250
-[; ;main_piee2.c: 250:         case STATE_INIT:
-[e :U 381 ]
-"251
-[; ;main_piee2.c: 251:             if(fsm->timer_counter > 300) {
-[e $ ! > . *U _fsm 2 -> -> 300 `i `ui 382  ]
-{
-"252
-[; ;main_piee2.c: 252:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3566 2 ]
-"253
-[; ;main_piee2.c: 253:             }
-}
-[e :U 382 ]
-"254
-[; ;main_piee2.c: 254:             break;
-[e $U 379  ]
-"256
-[; ;main_piee2.c: 256:         case STATE_READY:
-[e :U 383 ]
-"257
-[; ;main_piee2.c: 257:             if(current_interlock == 0) {
-[e $ ! == -> _current_interlock `i -> 0 `i 384  ]
-{
-"258
-[; ;main_piee2.c: 258:                 fsm->next_state = STATE_BLOCKED;
-[e = . *U _fsm 1 . `E3566 6 ]
-"259
-[; ;main_piee2.c: 259:             }
-}
-[e $U 385  ]
-"260
-[; ;main_piee2.c: 260:             else if(liga_pressed) {
-[e :U 384 ]
-[e $ ! != -> _liga_pressed `i -> 0 `i 386  ]
-{
-"261
-[; ;main_piee2.c: 261:                 fsm->next_state = STATE_STARTING;
-[e = . *U _fsm 1 . `E3566 3 ]
-"262
-[; ;main_piee2.c: 262:                 fsm->start_timer = 0;
-[e = . *U _fsm 3 -> -> 0 `i `ui ]
-"263
-[; ;main_piee2.c: 263:             }
-}
-[e :U 386 ]
-[e :U 385 ]
-"264
-[; ;main_piee2.c: 264:             break;
-[e $U 379  ]
-"266
-[; ;main_piee2.c: 266:         case STATE_STARTING:
-[e :U 387 ]
-"267
-[; ;main_piee2.c: 267:             if(current_interlock == 0) {
-[e $ ! == -> _current_interlock `i -> 0 `i 388  ]
-{
-"268
-[; ;main_piee2.c: 268:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3566 5 ]
-"269
-[; ;main_piee2.c: 269:             }
-}
-[e $U 389  ]
-"270
-[; ;main_piee2.c: 270:             else if(fsm->start_timer >= 30) {
-[e :U 388 ]
-[e $ ! >= . *U _fsm 3 -> -> 30 `i `ui 390  ]
-{
-"271
-[; ;main_piee2.c: 271:                 fsm->next_state = STATE_RUNNING;
-[e = . *U _fsm 1 . `E3566 4 ]
-"272
-[; ;main_piee2.c: 272:             }
-}
-[e $U 391  ]
-"273
-[; ;main_piee2.c: 273:             else if(desliga_pressed) {
-[e :U 390 ]
-[e $ ! != -> _desliga_pressed `i -> 0 `i 392  ]
-{
-"274
-[; ;main_piee2.c: 274:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3566 5 ]
-"275
-[; ;main_piee2.c: 275:             }
-}
-[e :U 392 ]
-[e :U 391 ]
-[e :U 389 ]
-"276
-[; ;main_piee2.c: 276:             break;
-[e $U 379  ]
-"278
-[; ;main_piee2.c: 278:         case STATE_RUNNING:
-[e :U 393 ]
-"279
-[; ;main_piee2.c: 279:             if(current_interlock == 0) {
-[e $ ! == -> _current_interlock `i -> 0 `i 394  ]
-{
-"280
-[; ;main_piee2.c: 280:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3566 5 ]
-"281
-[; ;main_piee2.c: 281:             }
-}
-[e $U 395  ]
-"282
-[; ;main_piee2.c: 282:             else if(desliga_pressed) {
-[e :U 394 ]
-[e $ ! != -> _desliga_pressed `i -> 0 `i 396  ]
-{
-"283
-[; ;main_piee2.c: 283:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3566 5 ]
-"284
-[; ;main_piee2.c: 284:             }
-}
-[e :U 396 ]
-[e :U 395 ]
-"285
-[; ;main_piee2.c: 285:             break;
-[e $U 379  ]
-"287
-[; ;main_piee2.c: 287:         case STATE_STOPPING:
-[e :U 397 ]
-"288
-[; ;main_piee2.c: 288:             if(fsm->timer_counter > 50) {
-[e $ ! > . *U _fsm 2 -> -> 50 `i `ui 398  ]
-{
-"289
-[; ;main_piee2.c: 289:                 if(current_interlock == 0) {
-[e $ ! == -> _current_interlock `i -> 0 `i 399  ]
-{
-"290
-[; ;main_piee2.c: 290:                     fsm->next_state = STATE_BLOCKED;
-[e = . *U _fsm 1 . `E3566 6 ]
-"291
-[; ;main_piee2.c: 291:                 }
-}
-[e $U 400  ]
-"292
-[; ;main_piee2.c: 292:                 else {
-[e :U 399 ]
-{
-"293
-[; ;main_piee2.c: 293:                     fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3566 2 ]
-"294
-[; ;main_piee2.c: 294:                 }
-}
-[e :U 400 ]
-"295
-[; ;main_piee2.c: 295:             }
-}
-[e :U 398 ]
-"296
-[; ;main_piee2.c: 296:             break;
-[e $U 379  ]
-"298
-[; ;main_piee2.c: 298:         case STATE_BLOCKED:
-[e :U 401 ]
-"299
-[; ;main_piee2.c: 299:             if(current_interlock == 1) {
-[e $ ! == -> _current_interlock `i -> 1 `i 402  ]
-{
-"300
-[; ;main_piee2.c: 300:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3566 2 ]
-"301
-[; ;main_piee2.c: 301:             }
-}
-[e :U 402 ]
-"302
-[; ;main_piee2.c: 302:             break;
-[e $U 379  ]
-"304
-[; ;main_piee2.c: 304:         case STATE_FAILURE:
-[e :U 403 ]
-"306
-[; ;main_piee2.c: 306:             if(fsm->timer_counter > 1000) {
-[e $ ! > . *U _fsm 2 -> -> 1000 `i `ui 404  ]
-{
-"307
-[; ;main_piee2.c: 307:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3566 2 ]
-"308
-[; ;main_piee2.c: 308:             }
-}
-[e :U 404 ]
-"309
-[; ;main_piee2.c: 309:             break;
-[e $U 379  ]
-"311
-[; ;main_piee2.c: 311:         default:
-[e :U 405 ]
-"312
-[; ;main_piee2.c: 312:             fsm->next_state = STATE_IDLE;
-[e = . *U _fsm 1 . `E3566 0 ]
-"313
-[; ;main_piee2.c: 313:             break;
-[e $U 379  ]
-"314
-[; ;main_piee2.c: 314:     }
-}
-[e $U 379  ]
-[e :U 380 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3566 1 `ui 381
- , $ -> . `E3566 2 `ui 383
- , $ -> . `E3566 3 `ui 387
- , $ -> . `E3566 4 `ui 393
- , $ -> . `E3566 5 `ui 397
- , $ -> . `E3566 6 `ui 401
- , $ -> . `E3566 7 `ui 403
- 405 ]
-[e :U 379 ]
-"316
-[; ;main_piee2.c: 316:     if(fsm->current_state != fsm->next_state) {
-[e $ ! != -> . *U _fsm 0 `ui -> . *U _fsm 1 `ui 406  ]
-{
-"317
-[; ;main_piee2.c: 317:         fsm->current_state = fsm->next_state;
-[e = . *U _fsm 0 . *U _fsm 1 ]
-"318
-[; ;main_piee2.c: 318:         fsm->timer_counter = 0;
-[e = . *U _fsm 2 -> -> 0 `i `ui ]
-"319
-[; ;main_piee2.c: 319:     }
-}
-[e :U 406 ]
-"320
-[; ;main_piee2.c: 320: }
-[e :UE 378 ]
-}
-"321
-[; ;main_piee2.c: 321: void FSM_ExecuteState(fsm_data_t *fsm)
-[v _FSM_ExecuteState `(v ~T0 @X0 1 ef1`*S369 ]
-"322
-[; ;main_piee2.c: 322: {
-{
-[e :U _FSM_ExecuteState ]
-"321
-[; ;main_piee2.c: 321: void FSM_ExecuteState(fsm_data_t *fsm)
-[v _fsm `*S369 ~T0 @X0 1 r1 ]
-"322
-[; ;main_piee2.c: 322: {
-[f ]
-"323
-[; ;main_piee2.c: 323:     switch(fsm->current_state)
-[e $U 409  ]
-"324
-[; ;main_piee2.c: 324:     {
-{
-"325
-[; ;main_piee2.c: 325:         case STATE_IDLE:
-[e :U 410 ]
-"327
-[; ;main_piee2.c: 327:             break;
-[e $U 408  ]
-"329
-[; ;main_piee2.c: 329:         case STATE_INIT:
-[e :U 411 ]
-"331
-[; ;main_piee2.c: 331:             LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"332
-[; ;main_piee2.c: 332:             break;
-[e $U 408  ]
-"334
-[; ;main_piee2.c: 334:         case STATE_READY:
-[e :U 412 ]
-"336
-[; ;main_piee2.c: 336:             LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"337
-[; ;main_piee2.c: 337:             break;
-[e $U 408  ]
-"339
-[; ;main_piee2.c: 339:         case STATE_STARTING:
-[e :U 413 ]
-"344
-[; ;main_piee2.c: 344:             LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"347
-[; ;main_piee2.c: 347:             if(fsm->timer_counter >= 100) {
-[e $ ! >= . *U _fsm 2 -> -> 100 `i `ui 414  ]
-{
-"348
-[; ;main_piee2.c: 348:                 fsm->timer_counter = 0;
-[e = . *U _fsm 2 -> -> 0 `i `ui ]
-"349
-[; ;main_piee2.c: 349:                 fsm->start_timer++;
-[e ++ . *U _fsm 3 -> -> 1 `i `ui ]
-"350
-[; ;main_piee2.c: 350:             }
-}
-[e :U 414 ]
-"351
-[; ;main_piee2.c: 351:             break;
-[e $U 408  ]
-"353
-[; ;main_piee2.c: 353:         case STATE_RUNNING:
-[e :U 415 ]
-"358
-[; ;main_piee2.c: 358:             LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"359
-[; ;main_piee2.c: 359:             break;
-[e $U 408  ]
-"361
-[; ;main_piee2.c: 361:         case STATE_STOPPING:
-[e :U 416 ]
-"366
-[; ;main_piee2.c: 366:             break;
-[e $U 408  ]
-"368
-[; ;main_piee2.c: 368:         case STATE_BLOCKED:
-[e :U 417 ]
-"373
-[; ;main_piee2.c: 373:             LATD3 = 1;
-[e = _LATD3 -> -> 1 `i `b ]
-"374
-[; ;main_piee2.c: 374:             break;
-[e $U 408  ]
-"376
-[; ;main_piee2.c: 376:         case STATE_FAILURE:
-[e :U 418 ]
-"381
-[; ;main_piee2.c: 381:             LATD2 = 1;
-[e = _LATD2 -> -> 1 `i `b ]
-"382
-[; ;main_piee2.c: 382:             break;
-[e $U 408  ]
-"383
-[; ;main_piee2.c: 383:     }
-}
-[e $U 408  ]
-[e :U 409 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3566 0 `ui 410
- , $ -> . `E3566 1 `ui 411
- , $ -> . `E3566 2 `ui 412
- , $ -> . `E3566 3 `ui 413
- , $ -> . `E3566 4 `ui 415
- , $ -> . `E3566 5 `ui 416
- , $ -> . `E3566 6 `ui 417
- , $ -> . `E3566 7 `ui 418
- 408 ]
-[e :U 408 ]
-"384
-[; ;main_piee2.c: 384: }
-[e :UE 407 ]
-}
-"385
-[; ;main_piee2.c: 385: void FSM_UpdateDisplay(fsm_data_t *fsm)
-[v _FSM_UpdateDisplay `(v ~T0 @X0 1 ef1`*S369 ]
-"386
-[; ;main_piee2.c: 386: {
-{
-[e :U _FSM_UpdateDisplay ]
-"385
-[; ;main_piee2.c: 385: void FSM_UpdateDisplay(fsm_data_t *fsm)
-[v _fsm `*S369 ~T0 @X0 1 r1 ]
-"386
-[; ;main_piee2.c: 386: {
-[f ]
-"388
-[; ;main_piee2.c: 388:     static unsigned int display_counter = 0;
-[v F3638 `ui ~T0 @X0 1 s display_counter ]
-[i F3638
--> -> 0 `i `ui
-]
-"389
-[; ;main_piee2.c: 389:     display_counter++;
-[e ++ F3638 -> -> 1 `i `ui ]
-"391
-[; ;main_piee2.c: 391:      atualiza_data();
-[e ( _atualiza_data ..  ]
-"393
-[; ;main_piee2.c: 393:     if(display_counter >= 10) {
-[e $ ! >= F3638 -> -> 10 `i `ui 420  ]
-{
-"394
-[; ;main_piee2.c: 394:         display_counter = 0;
-[e = F3638 -> -> 0 `i `ui ]
-"396
-[; ;main_piee2.c: 396:         switch(fsm->current_state)
-[e $U 422  ]
-"397
-[; ;main_piee2.c: 397:         {
-{
-"398
-[; ;main_piee2.c: 398:             case STATE_INIT:
-[e :U 423 ]
-"399
-[; ;main_piee2.c: 399:                 LCD_String_xy(2,1,"Status: Inicializando");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 1C ]
-"400
-[; ;main_piee2.c: 400:                 break;
-[e $U 421  ]
-"402
-[; ;main_piee2.c: 402:             case STATE_READY:
-[e :U 424 ]
-"403
-[; ;main_piee2.c: 403:                 LCD_String_xy(2,1,"Status: Pronto       ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 2C ]
-"404
-[; ;main_piee2.c: 404:                 break;
-[e $U 421  ]
-"406
-[; ;main_piee2.c: 406:             case STATE_STARTING:
-[e :U 425 ]
-"407
-[; ;main_piee2.c: 407:                 LCD_String_xy(2,1,"Status: Partindo     ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 3C ]
-"408
-[; ;main_piee2.c: 408:                 break;
-[e $U 421  ]
-"410
-[; ;main_piee2.c: 410:             case STATE_RUNNING:
-[e :U 426 ]
-"411
-[; ;main_piee2.c: 411:                 LCD_String_xy(2,1,"Status: Funcionando  ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 4C ]
-"412
-[; ;main_piee2.c: 412:                 break;
-[e $U 421  ]
-"414
-[; ;main_piee2.c: 414:             case STATE_STOPPING:
-[e :U 427 ]
-"415
-[; ;main_piee2.c: 415:                 LCD_String_xy(2,1,"Status: Parando      ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 5C ]
-"416
-[; ;main_piee2.c: 416:                 break;
-[e $U 421  ]
-"418
-[; ;main_piee2.c: 418:             case STATE_BLOCKED:
-[e :U 428 ]
-"419
-[; ;main_piee2.c: 419:                 LCD_String_xy(2,1,"Status: Bloqueado    ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 6C ]
-"420
-[; ;main_piee2.c: 420:                 break;
-[e $U 421  ]
-"422
-[; ;main_piee2.c: 422:             case STATE_FAILURE:
-[e :U 429 ]
-"423
-[; ;main_piee2.c: 423:                 LCD_String_xy(2,1,"Status: Falha        ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 7C ]
-"424
-[; ;main_piee2.c: 424:                 break;
-[e $U 421  ]
-"426
-[; ;main_piee2.c: 426:             default:
-[e :U 430 ]
-"427
-[; ;main_piee2.c: 427:                 LCD_String_xy(2,1,"Status: Desconhecido ");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc :s 8C ]
-"428
-[; ;main_piee2.c: 428:                 break;
-[e $U 421  ]
-"429
-[; ;main_piee2.c: 429:         }
-}
-[e $U 421  ]
-[e :U 422 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3566 1 `ui 423
- , $ -> . `E3566 2 `ui 424
- , $ -> . `E3566 3 `ui 425
- , $ -> . `E3566 4 `ui 426
- , $ -> . `E3566 5 `ui 427
- , $ -> . `E3566 6 `ui 428
- , $ -> . `E3566 7 `ui 429
- 430 ]
-[e :U 421 ]
-"430
-[; ;main_piee2.c: 430:     }
-}
-[e :U 420 ]
-"431
-[; ;main_piee2.c: 431: }
-[e :UE 419 ]
-}
-"434
-[; ;main_piee2.c: 434: void Message(unsigned int msg){
-[v _Message `(v ~T0 @X0 1 ef1`ui ]
-{
-[e :U _Message ]
-[v _msg `ui ~T0 @X0 1 r1 ]
-[f ]
-"435
-[; ;main_piee2.c: 435:     LCD_Clear();
-[e ( _LCD_Clear ..  ]
-"436
-[; ;main_piee2.c: 436:     switch(msg){
-[e $U 433  ]
-{
-"437
-[; ;main_piee2.c: 437:         case 1:
-[e :U 434 ]
-"438
-[; ;main_piee2.c: 438:             LCD_String_xy(1,7,"UNIUBE");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 7 `i `uc :s 9C ]
-"439
-[; ;main_piee2.c: 439:             LCD_String_xy(2,0,"Engenharia Eletrica");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc :s 10C ]
-"440
-[; ;main_piee2.c: 440:             LCD_String_xy(3,2,"Projeto Integrado");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 2 `i `uc :s 11C ]
-"441
-[; ;main_piee2.c: 441:             LCD_String_xy(4,3,"Em Eletrica II");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 12C ]
-"442
-[; ;main_piee2.c: 442:             break;
-[e $U 432  ]
-"443
-[; ;main_piee2.c: 443:         case 2:
-[e :U 435 ]
-"444
-[; ;main_piee2.c: 444:             LCD_String_xy(1,2,"Welington Correia");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 13C ]
-"445
-[; ;main_piee2.c: 445:             LCD_String_xy(2,4,"RA : 1063677");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 4 `i `uc :s 14C ]
-"446
-[; ;main_piee2.c: 446:             LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 15C ]
-"447
-[; ;main_piee2.c: 447:             LCD_String_xy(4,3,"Filtro de Manga");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 16C ]
-"448
-[; ;main_piee2.c: 448:             break;
-[e $U 432  ]
-"449
-[; ;main_piee2.c: 449:         case 3:
-[e :U 436 ]
-"450
-[; ;main_piee2.c: 450:             LCD_String_xy(4,2,"Seja Bem Vindo!");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 2 `i `uc :s 17C ]
-"451
-[; ;main_piee2.c: 451:             atualiza_data();
-[e ( _atualiza_data ..  ]
-"453
-[; ;main_piee2.c: 453:             break;
-[e $U 432  ]
-"454
-[; ;main_piee2.c: 454:         case 4:
-[e :U 437 ]
-"459
-[; ;main_piee2.c: 459:               atualiza_data();
-[e ( _atualiza_data ..  ]
-"461
-[; ;main_piee2.c: 461:               LCD_String_xy(4,2,"Filtro Manga");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 2 `i `uc :s 18C ]
-"462
-[; ;main_piee2.c: 462:             break;
-[e $U 432  ]
-"463
-[; ;main_piee2.c: 463:     }
-}
-[e $U 432  ]
-[e :U 433 ]
-[e [\ _msg , $ -> -> 1 `i `ui 434
- , $ -> -> 2 `i `ui 435
- , $ -> -> 3 `i `ui 436
- , $ -> -> 4 `i `ui 437
- 432 ]
-[e :U 432 ]
-"465
-[; ;main_piee2.c: 465: }
-[e :UE 431 ]
-}
-"468
-[; ;main_piee2.c: 468: void Beep(unsigned val){
-[v _Beep `(v ~T0 @X0 1 ef1`ui ]
-{
-[e :U _Beep ]
-[v _val `ui ~T0 @X0 1 r1 ]
-[f ]
-"469
-[; ;main_piee2.c: 469:  unsigned int i;
-[v _i `ui ~T0 @X0 1 a ]
-"470
-[; ;main_piee2.c: 470:  for(i=0;i<val;i++)
-{
-[e = _i -> -> 0 `i `ui ]
-[e $U 442  ]
-[e :U 439 ]
-"471
-[; ;main_piee2.c: 471:     {
-{
-"472
-[; ;main_piee2.c: 472:      LATD0 = 1;
-[e = _LATD0 -> -> 1 `i `b ]
-"473
-[; ;main_piee2.c: 473:      MSdelay(500);
-[e ( _MSdelay (1 -> -> 500 `i `ui ]
-"474
-[; ;main_piee2.c: 474:      LATD0 = 0;
-[e = _LATD0 -> -> 0 `i `b ]
-"475
-[; ;main_piee2.c: 475:      MSdelay(500);
-[e ( _MSdelay (1 -> -> 500 `i `ui ]
-"476
-[; ;main_piee2.c: 476:     }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e :U 442 ]
-[e $ < _i _val 439  ]
-[e :U 440 ]
-}
-"479
-[; ;main_piee2.c: 479: }
-[e :UE 438 ]
-}
-"508
-[; ;main_piee2.c: 508: void atualiza_data(){
-[v _atualiza_data `(v ~T0 @X0 1 ef ]
-{
-[e :U _atualiza_data ]
-[f ]
-"509
-[; ;main_piee2.c: 509:     RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"510
-[; ;main_piee2.c: 510:     sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 19C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"511
-[; ;main_piee2.c: 511:     LCD_String_xy(1,0,data);
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U _data `*Cuc ]
-"578
-[; ;main_piee2.c: 578: }
-[e :UE 443 ]
-}
-"588
-[; ;main_piee2.c: 588: void RTC_Init(void)
-[v _RTC_Init `(v ~T0 @X0 1 ef ]
-"589
-[; ;main_piee2.c: 589: {
-{
-[e :U _RTC_Init ]
-[f ]
-"590
-[; ;main_piee2.c: 590:     I2C_Init();
-[e ( _I2C_Init ..  ]
-"591
-[; ;main_piee2.c: 591:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"593
-[; ;main_piee2.c: 593:     I2C_Write(0xD0u);
-[e ( _I2C_Write (1 -> -> 208 `ui `uc ]
-"594
-[; ;main_piee2.c: 594:     I2C_Write(0x07u);
-[e ( _I2C_Write (1 -> -> 7 `ui `uc ]
-"596
-[; ;main_piee2.c: 596:     I2C_Write(0x00);
-[e ( _I2C_Write (1 -> -> 0 `i `uc ]
-"598
-[; ;main_piee2.c: 598:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"599
-[; ;main_piee2.c: 599: }
-[e :UE 444 ]
-}
-"613
-[; ;main_piee2.c: 613: void RTC_SetDateTime(rtc_t *rtc)
-[v _RTC_SetDateTime `(v ~T0 @X0 1 ef1`*S370 ]
-"614
-[; ;main_piee2.c: 614: {
-{
-[e :U _RTC_SetDateTime ]
-"613
-[; ;main_piee2.c: 613: void RTC_SetDateTime(rtc_t *rtc)
-[v _rtc `*S370 ~T0 @X0 1 r1 ]
-"614
-[; ;main_piee2.c: 614: {
-[f ]
-"615
-[; ;main_piee2.c: 615:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"617
-[; ;main_piee2.c: 617:     I2C_Write(0xD0u);
-[e ( _I2C_Write (1 -> -> 208 `ui `uc ]
-"618
-[; ;main_piee2.c: 618:     I2C_Write(0x00u);
-[e ( _I2C_Write (1 -> -> 0 `ui `uc ]
-"620
-[; ;main_piee2.c: 620:     I2C_Write(rtc->sec);
-[e ( _I2C_Write (1 . *U _rtc 0 ]
-"621
-[; ;main_piee2.c: 621:     I2C_Write(rtc->min);
-[e ( _I2C_Write (1 . *U _rtc 1 ]
-"622
-[; ;main_piee2.c: 622:     I2C_Write(rtc->hour);
-[e ( _I2C_Write (1 . *U _rtc 2 ]
-"623
-[; ;main_piee2.c: 623:     I2C_Write(rtc->weekDay);
-[e ( _I2C_Write (1 . *U _rtc 3 ]
-"624
-[; ;main_piee2.c: 624:     I2C_Write(rtc->date);
-[e ( _I2C_Write (1 . *U _rtc 4 ]
-"625
-[; ;main_piee2.c: 625:     I2C_Write(rtc->month);
-[e ( _I2C_Write (1 . *U _rtc 5 ]
-"626
-[; ;main_piee2.c: 626:     I2C_Write(rtc->year);
-[e ( _I2C_Write (1 . *U _rtc 6 ]
-"628
-[; ;main_piee2.c: 628:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"629
-[; ;main_piee2.c: 629: }
-[e :UE 445 ]
-}
-"642
-[; ;main_piee2.c: 642: void RTC_GetDateTime(rtc_t *rtc)
-[v _RTC_GetDateTime `(v ~T0 @X0 1 ef1`*S370 ]
-"643
-[; ;main_piee2.c: 643: {
-{
-[e :U _RTC_GetDateTime ]
-"642
-[; ;main_piee2.c: 642: void RTC_GetDateTime(rtc_t *rtc)
-[v _rtc `*S370 ~T0 @X0 1 r1 ]
-"643
-[; ;main_piee2.c: 643: {
-[f ]
-"644
-[; ;main_piee2.c: 644:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"646
-[; ;main_piee2.c: 646:     I2C_Write(0xD0u);
-[e ( _I2C_Write (1 -> -> 208 `ui `uc ]
-"647
-[; ;main_piee2.c: 647:     I2C_Write(0x00u);
-[e ( _I2C_Write (1 -> -> 0 `ui `uc ]
-"649
-[; ;main_piee2.c: 649:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"651
-[; ;main_piee2.c: 651:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"652
-[; ;main_piee2.c: 652:     I2C_Write(0xD1u);
-[e ( _I2C_Write (1 -> -> 209 `ui `uc ]
-"654
-[; ;main_piee2.c: 654:     rtc->sec = I2C_Read(1);
-[e = . *U _rtc 0 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"655
-[; ;main_piee2.c: 655:     rtc->min = I2C_Read(1);
-[e = . *U _rtc 1 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"656
-[; ;main_piee2.c: 656:     rtc->hour= I2C_Read(1);
-[e = . *U _rtc 2 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"657
-[; ;main_piee2.c: 657:     rtc->weekDay = I2C_Read(1);
-[e = . *U _rtc 3 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"658
-[; ;main_piee2.c: 658:     rtc->date= I2C_Read(1);
-[e = . *U _rtc 4 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"659
-[; ;main_piee2.c: 659:     rtc->month=I2C_Read(1);
-[e = . *U _rtc 5 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"660
-[; ;main_piee2.c: 660:     rtc->year =I2C_Read(0);
-[e = . *U _rtc 6 ( _I2C_Read (1 -> -> 0 `i `uc ]
-"662
-[; ;main_piee2.c: 662:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"663
-[; ;main_piee2.c: 663: }
-[e :UE 446 ]
-}
-"666
-[; ;main_piee2.c: 666: void menu_ajustar_rtc(void){
-[v _menu_ajustar_rtc `(v ~T0 @X0 1 ef ]
-{
-[e :U _menu_ajustar_rtc ]
-[f ]
-"667
-[; ;main_piee2.c: 667:     char data[50];
-[v _data `uc ~T0 @X0 -> 50 `i a ]
-"668
-[; ;main_piee2.c: 668:     unsigned int i=0;
-[v _i `ui ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `ui ]
-"669
-[; ;main_piee2.c: 669:     char cvt1=0;
-[v _cvt1 `uc ~T0 @X0 1 a ]
-[e = _cvt1 -> -> 0 `i `uc ]
-"670
-[; ;main_piee2.c: 670:     LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"671
-[; ;main_piee2.c: 671:     LCD_String_xy(1,1,"Ajustar Data e Hora ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 20C ]
-"673
-[; ;main_piee2.c: 673:     while(1){
-[e :U 449 ]
-{
-"674
-[; ;main_piee2.c: 674:         if(i<200){
-[e $ ! < _i -> -> 200 `i `ui 451  ]
-{
-"675
-[; ;main_piee2.c: 675:             LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"676
-[; ;main_piee2.c: 676:             for(i=0; i<200; i++){
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 452  ]
-[e $U 453  ]
-[e :U 452 ]
-{
-"677
-[; ;main_piee2.c: 677:                 LCD_String_xy(1,1,"Ajustar Hora        ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 21C ]
-"678
-[; ;main_piee2.c: 678:                 RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"679
-[; ;main_piee2.c: 679:                 sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 22C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"680
-[; ;main_piee2.c: 680:                 LCD_String_xy(2,1,data);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc -> &U _data `*Cuc ]
-"682
-[; ;main_piee2.c: 682:                 if(!(PORTAbits.RA0)){
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 455  ]
-{
-"683
-[; ;main_piee2.c: 683:                     while(!(PORTAbits.RA0));
-[e $U 456  ]
-[e :U 457 ]
-[e :U 456 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 457  ]
-[e :U 458 ]
-"684
-[; ;main_piee2.c: 684:                     break;
-[e $U 453  ]
-"686
-[; ;main_piee2.c: 686:                 }
-}
-[e $U 459  ]
-"687
-[; ;main_piee2.c: 687:                 else if (!(PORTAbits.RA0)){
-[e :U 455 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 460  ]
-{
-"688
-[; ;main_piee2.c: 688:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"689
-[; ;main_piee2.c: 689:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 461  ]
-[e :U 462 ]
-[e :U 461 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 462  ]
-[e :U 463 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"690
-[; ;main_piee2.c: 690:                     cvt1++;
-[e ++ _cvt1 -> -> 1 `i `uc ]
-"691
-[; ;main_piee2.c: 691:                     if(cvt1>23){cvt1=0;}
-[e $ ! > -> _cvt1 `i -> 23 `i 464  ]
-{
-[e = _cvt1 -> -> 0 `i `uc ]
-}
-[e :U 464 ]
-"692
-[; ;main_piee2.c: 692:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"693
-[; ;main_piee2.c: 693:                     rtc.hour = acerto;
-[e = . _rtc 2 _acerto ]
-"694
-[; ;main_piee2.c: 694:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"695
-[; ;main_piee2.c: 695:                 }
-}
-[e $U 465  ]
-"696
-[; ;main_piee2.c: 696:                 else if (!(PORTAbits.RA0)){
-[e :U 460 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 466  ]
-{
-"697
-[; ;main_piee2.c: 697:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"698
-[; ;main_piee2.c: 698:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 467  ]
-[e :U 468 ]
-[e :U 467 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 468  ]
-[e :U 469 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"699
-[; ;main_piee2.c: 699:                     cvt1--;
-[e -- _cvt1 -> -> 1 `i `uc ]
-"700
-[; ;main_piee2.c: 700:                     if(cvt1 == 255){cvt1 = 23;}
-[e $ ! == -> _cvt1 `i -> 255 `i 470  ]
-{
-[e = _cvt1 -> -> 23 `i `uc ]
-}
-[e :U 470 ]
-"701
-[; ;main_piee2.c: 701:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"702
-[; ;main_piee2.c: 702:                     rtc.hour = acerto;
-[e = . _rtc 2 _acerto ]
-"703
-[; ;main_piee2.c: 703:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"704
-[; ;main_piee2.c: 704:                 }
-}
-[e :U 466 ]
-[e :U 465 ]
-[e :U 459 ]
-"707
-[; ;main_piee2.c: 707:             }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 452  ]
-[e :U 453 ]
-}
-"708
-[; ;main_piee2.c: 708:             LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"709
-[; ;main_piee2.c: 709:             for(i=0; i<200; i++){
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 471  ]
-[e $U 472  ]
-[e :U 471 ]
-{
-"710
-[; ;main_piee2.c: 710:                 LCD_String_xy(1,1,"Ajustar Minutos     ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 23C ]
-"711
-[; ;main_piee2.c: 711:                 RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"712
-[; ;main_piee2.c: 712:                 sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 24C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"713
-[; ;main_piee2.c: 713:                 LCD_String_xy(2,1,data);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc -> &U _data `*Cuc ]
-"715
-[; ;main_piee2.c: 715:                 if(!(PORTAbits.RA0)){
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 474  ]
-{
-"716
-[; ;main_piee2.c: 716:                     while(!(PORTAbits.RA0));
-[e $U 475  ]
-[e :U 476 ]
-[e :U 475 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 476  ]
-[e :U 477 ]
-"717
-[; ;main_piee2.c: 717:                     break;
-[e $U 472  ]
-"719
-[; ;main_piee2.c: 719:                 }
-}
-[e $U 478  ]
-"720
-[; ;main_piee2.c: 720:                 else if (!(PORTAbits.RA0)){
-[e :U 474 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 479  ]
-{
-"721
-[; ;main_piee2.c: 721:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"722
-[; ;main_piee2.c: 722:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 480  ]
-[e :U 481 ]
-[e :U 480 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 481  ]
-[e :U 482 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"723
-[; ;main_piee2.c: 723:                     cvt1++;
-[e ++ _cvt1 -> -> 1 `i `uc ]
-"724
-[; ;main_piee2.c: 724:                     if(cvt1>59){cvt1=0;}
-[e $ ! > -> _cvt1 `i -> 59 `i 483  ]
-{
-[e = _cvt1 -> -> 0 `i `uc ]
-}
-[e :U 483 ]
-"725
-[; ;main_piee2.c: 725:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"726
-[; ;main_piee2.c: 726:                     rtc.min = acerto;
-[e = . _rtc 1 _acerto ]
-"727
-[; ;main_piee2.c: 727:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"728
-[; ;main_piee2.c: 728:                 }
-}
-[e $U 484  ]
-"729
-[; ;main_piee2.c: 729:                 else if (!(PORTAbits.RA0)){
-[e :U 479 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 485  ]
-{
-"730
-[; ;main_piee2.c: 730:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"731
-[; ;main_piee2.c: 731:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 486  ]
-[e :U 487 ]
-[e :U 486 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 487  ]
-[e :U 488 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"732
-[; ;main_piee2.c: 732:                     cvt1--;
-[e -- _cvt1 -> -> 1 `i `uc ]
-"733
-[; ;main_piee2.c: 733:                     if(cvt1 == 255){cvt1 = 59;}
-[e $ ! == -> _cvt1 `i -> 255 `i 489  ]
-{
-[e = _cvt1 -> -> 59 `i `uc ]
-}
-[e :U 489 ]
-"734
-[; ;main_piee2.c: 734:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"735
-[; ;main_piee2.c: 735:                     rtc.min = acerto;
-[e = . _rtc 1 _acerto ]
-"736
-[; ;main_piee2.c: 736:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"737
-[; ;main_piee2.c: 737:                 }
-}
-[e :U 485 ]
-[e :U 484 ]
-[e :U 478 ]
-"740
-[; ;main_piee2.c: 740:             }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 471  ]
-[e :U 472 ]
-}
-"742
-[; ;main_piee2.c: 742:             LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"743
-[; ;main_piee2.c: 743:             for(i=0; i<200; i++){
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 490  ]
-[e $U 491  ]
-[e :U 490 ]
-{
-"744
-[; ;main_piee2.c: 744:                 LCD_String_xy(1,1,"Ajustar Dia         ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 25C ]
-"745
-[; ;main_piee2.c: 745:                 RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"746
-[; ;main_piee2.c: 746:                 sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 26C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"747
-[; ;main_piee2.c: 747:                 LCD_String_xy(2,1,data);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc -> &U _data `*Cuc ]
-"749
-[; ;main_piee2.c: 749:                 if(!(PORTAbits.RA0)){
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 493  ]
-{
-"750
-[; ;main_piee2.c: 750:                     while(!(PORTAbits.RA0));
-[e $U 494  ]
-[e :U 495 ]
-[e :U 494 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 495  ]
-[e :U 496 ]
-"751
-[; ;main_piee2.c: 751:                     break;
-[e $U 491  ]
-"753
-[; ;main_piee2.c: 753:                 }
-}
-[e $U 497  ]
-"754
-[; ;main_piee2.c: 754:                 else if (!(PORTAbits.RA0)){
-[e :U 493 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 498  ]
-{
-"755
-[; ;main_piee2.c: 755:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"756
-[; ;main_piee2.c: 756:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 499  ]
-[e :U 500 ]
-[e :U 499 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 500  ]
-[e :U 501 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"757
-[; ;main_piee2.c: 757:                     cvt1++;
-[e ++ _cvt1 -> -> 1 `i `uc ]
-"758
-[; ;main_piee2.c: 758:                     if(cvt1>31){cvt1=1;}
-[e $ ! > -> _cvt1 `i -> 31 `i 502  ]
-{
-[e = _cvt1 -> -> 1 `i `uc ]
-}
-[e :U 502 ]
-"759
-[; ;main_piee2.c: 759:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"760
-[; ;main_piee2.c: 760:                     rtc.date = acerto;
-[e = . _rtc 4 _acerto ]
-"761
-[; ;main_piee2.c: 761:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"762
-[; ;main_piee2.c: 762:                 }
-}
-[e $U 503  ]
-"763
-[; ;main_piee2.c: 763:                 else if (!(PORTAbits.RA0)){
-[e :U 498 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 504  ]
-{
-"764
-[; ;main_piee2.c: 764:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"765
-[; ;main_piee2.c: 765:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 505  ]
-[e :U 506 ]
-[e :U 505 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 506  ]
-[e :U 507 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"766
-[; ;main_piee2.c: 766:                     cvt1--;
-[e -- _cvt1 -> -> 1 `i `uc ]
-"767
-[; ;main_piee2.c: 767:                     if(cvt1 == 255){cvt1 = 31;}
-[e $ ! == -> _cvt1 `i -> 255 `i 508  ]
-{
-[e = _cvt1 -> -> 31 `i `uc ]
-}
-[e :U 508 ]
-"768
-[; ;main_piee2.c: 768:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"769
-[; ;main_piee2.c: 769:                     rtc.date = acerto;
-[e = . _rtc 4 _acerto ]
-"770
-[; ;main_piee2.c: 770:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"771
-[; ;main_piee2.c: 771:                 }
-}
-[e :U 504 ]
-[e :U 503 ]
-[e :U 497 ]
-"774
-[; ;main_piee2.c: 774:             }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 490  ]
-[e :U 491 ]
-}
-"776
-[; ;main_piee2.c: 776:             LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"777
-[; ;main_piee2.c: 777:             for(i=0; i<200; i++){
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 509  ]
-[e $U 510  ]
-[e :U 509 ]
-{
-"778
-[; ;main_piee2.c: 778:                 LCD_String_xy(1,1,"Ajustar Mes         ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 27C ]
-"779
-[; ;main_piee2.c: 779:                 RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"780
-[; ;main_piee2.c: 780:                 sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 28C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"781
-[; ;main_piee2.c: 781:                 LCD_String_xy(2,1,data);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc -> &U _data `*Cuc ]
-"783
-[; ;main_piee2.c: 783:                 if(!(PORTAbits.RA0)){
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 512  ]
-{
-"784
-[; ;main_piee2.c: 784:                     while(!(PORTAbits.RA0));
-[e $U 513  ]
-[e :U 514 ]
-[e :U 513 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 514  ]
-[e :U 515 ]
-"785
-[; ;main_piee2.c: 785:                     break;
-[e $U 510  ]
-"787
-[; ;main_piee2.c: 787:                 }
-}
-[e $U 516  ]
-"788
-[; ;main_piee2.c: 788:                 else if (!(PORTAbits.RA0)){
-[e :U 512 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 517  ]
-{
-"789
-[; ;main_piee2.c: 789:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"790
-[; ;main_piee2.c: 790:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 518  ]
-[e :U 519 ]
-[e :U 518 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 519  ]
-[e :U 520 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"791
-[; ;main_piee2.c: 791:                     cvt1++;
-[e ++ _cvt1 -> -> 1 `i `uc ]
-"792
-[; ;main_piee2.c: 792:                     if(cvt1>12){cvt1=1;}
-[e $ ! > -> _cvt1 `i -> 12 `i 521  ]
-{
-[e = _cvt1 -> -> 1 `i `uc ]
-}
-[e :U 521 ]
-"793
-[; ;main_piee2.c: 793:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"794
-[; ;main_piee2.c: 794:                     rtc.month = acerto;
-[e = . _rtc 5 _acerto ]
-"795
-[; ;main_piee2.c: 795:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"796
-[; ;main_piee2.c: 796:                 }
-}
-[e $U 522  ]
-"797
-[; ;main_piee2.c: 797:                 else if (!(PORTAbits.RA0)){
-[e :U 517 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 523  ]
-{
-"798
-[; ;main_piee2.c: 798:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"799
-[; ;main_piee2.c: 799:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 524  ]
-[e :U 525 ]
-[e :U 524 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 525  ]
-[e :U 526 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"800
-[; ;main_piee2.c: 800:                     cvt1--;
-[e -- _cvt1 -> -> 1 `i `uc ]
-"801
-[; ;main_piee2.c: 801:                     if(cvt1 == 255){cvt1 = 12;}
-[e $ ! == -> _cvt1 `i -> 255 `i 527  ]
-{
-[e = _cvt1 -> -> 12 `i `uc ]
-}
-[e :U 527 ]
-"802
-[; ;main_piee2.c: 802:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"803
-[; ;main_piee2.c: 803:                     rtc.month = acerto;
-[e = . _rtc 5 _acerto ]
-"804
-[; ;main_piee2.c: 804:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"805
-[; ;main_piee2.c: 805:                 }
-}
-[e :U 523 ]
-[e :U 522 ]
-[e :U 516 ]
-"808
-[; ;main_piee2.c: 808:             }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 509  ]
-[e :U 510 ]
-}
-"811
-[; ;main_piee2.c: 811:             LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"812
-[; ;main_piee2.c: 812:             for(i=0; i<200; i++){
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 528  ]
-[e $U 529  ]
-[e :U 528 ]
-{
-"813
-[; ;main_piee2.c: 813:                 LCD_String_xy(1,1,"Ajustar Ano         ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 29C ]
-"814
-[; ;main_piee2.c: 814:                 RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"815
-[; ;main_piee2.c: 815:                 sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-[e ( _sprintf (1 , , , , , , (. , &U _data :s 30C -> -> . _rtc 2 `us `ui -> -> . _rtc 1 `us `ui -> -> . _rtc 0 `us `ui -> -> . _rtc 4 `us `ui -> -> . _rtc 5 `us `ui -> -> . _rtc 6 `us `ui ]
-"816
-[; ;main_piee2.c: 816:                 LCD_String_xy(2,1,data);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 1 `i `uc -> &U _data `*Cuc ]
-"818
-[; ;main_piee2.c: 818:                 if(!(PORTAbits.RA0)){
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 531  ]
-{
-"819
-[; ;main_piee2.c: 819:                     while(!(PORTAbits.RA0));
-[e $U 532  ]
-[e :U 533 ]
-[e :U 532 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 533  ]
-[e :U 534 ]
-"820
-[; ;main_piee2.c: 820:                     break;
-[e $U 529  ]
-"822
-[; ;main_piee2.c: 822:                 }
-}
-[e $U 535  ]
-"823
-[; ;main_piee2.c: 823:                 else if (!(PORTAbits.RA0)){
-[e :U 531 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 536  ]
-{
-"824
-[; ;main_piee2.c: 824:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"825
-[; ;main_piee2.c: 825:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 537  ]
-[e :U 538 ]
-[e :U 537 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 538  ]
-[e :U 539 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"826
-[; ;main_piee2.c: 826:                     cvt1++;
-[e ++ _cvt1 -> -> 1 `i `uc ]
-"827
-[; ;main_piee2.c: 827:                     if(cvt1>99){cvt1=1;}
-[e $ ! > -> _cvt1 `i -> 99 `i 540  ]
-{
-[e = _cvt1 -> -> 1 `i `uc ]
-}
-[e :U 540 ]
-"828
-[; ;main_piee2.c: 828:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"829
-[; ;main_piee2.c: 829:                     rtc.year = acerto;
-[e = . _rtc 6 _acerto ]
-"830
-[; ;main_piee2.c: 830:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"831
-[; ;main_piee2.c: 831:                 }
-}
-[e $U 541  ]
-"832
-[; ;main_piee2.c: 832:                 else if (!(PORTAbits.RA0)){
-[e :U 536 ]
-[e $ ! ! != -> . . _PORTAbits 0 0 `i -> 0 `i 542  ]
-{
-"833
-[; ;main_piee2.c: 833:                     i=0;
-[e = _i -> -> 0 `i `ui ]
-"834
-[; ;main_piee2.c: 834:                     while(!(PORTAbits.RA0));MSdelay(300);
-[e $U 543  ]
-[e :U 544 ]
-[e :U 543 ]
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 544  ]
-[e :U 545 ]
-[e ( _MSdelay (1 -> -> 300 `i `ui ]
-"835
-[; ;main_piee2.c: 835:                     cvt1--;
-[e -- _cvt1 -> -> 1 `i `uc ]
-"836
-[; ;main_piee2.c: 836:                     if(cvt1 == 255){cvt1 = 99;}
-[e $ ! == -> _cvt1 `i -> 255 `i 546  ]
-{
-[e = _cvt1 -> -> 99 `i `uc ]
-}
-[e :U 546 ]
-"837
-[; ;main_piee2.c: 837:                     converteDecToHex(cvt1);
-[e ( _converteDecToHex (1 -> _cvt1 `i ]
-"838
-[; ;main_piee2.c: 838:                     rtc.year = acerto;
-[e = . _rtc 6 _acerto ]
-"839
-[; ;main_piee2.c: 839:                     RTC_SetDateTime(&rtc);
-[e ( _RTC_SetDateTime (1 &U _rtc ]
-"840
-[; ;main_piee2.c: 840:                 }
-}
-[e :U 542 ]
-[e :U 541 ]
-[e :U 535 ]
-"843
-[; ;main_piee2.c: 843:             }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 200 `i `ui 528  ]
-[e :U 529 ]
-}
-"846
-[; ;main_piee2.c: 846:         }
-}
-[e :U 451 ]
-"847
-[; ;main_piee2.c: 847:         i = 200;
-[e = _i -> -> 200 `i `ui ]
-"848
-[; ;main_piee2.c: 848:         LCD_Command(0x01);
-[e ( _LCD_Command (1 -> -> 1 `i `uc ]
-"849
-[; ;main_piee2.c: 849:         LCD_String_xy(1,1,"Sair Ajuste         ");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 1 `i `uc :s 31C ]
-"850
-[; ;main_piee2.c: 850:         if((PORTAbits.RA0)){
-[e $ ! != -> . . _PORTAbits 0 0 `i -> 0 `i 547  ]
-{
-"851
-[; ;main_piee2.c: 851:             while((PORTAbits.RA0));
-[e $U 548  ]
-[e :U 549 ]
-[e :U 548 ]
-[e $ != -> . . _PORTAbits 0 0 `i -> 0 `i 549  ]
-[e :U 550 ]
-"852
-[; ;main_piee2.c: 852:             break;
-[e $U 450  ]
-"854
-[; ;main_piee2.c: 854:         }
-}
-[e :U 547 ]
-"856
-[; ;main_piee2.c: 856:     }
-}
-[e :U 448 ]
-[e $U 449  ]
-[e :U 450 ]
-"862
-[; ;main_piee2.c: 862: }
-[e :UE 447 ]
-}
-"865
-[; ;main_piee2.c: 865: void converteDecToHex(int converte){
-[v _converteDecToHex `(v ~T0 @X0 1 ef1`i ]
-{
-[e :U _converteDecToHex ]
-[v _converte `i ~T0 @X0 1 r1 ]
-[f ]
-"866
-[; ;main_piee2.c: 866:     switch(converte){
-[e $U 553  ]
-{
-"867
-[; ;main_piee2.c: 867:         case 0:
-[e :U 554 ]
-"868
-[; ;main_piee2.c: 868:             acerto = 0x00;
-[e = _acerto -> -> 0 `i `uc ]
-"869
-[; ;main_piee2.c: 869:             break;
-[e $U 552  ]
-"870
-[; ;main_piee2.c: 870:         case 1:
-[e :U 555 ]
-"871
-[; ;main_piee2.c: 871:             acerto = 0x01;
-[e = _acerto -> -> 1 `i `uc ]
-"872
-[; ;main_piee2.c: 872:             break;
-[e $U 552  ]
-"873
-[; ;main_piee2.c: 873:         case 2:
-[e :U 556 ]
-"874
-[; ;main_piee2.c: 874:             acerto = 0x02;
-[e = _acerto -> -> 2 `i `uc ]
-"875
-[; ;main_piee2.c: 875:             break;
-[e $U 552  ]
-"876
-[; ;main_piee2.c: 876:         case 3:
-[e :U 557 ]
-"877
-[; ;main_piee2.c: 877:             acerto = 0x03;
-[e = _acerto -> -> 3 `i `uc ]
-"878
-[; ;main_piee2.c: 878:             break;
-[e $U 552  ]
-"879
-[; ;main_piee2.c: 879:         case 4:
-[e :U 558 ]
-"880
-[; ;main_piee2.c: 880:             acerto = 0x04;
-[e = _acerto -> -> 4 `i `uc ]
-"881
-[; ;main_piee2.c: 881:             break;
-[e $U 552  ]
-"882
-[; ;main_piee2.c: 882:         case 5:
-[e :U 559 ]
-"883
-[; ;main_piee2.c: 883:             acerto = 0x05;
-[e = _acerto -> -> 5 `i `uc ]
-"884
-[; ;main_piee2.c: 884:             break;
-[e $U 552  ]
-"885
-[; ;main_piee2.c: 885:         case 6:
-[e :U 560 ]
-"886
-[; ;main_piee2.c: 886:             acerto = 0x06;
-[e = _acerto -> -> 6 `i `uc ]
-"887
-[; ;main_piee2.c: 887:             break;
-[e $U 552  ]
-"888
-[; ;main_piee2.c: 888:         case 7:
-[e :U 561 ]
-"889
-[; ;main_piee2.c: 889:             acerto = 0x07;
-[e = _acerto -> -> 7 `i `uc ]
-"890
-[; ;main_piee2.c: 890:             break;
-[e $U 552  ]
-"891
-[; ;main_piee2.c: 891:         case 8:
-[e :U 562 ]
-"892
-[; ;main_piee2.c: 892:             acerto = 0x08;
-[e = _acerto -> -> 8 `i `uc ]
-"893
-[; ;main_piee2.c: 893:             break;
-[e $U 552  ]
-"894
-[; ;main_piee2.c: 894:         case 9:
-[e :U 563 ]
-"895
-[; ;main_piee2.c: 895:             acerto = 0x09;
-[e = _acerto -> -> 9 `i `uc ]
-"896
-[; ;main_piee2.c: 896:             break;
-[e $U 552  ]
-"897
-[; ;main_piee2.c: 897:         case 10:
-[e :U 564 ]
-"898
-[; ;main_piee2.c: 898:             acerto = 0x10;
-[e = _acerto -> -> 16 `i `uc ]
-"899
-[; ;main_piee2.c: 899:             break;
-[e $U 552  ]
-"900
-[; ;main_piee2.c: 900:         case 11:
-[e :U 565 ]
-"901
-[; ;main_piee2.c: 901:             acerto = 0x11;
-[e = _acerto -> -> 17 `i `uc ]
-"902
-[; ;main_piee2.c: 902:             break;
-[e $U 552  ]
-"903
-[; ;main_piee2.c: 903:         case 12:
-[e :U 566 ]
-"904
-[; ;main_piee2.c: 904:             acerto = 0x12;
-[e = _acerto -> -> 18 `i `uc ]
-"905
-[; ;main_piee2.c: 905:             break;
-[e $U 552  ]
-"906
-[; ;main_piee2.c: 906:         case 13:
-[e :U 567 ]
-"907
-[; ;main_piee2.c: 907:             acerto = 0x13;
-[e = _acerto -> -> 19 `i `uc ]
-"908
-[; ;main_piee2.c: 908:             break;
-[e $U 552  ]
-"909
-[; ;main_piee2.c: 909:         case 14:
-[e :U 568 ]
-"910
-[; ;main_piee2.c: 910:             acerto = 0x14;
-[e = _acerto -> -> 20 `i `uc ]
-"911
-[; ;main_piee2.c: 911:             break;
-[e $U 552  ]
-"912
-[; ;main_piee2.c: 912:         case 15:
-[e :U 569 ]
-"913
-[; ;main_piee2.c: 913:             acerto = 0x15;
-[e = _acerto -> -> 21 `i `uc ]
-"914
-[; ;main_piee2.c: 914:             break;
-[e $U 552  ]
-"915
-[; ;main_piee2.c: 915:         case 16:
-[e :U 570 ]
-"916
-[; ;main_piee2.c: 916:             acerto = 0x16;
-[e = _acerto -> -> 22 `i `uc ]
-"917
-[; ;main_piee2.c: 917:             break;
-[e $U 552  ]
-"918
-[; ;main_piee2.c: 918:         case 17:
-[e :U 571 ]
-"919
-[; ;main_piee2.c: 919:             acerto = 0x17;
-[e = _acerto -> -> 23 `i `uc ]
-"920
-[; ;main_piee2.c: 920:             break;
-[e $U 552  ]
-"921
-[; ;main_piee2.c: 921:         case 18:
-[e :U 572 ]
-"922
-[; ;main_piee2.c: 922:             acerto = 0x18;
-[e = _acerto -> -> 24 `i `uc ]
-"923
-[; ;main_piee2.c: 923:             break;
-[e $U 552  ]
-"924
-[; ;main_piee2.c: 924:         case 19:
-[e :U 573 ]
-"925
-[; ;main_piee2.c: 925:             acerto = 0x19;
-[e = _acerto -> -> 25 `i `uc ]
-"926
-[; ;main_piee2.c: 926:             break;
-[e $U 552  ]
-"927
-[; ;main_piee2.c: 927:         case 20:
-[e :U 574 ]
-"928
-[; ;main_piee2.c: 928:             acerto = 0x20;
-[e = _acerto -> -> 32 `i `uc ]
-"929
-[; ;main_piee2.c: 929:             break;
-[e $U 552  ]
-"930
-[; ;main_piee2.c: 930:         case 21:
-[e :U 575 ]
-"931
-[; ;main_piee2.c: 931:             acerto = 0x21;
-[e = _acerto -> -> 33 `i `uc ]
-"932
-[; ;main_piee2.c: 932:             break;
-[e $U 552  ]
-"933
-[; ;main_piee2.c: 933:         case 22:
-[e :U 576 ]
-"934
-[; ;main_piee2.c: 934:             acerto = 0x22;
-[e = _acerto -> -> 34 `i `uc ]
-"935
-[; ;main_piee2.c: 935:             break;
-[e $U 552  ]
-"936
-[; ;main_piee2.c: 936:         case 23:
-[e :U 577 ]
-"937
-[; ;main_piee2.c: 937:             acerto = 0x23;
-[e = _acerto -> -> 35 `i `uc ]
-"938
-[; ;main_piee2.c: 938:             break;
-[e $U 552  ]
-"940
-[; ;main_piee2.c: 940:         case 24:
-[e :U 578 ]
-"941
-[; ;main_piee2.c: 941:             acerto = 0x24;
-[e = _acerto -> -> 36 `i `uc ]
-"942
-[; ;main_piee2.c: 942:             break;
-[e $U 552  ]
-"943
-[; ;main_piee2.c: 943:         case 25:
-[e :U 579 ]
-"944
-[; ;main_piee2.c: 944:             acerto = 0x25;
-[e = _acerto -> -> 37 `i `uc ]
-"945
-[; ;main_piee2.c: 945:             break;
-[e $U 552  ]
-"946
-[; ;main_piee2.c: 946:         case 26:
-[e :U 580 ]
-"947
-[; ;main_piee2.c: 947:             acerto = 0x26;
-[e = _acerto -> -> 38 `i `uc ]
-"948
-[; ;main_piee2.c: 948:             break;
-[e $U 552  ]
-"949
-[; ;main_piee2.c: 949:         case 27:
-[e :U 581 ]
-"950
-[; ;main_piee2.c: 950:             acerto = 0x27;
-[e = _acerto -> -> 39 `i `uc ]
-"951
-[; ;main_piee2.c: 951:             break;
-[e $U 552  ]
-"952
-[; ;main_piee2.c: 952:         case 28:
-[e :U 582 ]
-"953
-[; ;main_piee2.c: 953:             acerto = 0x28;
-[e = _acerto -> -> 40 `i `uc ]
-"954
-[; ;main_piee2.c: 954:             break;
-[e $U 552  ]
-"955
-[; ;main_piee2.c: 955:         case 29:
-[e :U 583 ]
-"956
-[; ;main_piee2.c: 956:             acerto = 0x29;
-[e = _acerto -> -> 41 `i `uc ]
-"957
-[; ;main_piee2.c: 957:             break;
-[e $U 552  ]
-"958
-[; ;main_piee2.c: 958:         case 30:
-[e :U 584 ]
-"959
-[; ;main_piee2.c: 959:             acerto = 0x30;
-[e = _acerto -> -> 48 `i `uc ]
-"960
-[; ;main_piee2.c: 960:             break;
-[e $U 552  ]
-"961
-[; ;main_piee2.c: 961:         case 31:
-[e :U 585 ]
-"962
-[; ;main_piee2.c: 962:             acerto = 0x31;
-[e = _acerto -> -> 49 `i `uc ]
-"963
-[; ;main_piee2.c: 963:             break;
-[e $U 552  ]
-"964
-[; ;main_piee2.c: 964:         case 32:
-[e :U 586 ]
-"965
-[; ;main_piee2.c: 965:             acerto = 0x32;
-[e = _acerto -> -> 50 `i `uc ]
-"966
-[; ;main_piee2.c: 966:             break;
-[e $U 552  ]
-"967
-[; ;main_piee2.c: 967:         case 33:
-[e :U 587 ]
-"968
-[; ;main_piee2.c: 968:             acerto = 0x33;
-[e = _acerto -> -> 51 `i `uc ]
-"969
-[; ;main_piee2.c: 969:             break;
-[e $U 552  ]
-"970
-[; ;main_piee2.c: 970:         case 34:
-[e :U 588 ]
-"971
-[; ;main_piee2.c: 971:             acerto = 0x34;
-[e = _acerto -> -> 52 `i `uc ]
-"972
-[; ;main_piee2.c: 972:             break;
-[e $U 552  ]
-"973
-[; ;main_piee2.c: 973:         case 35:
-[e :U 589 ]
-"974
-[; ;main_piee2.c: 974:             acerto = 0x35;
-[e = _acerto -> -> 53 `i `uc ]
-"975
-[; ;main_piee2.c: 975:             break;
-[e $U 552  ]
-"976
-[; ;main_piee2.c: 976:         case 36:
-[e :U 590 ]
-"977
-[; ;main_piee2.c: 977:             acerto = 0x36;
-[e = _acerto -> -> 54 `i `uc ]
-"978
-[; ;main_piee2.c: 978:             break;
-[e $U 552  ]
-"979
-[; ;main_piee2.c: 979:         case 37:
-[e :U 591 ]
-"980
-[; ;main_piee2.c: 980:             acerto = 0x37;
-[e = _acerto -> -> 55 `i `uc ]
-"981
-[; ;main_piee2.c: 981:             break;
-[e $U 552  ]
-"982
-[; ;main_piee2.c: 982:         case 38:
-[e :U 592 ]
-"983
-[; ;main_piee2.c: 983:             acerto = 0x38;
-[e = _acerto -> -> 56 `i `uc ]
-"984
-[; ;main_piee2.c: 984:             break;
-[e $U 552  ]
-"985
-[; ;main_piee2.c: 985:         case 39:
-[e :U 593 ]
-"986
-[; ;main_piee2.c: 986:             acerto = 0x39;
-[e = _acerto -> -> 57 `i `uc ]
-"987
-[; ;main_piee2.c: 987:             break;
-[e $U 552  ]
-"988
-[; ;main_piee2.c: 988:         case 40:
-[e :U 594 ]
-"989
-[; ;main_piee2.c: 989:             acerto = 0x40;
-[e = _acerto -> -> 64 `i `uc ]
-"990
-[; ;main_piee2.c: 990:             break;
-[e $U 552  ]
-"991
-[; ;main_piee2.c: 991:         case 41:
-[e :U 595 ]
-"992
-[; ;main_piee2.c: 992:             acerto = 0x41;
-[e = _acerto -> -> 65 `i `uc ]
-"993
-[; ;main_piee2.c: 993:             break;
-[e $U 552  ]
-"994
-[; ;main_piee2.c: 994:         case 42:
-[e :U 596 ]
-"995
-[; ;main_piee2.c: 995:             acerto = 0x42;
-[e = _acerto -> -> 66 `i `uc ]
-"996
-[; ;main_piee2.c: 996:             break;
-[e $U 552  ]
-"997
-[; ;main_piee2.c: 997:         case 43:
-[e :U 597 ]
-"998
-[; ;main_piee2.c: 998:             acerto = 0x43;
-[e = _acerto -> -> 67 `i `uc ]
-"999
-[; ;main_piee2.c: 999:             break;
-[e $U 552  ]
-"1000
-[; ;main_piee2.c: 1000:         case 44:
-[e :U 598 ]
-"1001
-[; ;main_piee2.c: 1001:             acerto = 0x44;
-[e = _acerto -> -> 68 `i `uc ]
-"1002
-[; ;main_piee2.c: 1002:             break;
-[e $U 552  ]
-"1003
-[; ;main_piee2.c: 1003:         case 45:
-[e :U 599 ]
-"1004
-[; ;main_piee2.c: 1004:             acerto = 0x45;
-[e = _acerto -> -> 69 `i `uc ]
-"1005
-[; ;main_piee2.c: 1005:             break;
-[e $U 552  ]
-"1006
-[; ;main_piee2.c: 1006:         case 46:
-[e :U 600 ]
-"1007
-[; ;main_piee2.c: 1007:             acerto = 0x46;
-[e = _acerto -> -> 70 `i `uc ]
-"1008
-[; ;main_piee2.c: 1008:             break;
-[e $U 552  ]
-"1009
-[; ;main_piee2.c: 1009:         case 47:
-[e :U 601 ]
-"1010
-[; ;main_piee2.c: 1010:             acerto = 0x47;
-[e = _acerto -> -> 71 `i `uc ]
-"1011
-[; ;main_piee2.c: 1011:             break;
-[e $U 552  ]
-"1013
-[; ;main_piee2.c: 1013:         case 48:
-[e :U 602 ]
-"1014
-[; ;main_piee2.c: 1014:             acerto = 0x48;
-[e = _acerto -> -> 72 `i `uc ]
-"1015
-[; ;main_piee2.c: 1015:             break;
-[e $U 552  ]
-"1016
-[; ;main_piee2.c: 1016:         case 49:
-[e :U 603 ]
-"1017
-[; ;main_piee2.c: 1017:             acerto = 0x49;
-[e = _acerto -> -> 73 `i `uc ]
-"1018
-[; ;main_piee2.c: 1018:             break;
-[e $U 552  ]
-"1019
-[; ;main_piee2.c: 1019:         case 50:
-[e :U 604 ]
-"1020
-[; ;main_piee2.c: 1020:             acerto = 0x50;
-[e = _acerto -> -> 80 `i `uc ]
-"1021
-[; ;main_piee2.c: 1021:             break;
-[e $U 552  ]
-"1022
-[; ;main_piee2.c: 1022:         case 51:
-[e :U 605 ]
-"1023
-[; ;main_piee2.c: 1023:             acerto = 0x51;
-[e = _acerto -> -> 81 `i `uc ]
-"1024
-[; ;main_piee2.c: 1024:             break;
-[e $U 552  ]
-"1025
-[; ;main_piee2.c: 1025:         case 52:
-[e :U 606 ]
-"1026
-[; ;main_piee2.c: 1026:             acerto = 0x52;
-[e = _acerto -> -> 82 `i `uc ]
-"1027
-[; ;main_piee2.c: 1027:             break;
-[e $U 552  ]
-"1028
-[; ;main_piee2.c: 1028:         case 53:
-[e :U 607 ]
-"1029
-[; ;main_piee2.c: 1029:             acerto = 0x53;
-[e = _acerto -> -> 83 `i `uc ]
-"1030
-[; ;main_piee2.c: 1030:             break;
-[e $U 552  ]
-"1031
-[; ;main_piee2.c: 1031:         case 54:
-[e :U 608 ]
-"1032
-[; ;main_piee2.c: 1032:             acerto = 0x54;
-[e = _acerto -> -> 84 `i `uc ]
-"1033
-[; ;main_piee2.c: 1033:             break;
-[e $U 552  ]
-"1036
-[; ;main_piee2.c: 1036:         case 55:
-[e :U 609 ]
-"1037
-[; ;main_piee2.c: 1037:             acerto = 0x55;
-[e = _acerto -> -> 85 `i `uc ]
-"1038
-[; ;main_piee2.c: 1038:             break;
-[e $U 552  ]
-"1039
-[; ;main_piee2.c: 1039:         case 56:
-[e :U 610 ]
-"1040
-[; ;main_piee2.c: 1040:             acerto = 0x56;
-[e = _acerto -> -> 86 `i `uc ]
-"1041
-[; ;main_piee2.c: 1041:             break;
-[e $U 552  ]
-"1042
-[; ;main_piee2.c: 1042:         case 57:
-[e :U 611 ]
-"1043
-[; ;main_piee2.c: 1043:             acerto = 0x57;
-[e = _acerto -> -> 87 `i `uc ]
-"1044
-[; ;main_piee2.c: 1044:             break;
-[e $U 552  ]
-"1045
-[; ;main_piee2.c: 1045:         case 58:
-[e :U 612 ]
-"1046
-[; ;main_piee2.c: 1046:             acerto = 0x58;
-[e = _acerto -> -> 88 `i `uc ]
-"1047
-[; ;main_piee2.c: 1047:             break;
-[e $U 552  ]
-"1048
-[; ;main_piee2.c: 1048:         case 59:
-[e :U 613 ]
-"1049
-[; ;main_piee2.c: 1049:             acerto = 0x59;
-[e = _acerto -> -> 89 `i `uc ]
-"1050
-[; ;main_piee2.c: 1050:             break;
-[e $U 552  ]
-"1054
-[; ;main_piee2.c: 1054:         default :
-[e :U 614 ]
-"1055
-[; ;main_piee2.c: 1055:             acerto = 0x00;
-[e = _acerto -> -> 0 `i `uc ]
-"1056
-[; ;main_piee2.c: 1056:             break;
-[e $U 552  ]
-"1058
-[; ;main_piee2.c: 1058:     }
-}
-[e $U 552  ]
-[e :U 553 ]
-[e [\ _converte , $ -> 0 `i 554
- , $ -> 1 `i 555
- , $ -> 2 `i 556
- , $ -> 3 `i 557
- , $ -> 4 `i 558
- , $ -> 5 `i 559
- , $ -> 6 `i 560
- , $ -> 7 `i 561
- , $ -> 8 `i 562
- , $ -> 9 `i 563
- , $ -> 10 `i 564
- , $ -> 11 `i 565
- , $ -> 12 `i 566
- , $ -> 13 `i 567
- , $ -> 14 `i 568
- , $ -> 15 `i 569
- , $ -> 16 `i 570
- , $ -> 17 `i 571
- , $ -> 18 `i 572
- , $ -> 19 `i 573
- , $ -> 20 `i 574
- , $ -> 21 `i 575
- , $ -> 22 `i 576
- , $ -> 23 `i 577
- , $ -> 24 `i 578
- , $ -> 25 `i 579
- , $ -> 26 `i 580
- , $ -> 27 `i 581
- , $ -> 28 `i 582
- , $ -> 29 `i 583
- , $ -> 30 `i 584
- , $ -> 31 `i 585
- , $ -> 32 `i 586
- , $ -> 33 `i 587
- , $ -> 34 `i 588
- , $ -> 35 `i 589
- , $ -> 36 `i 590
- , $ -> 37 `i 591
- , $ -> 38 `i 592
- , $ -> 39 `i 593
- , $ -> 40 `i 594
- , $ -> 41 `i 595
- , $ -> 42 `i 596
- , $ -> 43 `i 597
- , $ -> 44 `i 598
- , $ -> 45 `i 599
- , $ -> 46 `i 600
- , $ -> 47 `i 601
- , $ -> 48 `i 602
- , $ -> 49 `i 603
- , $ -> 50 `i 604
- , $ -> 51 `i 605
- , $ -> 52 `i 606
- , $ -> 53 `i 607
- , $ -> 54 `i 608
- , $ -> 55 `i 609
- , $ -> 56 `i 610
- , $ -> 57 `i 611
- , $ -> 58 `i 612
- , $ -> 59 `i 613
- 614 ]
-[e :U 552 ]
-"1059
-[; ;main_piee2.c: 1059: }
-[e :UE 551 ]
-}
-[p f _sprintf 12615684 ]
-[a 19C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 65 66 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 50 120 0 ]
-[a 22C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 48 120 0 ]
-[a 24C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 48 120 0 ]
-[a 26C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 48 120 0 ]
-[a 28C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 48 120 0 ]
-[a 30C 72 111 114 97 58 37 50 120 58 37 50 120 58 37 50 120 32 32 32 32 10 68 97 116 101 58 37 50 120 47 37 50 120 47 37 48 120 0 ]
-[a 1C 83 116 97 116 117 115 58 32 73 110 105 99 105 97 108 105 122 97 110 100 111 0 ]
-[a 11C 80 114 111 106 101 116 111 32 73 110 116 101 103 114 97 100 111 0 ]
-[a 15C 83 101 113 46 69 108 101 116 114 46 76 105 109 112 101 122 97 0 ]
-[a 13C 87 101 108 105 110 103 116 111 110 32 67 111 114 114 101 105 97 0 ]
-[a 18C 70 105 108 116 114 111 32 77 97 110 103 97 0 ]
-[a 16C 70 105 108 116 114 111 32 100 101 32 77 97 110 103 97 0 ]
-[a 10C 69 110 103 101 110 104 97 114 105 97 32 69 108 101 116 114 105 99 97 0 ]
-[a 12C 69 109 32 69 108 101 116 114 105 99 97 32 73 73 0 ]
-[a 9C 85 78 73 85 66 69 0 ]
-[a 14C 82 65 32 58 32 49 48 54 51 54 55 55 0 ]
-[a 17C 83 101 106 97 32 66 101 109 32 86 105 110 100 111 33 0 ]
-[a 8C 83 116 97 116 117 115 58 32 68 101 115 99 111 110 104 101 99 105 100 111 32 0 ]
-[a 20C 65 106 117 115 116 97 114 32 68 97 116 97 32 101 32 72 111 114 97 32 0 ]
-[a 4C 83 116 97 116 117 115 58 32 70 117 110 99 105 111 110 97 110 100 111 32 32 0 ]
-[a 6C 83 116 97 116 117 115 58 32 66 108 111 113 117 101 97 100 111 32 32 32 32 0 ]
-[a 23C 65 106 117 115 116 97 114 32 77 105 110 117 116 111 115 32 32 32 32 32 0 ]
-[a 3C 83 116 97 116 117 115 58 32 80 97 114 116 105 110 100 111 32 32 32 32 32 0 ]
-[a 5C 83 116 97 116 117 115 58 32 80 97 114 97 110 100 111 32 32 32 32 32 32 0 ]
-[a 2C 83 116 97 116 117 115 58 32 80 114 111 110 116 111 32 32 32 32 32 32 32 0 ]
-[a 21C 65 106 117 115 116 97 114 32 72 111 114 97 32 32 32 32 32 32 32 32 0 ]
-[a 7C 83 116 97 116 117 115 58 32 70 97 108 104 97 32 32 32 32 32 32 32 32 0 ]
-[a 27C 65 106 117 115 116 97 114 32 77 101 115 32 32 32 32 32 32 32 32 32 0 ]
-[a 29C 65 106 117 115 116 97 114 32 65 110 111 32 32 32 32 32 32 32 32 32 0 ]
-[a 31C 83 97 105 114 32 65 106 117 115 116 101 32 32 32 32 32 32 32 32 32 0 ]
-[a 25C 65 106 117 115 116 97 114 32 68 105 97 32 32 32 32 32 32 32 32 32 0 ]
+[p f _sprintf 12582912 ]
+[a 16C 84 104 117 0 ]
+[a 18C 83 97 116 0 ]
+[a 12C 83 117 110 0 ]
+[a 13C 77 111 110 0 ]
+[a 17C 70 114 105 0 ]
+[a 14C 84 117 101 0 ]
+[a 15C 87 101 100 0 ]
+[a 1C 80 77 0 ]
+[a 2C 65 77 0 ]
+[a 5C 84 105 109 58 37 120 58 0 ]
+[a 8C 84 105 109 58 37 120 58 0 ]
+[a 4C 37 120 58 0 ]
+[a 7C 37 120 58 0 ]
+[a 9C 67 97 108 32 37 120 45 0 ]
+[a 10C 37 120 45 0 ]
+[a 3C 37 120 32 0 ]
+[a 6C 37 120 32 0 ]
+[a 11C 37 120 32 0 ]
