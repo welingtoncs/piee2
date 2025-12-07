@@ -190,18 +190,20 @@ int main(void) {
 /*********************Inicialização do Sistema*****************************/
 void System_Init(void) {
     // Inicialização de portas
+    TRISA = 0xFF;   
     TRISD = 0x00;   // Saídas: beep, LEDs, Val8
     TRISC = 0x00;   // Saídas: Val1-Val7
+    PORTA = 0x00;
     PORTC = 0x00;   // Desliga todas as válvulas
     PORTD = 0x00;   // Desliga beep e LEDs
     
     // Configurar entradas
-    TRISAbits.TRISA2 = 1;  // Bt_man_aut
-    TRISAbits.TRISA3 = 1;  // Bt_inc
-    TRISAbits.TRISA4 = 1;  // Bt_dow
-    TRISAbits.TRISA5 = 1;  // Bt_ent
-    TRISAbits.TRISA6 = 1;  // Bt_reset
-    TRISAbits.TRISA0 = 1;  // An_pres (ADC)
+//    TRISAbits.TRISA2 = 1;  // Bt_man_aut
+//    TRISAbits.TRISA3 = 1;  // Bt_inc
+//    TRISAbits.TRISA4 = 1;  // Bt_dow
+//    TRISAbits.TRISA5 = 1;  // Bt_ent
+//    TRISAbits.TRISA6 = 1;  // Bt_reset
+//    TRISAbits.TRISA0 = 1;  // An_pres (ADC)
     
     // Inicializações
     LCD_Init();

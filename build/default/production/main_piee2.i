@@ -6128,20 +6128,13 @@ int main(void) {
 
 void System_Init(void) {
 
+    TRISA = 0xFF;
     TRISD = 0x00;
     TRISC = 0x00;
+    PORTA = 0x00;
     PORTC = 0x00;
     PORTD = 0x00;
-
-
-    TRISAbits.TRISA2 = 1;
-    TRISAbits.TRISA3 = 1;
-    TRISAbits.TRISA4 = 1;
-    TRISAbits.TRISA5 = 1;
-    TRISAbits.TRISA6 = 1;
-    TRISAbits.TRISA0 = 1;
-
-
+# 209 "main_piee2.c"
     LCD_Init();
     RTC_Init();
     ADC_Init();
@@ -6394,7 +6387,7 @@ void Modo_Manual(void) {
         }
     }
     last_ent = PORTAbits.RA5;
-# 467 "main_piee2.c"
+# 469 "main_piee2.c"
 }
 
 
