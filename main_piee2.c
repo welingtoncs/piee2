@@ -122,55 +122,55 @@ int main(void) {
 //    rtc.year = 0x25;
     
     while(1) {
-        // Ler pressão diferencial
-        adc_pressao = Ler_ADC(0);
-        
-        // Verificar falha de pressão
-        Verificar_Falha_Pressao();
-        
-        // Verificar botão reset
-        if(Bt_reset == 0) {
-            MSdelay(50);  // Debounce
-            if(Bt_reset == 0) {
-                if(modo_operacao == 1) {  // Modo automático
-                    contador_ciclos = 0;
-                    Salvar_Contador_EEPROM();
-                    Beep(2);  // Bipe duplo para confirmar reset
-                } else {  // Modo manual
-                    // Aciona todas as válvulas
-                    PORTC = 0xFF;
-                    Val8 = 1;
-                    MSdelay(2000);
-                    PORTC = 0x00;
-                    Val8 = 0;
-                }
-                while(Bt_reset == 0);  // Aguarda soltar botão
-            }
-        }
-        
-        // Verificar mudança de modo
-        static uint8_t last_man_aut = 1;
-        if(Bt_man_aut == 0) {
-            MSdelay(50);
-            if(Bt_man_aut == 0) {
-                modo_operacao = !modo_operacao;  // Alterna entre Manual e Auto
-                ciclo_em_andamento = 0;
-                PORTC = 0x00;  // Desliga todas as válvulas
-                Val8 = 0;
-                led_ativo = 0;
-                Beep(1);  // Bipe curto para confirmar mudança
-            }
-            while(Bt_man_aut == 0);  // Aguarda soltar botão
-        }
-        last_man_aut = Bt_man_aut;
-        
-        // Executar modo atual
-        if(modo_operacao == 0) {
-            Modo_Manual();
-        } else {
-            modo_operacao == 1;
-            Sequenciador_Automatico();
-        }
+//        // Ler pressão diferencial
+//        adc_pressao = Ler_ADC(0);
+//        
+//        // Verificar falha de pressão
+//        Verificar_Falha_Pressao();
+//        
+//        // Verificar botão reset
+//        if(Bt_reset == 0) {
+//            MSdelay(50);  // Debounce
+//            if(Bt_reset == 0) {
+//                if(modo_operacao == 1) {  // Modo automático
+//                    contador_ciclos = 0;
+//                    Salvar_Contador_EEPROM();
+//                    Beep(2);  // Bipe duplo para confirmar reset
+//                } else {  // Modo manual
+//                    // Aciona todas as válvulas
+//                    PORTC = 0xFF;
+//                    Val8 = 1;
+//                    MSdelay(2000);
+//                    PORTC = 0x00;
+//                    Val8 = 0;
+//                }
+//                while(Bt_reset == 0);  // Aguarda soltar botão
+//            }
+//        }
+//        
+//        // Verificar mudança de modo
+//        static uint8_t last_man_aut = 1;
+//        if(Bt_man_aut == 0) {
+//            MSdelay(50);
+//            if(Bt_man_aut == 0) {
+//                modo_operacao = !modo_operacao;  // Alterna entre Manual e Auto
+//                ciclo_em_andamento = 0;
+//                PORTC = 0x00;  // Desliga todas as válvulas
+//                Val8 = 0;
+//                led_ativo = 0;
+//                Beep(1);  // Bipe curto para confirmar mudança
+//            }
+//            while(Bt_man_aut == 0);  // Aguarda soltar botão
+//        }
+//        last_man_aut = Bt_man_aut;
+//        
+//        // Executar modo atual
+//        if(modo_operacao == 0) {
+//            Modo_Manual();
+//        } else {
+//            modo_operacao == 1;
+//            Sequenciador_Automatico();
+//        }
         
         // LED run piscando (indicador de sistema ativo)
         static uint16_t blink_timer = 0;

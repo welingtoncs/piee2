@@ -6102,57 +6102,7 @@ int main(void) {
     Beep(2);
 # 124 "main_piee2.c"
     while(1) {
-
-        adc_pressao = Ler_ADC(0);
-
-
-        Verificar_Falha_Pressao();
-
-
-        if(PORTAbits.RA6 == 0) {
-            MSdelay(50);
-            if(PORTAbits.RA6 == 0) {
-                if(modo_operacao == 1) {
-                    contador_ciclos = 0;
-                    Salvar_Contador_EEPROM();
-                    Beep(2);
-                } else {
-
-                    PORTC = 0xFF;
-                    LATD7 = 1;
-                    MSdelay(2000);
-                    PORTC = 0x00;
-                    LATD7 = 0;
-                }
-                while(PORTAbits.RA6 == 0);
-            }
-        }
-
-
-        static uint8_t last_man_aut = 1;
-        if(PORTAbits.RA2 == 0) {
-            MSdelay(50);
-            if(PORTAbits.RA2 == 0) {
-                modo_operacao = !modo_operacao;
-                ciclo_em_andamento = 0;
-                PORTC = 0x00;
-                LATD7 = 0;
-                LATD3 = 0;
-                Beep(1);
-            }
-            while(PORTAbits.RA2 == 0);
-        }
-        last_man_aut = PORTAbits.RA2;
-
-
-        if(modo_operacao == 0) {
-            Modo_Manual();
-        } else {
-            modo_operacao == 1;
-            Sequenciador_Automatico();
-        }
-
-
+# 176 "main_piee2.c"
         static uint16_t blink_timer = 0;
         if(blink_timer++ >= 50) {
             blink_timer = 0;
