@@ -565,7 +565,8 @@ uint16_t Ler_ADC(uint8_t canal) {
     MSdelay(1);                    // Tempo de aquisição
     
     ADCON0bits.GO = 1;            // Inicia conversão
-    while(ADCON0bits.GO);         // Aguarda conversão
+    MSdelay(1);
+//    while(ADCON0bits.GO);         // Aguarda conversão
     
     return ((ADRESH << 8) | ADRESL);
 }

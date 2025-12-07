@@ -2113,55 +2113,51 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 567:     ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
 "568
-[; ;main_piee2.c: 568:     while(ADCON0bits.GO);
-[e $U 455  ]
-[e :U 456 ]
-[e :U 455 ]
-[e $ != -> . . _ADCON0bits 4 1 `i -> 0 `i 456  ]
-[e :U 457 ]
-"570
-[; ;main_piee2.c: 570:     return ((ADRESH << 8) | ADRESL);
+[; ;main_piee2.c: 568:     MSdelay(1);
+[e ( _MSdelay (1 -> -> 1 `i `ui ]
+"571
+[; ;main_piee2.c: 571:     return ((ADRESH << 8) | ADRESL);
 [e ) -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
 [e $UE 454  ]
-"571
-[; ;main_piee2.c: 571: }
+"572
+[; ;main_piee2.c: 572: }
 [e :UE 454 ]
 }
-"573
-[; ;main_piee2.c: 573: void Verificar_Falha_Pressao(void) {
+"574
+[; ;main_piee2.c: 574: void Verificar_Falha_Pressao(void) {
 [v _Verificar_Falha_Pressao `(v ~T0 @X0 1 ef ]
 {
 [e :U _Verificar_Falha_Pressao ]
 [f ]
-"575
-[; ;main_piee2.c: 575:     if(adc_pressao > 819) {
-[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 459  ]
-{
 "576
-[; ;main_piee2.c: 576:         falha_pressao = 1;
-[e = _falha_pressao -> -> 1 `i `uc ]
-"577
-[; ;main_piee2.c: 577:         LATD2 = 1;
-[e = _LATD2 -> -> 1 `i `b ]
-"578
-[; ;main_piee2.c: 578:     } else {
-}
-[e $U 460  ]
-[e :U 459 ]
+[; ;main_piee2.c: 576:     if(adc_pressao > 819) {
+[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 456  ]
 {
+"577
+[; ;main_piee2.c: 577:         falha_pressao = 1;
+[e = _falha_pressao -> -> 1 `i `uc ]
+"578
+[; ;main_piee2.c: 578:         LATD2 = 1;
+[e = _LATD2 -> -> 1 `i `b ]
 "579
-[; ;main_piee2.c: 579:         falha_pressao = 0;
-[e = _falha_pressao -> -> 0 `i `uc ]
-"580
-[; ;main_piee2.c: 580:         LATD2 = 0;
-[e = _LATD2 -> -> 0 `i `b ]
-"581
-[; ;main_piee2.c: 581:     }
+[; ;main_piee2.c: 579:     } else {
 }
-[e :U 460 ]
+[e $U 457  ]
+[e :U 456 ]
+{
+"580
+[; ;main_piee2.c: 580:         falha_pressao = 0;
+[e = _falha_pressao -> -> 0 `i `uc ]
+"581
+[; ;main_piee2.c: 581:         LATD2 = 0;
+[e = _LATD2 -> -> 0 `i `b ]
 "582
-[; ;main_piee2.c: 582: }
-[e :UE 458 ]
+[; ;main_piee2.c: 582:     }
+}
+[e :U 457 ]
+"583
+[; ;main_piee2.c: 583: }
+[e :UE 455 ]
 }
 [p f _sprintf 9732228 ]
 [a 12C 37 115 32 32 37 115 0 ]

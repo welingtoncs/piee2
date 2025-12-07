@@ -6538,7 +6538,8 @@ uint16_t Ler_ADC(uint8_t canal) {
     MSdelay(1);
 
     ADCON0bits.GO = 1;
-    while(ADCON0bits.GO);
+    MSdelay(1);
+
 
     return ((ADRESH << 8) | ADRESL);
 }
