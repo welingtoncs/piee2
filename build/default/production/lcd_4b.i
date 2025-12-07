@@ -1,4 +1,4 @@
-# 1 "main_piee2.c"
+# 1 "lcd_4b.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,164 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main_piee2.c" 2
-# 11 "main_piee2.c"
-# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 1 3
-
-
-
-# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 2 3
-
-
-
-
-
-# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/features.h" 1 3
-# 11 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 2 3
-# 24 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 3
-# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 122 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef unsigned size_t;
-# 137 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef long ssize_t;
-# 168 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef __int24 int24_t;
-# 204 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef __uint24 uint24_t;
-# 246 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 2 3
-# 52 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-int getch(void);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-void putch(char);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
+# 1 "lcd_4b.c" 2
 
 
 
@@ -171,10 +14,8 @@ char *ctermid(char *);
 
 
 
-char *tempnam(const char *, const char *);
-# 12 "main_piee2.c" 2
-# 1 "./config_header.h" 1
-# 34 "./config_header.h"
+# 1 "./lcd_4b.h" 1
+# 34 "./lcd_4b.h"
 # 1 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 1 3
 # 18 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -188,10 +29,28 @@ extern double __fpnormalize(double);
 
 
 # 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 1 3
+
+
+
+# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/musl_xc8.h" 1 3
+# 5 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
+
+
+
+
+
+# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/features.h" 1 3
+# 11 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
 # 21 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 3
 # 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
 # 18 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef long int wchar_t;
+# 122 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef unsigned size_t;
+# 168 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef __int24 int24_t;
+# 204 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef __uint24 uint24_t;
 # 22 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
@@ -5863,80 +5722,7 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 2 3
-# 34 "./config_header.h" 2
-
-
-
-
-
-#pragma config PLLDIV = 1
-#pragma config CPUDIV = OSC1_PLL2
-#pragma config USBDIV = 1
-
-
-#pragma config FOSC = INTOSC_EC
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOR = OFF
-#pragma config BORV = 3
-#pragma config VREGEN = OFF
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config CCP2MX = ON
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = OFF
-
-
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-#pragma config ICPRT = OFF
-#pragma config XINST = OFF
-
-
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
-
-
-#pragma config CPB = OFF
-#pragma config CPD = OFF
-
-
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
-
-
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
-
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
-# 13 "main_piee2.c" 2
-
-# 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
-# 15 "main_piee2.c" 2
-# 1 "./lcd_4b.h" 1
-# 35 "./lcd_4b.h"
+# 35 "./lcd_4b.h" 2
 # 1 "./msdelay.h" 1
 # 36 "./msdelay.h"
 void MSdelay(unsigned int);
@@ -5948,429 +5734,93 @@ void LCD_Char(unsigned char);
 void LCD_String(const char *);
 void LCD_String_xy(char, char, const char *);
 void LCD_Clear();
-# 16 "main_piee2.c" 2
-# 1 "./i2c.h" 1
-# 35 "./i2c.h"
-# 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
-# 36 "./i2c.h" 2
+# 9 "lcd_4b.c" 2
 
 
 
 
 
-
-
-void I2C_Ready();
-void I2C_Init();
-char I2C_Start(char);
-void I2C_Start_Wait(char);
-
-char I2C_Repeated_Start(char);
-char I2C_Stop();
-char I2C_Write(unsigned char);
-void I2C_Ack();
-void I2C_Nack();
-char I2C_Read(char flag);
-# 17 "main_piee2.c" 2
-# 44 "main_piee2.c"
-int sec,min,hour;
-int Day,Date,Month,Year;
-
-typedef enum {
-    STATE_IDLE,
-    STATE_INIT,
-    STATE_READY,
-    STATE_STARTING,
-    STATE_RUNNING,
-    STATE_STOPPING,
-    STATE_BLOCKED,
-    STATE_FAILURE
-} system_state_t;
-
-typedef struct {
-    system_state_t current_state;
-    system_state_t next_state;
-    unsigned int timer_counter;
-    unsigned int start_timer;
-    unsigned int blink_counter;
-    unsigned int beep_counter;
-    unsigned char last_liga_state;
-    unsigned char last_desliga_state;
-    unsigned char last_interlock_state;
-} fsm_data_t;
-
-
-
-
-void Message(unsigned int);
-void Beep(unsigned int);
-
-void RTC_Read_Clock(char read_clock_address);
-void RTC_Read_Calendar(char read_calendar_address);
-
-
-void FSM_Init(fsm_data_t *fsm);
-void FSM_Update(fsm_data_t *fsm);
-void FSM_ExecuteState(fsm_data_t *fsm);
-void FSM_CheckTransitions(fsm_data_t *fsm);
-void FSM_UpdateDisplay(fsm_data_t *fsm);
-
-
-fsm_data_t system_fsm;
-
-int main(void)
+void LCD_Init()
 {
+    TRISB = 0;
+    MSdelay(15);
+    LCD_Command(0x02);
+    LCD_Command(0x28);
 
-    OSCCON = 0x72;
+ LCD_Command(0x01);
+    LCD_Command(0x0c);
+ LCD_Command(0x06);
+}
 
-
-    LCD_Init();
-    I2C_Init();
-    TRISD = 0x00;
-    TRISC = 0x00;
-    PORTC = 0x00;
-
-
-
-
-
-    FSM_Init(&system_fsm);
-
-
-    Beep(2);
-    Message(1);
-    MSdelay(3000);
-    Message(2);
-    MSdelay(3000);
-    Message(3);
-    MSdelay(3000);
-    Message(4);
-    Beep(1);
-    MSdelay(3000);
-
-    char secs[10],mins[10],hours[10];
-    char date[10],month[10],year[10];
-    char Clock_type = 0x06;
-    char AM_PM = 0x05;
-    char days[7] = {'D','S','T','Q','Q','S','S'};
-
- while(1){
-
-        FSM_Update(&system_fsm);
+void LCD_Command(unsigned char cmd )
+{
+ LATB = (LATB & 0x0f) |(0xF0 & cmd);
+ LATB2 = 0;
+ LATB3 = 1;
+ __nop();
+ LATB3 = 0;
+ MSdelay(1);
+    LATB = (LATB & 0x0f) | (cmd<<4);
+ LATB3 = 1;
+ __nop();
+ LATB3 = 0;
+ MSdelay(3);
+}
 
 
-        MSdelay(10);
+void LCD_Char(unsigned char dat)
+{
+ LATB = (LATB & 0x0f) | (0xF0 & dat);
+ LATB2 = 1;
+ LATB3 = 1;
+ __nop();
+ LATB3 = 0;
+ MSdelay(1);
+    LATB = (LATB & 0x0f) | (dat<<4);
+ LATB3 = 1;
+ __nop();
+ LATB3 = 0;
+ MSdelay(3);
+}
+
+void LCD_String(const char *msg)
+{
+ while((*msg)!=0)
+ {
+   LCD_Char(*msg);
+   msg++;
     }
 }
 
-
-
-void FSM_Init(fsm_data_t *fsm)
+void LCD_String_xy(char row,char pos,const char *msg)
 {
-    fsm->current_state = STATE_INIT;
-    fsm->next_state = STATE_INIT;
-    fsm->timer_counter = 0;
-    fsm->start_timer = 0;
-    fsm->blink_counter = 0;
-    fsm->beep_counter = 0;
-    fsm->last_liga_state = 1;
-    fsm->last_desliga_state = 1;
-    fsm->last_interlock_state = 1;
-
-
-
-    LATD3 = 0;
-    LATD2 = 0;
-    LATD1 = 0;
-}
-
-void FSM_Update(fsm_data_t *fsm)
-{
-
-    FSM_CheckTransitions(fsm);
-
-
-    FSM_ExecuteState(fsm);
-
-
-    FSM_UpdateDisplay(fsm);
-
-
-    fsm->timer_counter++;
-    fsm->blink_counter++;
-
-
-    if(fsm->blink_counter >= 50) {
-        fsm->blink_counter = 0;
-        LATD1 ^= 1;
-    }
-}
-void FSM_CheckTransitions(fsm_data_t *fsm)
-{
-    unsigned char current_interlock = PORTCbits.RC2;
-
-
-    unsigned char interlock_pressed = (fsm->last_interlock_state == 1 && current_interlock == 0);
-    fsm->last_interlock_state = current_interlock;
-
-
-    unsigned char liga_pressed = (fsm->last_liga_state == 1 && PORTCbits.RC0 == 0);
-    fsm->last_liga_state = PORTCbits.RC0;
-
-
-    unsigned char desliga_pressed = (fsm->last_desliga_state == 1 && PORTCbits.RC1 == 0);
-    fsm->last_desliga_state = PORTCbits.RC1;
-
-
-    switch(fsm->current_state)
+    char location=0;
+    if(row==1)
     {
-        case STATE_INIT:
-            if(fsm->timer_counter > 300) {
-                fsm->next_state = STATE_READY;
-            }
-            break;
-
-        case STATE_READY:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_BLOCKED;
-            }
-            else if(liga_pressed) {
-                fsm->next_state = STATE_STARTING;
-                fsm->start_timer = 0;
-            }
-            break;
-
-        case STATE_STARTING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(fsm->start_timer >= 30) {
-                fsm->next_state = STATE_RUNNING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-
-        case STATE_RUNNING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-
-        case STATE_STOPPING:
-            if(fsm->timer_counter > 50) {
-                if(current_interlock == 0) {
-                    fsm->next_state = STATE_BLOCKED;
-                }
-                else {
-                    fsm->next_state = STATE_READY;
-                }
-            }
-            break;
-
-        case STATE_BLOCKED:
-            if(current_interlock == 1) {
-                fsm->next_state = STATE_READY;
-            }
-            break;
-
-        case STATE_FAILURE:
-
-            if(fsm->timer_counter > 1000) {
-                fsm->next_state = STATE_READY;
-            }
-            break;
-
-        default:
-            fsm->next_state = STATE_IDLE;
-            break;
+        location=(0x80) | ((pos) & 0x0f);
+        LCD_Command(location);
     }
-
-    if(fsm->current_state != fsm->next_state) {
-        fsm->current_state = fsm->next_state;
-        fsm->timer_counter = 0;
-    }
-}
-void FSM_ExecuteState(fsm_data_t *fsm)
-{
-    switch(fsm->current_state)
+    if(row==2)
     {
-        case STATE_IDLE:
-
-            break;
-
-        case STATE_INIT:
-
-            LATD3 = 0;
-            break;
-
-        case STATE_READY:
-
-            LATD3 = 0;
-            break;
-
-        case STATE_STARTING:
-
-
-
-
-            LATD3 = 0;
-
-
-            if(fsm->timer_counter >= 100) {
-                fsm->timer_counter = 0;
-                fsm->start_timer++;
-            }
-            break;
-
-        case STATE_RUNNING:
-
-
-
-
-            LATD3 = 0;
-            break;
-
-        case STATE_STOPPING:
-
-
-
-
-            break;
-
-        case STATE_BLOCKED:
-
-
-
-
-            LATD3 = 1;
-            break;
-
-        case STATE_FAILURE:
-
-
-
-
-            LATD2 = 1;
-            break;
+        location=(0xC0) | ((pos) & 0x0f);
+        LCD_Command(location);
     }
-}
-void FSM_UpdateDisplay(fsm_data_t *fsm)
-{
-
-    static unsigned int display_counter = 0;
-    display_counter++;
-
-    if(display_counter >= 10) {
-        display_counter = 0;
-
-        switch(fsm->current_state)
-        {
-            case STATE_INIT:
-                LCD_String_xy(2,1,"Status: Inicializando");
-                break;
-
-            case STATE_READY:
-                LCD_String_xy(2,1,"Status: Pronto       ");
-                break;
-
-            case STATE_STARTING:
-                LCD_String_xy(2,1,"Status: Partindo     ");
-                break;
-
-            case STATE_RUNNING:
-                LCD_String_xy(2,1,"Status: Funcionando  ");
-                break;
-
-            case STATE_STOPPING:
-                LCD_String_xy(2,1,"Status: Parando      ");
-                break;
-
-            case STATE_BLOCKED:
-                LCD_String_xy(2,1,"Status: Bloqueado    ");
-                break;
-
-            case STATE_FAILURE:
-                LCD_String_xy(2,1,"Status: Falha        ");
-                break;
-
-            default:
-                LCD_String_xy(2,1,"Status: Desconhecido ");
-                break;
-        }
-    }
-}
-
-
-void Message(unsigned int msg){
-    LCD_Clear();
-    switch(msg){
-        case 1:
-            LCD_String_xy(1,7,"UNIUBE");
-            LCD_String_xy(2,0,"Engenharia Eletrica");
-            LCD_String_xy(3,2,"Projeto Integrado");
-            LCD_String_xy(4,3,"Em Eletrica II");
-            break;
-        case 2:
-            LCD_String_xy(1,2,"Welington Correia");
-            LCD_String_xy(2,4,"RA : 1063677");
-            LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
-            LCD_String_xy(4,3,"Filtro de Manga");
-            break;
-        case 3:
-            LCD_String_xy(1,2,"Seja Bem Vindo!");
-            break;
-        case 4:
-            LCD_String_xy(1,1,"Rele Estr-Triangulo");
-            LCD_String_xy(2,1,"Status:");
-            LCD_String_xy(3,1,"Temp. Motor:##,#");
-            LCD_String_xy(4,1,"Temp. Macal:##,#");
-            break;
-    }
-
-}
-
-
-void Beep(unsigned val){
- unsigned int i;
- for(i=0;i<val;i++)
+    if(row==3)
     {
-     LATD0 = 1;
-     MSdelay(500);
-     LATD0 = 0;
-     MSdelay(500);
+        location=(0x94) | ((pos) & 0x0f);
+        LCD_Command(location);
+    }
+    if(row==4)
+    {
+        location=(0xD4) | ((pos) & 0x0f);
+        LCD_Command(location);
     }
 
-
+    LCD_String(msg);
 }
 
-
-
-void RTC_Read_Clock(char read_clock_address)
+void LCD_Clear()
 {
-    I2C_Start(0xD0);
-    I2C_Write(read_clock_address);
-    I2C_Repeated_Start(0xD1);
-    sec = I2C_Read(0);
-    min = I2C_Read(0);
-    hour= I2C_Read(1);
-
-}
-
-void RTC_Read_Calendar(char read_calendar_address)
-{
-    I2C_Start(0xD0);
-    I2C_Write(read_calendar_address);
-    I2C_Repeated_Start(0xD1);
-    Day = I2C_Read(0);
-    Date = I2C_Read(0);
-    Month = I2C_Read(0);
-    Year = I2C_Read(1);
-    I2C_Stop();
+    LCD_Command(0x01);
+    MSdelay(3);
 }

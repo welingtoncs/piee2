@@ -8,29 +8,41 @@
  * Base copia piee1
  */
 
+#include <stdio.h>
 #include "config_header.h"
 #include <pic18f4550.h>
+#include "msdelay.h"
+#include "lcd_4b.h"
+#include "i2c.h"
 
-/*********************Definições LCD*****************************/
-#define RS LATB0  
-#define EN LATB1  
-#define ldata LATB   
-#define LCD_Port TRISB 
+
 /*********************Definições beep*****************************/
-#define beep LATD0  
+#define beep        LATD0  
 /*********************Definições led*****************************/
-#define led_run LATD1  
-#define falha LATD2 
-#define interlock LATD3
+#define led_run     LATD1  
+#define falha       LATD2 
+#define ativo       LATD3
 /*********************Definições reles*****************************/
-#define k1 LATD4  
-#define k2 LATD5  
-#define k3 LATD6 
-/*********************Definições otoes*****************************/
-#define Btliga PORTCbits.RC0  
-#define Btdesliga PORTCbits.RC1
+ 
+/*********************Definições saídas*****************************/
+#define V1          LATC0  
+#define V2          LATC1   
+#define V3          LATC2 
+#define V4          LATC4
+#define V5          LATC5
+#define V6          LATC6 
+#define V7          LATC7 
+#define V8          LATD7
+/*********************Definições botoes*****************************/
+#define Btliga      PORTCbits.RC0  
+#define Btdesliga   PORTCbits.RC1
 #define Btinterlock PORTCbits.RC2 
 
+/******************** I2C *****************************************/
+#define device_id_write 0xD0
+#define device_id_read 0xD1
+int sec,min,hour;
+int Day,Date,Month,Year;
 /*********************Definições FSM*****************************/
 typedef enum {
     STATE_IDLE,         // Estado inicial/ocioso
@@ -44,27 +56,25 @@ typedef enum {
 } system_state_t;
 
 typedef struct {
-    system_state_t current_state;
-    system_state_t next_state;
-    unsigned int timer_counter;
-    unsigned int start_timer;
-    unsigned int blink_counter;
-    unsigned int beep_counter;
-    unsigned char last_liga_state;
-    unsigned char last_desliga_state;
-    unsigned char last_interlock_state;
+    system_state_t  current_state;
+    system_state_t  next_state;
+    unsigned int    timer_counter;
+    unsigned int    start_timer;
+    unsigned int    blink_counter;
+    unsigned int    beep_counter;
+    unsigned char   last_liga_state;
+    unsigned char   last_desliga_state;
+    unsigned char   last_interlock_state;
 } fsm_data_t;
 /*********************Declarações Proto-Type*****************************/
 
-void MSdelay(unsigned int);       
-void LCD_Init();                   
-void LCD_Command(unsigned char);  
-void LCD_Char(unsigned char);   
-void LCD_String(const char *);    
-void LCD_String_xy(char, char, const char *);
-void LCD_Clear();                  
+     
+
 void Message(unsigned int);
 void Beep(unsigned int);
+
+void RTC_Read_Clock(char read_clock_address);
+void RTC_Read_Calendar(char read_calendar_address);
 
 // Funções da FSM
 void FSM_Init(fsm_data_t *fsm);
@@ -83,14 +93,13 @@ int main(void)
                    
 	// Inicialização de portas
     LCD_Init();
+    I2C_Init();
     TRISD = 0x00;
-    TRISC = 0xFF;
+    TRISC = 0x00;
     PORTC = 0x00;
     
     // Inicialização dos relés
-    k1 = 0;
-    k2 = 0;
-    k3 = 0;
+
 
     // Inicialização da FSM
     FSM_Init(&system_fsm);    
@@ -106,6 +115,13 @@ int main(void)
     Message(4);
     Beep(1);
     MSdelay(3000);
+    //I2c
+    char secs[10],mins[10],hours[10];
+    char date[10],month[10],year[10];
+    char Clock_type = 0x06;
+    char AM_PM = 0x05;
+    char days[7] = {'D','S','T','Q','Q','S','S'};
+ 
 	while(1){
         // Atualização da FSM (não bloqueante)
         FSM_Update(&system_fsm);
@@ -130,10 +146,8 @@ void FSM_Init(fsm_data_t *fsm)
     fsm->last_interlock_state = 1;
     
     // Inicialização dos relés
-    k1 = 0;
-    k2 = 0;
-    k3 = 0;
-    interlock = 0;
+
+    ativo = 0;
     falha = 0;
     led_run = 0;
 }
@@ -259,26 +273,20 @@ void FSM_ExecuteState(fsm_data_t *fsm)
             
         case STATE_INIT:
             // Inicialização do sistema
-            k1 = 0;
-            k2 = 0;
-            k3 = 0;
-            interlock = 0;
+            ativo = 0;
             break;
             
         case STATE_READY:
             // Estado pronto
-            k1 = 0;
-            k2 = 0;
-            k3 = 0;
-            interlock = 0;
+            ativo = 0;
             break;
             
         case STATE_STARTING:
             // Partida em estrela
-            k1 = 1;
-            k3 = 1;
-            k2 = 0;
-            interlock = 0;
+//            k1 = 1;
+//            k3 = 1;
+//            k2 = 0;
+            ativo = 0;
             
             // Incrementa timer de partida
             if(fsm->timer_counter >= 100) {  // 100 * 10ms = 1 segundo
@@ -289,32 +297,32 @@ void FSM_ExecuteState(fsm_data_t *fsm)
             
         case STATE_RUNNING:
             // Funcionamento em triângulo
-            k1 = 1;
-            k2 = 1;
-            k3 = 0;
-            interlock = 0;
+//            k1 = 1;
+//            k2 = 1;
+//            k3 = 0;
+            ativo = 0;
             break;
             
         case STATE_STOPPING:
             // Desligamento
-            k1 = 0;
-            k2 = 0;
-            k3 = 0;
+//            k1 = 0;
+//            k2 = 0;
+//            k3 = 0;
             break;
             
         case STATE_BLOCKED:
             // Bloqueado por intertravamento
-            k1 = 0;
-            k2 = 0;
-            k3 = 0;
-            interlock = 1;
+//            k1 = 0;
+//            k2 = 0;
+//            k3 = 0;
+            ativo = 1;
             break;
             
         case STATE_FAILURE:
             // Estado de falha
-            k1 = 0;
-            k2 = 0;
-            k3 = 0;
+//            k1 = 0;
+//            k2 = 0;
+//            k3 = 0;
             falha = 1;
             break;
     }
@@ -408,94 +416,28 @@ void Beep(unsigned val){
  
 }
 
-void LCD_Init()
+
+/************************ I2C ******************************/
+void RTC_Read_Clock(char read_clock_address)
 {
-    LCD_Port = 0;       
-    MSdelay(15);        
-    LCD_Command(0x02);  
-    LCD_Command(0x28);  
-                          
-	LCD_Command(0x01);  
-    LCD_Command(0x0c);  
-	LCD_Command(0x06);  	   
+    I2C_Start(device_id_write);
+    I2C_Write(read_clock_address);     /* address from where time needs to be read*/
+    I2C_Repeated_Start(device_id_read);
+    sec = I2C_Read(0);                 /*read data and send ack for continuous reading*/
+    min = I2C_Read(0);                 /*read data and send ack for continuous reading*/
+    hour= I2C_Read(1);                 /*read data and send nack for indicating stop reading*/
+    
 }
 
-void LCD_Command(unsigned char cmd )
-{
-	ldata = (ldata & 0x0f) |(0xF0 & cmd);   
-	RS = 0;   
-	EN = 1;   
-	NOP();
-	EN = 0;
-	MSdelay(1);
-    ldata = (ldata & 0x0f) | (cmd<<4);  
-	EN = 1;
-	NOP();
-	EN = 0;
-	MSdelay(3);
+void RTC_Read_Calendar(char read_calendar_address)
+{   
+    I2C_Start(device_id_write);
+    I2C_Write(read_calendar_address); /* address from where time needs to be read*/
+    I2C_Repeated_Start(device_id_read);
+    Day = I2C_Read(0);                /*read data and send ack for continuous reading*/
+    Date = I2C_Read(0);               /*read data and send ack for continuous reading*/
+    Month = I2C_Read(0);              /*read data and send ack for continuous reading*/
+    Year = I2C_Read(1);               /*read data and send nack for indicating stop reading*/
+    I2C_Stop();
 }
 
-
-void LCD_Char(unsigned char dat)
-{
-	ldata = (ldata & 0x0f) | (0xF0 & dat);  
-	RS = 1;  
-	EN = 1;  
-	NOP();
-	EN = 0;
-	MSdelay(1);
-    ldata = (ldata & 0x0f) | (dat<<4); 
-	EN = 1;  
-	NOP();
-	EN = 0;
-	MSdelay(3);
-}
-
-void LCD_String(const char *msg)
-{
-	while((*msg)!=0)
-	{		
-	  LCD_Char(*msg);
-	  msg++;	
-    }
-}
-
-void LCD_String_xy(char row,char pos,const char *msg)
-{
-    char location=0;
-    if(row==1)
-    {
-        location=(0x80) | ((pos) & 0x0f); 
-        LCD_Command(location);
-    }
-    if(row==2)
-    {
-        location=(0xC0) | ((pos) & 0x0f); 
-        LCD_Command(location);
-    }
-    if(row==3)
-    {
-        location=(0x94) | ((pos) & 0x0f); 
-        LCD_Command(location);
-    }
-    if(row==4)
-    {
-        location=(0xD4) | ((pos) & 0x0f);  
-        LCD_Command(location);
-    }
-     
-    LCD_String(msg);
-}
-
-void LCD_Clear()
-{
-   	LCD_Command(0x01);  
-    MSdelay(3);
-}
-
-void MSdelay(unsigned int val)
-{
- unsigned int i,j;
- for(i=0;i<val;i++)
-     for(j=0;j<165;j++);  
-}
