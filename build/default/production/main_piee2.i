@@ -5928,7 +5928,7 @@ unsigned char __t3rd16on(void);
 #pragma config USBDIV = 1
 
 
-#pragma config FOSC = INTOSC_EC
+#pragma config FOSC = INTOSCIO_EC
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
 

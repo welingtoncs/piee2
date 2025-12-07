@@ -722,7 +722,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46
 [p x USBDIV  =  1        ]
 "49
-[p x FOSC  =  INTOSC_EC  ]
+[p x FOSC  =  INTOSCIO_EC  ]
 "50
 [p x FCMEN  =  OFF       ]
 "51

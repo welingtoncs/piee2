@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Sun Dec  7 18:10:56 2025
+                                                                                               Sun Dec  7 18:26:37 2025
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	18F4550
@@ -6180,13 +6180,13 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   6059                           
   6060                           ;Config register CONFIG1H @ 0x300001
   6061                           ;	Oscillator Selection bits
-  6062                           ;	FOSC = INTOSC_EC, Internal oscillator, CLKO function on RA6, EC used by USB (INTCKO)
+  6062                           ;	FOSC = INTOSCIO_EC, Internal oscillator, port function on RA6, EC used by USB (INTIO)
   6063                           ;	Fail-Safe Clock Monitor Enable bit
   6064                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
   6065                           ;	Internal/External Oscillator Switchover bit
   6066                           ;	IESO = OFF, Oscillator Switchover mode disabled
   6067   300001                     	org	3145729
-  6068   300001  09                 	db	9
+  6068   300001  08                 	db	8
   6069                           
   6070                           ;Config register CONFIG2L @ 0x300002
   6071                           ;	Power-up Timer Enable bit
@@ -6894,7 +6894,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Sun Dec  7 18:10:56 2025
+Symbol Table                                                                                   Sun Dec  7 18:26:37 2025
 
                         ?_i2c_WaitForIdle 0001                              ?_LCD_Command 0001  
                              _SSPSTATbits 0FC7                                        _BF 7E38  
