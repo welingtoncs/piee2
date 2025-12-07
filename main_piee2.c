@@ -429,9 +429,10 @@ void Beep(unsigned val){
 /************************ I2C ******************************/
 void RTC_Read_Clock(char read_clock_address)
 {
-    I2C_Start(device_id_write);
+//    I2C_Start(device_id_write);
+    I2C_Start();
     I2C_Write(read_clock_address);     /* address from where time needs to be read*/
-    I2C_Repeated_Start(device_id_read);
+//    I2C_Repeated_Start(device_id_read);
     sec = I2C_Read(0);                 /*read data and send ack for continuous reading*/
     min = I2C_Read(0);                 /*read data and send ack for continuous reading*/
     hour= I2C_Read(1);                 /*read data and send nack for indicating stop reading*/
@@ -440,9 +441,10 @@ void RTC_Read_Clock(char read_clock_address)
 
 void RTC_Read_Calendar(char read_calendar_address)
 {   
-    I2C_Start(device_id_write);
+//    I2C_Start(device_id_write);
+    I2C_Start();
     I2C_Write(read_calendar_address); /* address from where time needs to be read*/
-    I2C_Repeated_Start(device_id_read);
+//    I2C_Repeated_Start(device_id_read);
     Day = I2C_Read(0);                /*read data and send ack for continuous reading*/
     Date = I2C_Read(0);               /*read data and send ack for continuous reading*/
     Month = I2C_Read(0);              /*read data and send ack for continuous reading*/
@@ -463,7 +465,7 @@ void atualiza_data(){
          hour = hour & (0x1f);
          sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
          sprintf(mins,"%x:",min);    
-         sprintf(hours,"Tim:%x:",hour);  
+         sprintf(hours,"Hora:%x:",hour);  
          LCD_String_xy(1,0,hours);            
          LCD_String(mins);
          LCD_String(secs);
@@ -473,7 +475,7 @@ void atualiza_data(){
      hour = hour & (0x3f);
      sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
      sprintf(mins,"%x:",min);    
-     sprintf(hours,"Tim:%x:",hour);  
+     sprintf(hours,"Hora:%x:",hour);  
      LCD_String_xy(1,0,hours);            
      LCD_String(mins);
      LCD_String(secs); 
@@ -481,7 +483,7 @@ void atualiza_data(){
 
      RTC_Read_Calendar(3);        /*gives day, date, month, year*/        
      I2C_Stop();
-     sprintf(date,"Cal %x-",Date);
+     sprintf(date,"Data %x-",Date);
      sprintf(month,"%x-",Month);
      sprintf(year,"%x ",Year);
      LCD_String_xy(2,0,date);

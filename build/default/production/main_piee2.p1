@@ -1,11 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "94 main_piee2.c
 [; ;main_piee2.c: 94: fsm_data_t system_fsm;
-[c E3571 0 1 2 3 4 5 6 7 .. ]
-[n E3571 . STATE_IDLE STATE_INIT STATE_READY STATE_STARTING STATE_RUNNING STATE_STOPPING STATE_BLOCKED STATE_FAILURE  ]
+[c E3563 0 1 2 3 4 5 6 7 .. ]
+[n E3563 . STATE_IDLE STATE_INIT STATE_READY STATE_STARTING STATE_RUNNING STATE_STOPPING STATE_BLOCKED STATE_FAILURE  ]
 "64
 [; ;main_piee2.c: 64: typedef struct {
-[s S369 `E3571 1 `E3571 1 `ui 1 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `uc 1 ]
+[s S369 `E3563 1 `E3563 1 `ui 1 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `uc 1 ]
 [n S369 . current_state next_state timer_counter start_timer blink_counter beep_counter last_liga_state last_desliga_state last_interlock_state ]
 [p mainexit ]
 "7986 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
@@ -14,8 +14,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "45 ./lcd_4b.h
 [; ;./lcd_4b.h: 45: void LCD_Init();
 [v _LCD_Init `(v ~T0 @X0 0 e? ]
-"44 ./i2c.h
-[; ;./i2c.h: 44: void I2C_Init();
+"46 ./i2c.h
+[; ;./i2c.h: 46: void I2C_Init();
 [v _I2C_Init `(v ~T0 @X0 0 e? ]
 "4001 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 4001: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
@@ -43,9 +43,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "82 main_piee2.c
 [; ;main_piee2.c: 82: void RTC_Read_Clock(char read_clock_address);
 [v _RTC_Read_Clock `(v ~T0 @X0 0 ef1`uc ]
-"49 ./i2c.h
-[; ;./i2c.h: 49: char I2C_Stop();
-[v _I2C_Stop `(uc ~T0 @X0 0 e? ]
+"48 ./i2c.h
+[; ;./i2c.h: 48: void I2C_Stop(void);
+[v _I2C_Stop `(v ~T0 @X0 0 ef ]
 "87 main_piee2.c
 [; ;main_piee2.c: 87: void FSM_Update(fsm_data_t *fsm);
 [v _FSM_Update `(v ~T0 @X0 0 ef1`*S369 ]
@@ -106,17 +106,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9991 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9991: extern volatile __bit LATD0 __attribute__((address(0x7C60)));
 [v _LATD0 `Vb ~T0 @X0 0 e@31840 ]
-"45 ./i2c.h
-[; ;./i2c.h: 45: char I2C_Start(char);
-[v _I2C_Start `(uc ~T0 @X0 0 ef1`uc ]
+"47 ./i2c.h
+[; ;./i2c.h: 47: void I2C_Start();
+[v _I2C_Start `(v ~T0 @X0 0 e? ]
+"49
+[; ;./i2c.h: 49: void I2C_Write(uint8_t );
+[v _I2C_Write `(v ~T0 @X0 0 ef1`uc ]
 "50
-[; ;./i2c.h: 50: char I2C_Write(unsigned char);
-[v _I2C_Write `(uc ~T0 @X0 0 ef1`uc ]
-"48
-[; ;./i2c.h: 48: char I2C_Repeated_Start(char);
-[v _I2C_Repeated_Start `(uc ~T0 @X0 0 ef1`uc ]
-"53
-[; ;./i2c.h: 53: char I2C_Read(char flag);
+[; ;./i2c.h: 50: uint8_t I2C_Read(uint8_t);
 [v _I2C_Read `(uc ~T0 @X0 0 ef1`uc ]
 "111 /Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [; ;/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h: 111: int sprintf(char *restrict, const char *restrict, ...);
@@ -861,10 +858,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "143
 [; ;main_piee2.c: 143:     fsm->current_state = STATE_INIT;
-[e = . *U _fsm 0 . `E3571 1 ]
+[e = . *U _fsm 0 . `E3563 1 ]
 "144
 [; ;main_piee2.c: 144:     fsm->next_state = STATE_INIT;
-[e = . *U _fsm 1 . `E3571 1 ]
+[e = . *U _fsm 1 . `E3563 1 ]
 "145
 [; ;main_piee2.c: 145:     fsm->timer_counter = 0;
 [e = . *U _fsm 2 -> -> 0 `i `ui ]
@@ -998,7 +995,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "202
 [; ;main_piee2.c: 202:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3571 2 ]
+[e = . *U _fsm 1 . `E3563 2 ]
 "203
 [; ;main_piee2.c: 203:             }
 }
@@ -1015,7 +1012,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "208
 [; ;main_piee2.c: 208:                 fsm->next_state = STATE_BLOCKED;
-[e = . *U _fsm 1 . `E3571 6 ]
+[e = . *U _fsm 1 . `E3563 6 ]
 "209
 [; ;main_piee2.c: 209:             }
 }
@@ -1027,7 +1024,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "211
 [; ;main_piee2.c: 211:                 fsm->next_state = STATE_STARTING;
-[e = . *U _fsm 1 . `E3571 3 ]
+[e = . *U _fsm 1 . `E3563 3 ]
 "212
 [; ;main_piee2.c: 212:                 fsm->start_timer = 0;
 [e = . *U _fsm 3 -> -> 0 `i `ui ]
@@ -1048,7 +1045,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "218
 [; ;main_piee2.c: 218:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3571 5 ]
+[e = . *U _fsm 1 . `E3563 5 ]
 "219
 [; ;main_piee2.c: 219:             }
 }
@@ -1060,7 +1057,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "221
 [; ;main_piee2.c: 221:                 fsm->next_state = STATE_RUNNING;
-[e = . *U _fsm 1 . `E3571 4 ]
+[e = . *U _fsm 1 . `E3563 4 ]
 "222
 [; ;main_piee2.c: 222:             }
 }
@@ -1072,7 +1069,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "224
 [; ;main_piee2.c: 224:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3571 5 ]
+[e = . *U _fsm 1 . `E3563 5 ]
 "225
 [; ;main_piee2.c: 225:             }
 }
@@ -1091,7 +1088,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "230
 [; ;main_piee2.c: 230:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3571 5 ]
+[e = . *U _fsm 1 . `E3563 5 ]
 "231
 [; ;main_piee2.c: 231:             }
 }
@@ -1103,7 +1100,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "233
 [; ;main_piee2.c: 233:                 fsm->next_state = STATE_STOPPING;
-[e = . *U _fsm 1 . `E3571 5 ]
+[e = . *U _fsm 1 . `E3563 5 ]
 "234
 [; ;main_piee2.c: 234:             }
 }
@@ -1125,7 +1122,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "240
 [; ;main_piee2.c: 240:                     fsm->next_state = STATE_BLOCKED;
-[e = . *U _fsm 1 . `E3571 6 ]
+[e = . *U _fsm 1 . `E3563 6 ]
 "241
 [; ;main_piee2.c: 241:                 }
 }
@@ -1136,7 +1133,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "243
 [; ;main_piee2.c: 243:                     fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3571 2 ]
+[e = . *U _fsm 1 . `E3563 2 ]
 "244
 [; ;main_piee2.c: 244:                 }
 }
@@ -1157,7 +1154,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "250
 [; ;main_piee2.c: 250:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3571 2 ]
+[e = . *U _fsm 1 . `E3563 2 ]
 "251
 [; ;main_piee2.c: 251:             }
 }
@@ -1174,7 +1171,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "257
 [; ;main_piee2.c: 257:                 fsm->next_state = STATE_READY;
-[e = . *U _fsm 1 . `E3571 2 ]
+[e = . *U _fsm 1 . `E3563 2 ]
 "258
 [; ;main_piee2.c: 258:             }
 }
@@ -1187,7 +1184,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 404 ]
 "262
 [; ;main_piee2.c: 262:             fsm->next_state = STATE_IDLE;
-[e = . *U _fsm 1 . `E3571 0 ]
+[e = . *U _fsm 1 . `E3563 0 ]
 "263
 [; ;main_piee2.c: 263:             break;
 [e $U 378  ]
@@ -1196,13 +1193,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 378  ]
 [e :U 379 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3571 1 `ui 380
- , $ -> . `E3571 2 `ui 382
- , $ -> . `E3571 3 `ui 386
- , $ -> . `E3571 4 `ui 392
- , $ -> . `E3571 5 `ui 396
- , $ -> . `E3571 6 `ui 400
- , $ -> . `E3571 7 `ui 402
+[e [\ -> . *U _fsm 0 `ui , $ -> . `E3563 1 `ui 380
+ , $ -> . `E3563 2 `ui 382
+ , $ -> . `E3563 3 `ui 386
+ , $ -> . `E3563 4 `ui 392
+ , $ -> . `E3563 5 `ui 396
+ , $ -> . `E3563 6 `ui 400
+ , $ -> . `E3563 7 `ui 402
  404 ]
 [e :U 378 ]
 "266
@@ -1327,14 +1324,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 407  ]
 [e :U 408 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3571 0 `ui 409
- , $ -> . `E3571 1 `ui 410
- , $ -> . `E3571 2 `ui 411
- , $ -> . `E3571 3 `ui 412
- , $ -> . `E3571 4 `ui 414
- , $ -> . `E3571 5 `ui 415
- , $ -> . `E3571 6 `ui 416
- , $ -> . `E3571 7 `ui 417
+[e [\ -> . *U _fsm 0 `ui , $ -> . `E3563 0 `ui 409
+ , $ -> . `E3563 1 `ui 410
+ , $ -> . `E3563 2 `ui 411
+ , $ -> . `E3563 3 `ui 412
+ , $ -> . `E3563 4 `ui 414
+ , $ -> . `E3563 5 `ui 415
+ , $ -> . `E3563 6 `ui 416
+ , $ -> . `E3563 7 `ui 417
  407 ]
 [e :U 407 ]
 "334
@@ -1356,20 +1353,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "338
 [; ;main_piee2.c: 338:     static unsigned int display_counter = 0;
-[v F3627 `ui ~T0 @X0 1 s display_counter ]
-[i F3627
+[v F3619 `ui ~T0 @X0 1 s display_counter ]
+[i F3619
 -> -> 0 `i `ui
 ]
 "339
 [; ;main_piee2.c: 339:     display_counter++;
-[e ++ F3627 -> -> 1 `i `ui ]
+[e ++ F3619 -> -> 1 `i `ui ]
 "341
 [; ;main_piee2.c: 341:     if(display_counter >= 10) {
-[e $ ! >= F3627 -> -> 10 `i `ui 419  ]
+[e $ ! >= F3619 -> -> 10 `i `ui 419  ]
 {
 "342
 [; ;main_piee2.c: 342:         display_counter = 0;
-[e = F3627 -> -> 0 `i `ui ]
+[e = F3619 -> -> 0 `i `ui ]
 "344
 [; ;main_piee2.c: 344:         switch(fsm->current_state)
 [e $U 421  ]
@@ -1453,13 +1450,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 420  ]
 [e :U 421 ]
-[e [\ -> . *U _fsm 0 `ui , $ -> . `E3571 1 `ui 422
- , $ -> . `E3571 2 `ui 423
- , $ -> . `E3571 3 `ui 424
- , $ -> . `E3571 4 `ui 425
- , $ -> . `E3571 5 `ui 426
- , $ -> . `E3571 6 `ui 427
- , $ -> . `E3571 7 `ui 428
+[e [\ -> . *U _fsm 0 `ui , $ -> . `E3563 1 `ui 422
+ , $ -> . `E3563 2 `ui 423
+ , $ -> . `E3563 3 `ui 424
+ , $ -> . `E3563 4 `ui 425
+ , $ -> . `E3563 5 `ui 426
+ , $ -> . `E3563 6 `ui 427
+ , $ -> . `E3563 7 `ui 428
  429 ]
 [e :U 420 ]
 "378
@@ -1615,256 +1612,250 @@ Version 4.0 HI-TECH Software Intermediate Code
 "431
 [; ;main_piee2.c: 431: {
 [f ]
-"432
-[; ;main_piee2.c: 432:     I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "433
-[; ;main_piee2.c: 433:     I2C_Write(read_clock_address);
-[e ( _I2C_Write (1 -> _read_clock_address `uc ]
+[; ;main_piee2.c: 433:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "434
-[; ;main_piee2.c: 434:     I2C_Repeated_Start(0xD1);
-[e ( _I2C_Repeated_Start (1 -> -> 209 `i `uc ]
-"435
-[; ;main_piee2.c: 435:     sec = I2C_Read(0);
-[e = _sec -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;main_piee2.c: 434:     I2C_Write(read_clock_address);
+[e ( _I2C_Write (1 -> _read_clock_address `uc ]
 "436
-[; ;main_piee2.c: 436:     min = I2C_Read(0);
-[e = _min -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;main_piee2.c: 436:     sec = I2C_Read(0);
+[e = _sec -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "437
-[; ;main_piee2.c: 437:     hour= I2C_Read(1);
+[; ;main_piee2.c: 437:     min = I2C_Read(0);
+[e = _min -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"438
+[; ;main_piee2.c: 438:     hour= I2C_Read(1);
 [e = _hour -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
-"439
-[; ;main_piee2.c: 439: }
+"440
+[; ;main_piee2.c: 440: }
 [e :UE 442 ]
 }
-"441
-[; ;main_piee2.c: 441: void RTC_Read_Calendar(char read_calendar_address)
-[v _RTC_Read_Calendar `(v ~T0 @X0 1 ef1`uc ]
 "442
-[; ;main_piee2.c: 442: {
+[; ;main_piee2.c: 442: void RTC_Read_Calendar(char read_calendar_address)
+[v _RTC_Read_Calendar `(v ~T0 @X0 1 ef1`uc ]
+"443
+[; ;main_piee2.c: 443: {
 {
 [e :U _RTC_Read_Calendar ]
-"441
-[; ;main_piee2.c: 441: void RTC_Read_Calendar(char read_calendar_address)
-[v _read_calendar_address `uc ~T0 @X0 1 r1 ]
 "442
-[; ;main_piee2.c: 442: {
-[f ]
+[; ;main_piee2.c: 442: void RTC_Read_Calendar(char read_calendar_address)
+[v _read_calendar_address `uc ~T0 @X0 1 r1 ]
 "443
-[; ;main_piee2.c: 443:     I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"444
-[; ;main_piee2.c: 444:     I2C_Write(read_calendar_address);
-[e ( _I2C_Write (1 -> _read_calendar_address `uc ]
+[; ;main_piee2.c: 443: {
+[f ]
 "445
-[; ;main_piee2.c: 445:     I2C_Repeated_Start(0xD1);
-[e ( _I2C_Repeated_Start (1 -> -> 209 `i `uc ]
+[; ;main_piee2.c: 445:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "446
-[; ;main_piee2.c: 446:     Day = I2C_Read(0);
-[e = _Day -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
-"447
-[; ;main_piee2.c: 447:     Date = I2C_Read(0);
-[e = _Date -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;main_piee2.c: 446:     I2C_Write(read_calendar_address);
+[e ( _I2C_Write (1 -> _read_calendar_address `uc ]
 "448
-[; ;main_piee2.c: 448:     Month = I2C_Read(0);
-[e = _Month -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;main_piee2.c: 448:     Day = I2C_Read(0);
+[e = _Day -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "449
-[; ;main_piee2.c: 449:     Year = I2C_Read(1);
-[e = _Year -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+[; ;main_piee2.c: 449:     Date = I2C_Read(0);
+[e = _Date -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "450
-[; ;main_piee2.c: 450:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 450:     Month = I2C_Read(0);
+[e = _Month -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "451
-[; ;main_piee2.c: 451: }
+[; ;main_piee2.c: 451:     Year = I2C_Read(1);
+[e = _Year -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+"452
+[; ;main_piee2.c: 452:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"453
+[; ;main_piee2.c: 453: }
 [e :UE 443 ]
 }
-"453
-[; ;main_piee2.c: 453: void atualiza_data(){
+"455
+[; ;main_piee2.c: 455: void atualiza_data(){
 [v _atualiza_data `(v ~T0 @X0 1 ef ]
 {
 [e :U _atualiza_data ]
 [f ]
-"454
-[; ;main_piee2.c: 454:     if(hour & (1<<Clock_type)){
+"456
+[; ;main_piee2.c: 456:     if(hour & (1<<Clock_type)){
 [e $ ! != & _hour << -> 1 `i -> _Clock_type `i -> 0 `i 445  ]
 {
-"456
-[; ;main_piee2.c: 456:          if(hour & (1<<AM_PM)){
+"458
+[; ;main_piee2.c: 458:          if(hour & (1<<AM_PM)){
 [e $ ! != & _hour << -> 1 `i -> _AM_PM `i -> 0 `i 446  ]
 {
-"457
-[; ;main_piee2.c: 457:              LCD_String_xy(1,17,"PM");
+"459
+[; ;main_piee2.c: 459:              LCD_String_xy(1,17,"PM");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 17 `i `uc :s 19C ]
-"458
-[; ;main_piee2.c: 458:          }
+"460
+[; ;main_piee2.c: 460:          }
 }
 [e $U 447  ]
-"459
-[; ;main_piee2.c: 459:          else{
+"461
+[; ;main_piee2.c: 461:          else{
 [e :U 446 ]
 {
-"460
-[; ;main_piee2.c: 460:              LCD_String_xy(1,17,"AM");
+"462
+[; ;main_piee2.c: 462:              LCD_String_xy(1,17,"AM");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 17 `i `uc :s 20C ]
-"461
-[; ;main_piee2.c: 461:          }
+"463
+[; ;main_piee2.c: 463:          }
 }
 [e :U 447 ]
-"463
-[; ;main_piee2.c: 463:          hour = hour & (0x1f);
-[e = _hour & _hour -> 31 `i ]
-"464
-[; ;main_piee2.c: 464:          sprintf(secs,"%x ",sec);
-[e ( _sprintf (1 , (. , &U _secs :s 21C _sec ]
 "465
-[; ;main_piee2.c: 465:          sprintf(mins,"%x:",min);
-[e ( _sprintf (1 , (. , &U _mins :s 22C _min ]
+[; ;main_piee2.c: 465:          hour = hour & (0x1f);
+[e = _hour & _hour -> 31 `i ]
 "466
-[; ;main_piee2.c: 466:          sprintf(hours,"Tim:%x:",hour);
-[e ( _sprintf (1 , (. , &U _hours :s 23C _hour ]
+[; ;main_piee2.c: 466:          sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 21C _sec ]
 "467
-[; ;main_piee2.c: 467:          LCD_String_xy(1,0,hours);
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+[; ;main_piee2.c: 467:          sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 22C _min ]
 "468
-[; ;main_piee2.c: 468:          LCD_String(mins);
-[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+[; ;main_piee2.c: 468:          sprintf(hours,"Hora:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 23C _hour ]
 "469
-[; ;main_piee2.c: 469:          LCD_String(secs);
-[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+[; ;main_piee2.c: 469:          LCD_String_xy(1,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
 "470
-[; ;main_piee2.c: 470:   }
+[; ;main_piee2.c: 470:          LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+"471
+[; ;main_piee2.c: 471:          LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"472
+[; ;main_piee2.c: 472:   }
 }
 [e $U 448  ]
-"471
-[; ;main_piee2.c: 471:  else{
+"473
+[; ;main_piee2.c: 473:  else{
 [e :U 445 ]
 {
-"473
-[; ;main_piee2.c: 473:      hour = hour & (0x3f);
-[e = _hour & _hour -> 63 `i ]
-"474
-[; ;main_piee2.c: 474:      sprintf(secs,"%x ",sec);
-[e ( _sprintf (1 , (. , &U _secs :s 24C _sec ]
 "475
-[; ;main_piee2.c: 475:      sprintf(mins,"%x:",min);
-[e ( _sprintf (1 , (. , &U _mins :s 25C _min ]
+[; ;main_piee2.c: 475:      hour = hour & (0x3f);
+[e = _hour & _hour -> 63 `i ]
 "476
-[; ;main_piee2.c: 476:      sprintf(hours,"Tim:%x:",hour);
-[e ( _sprintf (1 , (. , &U _hours :s 26C _hour ]
+[; ;main_piee2.c: 476:      sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 24C _sec ]
 "477
-[; ;main_piee2.c: 477:      LCD_String_xy(1,0,hours);
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+[; ;main_piee2.c: 477:      sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 25C _min ]
 "478
-[; ;main_piee2.c: 478:      LCD_String(mins);
-[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+[; ;main_piee2.c: 478:      sprintf(hours,"Hora:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 26C _hour ]
 "479
-[; ;main_piee2.c: 479:      LCD_String(secs);
-[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+[; ;main_piee2.c: 479:      LCD_String_xy(1,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
 "480
-[; ;main_piee2.c: 480:  }
+[; ;main_piee2.c: 480:      LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+"481
+[; ;main_piee2.c: 481:      LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"482
+[; ;main_piee2.c: 482:  }
 }
 [e :U 448 ]
-"482
-[; ;main_piee2.c: 482:      RTC_Read_Calendar(3);
-[e ( _RTC_Read_Calendar (1 -> -> 3 `i `uc ]
-"483
-[; ;main_piee2.c: 483:      I2C_Stop();
-[e ( _I2C_Stop ..  ]
 "484
-[; ;main_piee2.c: 484:      sprintf(date,"Cal %x-",Date);
-[e ( _sprintf (1 , (. , &U _date :s 27C _Date ]
+[; ;main_piee2.c: 484:      RTC_Read_Calendar(3);
+[e ( _RTC_Read_Calendar (1 -> -> 3 `i `uc ]
 "485
-[; ;main_piee2.c: 485:      sprintf(month,"%x-",Month);
-[e ( _sprintf (1 , (. , &U _month :s 28C _Month ]
+[; ;main_piee2.c: 485:      I2C_Stop();
+[e ( _I2C_Stop ..  ]
 "486
-[; ;main_piee2.c: 486:      sprintf(year,"%x ",Year);
-[e ( _sprintf (1 , (. , &U _year :s 29C _Year ]
+[; ;main_piee2.c: 486:      sprintf(date,"Data %x-",Date);
+[e ( _sprintf (1 , (. , &U _date :s 27C _Date ]
 "487
-[; ;main_piee2.c: 487:      LCD_String_xy(2,0,date);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _date `*Cuc ]
+[; ;main_piee2.c: 487:      sprintf(month,"%x-",Month);
+[e ( _sprintf (1 , (. , &U _month :s 28C _Month ]
 "488
-[; ;main_piee2.c: 488:      LCD_String(month);
-[e ( _LCD_String (1 -> &U _month `*Cuc ]
+[; ;main_piee2.c: 488:      sprintf(year,"%x ",Year);
+[e ( _sprintf (1 , (. , &U _year :s 29C _Year ]
 "489
-[; ;main_piee2.c: 489:      LCD_String(year);
+[; ;main_piee2.c: 489:      LCD_String_xy(2,0,date);
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _date `*Cuc ]
+"490
+[; ;main_piee2.c: 490:      LCD_String(month);
+[e ( _LCD_String (1 -> &U _month `*Cuc ]
+"491
+[; ;main_piee2.c: 491:      LCD_String(year);
 [e ( _LCD_String (1 -> &U _year `*Cuc ]
-"492
-[; ;main_piee2.c: 492:      switch(days[Day])
-[e $U 450  ]
-"493
-[; ;main_piee2.c: 493:      {
-{
 "494
-[; ;main_piee2.c: 494:          case '0':
-[e :U 451 ]
+[; ;main_piee2.c: 494:      switch(days[Day])
+[e $U 450  ]
 "495
-[; ;main_piee2.c: 495:                      LCD_String("Dom");
-[e ( _LCD_String (1 :s 30C ]
+[; ;main_piee2.c: 495:      {
+{
 "496
-[; ;main_piee2.c: 496:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 496:          case '0':
+[e :U 451 ]
 "497
-[; ;main_piee2.c: 497:          case '1':
-[e :U 452 ]
+[; ;main_piee2.c: 497:                      LCD_String("Dom");
+[e ( _LCD_String (1 :s 30C ]
 "498
-[; ;main_piee2.c: 498:                      LCD_String("Seg");
-[e ( _LCD_String (1 :s 31C ]
+[; ;main_piee2.c: 498:                      break;
+[e $U 449  ]
 "499
-[; ;main_piee2.c: 499:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 499:          case '1':
+[e :U 452 ]
 "500
-[; ;main_piee2.c: 500:          case '2':
-[e :U 453 ]
+[; ;main_piee2.c: 500:                      LCD_String("Seg");
+[e ( _LCD_String (1 :s 31C ]
 "501
-[; ;main_piee2.c: 501:                      LCD_String("Tec");
-[e ( _LCD_String (1 :s 32C ]
+[; ;main_piee2.c: 501:                      break;
+[e $U 449  ]
 "502
-[; ;main_piee2.c: 502:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 502:          case '2':
+[e :U 453 ]
 "503
-[; ;main_piee2.c: 503:          case '3':
-[e :U 454 ]
+[; ;main_piee2.c: 503:                      LCD_String("Tec");
+[e ( _LCD_String (1 :s 32C ]
 "504
-[; ;main_piee2.c: 504:                      LCD_String("Qua");
-[e ( _LCD_String (1 :s 33C ]
+[; ;main_piee2.c: 504:                      break;
+[e $U 449  ]
 "505
-[; ;main_piee2.c: 505:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 505:          case '3':
+[e :U 454 ]
 "506
-[; ;main_piee2.c: 506:          case '4':
-[e :U 455 ]
+[; ;main_piee2.c: 506:                      LCD_String("Qua");
+[e ( _LCD_String (1 :s 33C ]
 "507
-[; ;main_piee2.c: 507:                      LCD_String("Qui");
-[e ( _LCD_String (1 :s 34C ]
+[; ;main_piee2.c: 507:                      break;
+[e $U 449  ]
 "508
-[; ;main_piee2.c: 508:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 508:          case '4':
+[e :U 455 ]
 "509
-[; ;main_piee2.c: 509:          case '5':
-[e :U 456 ]
+[; ;main_piee2.c: 509:                      LCD_String("Qui");
+[e ( _LCD_String (1 :s 34C ]
 "510
-[; ;main_piee2.c: 510:                      LCD_String("Sex");
-[e ( _LCD_String (1 :s 35C ]
+[; ;main_piee2.c: 510:                      break;
+[e $U 449  ]
 "511
-[; ;main_piee2.c: 511:                      break;
-[e $U 449  ]
+[; ;main_piee2.c: 511:          case '5':
+[e :U 456 ]
 "512
-[; ;main_piee2.c: 512:          case '6':
-[e :U 457 ]
+[; ;main_piee2.c: 512:                      LCD_String("Sex");
+[e ( _LCD_String (1 :s 35C ]
 "513
-[; ;main_piee2.c: 513:                      LCD_String("Sab");
-[e ( _LCD_String (1 :s 36C ]
-"514
-[; ;main_piee2.c: 514:                      break;
+[; ;main_piee2.c: 513:                      break;
 [e $U 449  ]
+"514
+[; ;main_piee2.c: 514:          case '6':
+[e :U 457 ]
 "515
-[; ;main_piee2.c: 515:          default:
-[e :U 458 ]
+[; ;main_piee2.c: 515:                      LCD_String("Sab");
+[e ( _LCD_String (1 :s 36C ]
 "516
 [; ;main_piee2.c: 516:                      break;
 [e $U 449  ]
+"517
+[; ;main_piee2.c: 517:          default:
+[e :U 458 ]
 "518
-[; ;main_piee2.c: 518:      }
+[; ;main_piee2.c: 518:                      break;
+[e $U 449  ]
+"520
+[; ;main_piee2.c: 520:      }
 }
 [e $U 449  ]
 [e :U 450 ]
@@ -1877,8 +1868,8 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 54 `ui `i 457
  458 ]
 [e :U 449 ]
-"519
-[; ;main_piee2.c: 519: }
+"521
+[; ;main_piee2.c: 521: }
 [e :UE 444 ]
 }
 [p f _sprintf 12582912 ]
@@ -1900,12 +1891,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 20C 65 77 0 ]
 [a 12C 69 109 32 69 108 101 116 114 105 99 97 32 73 73 0 ]
 [a 9C 85 78 73 85 66 69 0 ]
-[a 23C 84 105 109 58 37 120 58 0 ]
-[a 26C 84 105 109 58 37 120 58 0 ]
+[a 23C 72 111 114 97 58 37 120 58 0 ]
+[a 26C 72 111 114 97 58 37 120 58 0 ]
 [a 22C 37 120 58 0 ]
 [a 25C 37 120 58 0 ]
 [a 14C 82 65 32 58 32 49 48 54 51 54 55 55 0 ]
-[a 27C 67 97 108 32 37 120 45 0 ]
+[a 27C 68 97 116 97 32 37 120 45 0 ]
 [a 28C 37 120 45 0 ]
 [a 17C 83 101 106 97 32 66 101 109 32 86 105 110 100 111 33 0 ]
 [a 21C 37 120 32 0 ]

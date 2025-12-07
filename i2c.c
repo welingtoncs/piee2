@@ -5,120 +5,213 @@
  * Created on December 7, 2025, 9:07 AM
  */
 
+//#include "delay.h"
 #include "i2c.h"
-#include <pic18f4550.h>
+#include "config_header.h" 
 
-char I2C_Read(char flag)                 /*read data from location and 
-                                         *send ack or nack depending upon parameter*/
+
+/***************************************************************************************************
+                          Local Function declaration
+***************************************************************************************************/
+
+/***************************************************************************************************
+                          Local Function declaration
+***************************************************************************************************/
+
+static void i2c_WaitForIdle();
+static void i2c_Ack();
+static void i2c_NoAck();
+/**************************************************************************************************/
+/***************************************************************************************************
+                         void I2C_Restart()
+****************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
+
+ * description  :.
+***************************************************************************************************/
+void I2C_Restart()
 {
-        char buffer;
-        RCEN = 1;                         /*enable receive*/
-        while(!SSPSTATbits.BF);         /*wait for buffer full flag 
-                                         *which is set when complete byte received*/
-        buffer = SSPBUF;                  /*copy SSPBUF to buffer*/
-       /*send acknowledgment or negative acknowledgment */        
-        if(flag==0)
-            I2C_Ack();
-        else
-            I2C_Nack();
-        I2C_Ready();
-        return(buffer);
+	SSPCON2bits.SEN = 1;        /* Repeated start enabled */
+	while(SSPCON2bits.SEN);     /* wait for condition to finish */
 }
+/***************************************************************************************************
+                         void I2C_Init()
+****************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
 
+ * description  :This function is used to initialize the I2C module.
+***************************************************************************************************/
 void I2C_Init()
 {
-    TRISB0=1;							/*set up I2C lines by setting as input*/
-	TRISB1=1;
-	SSPSTAT=80;                         /*slew rate disabled, other bits are cleared*/
-    SSPCON1=0x28;						/*enable SSP port for I2C Master mode,
-                                         *clock = FOSC / (4 * (SSPADD+1))*/ 
-	SSPCON2=0;
-    SSPADD=BITRATE;                    /*clock 100 kHz*/  
-    SSPIE=1;                            /*enable SSPIF interrupt*/
-    SSPIF=0;
+	TRIS_SCL = 1;
+	TRIS_SDA = 1;
+
+	SSPSTAT = 0x80;  /* Slew rate disabled */
+	SSPCON1 = 0x28;    /* SSPEN = 1, I2C Master mode, clock = FOSC/(4 * (SSPADD + 1)) */
+	SSPADD = 50;//(GetInstructionClock()/(4 * 100000)) - 1; //60;      /* 100Khz @ 20Mhz Fosc */
 }
+/***************************************************************************************************
+                         void I2C_Start()
+****************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
 
+ * description  :This function is used to generate I2C Start Condition.
+                 Start Condition: SDA goes low when SCL is High.
 
-void I2C_Ready()
+                               ____________
+                SCL:          |            |
+                      ________|            |______
+                           _________
+                SDA:      |         |
+                      ____|         |____________
+
+***************************************************************************************************/
+void I2C_Start()
 {
-    while(!SSPIF);                  /* Wait for operation complete */
-    SSPIF=0;                        /*clear SSPIF interrupt flag*/
-}
+	SSPCON2bits.SEN = 1;              /* trigger the Start condition and wait till its completed*/
+	while(SSPCON2bits.SEN == 1);      /* automatically cleared by hardware once start condition is completed */
 
-void I2C_Start_Wait(char slave_write_address)
+}
+/***************************************************************************************************
+                         void I2C_Stop()
+****************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
+
+ * description  :This function is used to generate I2C Stop Condition.
+                 Stop Condition: SDA goes High when SCL is High.
+
+                               ____________
+                SCL:          |            |
+                      ________|            |______
+                                 _________________
+                SDA:            |
+                      __________|
+
+***************************************************************************************************/
+
+void I2C_Stop(void)
 {
-  while(1)
-  {   
-    SSPCON2bits.SEN=1;              /*send start pulse*/
-    while(SSPCON2bits.SEN);         /*wait for completion of start pulse*/
-    SSPIF=0;
-	if(!SSPSTATbits.S)              /*wait till start bit is detected*/    
-        continue;
-    I2C_Write(slave_write_address); /*write slave device address with write to communicate*/
-    if(ACKSTAT)
-    {
-        I2C_Stop();
-        continue;
-    }    
-    break;        
-  }
+	PEN = 1;              /* Trigger stop condition, Wait till stop condition to finished*/
+	while(PEN == 1);      /* PEN automatically cleared by hardware once stop condition is finished*/
 }
+/***************************************************************************************************
+                         void I2C_Write(uint8_t v_i2cData_u8)
+****************************************************************************************************
+ * I/P Arguments: uint8_t-->8bit data to be sent.
+ * Return value  : none
 
-char I2C_Start(char slave_write_address)
-{   
-    SSPCON2bits.SEN=1;              /*send start pulse*/
-    while(SSPCON2bits.SEN);         /*wait for completion of start */
-	SSPIF=0;
-    if(!SSPSTATbits.S)              /*wait till start bit is detected*/
-    return 0;                       /*start failed*/    
-    return (I2C_Write(slave_write_address));     /*write slave device address with write to communicate*/
-     
-}
+ * description  :This function is used to send a byte on SDA line using I2C protocol
+                 8bit data is sent bit-by-bit on each clock cycle.
+                 MSB(bit) is sent first and LSB(bit) is sent at last.
+                 Data is sent when SCL is low.
 
-char I2C_Repeated_Start(char slave_read_address)
+         ___     ___     ___     ___     ___     ___     ___     ___     ___     ___
+ SCL:   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+      __|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |___
+
+ SDA:    D8       D7     D6      D5      D4       D3      D2      D1      D0     ACK
+
+
+***************************************************************************************************/
+void I2C_Write(uint8_t v_i2cData_u8)
 {
-    RSEN = 1;                         /*send repeated start pulse*/
-    while(RSEN);                    /*wait for completion of repeated start pulse*/
-    SSPIF = 0;
-	if(!SSPSTATbits.S)             /*wait till start bit is detected*/
-    return 0;                       /*start failed*/    
-    I2C_Write(slave_read_address);      /*write slave device address with read to communicate*/
-    if (ACKSTAT)
-     return 1;
-    else
-     return 2;
-}
 
-char I2C_Stop()
+
+    SSPBUF = v_i2cData_u8;  /* Copy the data to be transmitted into SSPBUF */
+    while(BF==1);             /* wait till the data is transmitted */
+    i2c_WaitForIdle();        /* wait till current operation is complete*/
+}
+/***************************************************************************************************
+                         uint8_t I2C_Read(uint8_t v_ackOption_u8)
+****************************************************************************************************
+ * I/P Arguments: uint8_t: Acknowledgement to be sent after data reception.
+                        1:Positive acknowledgement
+                        0:Negative acknowledgement						
+ * Return value  : uint8_t(received byte)
+
+ * description :This fun is used to receive a byte on SDA line using I2C protocol.
+               8bit data is received bit-by-bit each clock and finally packed into Byte.
+               MSB(bit) is received first and LSB(bit) is received at last.
+
+
+         ___     ___     ___     ___     ___     ___     ___     ___     ___     ___
+SCL:    |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+      __|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |___|   |__
+
+ SDA:    D8       D7     D6      D5       D4     D3       D2      D1     D0      ACK
+
+
+***************************************************************************************************/
+uint8_t I2C_Read(uint8_t v_ackOption_u8)
 {
-    PEN = 1;                          /*stop communication*/
-    while(PEN);                     /*wait for end of stop pulse*/
-    if(!SSPSTATbits.P);             /*wait till stop bit is detected*/
-    return 0;                       /*stop failed*/        
-}
+	uint8_t  v_i2cData_u8=0x00;
 
-char I2C_Write(unsigned char data)
+	RCEN = 1;                   /* Enable data reception */
+	while(BF==0);               /* wait for data to be received */
+	v_i2cData_u8 = SSPBUF;    /* copy the received data */
+	i2c_WaitForIdle();          /* wait till current operation is complete*/
+	      
+	if(v_ackOption_u8==1)     /*Send the Ack/NoAck depending on the user option*/
+	{
+		i2c_Ack();
+	}
+	else
+	{
+		i2c_NoAck();
+	}
+
+	return v_i2cData_u8;       /* Finally return the received Byte */
+}
+/***************************************************************************************************
+                                Local functions
+***************************************************************************************************/
+/***************************************************************************************************
+                         void i2c_WaitForIdle()
+****************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
+
+ * description  :Waits till previous I2C communication to complete..
+***************************************************************************************************/
+static void i2c_WaitForIdle()
 {
-      SSPBUF = data;                  /*write data to SSPBUF*/
-      I2C_Ready();
-      if (ACKSTAT)                  /*check for acknowledge bit*/
-        return 1;
-      else
-        return 2;
-}
+    //SSPCON2bits_t 4 + SSPSTATbits_t 1
+    //while ( (SEN == 1) || (RSEN == 1) || (PEN == 1) || (RCEN == 1) || (R_W == 1) );
+    //SSP2CON2bits_t 4 +
+    while ( (SEN == 1) || (RSEN == 1) || (PEN == 1) || (RCEN == 1) || (R_W == 1) );
+    /* wait till I2C module completes previous operation and becomes idle */
+}								
+/***************************************************************************************************
+                         static void i2c_Ack()
+ ***************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
 
-void I2C_Ack()
+ * description  :This function is used to generate a the Positive ACK
+                 pulse on SDA after receiving a byte.
+***************************************************************************************************/
+static void i2c_Ack()
 {
-    ACKDT=0;					/*acknowledge data 1:NACK,0:ACK */
-	ACKEN=1;					/*enable ACK to send*/	          
-    while(ACKEN);
+	ACKDT = 0;            /* Acknowledge data bit, 0 = ACK */
+	ACKEN = 1;            /* Ack data enabled */
+	while(ACKEN == 1);    /* wait for ack data to send on bus */
 }
+/***************************************************************************************************
+                        static void i2c_NoAck()
+ ***************************************************************************************************
+ * I/P Arguments: none.
+ * Return value  : none
 
-void I2C_Nack()
+ * description  :This function is used to generate a the Negative/NO ACK
+                 pulse on SDA after receiving all bytes.
+***************************************************************************************************/
+static void i2c_NoAck()
 {
-    ACKDT=1;					/*acknowledge data 1:NACK,0:ACK*/
-	ACKEN=1;					/*enable ACK to send*/	          
-    while(ACKEN);
+	ACKDT = 1;            /* Acknowledge data bit, 1 = NAK/NoAK */
+	ACKEN = 1;            /* Ack data enabled */
+	while(ACKEN == 1);    /* wait for ack data to send on bus */
 }
-
-

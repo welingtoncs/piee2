@@ -5950,11 +5950,11 @@ void LCD_String_xy(char, char, const char *);
 void LCD_Clear();
 # 16 "main_piee2.c" 2
 # 1 "./i2c.h" 1
-# 35 "./i2c.h"
+# 37 "./i2c.h"
 # 1 "./msdelay.h" 1
 # 36 "./msdelay.h"
 void MSdelay(unsigned int);
-# 36 "./i2c.h" 2
+# 38 "./i2c.h" 2
 
 
 
@@ -5962,17 +5962,12 @@ void MSdelay(unsigned int);
 
 
 
-void I2C_Ready();
+
 void I2C_Init();
-char I2C_Start(char);
-void I2C_Start_Wait(char);
-
-char I2C_Repeated_Start(char);
-char I2C_Stop();
-char I2C_Write(unsigned char);
-void I2C_Ack();
-void I2C_Nack();
-char I2C_Read(char flag);
+void I2C_Start();
+void I2C_Stop(void);
+void I2C_Write(uint8_t );
+uint8_t I2C_Read(uint8_t);
 # 17 "main_piee2.c" 2
 # 44 "main_piee2.c"
 int sec,min,hour;
@@ -6363,9 +6358,10 @@ void Beep(unsigned val){
 
 void RTC_Read_Clock(char read_clock_address)
 {
-    I2C_Start(0xD0);
+
+    I2C_Start();
     I2C_Write(read_clock_address);
-    I2C_Repeated_Start(0xD1);
+
     sec = I2C_Read(0);
     min = I2C_Read(0);
     hour= I2C_Read(1);
@@ -6374,9 +6370,10 @@ void RTC_Read_Clock(char read_clock_address)
 
 void RTC_Read_Calendar(char read_calendar_address)
 {
-    I2C_Start(0xD0);
+
+    I2C_Start();
     I2C_Write(read_calendar_address);
-    I2C_Repeated_Start(0xD1);
+
     Day = I2C_Read(0);
     Date = I2C_Read(0);
     Month = I2C_Read(0);
@@ -6397,7 +6394,7 @@ void atualiza_data(){
          hour = hour & (0x1f);
          sprintf(secs,"%x ",sec);
          sprintf(mins,"%x:",min);
-         sprintf(hours,"Tim:%x:",hour);
+         sprintf(hours,"Hora:%x:",hour);
          LCD_String_xy(1,0,hours);
          LCD_String(mins);
          LCD_String(secs);
@@ -6407,7 +6404,7 @@ void atualiza_data(){
      hour = hour & (0x3f);
      sprintf(secs,"%x ",sec);
      sprintf(mins,"%x:",min);
-     sprintf(hours,"Tim:%x:",hour);
+     sprintf(hours,"Hora:%x:",hour);
      LCD_String_xy(1,0,hours);
      LCD_String(mins);
      LCD_String(secs);
@@ -6415,7 +6412,7 @@ void atualiza_data(){
 
      RTC_Read_Calendar(3);
      I2C_Stop();
-     sprintf(date,"Cal %x-",Date);
+     sprintf(date,"Data %x-",Date);
      sprintf(month,"%x-",Month);
      sprintf(year,"%x ",Year);
      LCD_String_xy(2,0,date);

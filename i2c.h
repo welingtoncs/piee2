@@ -28,40 +28,26 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-//#ifndef XC_HEADER_TEMPLATE_H
-#define	XC_HEADER_TEMPLATE_H
+#ifndef _I2C_H
+#define _I2C_H
 
-#include <xc.h> // include processor files - each processor file is guarded.  
+#include <xc.h> // include processor files - each processor file is guarded. 
+#include <pic18f4550.h>
+//#include "stdutils.h"
 #include "msdelay.h"
 
-#define F_OSC 8000000 
+#define SCL	(PORTBbits.RB1)//SCL Connected to PORTC.3
+#define SDA (PORTBbits.RB0)//SDA Connected to PORTC.4
 
-#define I2C_CLOCK 100000                    /* I2C clock frequency is 100 kHz*/
+#define TRIS_SCL (TRISBbits.TRISB1)
+#define TRIS_SDA (TRISBbits.TRISB0)
 
-#define BITRATE ((F_OSC/(4*I2C_CLOCK))-1)  /* find bit rate to assign this value to SSPADD register*/
 
-void I2C_Ready();                           /* check and wait weather I2C is ready or not */
-void I2C_Init();                            /* initialize I2C register configuration*/
-char I2C_Start(char);                       /* send start pulse along with slave device address */
-void I2C_Start_Wait(char);                  /* send start pulse along with slave device address 
-                                             * and wait if not work */
-char I2C_Repeated_Start(char);              /* send repeated start pulse along with device write address*/
-char I2C_Stop();                            /* send stop pulse*/
-char I2C_Write(unsigned char);              /* transmit/write data/address to slave device */
-void I2C_Ack();                             /* send acknowledge from master for another read */
-void I2C_Nack();                            /* send negative acknowledge from master for stop reading */
-char I2C_Read(char flag);
+void I2C_Init();
+void I2C_Start();
+void I2C_Stop(void);
+void I2C_Write(uint8_t );
+uint8_t I2C_Read(uint8_t);
 
-#ifdef	__cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-    // TODO If C++ is being used, regular C code needs function names to have C 
-    // linkage so the functions can be used by the c code. 
-
-#ifdef	__cplusplus
-}
-#endif /* __cplusplus */
-
-//#endif	/* XC_HEADER_TEMPLATE_H */
+#endif
 
