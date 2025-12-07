@@ -6022,6 +6022,7 @@ void FSM_Update(fsm_data_t *fsm);
 void FSM_ExecuteState(fsm_data_t *fsm);
 void FSM_CheckTransitions(fsm_data_t *fsm);
 void FSM_UpdateDisplay(fsm_data_t *fsm);
+void atualiza_data();
 
 
 fsm_data_t system_fsm;
@@ -6060,9 +6061,6 @@ int main(void)
  while(1){
         RTC_Read_Clock(0);
         I2C_Stop();
-
-
-
 
 
         FSM_Update(&system_fsm);
@@ -6331,78 +6329,17 @@ void Message(unsigned int msg){
             LCD_String_xy(4,3,"Filtro de Manga");
             break;
         case 3:
-            LCD_String_xy(1,2,"Seja Bem Vindo!");
-            if(hour & (1<<Clock_type)){
+            LCD_String_xy(4,2,"Seja Bem Vindo!");
+            atualiza_data();
 
-                    if(hour & (1<<AM_PM)){
-                        LCD_String_xy(2,14,"PM");
-                    }
-                    else{
-                        LCD_String_xy(2,14,"AM");
-                    }
-
-                    hour = hour & (0x1f);
-                    sprintf(secs,"%x ",sec);
-                    sprintf(mins,"%x:",min);
-                    sprintf(hours,"Tim:%x:",hour);
-                    LCD_String_xy(2,0,hours);
-                    LCD_String(mins);
-                    LCD_String(secs);
-             }
-            else{
-
-                hour = hour & (0x3f);
-                sprintf(secs,"%x ",sec);
-                sprintf(mins,"%x:",min);
-                sprintf(hours,"Tim:%x:",hour);
-                LCD_String_xy(2,0,hours);
-                LCD_String(mins);
-                LCD_String(secs);
-            }
-
-                RTC_Read_Calendar(3);
-                I2C_Stop();
-                sprintf(date,"Cal %x-",Date);
-                sprintf(month,"%x-",Month);
-                sprintf(year,"%x ",Year);
-                LCD_String_xy(3,0,date);
-                LCD_String(month);
-                LCD_String(year);
-
-
-                switch(days[Day])
-                {
-                    case '0':
-                                LCD_String("Dom");
-                                break;
-                    case '1':
-                                LCD_String("Seg");
-                                break;
-                    case '2':
-                                LCD_String("Tec");
-                                break;
-                    case '3':
-                                LCD_String("Qua");
-                                break;
-                    case '4':
-                                LCD_String("Qui");
-                                break;
-                    case '5':
-                                LCD_String("Sex");
-                                break;
-                    case '6':
-                                LCD_String("Sab");
-                                break;
-                    default:
-                                break;
-
-                }
             break;
         case 4:
-            LCD_String_xy(1,1,"Filtro Manga");
-            LCD_String_xy(2,1,"Status:");
-            LCD_String_xy(3,1,"Temp. Motor:##,#");
-            LCD_String_xy(4,1,"Temp. Macal:##,#");
+
+
+
+
+              atualiza_data();
+              LCD_String_xy(4,2,"Filtro Manga");
             break;
     }
 
@@ -6445,4 +6382,72 @@ void RTC_Read_Calendar(char read_calendar_address)
     Month = I2C_Read(0);
     Year = I2C_Read(1);
     I2C_Stop();
+}
+
+void atualiza_data(){
+    if(hour & (1<<Clock_type)){
+
+         if(hour & (1<<AM_PM)){
+             LCD_String_xy(1,17,"PM");
+         }
+         else{
+             LCD_String_xy(1,17,"AM");
+         }
+
+         hour = hour & (0x1f);
+         sprintf(secs,"%x ",sec);
+         sprintf(mins,"%x:",min);
+         sprintf(hours,"Tim:%x:",hour);
+         LCD_String_xy(1,0,hours);
+         LCD_String(mins);
+         LCD_String(secs);
+  }
+ else{
+
+     hour = hour & (0x3f);
+     sprintf(secs,"%x ",sec);
+     sprintf(mins,"%x:",min);
+     sprintf(hours,"Tim:%x:",hour);
+     LCD_String_xy(1,0,hours);
+     LCD_String(mins);
+     LCD_String(secs);
+ }
+
+     RTC_Read_Calendar(3);
+     I2C_Stop();
+     sprintf(date,"Cal %x-",Date);
+     sprintf(month,"%x-",Month);
+     sprintf(year,"%x ",Year);
+     LCD_String_xy(2,0,date);
+     LCD_String(month);
+     LCD_String(year);
+
+
+     switch(days[Day])
+     {
+         case '0':
+                     LCD_String("Dom");
+                     break;
+         case '1':
+                     LCD_String("Seg");
+                     break;
+         case '2':
+                     LCD_String("Tec");
+                     break;
+         case '3':
+                     LCD_String("Qua");
+                     break;
+         case '4':
+                     LCD_String("Qui");
+                     break;
+         case '5':
+                     LCD_String("Sex");
+                     break;
+         case '6':
+                     LCD_String("Sab");
+                     break;
+         default:
+                     break;
+
+     }
 }
