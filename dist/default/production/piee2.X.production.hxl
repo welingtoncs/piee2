@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- /tmp/xcOU1xqX2/driver_tmp_3.o
+ /tmp/xcO00SrmL/driver_tmp_3.o
  -Odist/default/production/piee2.X.production.hex
  -logfile=dist/default/production/piee2.X.production.hxl
  -addressing=1
@@ -9,25 +9,31 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(/tmp/xcOU1xqX2/driver_tmp_3.o)
-  6A7Ch - 6A7Dh		(/tmp/xcOU1xqX2/driver_tmp_3.o)
-  6A7Fh - 7FFFh		(/tmp/xcOU1xqX2/driver_tmp_3.o)
-  300000h - 30000Dh		(/tmp/xcOU1xqX2/driver_tmp_3.o)
+  0h - 3h		(/tmp/xcO00SrmL/driver_tmp_3.o)
+  69FAh - 7FFEh		(/tmp/xcO00SrmL/driver_tmp_3.o)
+  300000h - 30000Dh		(/tmp/xcO00SrmL/driver_tmp_3.o)
  Unused ranges:
-  4h - 6A7Bh
-  6A7Eh - 6A7Eh
-  8000h - 2FFFFFh
+  4h - 69F9h
+  7FFFh - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (/tmp/xcOU1xqX2/driver_tmp_3.o)
+  H1 = Input file             (/tmp/xcO00SrmL/driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
-00006A70 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 -- H1
+000069F0 | -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1
+00006A00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00006A70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006A80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006A90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006AA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -371,7 +377,7 @@
 00007FC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00007FD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00007FE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00007FF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00007FF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 --
 ----------------------------------------------------------
 00300000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 00300010 | --

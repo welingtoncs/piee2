@@ -5986,16 +5986,7 @@ void I2C_Stop(void);
 void I2C_Write(uint8_t );
 uint8_t I2C_Read(uint8_t);
 # 17 "main_piee2.c" 2
-# 44 "main_piee2.c"
-int sec,min,hour;
-int Day,Date,Month,Year;
-
-char secs[10],mins[10],hours[10];
-char date[10],month[10],year[10];
-char Clock_type = 0x06;
-char AM_PM = 0x05;
-char days[7] = {'0','1','2','3','4','5','6'};
-
+# 60 "main_piee2.c"
 typedef enum {
     STATE_IDLE,
     STATE_INIT,
@@ -6018,12 +6009,35 @@ typedef struct {
     unsigned char last_desliga_state;
     unsigned char last_interlock_state;
 } fsm_data_t;
-# 88 "main_piee2.c"
+
+
+typedef struct
+{
+  uint8_t sec;
+  uint8_t min;
+  uint8_t hour;
+  uint8_t weekDay;
+  uint8_t date;
+  uint8_t month;
+  uint8_t year;
+}rtc_t;
+
+rtc_t rtc;
+char data[50];
+# 109 "main_piee2.c"
 void Message(unsigned int);
 void Beep(unsigned int);
 
-void RTC_Read_Clock(char read_clock_address);
-void RTC_Read_Calendar(char read_calendar_address);
+
+
+void RTC_Init(void);
+void RTC_SetDateTime(rtc_t *rtc);
+void RTC_GetDateTime(rtc_t *rtc);
+
+void menu_ajustar_rtc(void);
+void converteDecToHex(int converte);
+
+uint8_t acerto;
 
 
 void FSM_Init(fsm_data_t *fsm);
@@ -6043,7 +6057,16 @@ int main(void)
 
 
     LCD_Init();
-    I2C_Init();
+
+    RTC_Init();
+    rtc.hour = 0x19;
+    rtc.min = 0x31;
+    rtc.sec = 0x30;
+
+    rtc.date = 0x03;
+    rtc.month = 0x03;
+    rtc.year = 0x21;
+    rtc.weekDay = 3;
     TRISD = 0x00;
     TRISC = 0x00;
     PORTC = 0x00;
@@ -6068,8 +6091,8 @@ int main(void)
 
 
  while(1){
-        RTC_Read_Clock(0);
-        I2C_Stop();
+
+
 
 
         FSM_Update(&system_fsm);
@@ -6348,6 +6371,7 @@ void Message(unsigned int msg){
 
 
               atualiza_data();
+
               LCD_String_xy(4,2,"Filtro Manga");
             break;
     }
@@ -6367,98 +6391,460 @@ void Beep(unsigned val){
 
 
 }
-
-
-
-void RTC_Read_Clock(char read_clock_address)
-{
-
-    I2C_Start();
-    I2C_Write(read_clock_address);
-
-    sec = I2C_Read(0);
-    min = I2C_Read(0);
-    hour= I2C_Read(1);
-
+# 503 "main_piee2.c"
+void atualiza_data(){
+    RTC_GetDateTime(&rtc);
+    sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+    LCD_String_xy(2,0,data);
+# 573 "main_piee2.c"
 }
-
-void RTC_Read_Calendar(char read_calendar_address)
+# 583 "main_piee2.c"
+void RTC_Init(void)
 {
+    I2C_Init();
+    I2C_Start();
+
+    I2C_Write(0xD0u);
+    I2C_Write(0x07u);
+
+    I2C_Write(0x00);
+
+    I2C_Stop();
+}
+# 608 "main_piee2.c"
+void RTC_SetDateTime(rtc_t *rtc)
+{
+    I2C_Start();
+
+    I2C_Write(0xD0u);
+    I2C_Write(0x00u);
+
+    I2C_Write(rtc->sec);
+    I2C_Write(rtc->min);
+    I2C_Write(rtc->hour);
+    I2C_Write(rtc->weekDay);
+    I2C_Write(rtc->date);
+    I2C_Write(rtc->month);
+    I2C_Write(rtc->year);
+
+    I2C_Stop();
+}
+# 637 "main_piee2.c"
+void RTC_GetDateTime(rtc_t *rtc)
+{
+    I2C_Start();
+
+    I2C_Write(0xD0u);
+    I2C_Write(0x00u);
+
+    I2C_Stop();
 
     I2C_Start();
-    I2C_Write(read_calendar_address);
+    I2C_Write(0xD1u);
 
-    Day = I2C_Read(0);
-    Date = I2C_Read(0);
-    Month = I2C_Read(0);
-    Year = I2C_Read(1);
+    rtc->sec = I2C_Read(1);
+    rtc->min = I2C_Read(1);
+    rtc->hour= I2C_Read(1);
+    rtc->weekDay = I2C_Read(1);
+    rtc->date= I2C_Read(1);
+    rtc->month=I2C_Read(1);
+    rtc->year =I2C_Read(0);
+
     I2C_Stop();
 }
 
-void atualiza_data(){
-    if(hour & (1<<Clock_type)){
 
-         if(hour & (1<<AM_PM)){
-             LCD_String_xy(1,17,"PM");
-         }
-         else{
-             LCD_String_xy(1,17,"AM");
-         }
+void menu_ajustar_rtc(void){
+    char data[50];
+    unsigned int i=0;
+    char cvt1=0;
+    LCD_Command(0x01);
+    LCD_String_xy(1,1,"Ajustar Data e Hora ");
 
-         hour = hour & (0x1f);
-         sprintf(secs,"%x ",sec);
-         sprintf(mins,"%x:",min);
-         sprintf(hours,"Hora:%x:",hour);
-         LCD_String_xy(1,0,hours);
-         LCD_String(mins);
-         LCD_String(secs);
-  }
- else{
+    while(1){
+        if(i<200){
+            LCD_Command(0x01);
+            for(i=0; i<200; i++){
+                LCD_String_xy(1,1,"Ajustar Hora        ");
+                RTC_GetDateTime(&rtc);
+                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+                LCD_String_xy(2,1,data);
 
-     hour = hour & (0x3f);
-     sprintf(secs,"%x ",sec);
-     sprintf(mins,"%x:",min);
-     sprintf(hours,"Hora:%x:",hour);
-     LCD_String_xy(1,0,hours);
-     LCD_String(mins);
-     LCD_String(secs);
- }
+                if(!(PORTAbits.RA0)){
+                    while(!(PORTAbits.RA0));
+                    break;
 
-     RTC_Read_Calendar(3);
-     I2C_Stop();
-     sprintf(date,"Data %x-",Date);
-     sprintf(month,"%x-",Month);
-     sprintf(year,"%x ",Year);
-     LCD_String_xy(2,0,date);
-     LCD_String(month);
-     LCD_String(year);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1++;
+                    if(cvt1>23){cvt1=0;}
+                    converteDecToHex(cvt1);
+                    rtc.hour = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1--;
+                    if(cvt1 == 255){cvt1 = 23;}
+                    converteDecToHex(cvt1);
+                    rtc.hour = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
 
 
-     switch(days[Day])
-     {
-         case '0':
-                     LCD_String("Dom");
-                     break;
-         case '1':
-                     LCD_String("Seg");
-                     break;
-         case '2':
-                     LCD_String("Tec");
-                     break;
-         case '3':
-                     LCD_String("Qua");
-                     break;
-         case '4':
-                     LCD_String("Qui");
-                     break;
-         case '5':
-                     LCD_String("Sex");
-                     break;
-         case '6':
-                     LCD_String("Sab");
-                     break;
-         default:
-                     break;
+            }
+            LCD_Command(0x01);
+            for(i=0; i<200; i++){
+                LCD_String_xy(1,1,"Ajustar Minutos     ");
+                RTC_GetDateTime(&rtc);
+                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+                LCD_String_xy(2,1,data);
 
-     }
+                if(!(PORTAbits.RA0)){
+                    while(!(PORTAbits.RA0));
+                    break;
+
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1++;
+                    if(cvt1>59){cvt1=0;}
+                    converteDecToHex(cvt1);
+                    rtc.min = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1--;
+                    if(cvt1 == 255){cvt1 = 59;}
+                    converteDecToHex(cvt1);
+                    rtc.min = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+
+
+            }
+
+            LCD_Command(0x01);
+            for(i=0; i<200; i++){
+                LCD_String_xy(1,1,"Ajustar Dia         ");
+                RTC_GetDateTime(&rtc);
+                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+                LCD_String_xy(2,1,data);
+
+                if(!(PORTAbits.RA0)){
+                    while(!(PORTAbits.RA0));
+                    break;
+
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1++;
+                    if(cvt1>31){cvt1=1;}
+                    converteDecToHex(cvt1);
+                    rtc.date = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1--;
+                    if(cvt1 == 255){cvt1 = 31;}
+                    converteDecToHex(cvt1);
+                    rtc.date = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+
+
+            }
+
+            LCD_Command(0x01);
+            for(i=0; i<200; i++){
+                LCD_String_xy(1,1,"Ajustar Mes         ");
+                RTC_GetDateTime(&rtc);
+                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+                LCD_String_xy(2,1,data);
+
+                if(!(PORTAbits.RA0)){
+                    while(!(PORTAbits.RA0));
+                    break;
+
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1++;
+                    if(cvt1>12){cvt1=1;}
+                    converteDecToHex(cvt1);
+                    rtc.month = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1--;
+                    if(cvt1 == 255){cvt1 = 12;}
+                    converteDecToHex(cvt1);
+                    rtc.month = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+
+
+            }
+
+
+            LCD_Command(0x01);
+            for(i=0; i<200; i++){
+                LCD_String_xy(1,1,"Ajustar Ano         ");
+                RTC_GetDateTime(&rtc);
+                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
+                LCD_String_xy(2,1,data);
+
+                if(!(PORTAbits.RA0)){
+                    while(!(PORTAbits.RA0));
+                    break;
+
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1++;
+                    if(cvt1>99){cvt1=1;}
+                    converteDecToHex(cvt1);
+                    rtc.year = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+                else if (!(PORTAbits.RA0)){
+                    i=0;
+                    while(!(PORTAbits.RA0));MSdelay(300);
+                    cvt1--;
+                    if(cvt1 == 255){cvt1 = 99;}
+                    converteDecToHex(cvt1);
+                    rtc.year = acerto;
+                    RTC_SetDateTime(&rtc);
+                }
+
+
+            }
+
+
+        }
+        i = 200;
+        LCD_Command(0x01);
+        LCD_String_xy(1,1,"Sair Ajuste         ");
+        if((PORTAbits.RA0)){
+            while((PORTAbits.RA0));
+            break;
+
+        }
+
+    }
+
+
+
+
+
+}
+
+
+void converteDecToHex(int converte){
+    switch(converte){
+        case 0:
+            acerto = 0x00;
+            break;
+        case 1:
+            acerto = 0x01;
+            break;
+        case 2:
+            acerto = 0x02;
+            break;
+        case 3:
+            acerto = 0x03;
+            break;
+        case 4:
+            acerto = 0x04;
+            break;
+        case 5:
+            acerto = 0x05;
+            break;
+        case 6:
+            acerto = 0x06;
+            break;
+        case 7:
+            acerto = 0x07;
+            break;
+        case 8:
+            acerto = 0x08;
+            break;
+        case 9:
+            acerto = 0x09;
+            break;
+        case 10:
+            acerto = 0x10;
+            break;
+        case 11:
+            acerto = 0x11;
+            break;
+        case 12:
+            acerto = 0x12;
+            break;
+        case 13:
+            acerto = 0x13;
+            break;
+        case 14:
+            acerto = 0x14;
+            break;
+        case 15:
+            acerto = 0x15;
+            break;
+        case 16:
+            acerto = 0x16;
+            break;
+        case 17:
+            acerto = 0x17;
+            break;
+        case 18:
+            acerto = 0x18;
+            break;
+        case 19:
+            acerto = 0x19;
+            break;
+        case 20:
+            acerto = 0x20;
+            break;
+        case 21:
+            acerto = 0x21;
+            break;
+        case 22:
+            acerto = 0x22;
+            break;
+        case 23:
+            acerto = 0x23;
+            break;
+
+        case 24:
+            acerto = 0x24;
+            break;
+        case 25:
+            acerto = 0x25;
+            break;
+        case 26:
+            acerto = 0x26;
+            break;
+        case 27:
+            acerto = 0x27;
+            break;
+        case 28:
+            acerto = 0x28;
+            break;
+        case 29:
+            acerto = 0x29;
+            break;
+        case 30:
+            acerto = 0x30;
+            break;
+        case 31:
+            acerto = 0x31;
+            break;
+        case 32:
+            acerto = 0x32;
+            break;
+        case 33:
+            acerto = 0x33;
+            break;
+        case 34:
+            acerto = 0x34;
+            break;
+        case 35:
+            acerto = 0x35;
+            break;
+        case 36:
+            acerto = 0x36;
+            break;
+        case 37:
+            acerto = 0x37;
+            break;
+        case 38:
+            acerto = 0x38;
+            break;
+        case 39:
+            acerto = 0x39;
+            break;
+        case 40:
+            acerto = 0x40;
+            break;
+        case 41:
+            acerto = 0x41;
+            break;
+        case 42:
+            acerto = 0x42;
+            break;
+        case 43:
+            acerto = 0x43;
+            break;
+        case 44:
+            acerto = 0x44;
+            break;
+        case 45:
+            acerto = 0x45;
+            break;
+        case 46:
+            acerto = 0x46;
+            break;
+        case 47:
+            acerto = 0x47;
+            break;
+
+        case 48:
+            acerto = 0x48;
+            break;
+        case 49:
+            acerto = 0x49;
+            break;
+        case 50:
+            acerto = 0x50;
+            break;
+        case 51:
+            acerto = 0x51;
+            break;
+        case 52:
+            acerto = 0x52;
+            break;
+        case 53:
+            acerto = 0x53;
+            break;
+        case 54:
+            acerto = 0x54;
+            break;
+
+
+        case 55:
+            acerto = 0x55;
+            break;
+        case 56:
+            acerto = 0x56;
+            break;
+        case 57:
+            acerto = 0x57;
+            break;
+        case 58:
+            acerto = 0x58;
+            break;
+        case 59:
+            acerto = 0x59;
+            break;
+
+
+
+        default :
+            acerto = 0x00;
+            break;
+
+    }
 }
