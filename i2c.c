@@ -50,12 +50,13 @@ void I2C_Init()
 
 	SSPSTAT = 0x80;  /* Slew rate disabled */
 	SSPCON1 = 0x28;    /* SSPEN = 1, I2C Master mode, clock = FOSC/(4 * (SSPADD + 1)) */
+    SSPCON2 = 0x00;
     
 //    SSPCON2=0;
 //    SSPADD=BITRATE;                    /*clock 100 kHz*/  
 //    SSPIE=1;                            /*enable SSPIF interrupt*/
 //    SSPIF=0;
-	SSPADD = 50;//(GetInstructionClock()/(4 * 100000)) - 1; //60;      /* 100Khz @ 20Mhz Fosc */
+	SSPADD = 4;//(GetInstructionClock()/(4 * 100000)) - 1; //60;      /* 100Khz @ 20Mhz Fosc */
 }
 /***************************************************************************************************
                          void I2C_Start()
@@ -156,7 +157,7 @@ uint8_t I2C_Read(uint8_t v_ackOption_u8)
 	uint8_t  v_i2cData_u8=0x00;
 
 	RCEN = 1;                   /* Enable data reception */
-	while(BF==0);               /* wait for data to be received */
+	while(SSPSTATbits.BF==0);               /* wait for data to be received */
 	v_i2cData_u8 = SSPBUF;    /* copy the received data */
 	i2c_WaitForIdle();          /* wait till current operation is complete*/
 	      

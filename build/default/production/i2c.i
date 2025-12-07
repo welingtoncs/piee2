@@ -5850,22 +5850,28 @@ void I2C_Init()
 
  SSPSTAT = 0x80;
  SSPCON1 = 0x28;
- SSPADD = 60;
+    SSPCON2 = 0x00;
+
+
+
+
+
+ SSPADD = 4;
 }
-# 72 "i2c.c"
+# 78 "i2c.c"
 void I2C_Start()
 {
  SSPCON2bits.SEN = 1;
  while(SSPCON2bits.SEN == 1);
 
 }
-# 96 "i2c.c"
+# 102 "i2c.c"
 void I2C_Stop(void)
 {
  PEN = 1;
  while(PEN == 1);
 }
-# 120 "i2c.c"
+# 126 "i2c.c"
 void I2C_Write(uint8_t v_i2cData_u8)
 {
 
@@ -5874,13 +5880,13 @@ void I2C_Write(uint8_t v_i2cData_u8)
     while(BF==1);
     i2c_WaitForIdle();
 }
-# 149 "i2c.c"
+# 155 "i2c.c"
 uint8_t I2C_Read(uint8_t v_ackOption_u8)
 {
  uint8_t v_i2cData_u8=0x00;
 
  RCEN = 1;
- while(BF==0);
+ while(SSPSTATbits.BF==0);
  v_i2cData_u8 = SSPBUF;
  i2c_WaitForIdle();
 
@@ -5895,7 +5901,7 @@ uint8_t I2C_Read(uint8_t v_ackOption_u8)
 
  return v_i2cData_u8;
 }
-# 180 "i2c.c"
+# 186 "i2c.c"
 static void i2c_WaitForIdle()
 {
 
@@ -5904,14 +5910,14 @@ static void i2c_WaitForIdle()
     while ( (SEN == 1) || (RSEN == 1) || (PEN == 1) || (RCEN == 1) || (R_W == 1) );
 
 }
-# 197 "i2c.c"
+# 203 "i2c.c"
 static void i2c_Ack()
 {
  ACKDT = 0;
  ACKEN = 1;
  while(ACKEN == 1);
 }
-# 212 "i2c.c"
+# 218 "i2c.c"
 static void i2c_NoAck()
 {
  ACKDT = 1;
