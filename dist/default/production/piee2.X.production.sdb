@@ -3,8 +3,8 @@
 [d edition pro ]
 [d chip 18F4550 ]
 [d frameptr 4065 ]
-"87 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-[e E3562 . `uc
+"93 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+[e E3571 . `uc
 STATE_IDLE 0
 STATE_INIT 1
 STATE_READY 2
@@ -14,6 +14,14 @@ STATE_STOPPING 5
 STATE_BLOCKED 6
 STATE_FAILURE 7
 ]
+"152 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+[v _pad pad `(v  1 s 1 pad ]
+"955
+[v _xtoa xtoa `(v  1 s 1 xtoa ]
+"1048
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+"1546
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
 "4 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/float.c
@@ -26,6 +34,14 @@ STATE_FAILURE 7
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
 "19 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
+"8 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"7 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/putch.c
+[v _putch putch `(v  1 e 1 0 ]
 "10 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "245
@@ -68,27 +84,31 @@ STATE_FAILURE 7
 [v _LCD_String_xy LCD_String_xy `(v  1 e 1 0 ]
 "93
 [v _LCD_Clear LCD_Clear `(v  1 e 1 0 ]
-"89 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+"95 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
 [v _main main `(i  1 e 2 0 ]
-"136
+"143
 [v _FSM_Init FSM_Init `(v  1 e 1 0 ]
-"155
+"162
 [v _FSM_Update FSM_Update `(v  1 e 1 0 ]
-"176
+"183
 [v _FSM_CheckTransitions FSM_CheckTransitions `(v  1 e 1 0 ]
-"266
+"273
 [v _FSM_ExecuteState FSM_ExecuteState `(v  1 e 1 0 ]
-"330
+"337
 [v _FSM_UpdateDisplay FSM_UpdateDisplay `(v  1 e 1 0 ]
-"377
+"384
 [v _Message Message `(v  1 e 1 0 ]
-"406
+"478
 [v _Beep Beep `(v  1 e 1 0 ]
+"493
+[v _RTC_Read_Clock RTC_Read_Clock `(v  1 e 1 0 ]
+"504
+[v _RTC_Read_Calendar RTC_Read_Calendar `(v  1 e 1 0 ]
 "14 /Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
 [v _MSdelay MSdelay `(v  1 e 1 0 ]
 "2563 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [v _PORTC PORTC `VEuc  1 e 1 @3970 ]
-[s S98 . 1 `uc 1 RC0 1 0 :1:0 
+[s S107 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -98,29 +118,29 @@ STATE_FAILURE 7
 `uc 1 RC7 1 0 :1:7 
 ]
 "2605
-[s S107 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S116 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S114 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S123 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S121 . 1 `uc 1 . 1 0 :1:0 
+[s S130 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[s S125 . 1 `uc 1 . 1 0 :1:0 
+[s S134 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
-[u S128 . 1 `S98 1 . 1 0 `S107 1 . 1 0 `S114 1 . 1 0 `S121 1 . 1 0 `S125 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES128  1 e 1 @3970 ]
+[u S137 . 1 `S107 1 . 1 0 `S116 1 . 1 0 `S123 1 . 1 0 `S130 1 . 1 0 `S134 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES137  1 e 1 @3970 ]
 "3073
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
 "3625
@@ -131,7 +151,7 @@ STATE_FAILURE 7
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
 "6806
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @4037 ]
-[s S497 . 1 `uc 1 SEN 1 0 :1:0 
+[s S535 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -141,20 +161,20 @@ STATE_FAILURE 7
 `uc 1 GCEN 1 0 :1:7 
 ]
 "6823
-[u S506 . 1 `S497 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES506  1 e 1 @4037 ]
+[u S544 . 1 `S535 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES544  1 e 1 @4037 ]
 "6868
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
 "6938
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S335 . 1 `uc 1 . 1 0 :2:0 
+[s S373 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "7021
-[s S338 . 1 `uc 1 . 1 0 :5:0 
+[s S376 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S341 . 1 `uc 1 BF 1 0 :1:0 
+[s S379 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -163,56 +183,56 @@ STATE_FAILURE 7
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S350 . 1 `uc 1 . 1 0 :2:0 
+[s S388 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S355 . 1 `uc 1 . 1 0 :2:0 
+[s S393 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S361 . 1 `uc 1 . 1 0 :2:0 
+[s S399 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S366 . 1 `uc 1 . 1 0 :2:0 
+[s S404 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S369 . 1 `uc 1 . 1 0 :5:0 
+[s S407 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S372 . 1 `uc 1 . 1 0 :2:0 
+[s S410 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S377 . 1 `uc 1 . 1 0 :2:0 
+[s S415 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S382 . 1 `uc 1 . 1 0 :2:0 
+[s S420 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S387 . 1 `uc 1 . 1 0 :2:0 
+[s S425 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S393 . 1 `uc 1 . 1 0 :2:0 
+[s S431 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S398 . 1 `S335 1 . 1 0 `S338 1 . 1 0 `S341 1 . 1 0 `S350 1 . 1 0 `S355 1 . 1 0 `S361 1 . 1 0 `S366 1 . 1 0 `S369 1 . 1 0 `S372 1 . 1 0 `S377 1 . 1 0 `S382 1 . 1 0 `S387 1 . 1 0 `S393 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES398  1 e 1 @4039 ]
+[u S436 . 1 `S373 1 . 1 0 `S376 1 . 1 0 `S379 1 . 1 0 `S388 1 . 1 0 `S393 1 . 1 0 `S399 1 . 1 0 `S404 1 . 1 0 `S407 1 . 1 0 `S410 1 . 1 0 `S415 1 . 1 0 `S420 1 . 1 0 `S425 1 . 1 0 `S431 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES436  1 e 1 @4039 ]
 "7186
 [v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
 "7193
@@ -251,6 +271,13 @@ STATE_FAILURE 7
 [v _TRISB0 TRISB0 `VEb  1 e 0 @31896 ]
 "10909
 [v _TRISB1 TRISB1 `VEb  1 e 0 @31897 ]
+"118 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"119
+[v _flags flags `uc  1 s 1 flags ]
+"144
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "44 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
 [v _sec sec `i  1 e 2 0 ]
 [v _min min `i  1 e 2 0 ]
@@ -260,23 +287,203 @@ STATE_FAILURE 7
 [v _Date Date `i  1 e 2 0 ]
 [v _Month Month `i  1 e 2 0 ]
 [v _Year Year `i  1 e 2 0 ]
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
-"87
+"47
+[v _secs secs `[10]uc  1 e 10 0 ]
+[v _mins mins `[10]uc  1 e 10 0 ]
+[v _hours hours `[10]uc  1 e 10 0 ]
+"48
+[v _date date `[10]uc  1 e 10 0 ]
+[v _month month `[10]uc  1 e 10 0 ]
+[v _year year `[10]uc  1 e 10 0 ]
+"51
+[v _days days `[7]uc  1 e 7 0 ]
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+"93
 [v _system_fsm system_fsm `S33  1 e 13 0 ]
-"89
+"95
 [v _main main `(i  1 e 2 0 ]
 {
-"123
-[v main@days days `[7]uc  1 a 7 23 ]
-"122
-[v main@F3611 F3611 `[7]uc  1 s 7 F3611 ]
-"132
+"139
 } 0
-"377
+"493
+[v _RTC_Read_Clock RTC_Read_Clock `(v  1 e 1 0 ]
+{
+[v RTC_Read_Clock@read_clock_address read_clock_address `uc  1 a 1 wreg ]
+[v RTC_Read_Clock@read_clock_address read_clock_address `uc  1 a 1 wreg ]
+"495
+[v RTC_Read_Clock@read_clock_address read_clock_address `uc  1 a 1 3 ]
+"502
+} 0
+"384
 [v _Message Message `(v  1 e 1 0 ]
 {
-[v Message@msg msg `ui  1 p 2 15 ]
-"403
+[v Message@msg msg `ui  1 p 2 85 ]
+"475
+} 0
+"9 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[u S1064 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+"13
+[s S1067 _IO_FILE 12 `S1064 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v sprintf@f f `S1067  1 a 12 73 ]
+"12
+[v sprintf@ap ap `[1]*.39v  1 a 2 71 ]
+"9
+[v sprintf@s s `*.39uc  1 p 2 65 ]
+[v sprintf@fmt fmt `*.25Cuc  1 p 2 67 ]
+"23
+} 0
+"1546 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1549
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 63 ]
+[s S1099 _IO_FILE 0 ]
+"1546
+[v vfprintf@fp fp `*.39S1099  1 p 2 57 ]
+[v vfprintf@fmt fmt `*.25Cuc  1 p 2 59 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 61 ]
+"1569
+} 0
+"1048
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+{
+[u S1112 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
+"1059
+[v vfpfcnvrt@convarg convarg `S1112  1 a 4 51 ]
+"1050
+[v vfpfcnvrt@cp cp `*.25uc  1 a 2 55 ]
+[s S1099 _IO_FILE 0 ]
+"1048
+[v vfpfcnvrt@fp fp `*.39S1099  1 p 2 43 ]
+[v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 45 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 47 ]
+"1543
+} 0
+"955
+[v _xtoa xtoa `(v  1 s 1 xtoa ]
+{
+"960
+[v xtoa@i i `i  1 a 2 40 ]
+[v xtoa@p p `i  1 a 2 38 ]
+[v xtoa@w w `i  1 a 2 34 ]
+"959
+[v xtoa@c c `uc  1 a 1 42 ]
+[s S1099 _IO_FILE 0 ]
+"955
+[v xtoa@fp fp `*.39S1099  1 p 2 27 ]
+[v xtoa@d d `ui  1 p 2 29 ]
+"1024
+} 0
+"152
+[v _pad pad `(v  1 s 1 pad ]
+{
+"154
+[v pad@w w `i  1 a 2 25 ]
+[v pad@i i `i  1 a 2 23 ]
+[s S1099 _IO_FILE 0 ]
+"152
+[v pad@fp fp `*.39S1099  1 p 2 16 ]
+[v pad@buf buf `*.39uc  1 p 2 18 ]
+[v pad@p p `i  1 p 2 20 ]
+"183
+} 0
+"8 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+"11
+[v fputs@i i `i  1 a 2 14 ]
+"10
+[v fputs@c c `uc  1 a 1 13 ]
+"8
+[v fputs@s s `*.39Cuc  1 p 2 9 ]
+[u S1064 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1067 _IO_FILE 12 `S1064 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputs@fp fp `*.39S1067  1 p 2 11 ]
+"19
+} 0
+"8 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 0 ]
+[u S1064 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1067 _IO_FILE 12 `S1064 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputc@fp fp `*.39S1067  1 p 2 2 ]
+"24
+} 0
+"7 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+"9
+} 0
+"504 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+[v _RTC_Read_Calendar RTC_Read_Calendar `(v  1 e 1 0 ]
+{
+[v RTC_Read_Calendar@read_calendar_address read_calendar_address `uc  1 a 1 wreg ]
+[v RTC_Read_Calendar@read_calendar_address read_calendar_address `uc  1 a 1 wreg ]
+"506
+[v RTC_Read_Calendar@read_calendar_address read_calendar_address `uc  1 a 1 3 ]
+"514
+} 0
+"92 /Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+[v _I2C_Stop I2C_Stop `(uc  1 e 1 0 ]
+{
+"98
+} 0
+"67
+[v _I2C_Start I2C_Start `(uc  1 e 1 0 ]
+{
+[v I2C_Start@slave_write_address slave_write_address `uc  1 a 1 wreg ]
+[v I2C_Start@slave_write_address slave_write_address `uc  1 a 1 wreg ]
+"69
+[v I2C_Start@slave_write_address slave_write_address `uc  1 a 1 1 ]
+"76
+} 0
+"78
+[v _I2C_Repeated_Start I2C_Repeated_Start `(uc  1 e 1 0 ]
+{
+[v I2C_Repeated_Start@slave_read_address slave_read_address `uc  1 a 1 wreg ]
+[v I2C_Repeated_Start@slave_read_address slave_read_address `uc  1 a 1 wreg ]
+"80
+[v I2C_Repeated_Start@slave_read_address slave_read_address `uc  1 a 1 1 ]
+"90
+} 0
+"100
+[v _I2C_Write I2C_Write `(uc  1 e 1 0 ]
+{
+[v I2C_Write@data data `uc  1 a 1 wreg ]
+[v I2C_Write@data data `uc  1 a 1 wreg ]
+"102
+[v I2C_Write@data data `uc  1 a 1 0 ]
+"108
+} 0
+"11
+[v _I2C_Read I2C_Read `(uc  1 e 1 0 ]
+{
+[v I2C_Read@flag flag `uc  1 a 1 wreg ]
+"14
+[v I2C_Read@buffer buffer `uc  1 a 1 1 ]
+"11
+[v I2C_Read@flag flag `uc  1 a 1 wreg ]
+"15
+[v I2C_Read@flag flag `uc  1 a 1 0 ]
+"26
+} 0
+"42
+[v _I2C_Ready I2C_Ready `(v  1 e 1 0 ]
+{
+"46
+} 0
+"117
+[v _I2C_Nack I2C_Nack `(v  1 e 1 0 ]
+{
+"122
+} 0
+"110
+[v _I2C_Ack I2C_Ack `(v  1 e 1 0 ]
+{
+"115
 } 0
 "93 /Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
 [v _LCD_Clear LCD_Clear `(v  1 e 1 0 ]
@@ -293,21 +500,21 @@ STATE_FAILURE 7
 {
 "39
 } 0
-"155 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+"162 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
 [v _FSM_Update FSM_Update `(v  1 e 1 0 ]
 {
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
 [v FSM_Update@fsm fsm `*.39S33  1 p 2 19 ]
-"175
+"182
 } 0
-"330
+"337
 [v _FSM_UpdateDisplay FSM_UpdateDisplay `(v  1 e 1 0 ]
 {
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
 [v FSM_UpdateDisplay@fsm fsm `*.39S33  1 p 2 15 ]
-"333
+"340
 [v FSM_UpdateDisplay@display_counter display_counter `ui  1 s 2 display_counter ]
-"374
+"381
 } 0
 "66 /Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
 [v _LCD_String_xy LCD_String_xy `(v  1 e 1 0 ]
@@ -318,14 +525,14 @@ STATE_FAILURE 7
 "66
 [v LCD_String_xy@row row `uc  1 a 1 wreg ]
 [v LCD_String_xy@pos pos `uc  1 p 1 10 ]
-[v LCD_String_xy@msg msg `*.25Cuc  1 p 2 11 ]
+[v LCD_String_xy@msg msg `*.35Cuc  1 p 2 11 ]
 [v LCD_String_xy@row row `uc  1 a 1 13 ]
 "91
 } 0
 "57
 [v _LCD_String LCD_String `(v  1 e 1 0 ]
 {
-[v LCD_String@msg msg `*.25Cuc  1 p 2 8 ]
+[v LCD_String@msg msg `*.35Cuc  1 p 2 8 ]
 "64
 } 0
 "42
@@ -346,42 +553,42 @@ STATE_FAILURE 7
 [v LCD_Command@cmd cmd `uc  1 a 1 7 ]
 "39
 } 0
-"266 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+"273 /Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
 [v _FSM_ExecuteState FSM_ExecuteState `(v  1 e 1 0 ]
 {
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
 [v FSM_ExecuteState@fsm fsm `*.39S33  1 p 2 0 ]
-"329
+"336
 } 0
-"176
+"183
 [v _FSM_CheckTransitions FSM_CheckTransitions `(v  1 e 1 0 ]
 {
-"178
-[v FSM_CheckTransitions@current_interlock current_interlock `uc  1 a 1 9 ]
-"189
-[v FSM_CheckTransitions@desliga_pressed desliga_pressed `uc  1 a 1 8 ]
 "185
+[v FSM_CheckTransitions@current_interlock current_interlock `uc  1 a 1 9 ]
+"196
+[v FSM_CheckTransitions@desliga_pressed desliga_pressed `uc  1 a 1 8 ]
+"192
 [v FSM_CheckTransitions@liga_pressed liga_pressed `uc  1 a 1 4 ]
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
-"176
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+"183
 [v FSM_CheckTransitions@fsm fsm `*.39S33  1 p 2 0 ]
-"265
+"272
 } 0
-"136
+"143
 [v _FSM_Init FSM_Init `(v  1 e 1 0 ]
 {
-[s S33 . 13 `E3562 1 current_state 1 0 `E3562 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
+[s S33 . 13 `E3571 1 current_state 1 0 `E3571 1 next_state 1 1 `ui 1 timer_counter 2 2 `ui 1 start_timer 2 4 `ui 1 blink_counter 2 6 `ui 1 beep_counter 2 8 `uc 1 last_liga_state 1 10 `uc 1 last_desliga_state 1 11 `uc 1 last_interlock_state 1 12 ]
 [v FSM_Init@fsm fsm `*.39S33  1 p 2 0 ]
-"153
+"160
 } 0
-"406
+"478
 [v _Beep Beep `(v  1 e 1 0 ]
 {
-"407
+"479
 [v Beep@i i `ui  1 a 2 8 ]
-"406
+"478
 [v Beep@val val `ui  1 p 2 6 ]
-"417
+"489
 } 0
 "14 /Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
 [v _MSdelay MSdelay `(v  1 e 1 0 ]

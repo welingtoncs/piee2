@@ -11,32 +11,53 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcClIxJCX/driver_tmp_9.o
+$/tmp/xcOgpRc04/driver_tmp_14.o
 init CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 E 1 1
 $dist/default/production/piee2.X.production.o
-cinit CODE 0 73BA 73BA 36 1 2
-text0 CODE 0 777E 777E CE 1 2
-text1 CODE 0 797E 797E 140 1 2
-text2 CODE 0 7326 7326 14 1 2
-text3 CODE 0 7354 7354 30 1 2
-text4 CODE 0 733A 733A 1A 1 2
-text5 CODE 0 7516 7516 80 1 2
-text6 CODE 0 784C 784C 132 1 2
-text7 CODE 0 7596 7596 8E 1 2
-text8 CODE 0 7384 7384 36 1 2
-text9 CODE 0 74CA 74CA 4C 1 2
-text10 CODE 0 747E 747E 4C 1 2
-text11 CODE 0 76B8 76B8 C6 1 2
-text12 CODE 0 7ABE 7ABE 3C4 1 2
-text13 CODE 0 7624 7624 94 1 2
-text14 CODE 0 73F0 73F0 44 1 2
-text15 CODE 0 7434 7434 4A 1 2
-idataCOMRAM CODE 0 731F 731F 7 1 1
-cstackCOMRAM COMRAM 1 1 1 1E 1 1
-dataCOMRAM COMRAM 1 3C 3C 7 1 1
-bssCOMRAM COMRAM 1 1F 1F 1D 1 1
-mediumconst MEDIUMCONST 0 7E82 7E82 17E 1 2
+cinit CODE 0 6DB0 6DB0 54 1 2
+text0 CODE 0 719E 719E C6 1 2
+text1 CODE 0 6BF0 6BF0 44 1 2
+text2 CODE 0 7A7C 7A7C 3D8 1 2
+text3 CODE 0 6D16 6D16 4C 1 2
+text4 CODE 0 6D62 6D62 4E 1 2
+text5 CODE 0 7580 7580 138 1 2
+text6 CODE 0 732E 732E 11E 1 2
+text7 CODE 0 6EBC 6EBC 7A 1 2
+text8 CODE 0 6BAC 6BAC 44 1 2
+text9 CODE 0 7264 7264 CA 1 2
+text10 CODE 0 69F8 69F8 2 1 2
+text11 CODE 0 6E04 6E04 5A 1 2
+text12 CODE 0 6A52 6A52 14 1 2
+text13 CODE 0 6AD0 6AD0 2E 1 2
+text14 CODE 0 6AA2 6AA2 2E 1 2
+text15 CODE 0 6A80 6A80 22 1 2
+text16 CODE 0 6B2E 6B2E 3A 1 2
+text17 CODE 0 6A04 6A04 12 1 2
+text18 CODE 0 6A3E 6A3E 14 1 2
+text19 CODE 0 6A2A 6A2A 14 1 2
+text20 CODE 0 6A16 6A16 14 1 2
+text21 CODE 0 6AFE 6AFE 30 1 2
+text22 CODE 0 6A66 6A66 1A 1 2
+text23 CODE 0 6F36 6F36 80 1 2
+text24 CODE 0 744C 744C 134 1 2
+text25 CODE 0 6FB6 6FB6 8E 1 2
+text26 CODE 0 6E5E 6E5E 5E 1 2
+text27 CODE 0 6CCA 6CCA 4C 1 2
+text28 CODE 0 6C7E 6C7E 4C 1 2
+text29 CODE 0 70D8 70D8 C6 1 2
+text30 CODE 0 76B8 76B8 3C4 1 2
+text31 CODE 0 7044 7044 94 1 2
+text32 CODE 0 6B68 6B68 44 1 2
+text33 CODE 0 6C34 6C34 4A 1 2
+idataCOMRAM CODE 0 69FB 69FB 2 1 1
+cstackCOMRAM COMRAM 1 1 1 59 1 1
+bssBANK0 BANK0 1 60 60 7B 1 1
+idataBANK0 CODE 0 69FD 69FD 7 1 1
+dataBANK0 BANK0 1 DB DB 7 1 1
+dataCOMRAM COMRAM 1 5D 5D 2 1 1
+bssCOMRAM COMRAM 1 5A 5A 3 1 1
+mediumconst MEDIUMCONST 0 7E54 7E54 1AC 1 2
 config CONFIG 4 300000 300000 E 1 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -44,9 +65,9 @@ config CONFIG 4 300000 300000 E 1 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 60-7FF 1
+RAM E2-7FF 1
 SFR F60-FFF 1
-BANK0 60-FF 1
+BANK0 E2-FF 1
 BANK1 100-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
@@ -54,15 +75,20 @@ BANK4 400-4FF 1
 BANK5 500-5FF 1
 BANK6 600-6FF 1
 BANK7 700-7FF 1
-CONST 4-731E 1
+CONST 4-69F7 1
+CONST 69FA-69FA 1
 IDLOC 200000-200007 1
-SMALLCONST 800-731E 1
-CODE 4-731E 1
-BIGRAM 43-7FF 1
+SMALLCONST 800-69F7 1
+SMALLCONST 69FA-69FA 1
+CODE 4-69F7 1
+CODE 69FA-69FA 1
+BIGRAM 5F-5F 1
+BIGRAM E2-7FF 1
 BIGSFR F60-FFF 1
-COMRAM 43-5F 1
+COMRAM 5F-5F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 800-731E 1
+MEDIUMCONST 800-69F7 1
+MEDIUMCONST 69FA-69FA 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -77,303 +103,507 @@ MEDIUMCONST 800-731E 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/piee2.X.production.o
-7434 text15 CODE >14:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
-7434 text15 CODE >17:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
-7440 text15 CODE >18:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
-747C text15 CODE >19:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
-73F0 text14 CODE >406:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-73F0 text14 CODE >408:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-73FC text14 CODE >410:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-73FE text14 CODE >411:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-740A text14 CODE >412:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-740C text14 CODE >413:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7418 text14 CODE >414:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7432 text14 CODE >417:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7624 text13 CODE >136:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7624 text13 CODE >138:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7630 text13 CODE >139:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7640 text13 CODE >140:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7650 text13 CODE >141:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7660 text13 CODE >142:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7670 text13 CODE >143:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7680 text13 CODE >144:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7690 text13 CODE >145:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76A0 text13 CODE >146:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B0 text13 CODE >150:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B2 text13 CODE >151:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B4 text13 CODE >152:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B6 text13 CODE >153:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7ABE text12 CODE >176:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7ABE text12 CODE >178:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7AC6 text12 CODE >181:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7AFA text12 CODE >182:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7B0A text12 CODE >185:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7B40 text12 CODE >186:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7B60 text12 CODE >189:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7B96 text12 CODE >190:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7BB6 text12 CODE >193:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7BBA text12 CODE >196:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7BDC text12 CODE >197:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7BF0 text12 CODE >202:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C00 text12 CODE >203:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C10 text12 CODE >204:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C14 text12 CODE >205:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C24 text12 CODE >206:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C34 text12 CODE >207:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C48 text12 CODE >212:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C58 text12 CODE >213:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C68 text12 CODE >214:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C6C text12 CODE >215:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7C90 text12 CODE >216:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CA0 text12 CODE >217:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CA4 text12 CODE >218:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CB4 text12 CODE >219:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CC8 text12 CODE >224:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CD8 text12 CODE >225:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CE8 text12 CODE >226:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CEC text12 CODE >227:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7CFC text12 CODE >228:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D10 text12 CODE >233:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D34 text12 CODE >234:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D44 text12 CODE >235:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D54 text12 CODE >236:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D58 text12 CODE >238:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D6C text12 CODE >244:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D7C text12 CODE >245:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7D90 text12 CODE >251:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DB2 text12 CODE >252:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DC6 text12 CODE >257:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DD4 text12 CODE >258:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DD8 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DEA text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7DF8 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E00 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E08 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E10 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E18 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E20 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E28 text12 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E32 text12 CODE >261:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E58 text12 CODE >262:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E70 text12 CODE >263:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7E80 text12 CODE >265:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B8 text11 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76B8 text11 CODE >268:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76BC text11 CODE >274:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76BC text11 CODE >276:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76BE text11 CODE >277:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76C2 text11 CODE >284:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76C2 text11 CODE >289:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76C4 text11 CODE >292:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76E8 text11 CODE >293:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-76F8 text11 CODE >294:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-770E text11 CODE >313:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-770E text11 CODE >318:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7710 text11 CODE >319:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7714 text11 CODE >321:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7714 text11 CODE >326:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7716 text11 CODE >327:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-771A text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-772C text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-773A text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7742 text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-774A text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7752 text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-775A text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7762 text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-776A text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7772 text11 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-777C text11 CODE >329:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-747E text10 CODE >26:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7480 text10 CODE >28:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7490 text10 CODE >29:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7492 text10 CODE >30:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7494 text10 CODE >31:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7496 text10 CODE >32:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7498 text10 CODE >33:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74A4 text10 CODE >34:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74B6 text10 CODE >35:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74B8 text10 CODE >36:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74BA text10 CODE >37:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74BC text10 CODE >38:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74C8 text10 CODE >39:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74CA text9 CODE >42:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74CC text9 CODE >44:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74DC text9 CODE >45:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74DE text9 CODE >46:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74E0 text9 CODE >47:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74E2 text9 CODE >48:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74E4 text9 CODE >49:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-74F0 text9 CODE >50:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7502 text9 CODE >51:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7504 text9 CODE >52:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7506 text9 CODE >53:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7508 text9 CODE >54:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7514 text9 CODE >55:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7384 text8 CODE >57:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7384 text8 CODE >59:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7388 text8 CODE >61:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7398 text8 CODE >62:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-739C text8 CODE >59:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-73B8 text8 CODE >64:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7596 text7 CODE >66:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7598 text7 CODE >68:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7598 text7 CODE >69:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75A8 text7 CODE >71:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75B0 text7 CODE >72:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75B6 text7 CODE >74:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75C8 text7 CODE >76:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75D0 text7 CODE >77:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75D6 text7 CODE >79:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75E8 text7 CODE >81:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75F0 text7 CODE >82:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-75F6 text7 CODE >84:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7608 text7 CODE >86:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7610 text7 CODE >87:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7616 text7 CODE >90:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7622 text7 CODE >91:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-784C text6 CODE >330:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-784C text6 CODE >334:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7850 text6 CODE >336:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7866 text6 CODE >337:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-786E text6 CODE >339:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7872 text6 CODE >342:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7884 text6 CODE >343:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7888 text6 CODE >346:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-789A text6 CODE >347:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-789E text6 CODE >350:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78B0 text6 CODE >351:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78B4 text6 CODE >354:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78C6 text6 CODE >355:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78CA text6 CODE >358:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78DC text6 CODE >359:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78E0 text6 CODE >362:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78F2 text6 CODE >363:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-78F6 text6 CODE >366:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7908 text6 CODE >367:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-790C text6 CODE >370:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-791E text6 CODE >371:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7922 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7934 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7942 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-794A text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7952 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-795A text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7962 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-796A text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7972 text6 CODE >372:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-797C text6 CODE >374:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7516 text5 CODE >155:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7516 text5 CODE >158:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7522 text5 CODE >161:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-752E text5 CODE >164:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-753A text5 CODE >167:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-754C text5 CODE >168:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-755E text5 CODE >171:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7582 text5 CODE >172:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7592 text5 CODE >173:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7594 text5 CODE >175:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-733A text4 CODE >28:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-733A text4 CODE >30:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-733C text4 CODE >31:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-733E text4 CODE >32:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-7342 text4 CODE >33:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-7346 text4 CODE >35:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-734A text4 CODE >36:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-734E text4 CODE >37:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-7350 text4 CODE >38:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-7352 text4 CODE >39:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
-7354 text3 CODE >14:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7354 text3 CODE >16:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7358 text3 CODE >17:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7364 text3 CODE >18:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-736A text3 CODE >19:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7370 text3 CODE >21:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7376 text3 CODE >22:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-737C text3 CODE >23:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7382 text3 CODE >24:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7326 text2 CODE >93:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7326 text2 CODE >95:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-732C text2 CODE >96:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-7338 text2 CODE >97:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
-797E text1 CODE >377:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-797E text1 CODE >378:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7982 text1 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7986 text1 CODE >381:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7998 text1 CODE >382:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79AA text1 CODE >383:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79BC text1 CODE >384:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79CE text1 CODE >385:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79D2 text1 CODE >387:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79E4 text1 CODE >388:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-79F6 text1 CODE >389:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A08 text1 CODE >390:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A1A text1 CODE >391:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A1E text1 CODE >393:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A30 text1 CODE >394:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A34 text1 CODE >396:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A46 text1 CODE >397:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A58 text1 CODE >398:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A6A text1 CODE >399:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A7C text1 CODE >400:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A80 text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A8C text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7A9A text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7AA2 text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7AAA text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7AB2 text1 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7ABC text1 CODE >403:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-777E text0 CODE >89:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-777E text0 CODE >92:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7782 text0 CODE >95:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7786 text0 CODE >96:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-778A text0 CODE >97:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-778E text0 CODE >98:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7792 text0 CODE >99:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7796 text0 CODE >105:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77A2 text0 CODE >108:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77AE text0 CODE >109:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77BA text0 CODE >110:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77C6 text0 CODE >111:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77D2 text0 CODE >112:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77DE text0 CODE >113:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77EA text0 CODE >114:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-77F6 text0 CODE >115:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7802 text0 CODE >116:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-780E text0 CODE >117:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-781A text0 CODE >121:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-781A text0 CODE >122:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-781A text0 CODE >123:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-782C text0 CODE >127:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-7838 text0 CODE >130:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
-73BA cinit CODE >2050:/tmp/xcClIxJCX/driver_tmp_1.s
-73BA cinit CODE >2052:/tmp/xcClIxJCX/driver_tmp_1.s
-73BA cinit CODE >2055:/tmp/xcClIxJCX/driver_tmp_1.s
-73BA cinit CODE >2098:/tmp/xcClIxJCX/driver_tmp_1.s
-73BC cinit CODE >2099:/tmp/xcClIxJCX/driver_tmp_1.s
-73BE cinit CODE >2100:/tmp/xcClIxJCX/driver_tmp_1.s
-73C0 cinit CODE >2101:/tmp/xcClIxJCX/driver_tmp_1.s
-73C2 cinit CODE >2102:/tmp/xcClIxJCX/driver_tmp_1.s
-73C4 cinit CODE >2103:/tmp/xcClIxJCX/driver_tmp_1.s
-73C6 cinit CODE >2104:/tmp/xcClIxJCX/driver_tmp_1.s
-73CA cinit CODE >2105:/tmp/xcClIxJCX/driver_tmp_1.s
-73CE cinit CODE >2106:/tmp/xcClIxJCX/driver_tmp_1.s
-73CE cinit CODE >2107:/tmp/xcClIxJCX/driver_tmp_1.s
-73D0 cinit CODE >2108:/tmp/xcClIxJCX/driver_tmp_1.s
-73D4 cinit CODE >2109:/tmp/xcClIxJCX/driver_tmp_1.s
-73D6 cinit CODE >2110:/tmp/xcClIxJCX/driver_tmp_1.s
-73D8 cinit CODE >2111:/tmp/xcClIxJCX/driver_tmp_1.s
-73DA cinit CODE >2115:/tmp/xcClIxJCX/driver_tmp_1.s
-73DE cinit CODE >2116:/tmp/xcClIxJCX/driver_tmp_1.s
-73E0 cinit CODE >2117:/tmp/xcClIxJCX/driver_tmp_1.s
-73E0 cinit CODE >2118:/tmp/xcClIxJCX/driver_tmp_1.s
-73E2 cinit CODE >2119:/tmp/xcClIxJCX/driver_tmp_1.s
-73E4 cinit CODE >2120:/tmp/xcClIxJCX/driver_tmp_1.s
-73E6 cinit CODE >2126:/tmp/xcClIxJCX/driver_tmp_1.s
-73E6 cinit CODE >2129:/tmp/xcClIxJCX/driver_tmp_1.s
-73E8 cinit CODE >2130:/tmp/xcClIxJCX/driver_tmp_1.s
-73EA cinit CODE >2131:/tmp/xcClIxJCX/driver_tmp_1.s
-73EC cinit CODE >2132:/tmp/xcClIxJCX/driver_tmp_1.s
+6C34 text33 CODE >14:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
+6C34 text33 CODE >17:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
+6C40 text33 CODE >18:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
+6C7C text33 CODE >19:/Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
+6B68 text32 CODE >478:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B68 text32 CODE >480:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B74 text32 CODE >482:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B76 text32 CODE >483:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B82 text32 CODE >484:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B84 text32 CODE >485:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6B90 text32 CODE >486:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6BAA text32 CODE >489:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7044 text31 CODE >143:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7044 text31 CODE >145:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7050 text31 CODE >146:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7060 text31 CODE >147:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7070 text31 CODE >148:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7080 text31 CODE >149:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7090 text31 CODE >150:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70A0 text31 CODE >151:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70B0 text31 CODE >152:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70C0 text31 CODE >153:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D0 text31 CODE >157:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D2 text31 CODE >158:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D4 text31 CODE >159:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D6 text31 CODE >160:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+76B8 text30 CODE >183:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+76B8 text30 CODE >185:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+76C0 text30 CODE >188:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+76F4 text30 CODE >189:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7704 text30 CODE >192:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+773A text30 CODE >193:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+775A text30 CODE >196:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7790 text30 CODE >197:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+77B0 text30 CODE >200:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+77B4 text30 CODE >203:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+77D6 text30 CODE >204:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+77EA text30 CODE >209:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+77FA text30 CODE >210:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+780A text30 CODE >211:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+780E text30 CODE >212:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+781E text30 CODE >213:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+782E text30 CODE >214:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7842 text30 CODE >219:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7852 text30 CODE >220:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7862 text30 CODE >221:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7866 text30 CODE >222:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+788A text30 CODE >223:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+789A text30 CODE >224:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+789E text30 CODE >225:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78AE text30 CODE >226:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78C2 text30 CODE >231:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78D2 text30 CODE >232:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78E2 text30 CODE >233:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78E6 text30 CODE >234:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+78F6 text30 CODE >235:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+790A text30 CODE >240:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+792E text30 CODE >241:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+793E text30 CODE >242:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+794E text30 CODE >243:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7952 text30 CODE >245:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7966 text30 CODE >251:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7976 text30 CODE >252:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+798A text30 CODE >258:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79AC text30 CODE >259:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79C0 text30 CODE >264:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79CE text30 CODE >265:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79D2 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79E4 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79F2 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+79FA text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A02 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A0A text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A12 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A1A text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A22 text30 CODE >266:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A2C text30 CODE >268:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A52 text30 CODE >269:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A6A text30 CODE >270:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A7A text30 CODE >272:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D8 text29 CODE >273:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70D8 text29 CODE >275:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70DC text29 CODE >281:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70DC text29 CODE >283:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70DE text29 CODE >284:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70E2 text29 CODE >291:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70E2 text29 CODE >296:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+70E4 text29 CODE >299:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7108 text29 CODE >300:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7118 text29 CODE >301:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+712E text29 CODE >320:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+712E text29 CODE >325:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7130 text29 CODE >326:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7134 text29 CODE >328:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7134 text29 CODE >333:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7136 text29 CODE >334:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+713A text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+714C text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+715A text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7162 text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+716A text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7172 text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+717A text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7182 text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+718A text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7192 text29 CODE >335:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+719C text29 CODE >336:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6C7E text28 CODE >26:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C80 text28 CODE >28:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C90 text28 CODE >29:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C92 text28 CODE >30:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C94 text28 CODE >31:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C96 text28 CODE >32:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6C98 text28 CODE >33:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CA4 text28 CODE >34:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CB6 text28 CODE >35:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CB8 text28 CODE >36:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CBA text28 CODE >37:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CBC text28 CODE >38:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CC8 text28 CODE >39:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CCA text27 CODE >42:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CCC text27 CODE >44:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CDC text27 CODE >45:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CDE text27 CODE >46:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CE0 text27 CODE >47:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CE2 text27 CODE >48:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CE4 text27 CODE >49:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6CF0 text27 CODE >50:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6D02 text27 CODE >51:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6D04 text27 CODE >52:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6D06 text27 CODE >53:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6D08 text27 CODE >54:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6D14 text27 CODE >55:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6E5E text26 CODE >57:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6E5E text26 CODE >59:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6E62 text26 CODE >61:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6E86 text26 CODE >62:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6E8A text26 CODE >59:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6EBA text26 CODE >64:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FB6 text25 CODE >66:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FB8 text25 CODE >68:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FB8 text25 CODE >69:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FC8 text25 CODE >71:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FD0 text25 CODE >72:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FD6 text25 CODE >74:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FE8 text25 CODE >76:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FF0 text25 CODE >77:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6FF6 text25 CODE >79:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7008 text25 CODE >81:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7010 text25 CODE >82:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7016 text25 CODE >84:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7028 text25 CODE >86:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7030 text25 CODE >87:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7036 text25 CODE >90:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+7042 text25 CODE >91:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+744C text24 CODE >337:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+744C text24 CODE >341:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7452 text24 CODE >343:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7468 text24 CODE >344:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7470 text24 CODE >346:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7474 text24 CODE >349:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7486 text24 CODE >350:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+748A text24 CODE >353:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+749C text24 CODE >354:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74A0 text24 CODE >357:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74B2 text24 CODE >358:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74B6 text24 CODE >361:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74C8 text24 CODE >362:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74CC text24 CODE >365:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74DE text24 CODE >366:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74E2 text24 CODE >369:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74F4 text24 CODE >370:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+74F8 text24 CODE >373:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+750A text24 CODE >374:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+750E text24 CODE >377:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7520 text24 CODE >378:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7524 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7536 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7544 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+754C text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7554 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+755C text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7564 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+756C text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7574 text24 CODE >379:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+757E text24 CODE >381:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F36 text23 CODE >162:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F36 text23 CODE >165:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F42 text23 CODE >168:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F4E text23 CODE >171:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F5A text23 CODE >174:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F6C text23 CODE >175:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6F7E text23 CODE >178:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6FA2 text23 CODE >179:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6FB2 text23 CODE >180:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6FB4 text23 CODE >182:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6A66 text22 CODE >28:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A66 text22 CODE >30:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A68 text22 CODE >31:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A6A text22 CODE >32:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A6E text22 CODE >33:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A72 text22 CODE >35:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A76 text22 CODE >36:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A7A text22 CODE >37:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A7C text22 CODE >38:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A7E text22 CODE >39:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AFE text21 CODE >14:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6AFE text21 CODE >16:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B02 text21 CODE >17:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B0E text21 CODE >18:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B14 text21 CODE >19:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B1A text21 CODE >21:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B20 text21 CODE >22:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B26 text21 CODE >23:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6B2C text21 CODE >24:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6A16 text20 CODE >93:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6A16 text20 CODE >95:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6A1C text20 CODE >96:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6A28 text20 CODE >97:/Users/welingtonsouza/MPLABXProjects/piee2.X/lcd_4b.c
+6A2A text19 CODE >110:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A2A text19 CODE >112:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A2C text19 CODE >113:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A2E text19 CODE >114:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A3C text19 CODE >115:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A3E text18 CODE >117:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A3E text18 CODE >119:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A40 text18 CODE >120:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A42 text18 CODE >121:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A50 text18 CODE >122:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A04 text17 CODE >42:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A04 text17 CODE >44:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A12 text17 CODE >45:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A14 text17 CODE >46:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B2E text16 CODE >11:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B30 text16 CODE >15:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B32 text16 CODE >16:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B40 text16 CODE >18:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B44 text16 CODE >20:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B54 text16 CODE >21:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B5C text16 CODE >23:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B60 text16 CODE >24:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B64 text16 CODE >25:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6B66 text16 CODE >26:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A80 text15 CODE >100:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A82 text15 CODE >102:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A86 text15 CODE >103:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A8A text15 CODE >104:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A98 text15 CODE >105:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A9E text15 CODE >107:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AA0 text15 CODE >108:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AA2 text14 CODE >78:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AA4 text14 CODE >80:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AA6 text14 CODE >81:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AB4 text14 CODE >82:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AB6 text14 CODE >83:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AC8 text14 CODE >85:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6ACE text14 CODE >86:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6ACE text14 CODE >90:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AD0 text13 CODE >67:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AD2 text13 CODE >69:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AD4 text13 CODE >70:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AE2 text13 CODE >71:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AE4 text13 CODE >72:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AF6 text13 CODE >74:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6AFC text13 CODE >76:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A52 text12 CODE >92:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A52 text12 CODE >94:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A54 text12 CODE >95:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A62 text12 CODE >96:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6A64 text12 CODE >98:/Users/welingtonsouza/MPLABXProjects/piee2.X/i2c.c
+6E04 text11 CODE >504:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E06 text11 CODE >506:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E0C text11 CODE >507:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E12 text11 CODE >508:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E18 text11 CODE >509:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E28 text11 CODE >510:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E38 text11 CODE >511:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E48 text11 CODE >512:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E58 text11 CODE >513:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6E5C text11 CODE >514:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+69F8 text10 CODE >7:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/putch.c
+69F8 text10 CODE >9:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/putch.c
+7264 text9 CODE >8:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+7264 text9 CODE >12:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+7288 text9 CODE >13:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+728E text9 CODE >14:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+7292 text9 CODE >15:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+72E6 text9 CODE >18:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+731A text9 CODE >20:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+732C text9 CODE >24:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
+6BAC text8 CODE >8:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BAC text8 CODE >13:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BB4 text8 CODE >14:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BB8 text8 CODE >15:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BCA text8 CODE >16:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BCE text8 CODE >14:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6BEE text8 CODE >19:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputs.c
+6EBC text7 CODE >152:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6EBC text7 CODE >164:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6EDE text7 CODE >165:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6EE6 text7 CODE >166:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6EEA text7 CODE >167:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6EFE text7 CODE >168:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6F02 text7 CODE >166:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6F20 text7 CODE >175:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6F34 text7 CODE >183:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+732E text6 CODE >955:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+732E text6 CODE >971:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7352 text6 CODE >972:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+735A text6 CODE >981:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7362 text6 CODE >982:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7366 text6 CODE >983:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+736A text6 CODE >988:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7370 text6 CODE >989:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7376 text6 CODE >991:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+73A6 text6 CODE >1000:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+73B6 text6 CODE >1001:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+73BC text6 CODE >1002:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+73C2 text6 CODE >1003:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+73E2 text6 CODE >983:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+742A text6 CODE >1023:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+744A text6 CODE >1024:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7580 text5 CODE >1048:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7580 text5 CODE >1062:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75A4 text5 CODE >1063:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75B2 text5 CODE >1065:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75C0 text5 CODE >1066:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75C4 text5 CODE >1143:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75D4 text5 CODE >1265:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+75F0 text5 CODE >1321:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7618 text5 CODE >1323:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7634 text5 CODE >1324:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7638 text5 CODE >1340:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7650 text5 CODE >1342:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7664 text5 CODE >1342:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+7672 text5 CODE >1342:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+767C text5 CODE >1535:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+768E text5 CODE >1540:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+76B6 text5 CODE >1543:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D62 text4 CODE >1546:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D62 text4 CODE >1551:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D6A text4 CODE >1555:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D6E text4 CODE >1559:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D8A text4 CODE >1555:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6DA6 text4 CODE >1564:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6DAE text4 CODE >1569:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+6D16 text3 CODE >9:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D16 text3 CODE >15:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D1E text3 CODE >16:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D26 text3 CODE >17:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D2E text3 CODE >18:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D36 text3 CODE >19:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D52 text3 CODE >20:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+6D60 text3 CODE >23:/Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
+7A7C text2 CODE >384:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A7C text2 CODE >385:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A80 text2 CODE >386:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A84 text2 CODE >388:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7A96 text2 CODE >389:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7AA8 text2 CODE >390:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7ABA text2 CODE >391:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7ACC text2 CODE >392:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7AD0 text2 CODE >394:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7AE2 text2 CODE >395:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7AF4 text2 CODE >396:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B06 text2 CODE >397:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B18 text2 CODE >398:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B1C text2 CODE >400:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B2E text2 CODE >401:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B3C text2 CODE >403:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B4A text2 CODE >404:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B5C text2 CODE >405:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B60 text2 CODE >407:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B72 text2 CODE >410:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B7A text2 CODE >411:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7B96 text2 CODE >412:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BB2 text2 CODE >413:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BCE text2 CODE >414:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BE0 text2 CODE >415:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BEC text2 CODE >416:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BF8 text2 CODE >417:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7BFC text2 CODE >420:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C04 text2 CODE >421:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C20 text2 CODE >422:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C3C text2 CODE >423:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C58 text2 CODE >424:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C6E text2 CODE >429:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C74 text2 CODE >430:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C78 text2 CODE >431:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7C94 text2 CODE >432:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CB0 text2 CODE >433:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CCC text2 CODE >434:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CDE text2 CODE >435:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CEA text2 CODE >436:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CF6 text2 CODE >439:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7CFA text2 CODE >442:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D06 text2 CODE >443:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D0A text2 CODE >445:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D16 text2 CODE >446:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D1A text2 CODE >448:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D26 text2 CODE >449:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D2A text2 CODE >451:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D36 text2 CODE >452:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D3A text2 CODE >454:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D46 text2 CODE >455:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D4A text2 CODE >457:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D56 text2 CODE >458:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D5A text2 CODE >460:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D66 text2 CODE >461:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D6A text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D82 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D90 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7D98 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DA0 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DA8 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DB0 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DB8 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DC0 text2 CODE >465:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DCA text2 CODE >468:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DDC text2 CODE >469:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7DEE text2 CODE >470:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E00 text2 CODE >471:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E12 text2 CODE >472:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E16 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E22 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E30 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E38 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E40 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E48 text2 CODE >473:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7E52 text2 CODE >475:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6BF0 text1 CODE >493:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6BF2 text1 CODE >495:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6BF8 text1 CODE >496:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6BFE text1 CODE >497:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6C04 text1 CODE >498:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6C14 text1 CODE >499:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6C24 text1 CODE >500:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6C32 text1 CODE >502:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+719E text0 CODE >95:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+719E text0 CODE >98:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71A2 text0 CODE >101:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71A6 text0 CODE >102:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71AA text0 CODE >103:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71AE text0 CODE >104:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71B2 text0 CODE >105:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71B6 text0 CODE >111:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71C2 text0 CODE >114:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71CE text0 CODE >115:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71DA text0 CODE >116:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71E6 text0 CODE >117:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71F2 text0 CODE >118:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+71FE text0 CODE >119:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+720A text0 CODE >120:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7216 text0 CODE >121:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7222 text0 CODE >122:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+722E text0 CODE >123:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+723A text0 CODE >127:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7240 text0 CODE >128:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7244 text0 CODE >134:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+7250 text0 CODE >137:/Users/welingtonsouza/MPLABXProjects/piee2.X/main_piee2.c
+6DB0 cinit CODE >2178:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB0 cinit CODE >2180:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB0 cinit CODE >2183:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB0 cinit CODE >2270:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB2 cinit CODE >2271:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB4 cinit CODE >2272:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB6 cinit CODE >2273:/tmp/xcOgpRc04/driver_tmp_1.s
+6DB8 cinit CODE >2274:/tmp/xcOgpRc04/driver_tmp_1.s
+6DBA cinit CODE >2275:/tmp/xcOgpRc04/driver_tmp_1.s
+6DBC cinit CODE >2276:/tmp/xcOgpRc04/driver_tmp_1.s
+6DC0 cinit CODE >2277:/tmp/xcOgpRc04/driver_tmp_1.s
+6DC4 cinit CODE >2278:/tmp/xcOgpRc04/driver_tmp_1.s
+6DC4 cinit CODE >2279:/tmp/xcOgpRc04/driver_tmp_1.s
+6DC6 cinit CODE >2280:/tmp/xcOgpRc04/driver_tmp_1.s
+6DCA cinit CODE >2281:/tmp/xcOgpRc04/driver_tmp_1.s
+6DCC cinit CODE >2282:/tmp/xcOgpRc04/driver_tmp_1.s
+6DCE cinit CODE >2283:/tmp/xcOgpRc04/driver_tmp_1.s
+6DD0 cinit CODE >2287:/tmp/xcOgpRc04/driver_tmp_1.s
+6DD2 cinit CODE >2288:/tmp/xcOgpRc04/driver_tmp_1.s
+6DD4 cinit CODE >2289:/tmp/xcOgpRc04/driver_tmp_1.s
+6DD6 cinit CODE >2290:/tmp/xcOgpRc04/driver_tmp_1.s
+6DD8 cinit CODE >2291:/tmp/xcOgpRc04/driver_tmp_1.s
+6DDA cinit CODE >2292:/tmp/xcOgpRc04/driver_tmp_1.s
+6DDC cinit CODE >2293:/tmp/xcOgpRc04/driver_tmp_1.s
+6DDE cinit CODE >2294:/tmp/xcOgpRc04/driver_tmp_1.s
+6DE2 cinit CODE >2295:/tmp/xcOgpRc04/driver_tmp_1.s
+6DE4 cinit CODE >2296:/tmp/xcOgpRc04/driver_tmp_1.s
+6DE8 cinit CODE >2300:/tmp/xcOgpRc04/driver_tmp_1.s
+6DEC cinit CODE >2301:/tmp/xcOgpRc04/driver_tmp_1.s
+6DEE cinit CODE >2302:/tmp/xcOgpRc04/driver_tmp_1.s
+6DEE cinit CODE >2303:/tmp/xcOgpRc04/driver_tmp_1.s
+6DF0 cinit CODE >2304:/tmp/xcOgpRc04/driver_tmp_1.s
+6DF2 cinit CODE >2305:/tmp/xcOgpRc04/driver_tmp_1.s
+6DF4 cinit CODE >2308:/tmp/xcOgpRc04/driver_tmp_1.s
+6DF6 cinit CODE >2309:/tmp/xcOgpRc04/driver_tmp_1.s
+6DF8 cinit CODE >2310:/tmp/xcOgpRc04/driver_tmp_1.s
+6DFA cinit CODE >2316:/tmp/xcOgpRc04/driver_tmp_1.s
+6DFA cinit CODE >2319:/tmp/xcOgpRc04/driver_tmp_1.s
+6DFC cinit CODE >2320:/tmp/xcOgpRc04/driver_tmp_1.s
+6DFE cinit CODE >2321:/tmp/xcOgpRc04/driver_tmp_1.s
+6E00 cinit CODE >2322:/tmp/xcOgpRc04/driver_tmp_1.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -386,84 +616,126 @@ $dist/default/production/piee2.X.production.o
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Lmediumconst 7E82 0 MEDIUMCONST 0 mediumconst dist/default/production/piee2.X.production.o
+__LdataBANK0 0 0 ABS 0 dataBANK0 dist/default/production/piee2.X.production.o
+__Lmediumconst 7E54 0 MEDIUMCONST 0 mediumconst dist/default/production/piee2.X.production.o
 __Hspace_0 8000 0 ABS 0 - dist/default/production/piee2.X.production.o
-__Hspace_1 43 0 ABS 0 - dist/default/production/piee2.X.production.o
+__Hspace_1 E2 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Hspace_4 60000E 0 ABS 0 - dist/default/production/piee2.X.production.o
+__HidataBANK0 0 0 ABS 0 idataBANK0 dist/default/production/piee2.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/piee2.X.production.o
-__mediumconst 7E82 0 MEDIUMCONST 0 mediumconst /tmp/xcClIxJCX/driver_tmp_9.o
+__mediumconst 7E54 0 MEDIUMCONST 0 mediumconst /tmp/xcOgpRc04/driver_tmp_14.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/piee2.X.production.o
 FSM_Update@fsm 14 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __L__absolute__ 0 0 ABS 0 __absolute__ dist/default/production/piee2.X.production.o
 FSM_UpdateDisplay@fsm 10 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__end_of_I2C_Ready 6A16 0 CODE 0 text17 dist/default/production/piee2.X.production.o
+__end_of_I2C_Start 6AFE 0 CODE 0 text13 dist/default/production/piee2.X.production.o
+__end_of_I2C_Write 6AA2 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+?_vfprintf 3A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production/piee2.X.production.o
-_Beep 73F0 0 CODE 0 text14 dist/default/production/piee2.X.production.o
-_Date 25 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+_Beep 6B68 0 CODE 0 text32 dist/default/production/piee2.X.production.o
+_Date 6A 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
 _LATB F8A 0 ABS 0 - dist/default/production/piee2.X.production.o
 _RCEN 7E2B 0 ABS 0 - dist/default/production/piee2.X.production.o
 _RSEN 7E29 0 ABS 0 - dist/default/production/piee2.X.production.o
-_Year 21 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcClIxJCX/driver_tmp_9.o
-_hour 29 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
-_main 777E 0 CODE 0 text0 dist/default/production/piee2.X.production.o
-start 0 0 CODE 0 init /tmp/xcClIxJCX/driver_tmp_9.o
+_Year 66 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+___sp 0 0 STACK 2 stack /tmp/xcOgpRc04/driver_tmp_14.o
+_date B3 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_days DB 0 BANK0 1 dataBANK0 dist/default/production/piee2.X.production.o
+_dbuf 72 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_hour 5A 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+_main 719E 0 CODE 0 text0 dist/default/production/piee2.X.production.o
+_mins C7 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_prec 62 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_secs D1 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_xtoa 732E 0 CODE 0 text6 dist/default/production/piee2.X.production.o
+_year 9F 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+pad@i 18 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+pad@p 15 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+pad@w 1A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+start 0 0 CODE 0 init /tmp/xcOgpRc04/driver_tmp_14.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/piee2.X.production.o
-_MSdelay 7434 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+pad@fp 11 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_MSdelay 6C34 0 CODE 0 text33 dist/default/production/piee2.X.production.o
+__LidataBANK0 0 0 ABS 0 idataBANK0 dist/default/production/piee2.X.production.o
 LCD_Char@dat 8 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-_LCD_Char 74CA 0 CODE 0 text9 dist/default/production/piee2.X.production.o
-_LCD_Init 7354 0 CODE 0 text3 dist/default/production/piee2.X.production.o
+_LCD_Char 6CCA 0 CODE 0 text27 dist/default/production/piee2.X.production.o
+_LCD_Init 6AFE 0 CODE 0 text21 dist/default/production/piee2.X.production.o
+_I2C_Ready 6A04 0 CODE 0 text17 dist/default/production/piee2.X.production.o
+_I2C_Start 6AD0 0 CODE 0 text13 dist/default/production/piee2.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production/piee2.X.production.o
+_I2C_Write 6A80 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+__end_of_vfpfcnvrt 76B8 0 CODE 0 text5 dist/default/production/piee2.X.production.o
 __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/piee2.X.production.o
-__accesstop 60 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
-__end_of_LCD_Char 7516 0 CODE 0 text9 dist/default/production/piee2.X.production.o
-__end_of_LCD_Init 7384 0 CODE 0 text3 dist/default/production/piee2.X.production.o
-intlevel0 0 0 CODE 0 text /tmp/xcClIxJCX/driver_tmp_9.o
-intlevel1 0 0 CODE 0 text /tmp/xcClIxJCX/driver_tmp_9.o
-intlevel2 0 0 CODE 0 text /tmp/xcClIxJCX/driver_tmp_9.o
-intlevel3 0 0 CODE 0 text /tmp/xcClIxJCX/driver_tmp_9.o
-__end_of_FSM_CheckTransitions 7E82 0 CODE 0 text12 dist/default/production/piee2.X.production.o
+__accesstop 60 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
+__end_of_LCD_Char 6D16 0 CODE 0 text27 dist/default/production/piee2.X.production.o
+__end_of_LCD_Init 6B2E 0 CODE 0 text21 dist/default/production/piee2.X.production.o
+intlevel0 0 0 CODE 0 text /tmp/xcOgpRc04/driver_tmp_14.o
+intlevel1 0 0 CODE 0 text /tmp/xcOgpRc04/driver_tmp_14.o
+intlevel2 0 0 CODE 0 text /tmp/xcOgpRc04/driver_tmp_14.o
+intlevel3 0 0 CODE 0 text /tmp/xcOgpRc04/driver_tmp_14.o
+__end_of_FSM_CheckTransitions 7A7C 0 CODE 0 text30 dist/default/production/piee2.X.production.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/piee2.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/piee2.X.production.o
+xtoa@c 2B 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+xtoa@d 1E 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+xtoa@i 29 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+xtoa@p 27 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+xtoa@w 23 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production/piee2.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production/piee2.X.production.o
-__pidataCOMRAM 731F 0 CODE 0 idataCOMRAM dist/default/production/piee2.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xcClIxJCX/driver_tmp_9.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xcClIxJCX/driver_tmp_9.o
-_LCD_String 7384 0 CODE 0 text8 dist/default/production/piee2.X.production.o
+_vfpfcnvrt 7580 0 CODE 0 text5 dist/default/production/piee2.X.production.o
+__pidataCOMRAM 69FB 0 CODE 0 idataCOMRAM dist/default/production/piee2.X.production.o
+xtoa@fp 1C 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xcOgpRc04/driver_tmp_14.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xcOgpRc04/driver_tmp_14.o
+_LCD_String 6E5E 0 CODE 0 text26 dist/default/production/piee2.X.production.o
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/piee2.X.production.o
-_I2C_Init 733A 0 CODE 0 text4 dist/default/production/piee2.X.production.o
+_I2C_Init 6A66 0 CODE 0 text22 dist/default/production/piee2.X.production.o
+_I2C_Nack 6A3E 0 CODE 0 text18 dist/default/production/piee2.X.production.o
+_I2C_Read 6B2E 0 CODE 0 text16 dist/default/production/piee2.X.production.o
+_I2C_Stop 6A52 0 CODE 0 text12 dist/default/production/piee2.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production/piee2.X.production.o
-Message@msg 10 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__end_of_I2C_Ack 6A3E 0 CODE 0 text19 dist/default/production/piee2.X.production.o
+Message@msg 56 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/piee2.X.production.o
+_RTC_Read_Clock 6BF0 0 CODE 0 text1 dist/default/production/piee2.X.production.o
 __Hmediumconst 8000 0 MEDIUMCONST 0 mediumconst dist/default/production/piee2.X.production.o
-__end_of_I2C_Init 7354 0 CODE 0 text4 dist/default/production/piee2.X.production.o
-_system_fsm 2F 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+__end_of_I2C_Init 6A80 0 CODE 0 text22 dist/default/production/piee2.X.production.o
+__end_of_I2C_Nack 6A52 0 CODE 0 text18 dist/default/production/piee2.X.production.o
+__end_of_I2C_Read 6B68 0 CODE 0 text16 dist/default/production/piee2.X.production.o
+__end_of_I2C_Stop 6A66 0 CODE 0 text12 dist/default/production/piee2.X.production.o
+_system_fsm 92 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
 __Hintcodelo 0 0 CODE 0 intcodelo dist/default/production/piee2.X.production.o
 FSM_CheckTransitions@fsm 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-FSM_UpdateDisplay@display_counter 1F 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
-_Message 797E 0 CODE 0 text1 dist/default/production/piee2.X.production.o
+FSM_UpdateDisplay@display_counter 64 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_Message 7A7C 0 CODE 0 text2 dist/default/production/piee2.X.production.o
 FSM_CheckTransitions@current_interlock A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 FSM_ExecuteState@fsm 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 FSM_CheckTransitions@liga_pressed 5 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __LidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/piee2.X.production.o
 __Lintcodelo 0 0 CODE 0 intcodelo dist/default/production/piee2.X.production.o
-start_initialization 73BA 0 CODE 0 cinit dist/default/production/piee2.X.production.o
+start_initialization 6DB0 0 CODE 0 cinit dist/default/production/piee2.X.production.o
 _OSCCON FD3 0 ABS 0 - dist/default/production/piee2.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/piee2.X.production.o
 _ACKSTAT 7E2E 0 ABS 0 - dist/default/production/piee2.X.production.o
-__end_of_LCD_String 73BA 0 CODE 0 text8 dist/default/production/piee2.X.production.o
+__end_of_LCD_String 6EBC 0 CODE 0 text26 dist/default/production/piee2.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production/piee2.X.production.o
+__end_of_RTC_Read_Clock 6C34 0 CODE 0 text1 dist/default/production/piee2.X.production.o
 _SSPADD FC8 0 ABS 0 - dist/default/production/piee2.X.production.o
 _SSPBUF FC9 0 ABS 0 - dist/default/production/piee2.X.production.o
-__end_of_LCD_Command 74CA 0 CODE 0 text10 dist/default/production/piee2.X.production.o
+__end_of_LCD_Command 6CCA 0 CODE 0 text28 dist/default/production/piee2.X.production.o
 _TRISB0 7C98 0 ABS 0 - dist/default/production/piee2.X.production.o
 _TRISB1 7C99 0 ABS 0 - dist/default/production/piee2.X.production.o
 LCD_String_xy@msg C 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 LCD_String_xy@pos B 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 LCD_String_xy@row E 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
-__end_of_LCD_Clear 733A 0 CODE 0 text2 dist/default/production/piee2.X.production.o
+isa$xinst 0 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
+__end_of_RTC_Read_Calendar 6E5E 0 CODE 0 text11 dist/default/production/piee2.X.production.o
+fputc@fp 3 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+fputs@fp C 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__end_of_LCD_Clear 6A2A 0 CODE 0 text20 dist/default/production/piee2.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production/piee2.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production/piee2.X.production.o
 __Hbank2 0 0 ABS 0 bank2 dist/default/production/piee2.X.production.o
@@ -493,8 +765,9 @@ __Htext9 0 0 ABS 0 text9 dist/default/production/piee2.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/piee2.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production/piee2.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production/piee2.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst /tmp/xcClIxJCX/driver_tmp_9.o
-_LCD_String_xy 7596 0 CODE 0 text7 dist/default/production/piee2.X.production.o
+__smallconst 0 0 SMALLCONST 0 smallconst /tmp/xcOgpRc04/driver_tmp_14.o
+_LCD_String_xy 6FB6 0 CODE 0 text25 dist/default/production/piee2.X.production.o
+__end_of_sprintf 6D62 0 CODE 0 text3 dist/default/production/piee2.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production/piee2.X.production.o
 __Hconfig 30000E 0 CONFIG 4 config dist/default/production/piee2.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production/piee2.X.production.o
@@ -525,10 +798,10 @@ __Ltext8 0 0 ABS 0 text8 dist/default/production/piee2.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production/piee2.X.production.o
 MSdelay@val 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production/piee2.X.production.o
-_LCD_Clear 7326 0 CODE 0 text2 dist/default/production/piee2.X.production.o
+_LCD_Clear 6A16 0 CODE 0 text20 dist/default/production/piee2.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production/piee2.X.production.o
 _PORTCbits F82 0 ABS 0 - dist/default/production/piee2.X.production.o
-_FSM_Init 7624 0 CODE 0 text13 dist/default/production/piee2.X.production.o
+_FSM_Init 7044 0 CODE 0 text31 dist/default/production/piee2.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production/piee2.X.production.o
 __Hdata 0 0 ABS 0 data dist/default/production/piee2.X.production.o
 __Hheap 0 0 HEAP 7 heap dist/default/production/piee2.X.production.o
@@ -548,137 +821,233 @@ __Ltext 0 0 ABS 0 text dist/default/production/piee2.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production/piee2.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production/piee2.X.production.o
-_Day 27 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+_Day 6C 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
 _PEN 7E2A 0 ABS 0 - dist/default/production/piee2.X.production.o
 __S0 8000 0 ABS 0 - dist/default/production/piee2.X.production.o
-__S1 43 0 ABS 0 - dist/default/production/piee2.X.production.o
+__S1 E2 0 ABS 0 - dist/default/production/piee2.X.production.o
 __S4 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __S5 0 0 ABS 0 - dist/default/production/piee2.X.production.o
-_min 2B 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
-_sec 2D 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
-__end_of_FSM_Init 76B8 0 CODE 0 text13 dist/default/production/piee2.X.production.o
-_FSM_CheckTransitions$276 6 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-_FSM_CheckTransitions$278 7 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-_FSM_CheckTransitions$280 8 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_min 6E 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_pad 6EBC 0 CODE 0 text7 dist/default/production/piee2.X.production.o
+_sec 70 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+__end_of_FSM_Init 70D8 0 CODE 0 text31 dist/default/production/piee2.X.production.o
+I2C_Start@slave_write_address 2 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+RTC_Read_Calendar@read_calendar_address 4 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_FSM_CheckTransitions$296 6 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_FSM_CheckTransitions$298 7 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_FSM_CheckTransitions$300 8 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __HidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/piee2.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production/piee2.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production/piee2.X.production.o
+sprintf@fmt 44 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__end_of_pad 6F36 0 CODE 0 text7 dist/default/production/piee2.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production/piee2.X.production.o
-_FSM_CheckTransitions 7ABE 0 CODE 0 text12 dist/default/production/piee2.X.production.o
+_FSM_CheckTransitions 76B8 0 CODE 0 text30 dist/default/production/piee2.X.production.o
 __Hramtop 800 0 RAM 0 ramtop dist/default/production/piee2.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production/piee2.X.production.o
-__end_of_FSM_UpdateDisplay 797E 0 CODE 0 text6 dist/default/production/piee2.X.production.o
+_RTC_Read_Calendar 6E04 0 CODE 0 text11 dist/default/production/piee2.X.production.o
+__pdataBANK0 DB 0 BANK0 1 dataBANK0 dist/default/production/piee2.X.production.o
+__end_of_FSM_UpdateDisplay 7580 0 CODE 0 text24 dist/default/production/piee2.X.production.o
 __activetblptr 2 0 ABS 0 - dist/default/production/piee2.X.production.o
+I2C_Read@buffer 2 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production/piee2.X.production.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production/piee2.X.production.o
+_I2C_Ack 6A2A 0 CODE 0 text19 dist/default/production/piee2.X.production.o
 __Htext10 0 0 ABS 0 text10 dist/default/production/piee2.X.production.o
 __Htext11 0 0 ABS 0 text11 dist/default/production/piee2.X.production.o
 __Htext12 0 0 ABS 0 text12 dist/default/production/piee2.X.production.o
 __Htext13 0 0 ABS 0 text13 dist/default/production/piee2.X.production.o
 __Htext14 0 0 ABS 0 text14 dist/default/production/piee2.X.production.o
 __Htext15 0 0 ABS 0 text15 dist/default/production/piee2.X.production.o
+__Htext16 0 0 ABS 0 text16 dist/default/production/piee2.X.production.o
+__Htext17 0 0 ABS 0 text17 dist/default/production/piee2.X.production.o
+__Htext18 0 0 ABS 0 text18 dist/default/production/piee2.X.production.o
+__Htext19 0 0 ABS 0 text19 dist/default/production/piee2.X.production.o
+__Htext20 0 0 ABS 0 text20 dist/default/production/piee2.X.production.o
+__Htext21 0 0 ABS 0 text21 dist/default/production/piee2.X.production.o
+__Htext22 0 0 ABS 0 text22 dist/default/production/piee2.X.production.o
+__Htext23 0 0 ABS 0 text23 dist/default/production/piee2.X.production.o
+__Htext24 0 0 ABS 0 text24 dist/default/production/piee2.X.production.o
+__Htext25 0 0 ABS 0 text25 dist/default/production/piee2.X.production.o
+__Htext26 0 0 ABS 0 text26 dist/default/production/piee2.X.production.o
+__Htext27 0 0 ABS 0 text27 dist/default/production/piee2.X.production.o
+__Htext28 0 0 ABS 0 text28 dist/default/production/piee2.X.production.o
+__Htext29 0 0 ABS 0 text29 dist/default/production/piee2.X.production.o
+__Htext30 0 0 ABS 0 text30 dist/default/production/piee2.X.production.o
+__Htext31 0 0 ABS 0 text31 dist/default/production/piee2.X.production.o
+__Htext32 0 0 ABS 0 text32 dist/default/production/piee2.X.production.o
+__Htext33 0 0 ABS 0 text33 dist/default/production/piee2.X.production.o
+vfpfcnvrt@fmt 2E 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 MSdelay@i 3 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 MSdelay@j 5 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-__ptext10 747E 0 CODE 0 text10 dist/default/production/piee2.X.production.o
-__ptext11 76B8 0 CODE 0 text11 dist/default/production/piee2.X.production.o
-__ptext12 7ABE 0 CODE 0 text12 dist/default/production/piee2.X.production.o
-__ptext13 7624 0 CODE 0 text13 dist/default/production/piee2.X.production.o
-__ptext14 73F0 0 CODE 0 text14 dist/default/production/piee2.X.production.o
-__ptext15 7434 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+pad@buf 13 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__ptext10 69F8 0 CODE 0 text10 dist/default/production/piee2.X.production.o
+__ptext11 6E04 0 CODE 0 text11 dist/default/production/piee2.X.production.o
+__ptext12 6A52 0 CODE 0 text12 dist/default/production/piee2.X.production.o
+__ptext13 6AD0 0 CODE 0 text13 dist/default/production/piee2.X.production.o
+__ptext14 6AA2 0 CODE 0 text14 dist/default/production/piee2.X.production.o
+__ptext15 6A80 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+__ptext16 6B2E 0 CODE 0 text16 dist/default/production/piee2.X.production.o
+__ptext17 6A04 0 CODE 0 text17 dist/default/production/piee2.X.production.o
+__ptext18 6A3E 0 CODE 0 text18 dist/default/production/piee2.X.production.o
+__ptext19 6A2A 0 CODE 0 text19 dist/default/production/piee2.X.production.o
+__ptext20 6A16 0 CODE 0 text20 dist/default/production/piee2.X.production.o
+__ptext21 6AFE 0 CODE 0 text21 dist/default/production/piee2.X.production.o
+__ptext22 6A66 0 CODE 0 text22 dist/default/production/piee2.X.production.o
+__ptext23 6F36 0 CODE 0 text23 dist/default/production/piee2.X.production.o
+__ptext24 744C 0 CODE 0 text24 dist/default/production/piee2.X.production.o
+__ptext25 6FB6 0 CODE 0 text25 dist/default/production/piee2.X.production.o
+__ptext26 6E5E 0 CODE 0 text26 dist/default/production/piee2.X.production.o
+__ptext27 6CCA 0 CODE 0 text27 dist/default/production/piee2.X.production.o
+__ptext28 6C7E 0 CODE 0 text28 dist/default/production/piee2.X.production.o
+__ptext29 70D8 0 CODE 0 text29 dist/default/production/piee2.X.production.o
+__ptext30 76B8 0 CODE 0 text30 dist/default/production/piee2.X.production.o
+__ptext31 7044 0 CODE 0 text31 dist/default/production/piee2.X.production.o
+__ptext32 6B68 0 CODE 0 text32 dist/default/production/piee2.X.production.o
+__ptext33 6C34 0 CODE 0 text33 dist/default/production/piee2.X.production.o
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production/piee2.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production/piee2.X.production.o
 __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production/piee2.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production/piee2.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production/piee2.X.production.o
+_xtoa$1139 25 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+I2C_Read@flag 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 LCD_String_xy@location F 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-main@F3611 3C 0 COMRAM 1 dataCOMRAM dist/default/production/piee2.X.production.o
-main@days 18 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production/piee2.X.production.o
 Beep@i 9 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/piee2.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
-_FSM_ExecuteState 76B8 0 CODE 0 text11 dist/default/production/piee2.X.production.o
-stackhi 0 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
-stacklo 0 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
+isa$std 1 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
+_FSM_ExecuteState 70D8 0 CODE 0 text29 dist/default/production/piee2.X.production.o
+stackhi 0 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
+stacklo 0 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
 __Lintcode 0 0 CODE 0 intcode dist/default/production/piee2.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production/piee2.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production/piee2.X.production.o
-__end_of_LCD_String_xy 7624 0 CODE 0 text7 dist/default/production/piee2.X.production.o
+__end_of_LCD_String_xy 7044 0 CODE 0 text25 dist/default/production/piee2.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production/piee2.X.production.o
-__pbssCOMRAM 1F 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+__pbssCOMRAM 5A 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
 Beep@val 7 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-_FSM_Update 7516 0 CODE 0 text5 dist/default/production/piee2.X.production.o
+I2C_Write@data 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_FSM_Update 6F36 0 CODE 0 text23 dist/default/production/piee2.X.production.o
+vfpfcnvrt@convarg 34 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/piee2.X.production.o
-end_of_initialization 73E6 0 CODE 0 cinit dist/default/production/piee2.X.production.o
-__end_of_MSdelay 747E 0 CODE 0 text15 dist/default/production/piee2.X.production.o
+end_of_initialization 6DFA 0 CODE 0 cinit dist/default/production/piee2.X.production.o
+__end_of_MSdelay 6C7E 0 CODE 0 text33 dist/default/production/piee2.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production/piee2.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production/piee2.X.production.o
+fputc@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+fputs@c E 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+fputs@i F 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+fputs@s A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+vfprintf@fmt 3C 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hreset_vec 0 0 CODE 0 reset_vec dist/default/production/piee2.X.production.o
-_FSM_UpdateDisplay 784C 0 CODE 0 text6 dist/default/production/piee2.X.production.o
+_FSM_UpdateDisplay 744C 0 CODE 0 text24 dist/default/production/piee2.X.production.o
+__HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production/piee2.X.production.o
 __Lramtop 800 0 RAM 0 ramtop dist/default/production/piee2.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production/piee2.X.production.o
-__pcinit 73BA 0 CODE 0 cinit dist/default/production/piee2.X.production.o
+__pcinit 6DB0 0 CODE 0 cinit dist/default/production/piee2.X.production.o
 _SSPCON2bits FC5 0 ABS 0 - dist/default/production/piee2.X.production.o
-__ptext0 777E 0 CODE 0 text0 dist/default/production/piee2.X.production.o
-__ptext1 797E 0 CODE 0 text1 dist/default/production/piee2.X.production.o
-__ptext2 7326 0 CODE 0 text2 dist/default/production/piee2.X.production.o
-__ptext3 7354 0 CODE 0 text3 dist/default/production/piee2.X.production.o
-__ptext4 733A 0 CODE 0 text4 dist/default/production/piee2.X.production.o
-__ptext5 7516 0 CODE 0 text5 dist/default/production/piee2.X.production.o
-__ptext6 784C 0 CODE 0 text6 dist/default/production/piee2.X.production.o
-__ptext7 7596 0 CODE 0 text7 dist/default/production/piee2.X.production.o
-__ptext8 7384 0 CODE 0 text8 dist/default/production/piee2.X.production.o
-__ptext9 74CA 0 CODE 0 text9 dist/default/production/piee2.X.production.o
+vfpfcnvrt@ap 30 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+vfpfcnvrt@cp 38 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+vfpfcnvrt@fp 2C 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__ptext0 719E 0 CODE 0 text0 dist/default/production/piee2.X.production.o
+__ptext1 6BF0 0 CODE 0 text1 dist/default/production/piee2.X.production.o
+__ptext2 7A7C 0 CODE 0 text2 dist/default/production/piee2.X.production.o
+__ptext3 6D16 0 CODE 0 text3 dist/default/production/piee2.X.production.o
+__ptext4 6D62 0 CODE 0 text4 dist/default/production/piee2.X.production.o
+__ptext5 7580 0 CODE 0 text5 dist/default/production/piee2.X.production.o
+__ptext6 732E 0 CODE 0 text6 dist/default/production/piee2.X.production.o
+__ptext7 6EBC 0 CODE 0 text7 dist/default/production/piee2.X.production.o
+__ptext8 6BAC 0 CODE 0 text8 dist/default/production/piee2.X.production.o
+__ptext9 7264 0 CODE 0 text9 dist/default/production/piee2.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/piee2.X.production.o
+vfprintf@ap 3E 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+vfprintf@fp 3A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+vfprintf@cfmt 40 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Ltext10 0 0 ABS 0 text10 dist/default/production/piee2.X.production.o
 __Ltext11 0 0 ABS 0 text11 dist/default/production/piee2.X.production.o
 __Ltext12 0 0 ABS 0 text12 dist/default/production/piee2.X.production.o
 __Ltext13 0 0 ABS 0 text13 dist/default/production/piee2.X.production.o
 __Ltext14 0 0 ABS 0 text14 dist/default/production/piee2.X.production.o
 __Ltext15 0 0 ABS 0 text15 dist/default/production/piee2.X.production.o
-__ramtop 800 0 RAM 0 ramtop /tmp/xcClIxJCX/driver_tmp_9.o
+__Ltext16 0 0 ABS 0 text16 dist/default/production/piee2.X.production.o
+__Ltext17 0 0 ABS 0 text17 dist/default/production/piee2.X.production.o
+__Ltext18 0 0 ABS 0 text18 dist/default/production/piee2.X.production.o
+__Ltext19 0 0 ABS 0 text19 dist/default/production/piee2.X.production.o
+__Ltext20 0 0 ABS 0 text20 dist/default/production/piee2.X.production.o
+__Ltext21 0 0 ABS 0 text21 dist/default/production/piee2.X.production.o
+__Ltext22 0 0 ABS 0 text22 dist/default/production/piee2.X.production.o
+__Ltext23 0 0 ABS 0 text23 dist/default/production/piee2.X.production.o
+__Ltext24 0 0 ABS 0 text24 dist/default/production/piee2.X.production.o
+__Ltext25 0 0 ABS 0 text25 dist/default/production/piee2.X.production.o
+__Ltext26 0 0 ABS 0 text26 dist/default/production/piee2.X.production.o
+__Ltext27 0 0 ABS 0 text27 dist/default/production/piee2.X.production.o
+__Ltext28 0 0 ABS 0 text28 dist/default/production/piee2.X.production.o
+__Ltext29 0 0 ABS 0 text29 dist/default/production/piee2.X.production.o
+__Ltext30 0 0 ABS 0 text30 dist/default/production/piee2.X.production.o
+__Ltext31 0 0 ABS 0 text31 dist/default/production/piee2.X.production.o
+__Ltext32 0 0 ABS 0 text32 dist/default/production/piee2.X.production.o
+__Ltext33 0 0 ABS 0 text33 dist/default/production/piee2.X.production.o
+__ramtop 800 0 RAM 0 ramtop /tmp/xcOgpRc04/driver_tmp_14.o
+_sprintf 6D16 0 CODE 0 text3 dist/default/production/piee2.X.production.o
+_vfprintf 6D62 0 CODE 0 text4 dist/default/production/piee2.X.production.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production/piee2.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/piee2.X.production.o
+sprintf@ap 48 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __H__absolute__ 0 0 ABS 0 __absolute__ dist/default/production/piee2.X.production.o
 FSM_CheckTransitions@desliga_pressed 9 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 LCD_String@msg 9 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/piee2.X.production.o
-___heap_hi 0 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
-___heap_lo 0 0 ABS 0 - /tmp/xcClIxJCX/driver_tmp_9.o
+_Clock_type 5E 0 COMRAM 1 dataCOMRAM dist/default/production/piee2.X.production.o
+__end_of_vfprintf 6DB0 0 CODE 0 text4 dist/default/production/piee2.X.production.o
+___heap_hi 0 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
+___heap_lo 0 0 ABS 0 - /tmp/xcOgpRc04/driver_tmp_14.o
 ___param_bank 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production/piee2.X.production.o
-__end_of__initialization 73E6 0 CODE 0 cinit dist/default/production/piee2.X.production.o
-__end_of_FSM_ExecuteState 777E 0 CODE 0 text11 dist/default/production/piee2.X.production.o
+__end_of__initialization 6DFA 0 CODE 0 cinit dist/default/production/piee2.X.production.o
+__end_of_FSM_ExecuteState 719E 0 CODE 0 text29 dist/default/production/piee2.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production/piee2.X.production.o
 FSM_Init@fsm 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-__end_of_FSM_Update 7596 0 CODE 0 text5 dist/default/production/piee2.X.production.o
+__end_of_FSM_Update 6FB6 0 CODE 0 text23 dist/default/production/piee2.X.production.o
+__pidataBANK0 69FD 0 CODE 0 idataBANK0 dist/default/production/piee2.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production/piee2.X.production.o
+I2C_Repeated_Start@slave_read_address 2 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 LCD_Command@cmd 8 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
-__pmediumconst 7E82 0 MEDIUMCONST 0 mediumconst dist/default/production/piee2.X.production.o
+__pmediumconst 7E54 0 MEDIUMCONST 0 mediumconst dist/default/production/piee2.X.production.o
 _SSPCON1 FC6 0 ABS 0 - dist/default/production/piee2.X.production.o
 _SSPCON2 FC5 0 ABS 0 - dist/default/production/piee2.X.production.o
 _SSPSTAT FC7 0 ABS 0 - dist/default/production/piee2.X.production.o
-__end_of_Message 7ABE 0 CODE 0 text1 dist/default/production/piee2.X.production.o
-__end_of_Beep 7434 0 CODE 0 text14 dist/default/production/piee2.X.production.o
-__end_of_main 784C 0 CODE 0 text0 dist/default/production/piee2.X.production.o
+__end_of_Message 7E54 0 CODE 0 text2 dist/default/production/piee2.X.production.o
+sprintf@f 4A 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+sprintf@s 42 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+__end_of_Beep 6BAC 0 CODE 0 text32 dist/default/production/piee2.X.production.o
+__end_of_main 7264 0 CODE 0 text0 dist/default/production/piee2.X.production.o
+__end_of_xtoa 744C 0 CODE 0 text6 dist/default/production/piee2.X.production.o
+__end_of_I2C_Repeated_Start 6AD0 0 CODE 0 text14 dist/default/production/piee2.X.production.o
 _ACKDT 7E2D 0 ABS 0 - dist/default/production/piee2.X.production.o
 _ACKEN 7E2C 0 ABS 0 - dist/default/production/piee2.X.production.o
+_AM_PM 5D 0 COMRAM 1 dataCOMRAM dist/default/production/piee2.X.production.o
+__end_of_fputc 732E 0 CODE 0 text9 dist/default/production/piee2.X.production.o
+__end_of_fputs 6BF0 0 CODE 0 text8 dist/default/production/piee2.X.production.o
 _LATB2 7C52 0 ABS 0 - dist/default/production/piee2.X.production.o
 _LATB3 7C53 0 ABS 0 - dist/default/production/piee2.X.production.o
 _LATD0 7C60 0 ABS 0 - dist/default/production/piee2.X.production.o
 _LATD1 7C61 0 ABS 0 - dist/default/production/piee2.X.production.o
 _LATD2 7C62 0 ABS 0 - dist/default/production/piee2.X.production.o
 _LATD3 7C63 0 ABS 0 - dist/default/production/piee2.X.production.o
-_Month 23 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+?_sprintf 42 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
+_Month 68 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
 _PORTC F82 0 ABS 0 - dist/default/production/piee2.X.production.o
 _SSPIE 7CEB 0 ABS 0 - dist/default/production/piee2.X.production.o
 _SSPIF 7CF3 0 ABS 0 - dist/default/production/piee2.X.production.o
 _TRISB F93 0 ABS 0 - dist/default/production/piee2.X.production.o
 _TRISC F94 0 ABS 0 - dist/default/production/piee2.X.production.o
 _TRISD F95 0 ABS 0 - dist/default/production/piee2.X.production.o
+__end_of_putch 69FA 0 CODE 0 text10 dist/default/production/piee2.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production/piee2.X.production.o
 __Hram 0 0 ABS 0 ram dist/default/production/piee2.X.production.o
@@ -687,15 +1056,26 @@ __LRAM 1 0 ABS 0 - dist/default/production/piee2.X.production.o
 __Lbss 0 0 RAM 1 bss dist/default/production/piee2.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production/piee2.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production/piee2.X.production.o
+_flags 5C 0 COMRAM 1 bssCOMRAM dist/default/production/piee2.X.production.o
+_fputc 7264 0 CODE 0 text9 dist/default/production/piee2.X.production.o
+_fputs 6BAC 0 CODE 0 text8 dist/default/production/piee2.X.production.o
+_hours BD 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_month A9 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+_putch 69F8 0 CODE 0 text10 dist/default/production/piee2.X.production.o
+_width 60 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
 _SSPSTATbits FC7 0 ABS 0 - dist/default/production/piee2.X.production.o
-__initialization 73BA 0 CODE 0 cinit dist/default/production/piee2.X.production.o
-__pdataCOMRAM 3C 0 COMRAM 1 dataCOMRAM dist/default/production/piee2.X.production.o
-_LCD_Command 747E 0 CODE 0 text10 dist/default/production/piee2.X.production.o
+__HdataBANK0 0 0 ABS 0 dataBANK0 dist/default/production/piee2.X.production.o
+__initialization 6DB0 0 CODE 0 cinit dist/default/production/piee2.X.production.o
+__pbssBANK0 60 0 BANK0 1 bssBANK0 dist/default/production/piee2.X.production.o
+__pdataCOMRAM 5D 0 COMRAM 1 dataCOMRAM dist/default/production/piee2.X.production.o
+_LCD_Command 6C7E 0 CODE 0 text28 dist/default/production/piee2.X.production.o
+RTC_Read_Clock@read_clock_address 4 0 COMRAM 1 cstackCOMRAM dist/default/production/piee2.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production/piee2.X.production.o
 __Hsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production/piee2.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production/piee2.X.production.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/piee2.X.production.o
 __Hintcode 0 0 CODE 0 intcode dist/default/production/piee2.X.production.o
+_I2C_Repeated_Start 6AA2 0 CODE 0 text14 dist/default/production/piee2.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -720,27 +1100,47 @@ __Hintcode 0 0 CODE 0 intcode dist/default/production/piee2.X.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 73BA 73BA 36 1
-text0 0 777E 777E CE 1
-text1 0 797E 797E 140 1
-text2 0 7326 7326 14 1
-text3 0 7354 7354 30 1
-text4 0 733A 733A 1A 1
-text5 0 7516 7516 80 1
-text6 0 784C 784C 132 1
-text7 0 7596 7596 8E 1
-text8 0 7384 7384 36 1
-text9 0 74CA 74CA 4C 1
-text10 0 747E 747E 4C 1
-text11 0 76B8 76B8 C6 1
-text12 0 7ABE 7ABE 3C4 1
-text13 0 7624 7624 94 1
-text14 0 73F0 73F0 44 1
-text15 0 7434 7434 4A 1
-idataCOMRAM 0 731F 731F 7 1
-cstackCOMRAM 1 1 1 42 1
+cinit 0 6DB0 6DB0 54 1
+text0 0 719E 719E C6 1
+text1 0 6BF0 6BF0 44 1
+text2 0 7A7C 7A7C 3D8 1
+text3 0 6D16 6D16 4C 1
+text4 0 6D62 6D62 4E 1
+text5 0 7580 7580 138 1
+text6 0 732E 732E 11E 1
+text7 0 6EBC 6EBC 7A 1
+text8 0 6BAC 6BAC 44 1
+text9 0 7264 7264 CA 1
+text10 0 69F8 69F8 2 1
+text11 0 6E04 6E04 5A 1
+text12 0 6A52 6A52 14 1
+text13 0 6AD0 6AD0 2E 1
+text14 0 6AA2 6AA2 2E 1
+text15 0 6A80 6A80 22 1
+text16 0 6B2E 6B2E 3A 1
+text17 0 6A04 6A04 12 1
+text18 0 6A3E 6A3E 14 1
+text19 0 6A2A 6A2A 14 1
+text20 0 6A16 6A16 14 1
+text21 0 6AFE 6AFE 30 1
+text22 0 6A66 6A66 1A 1
+text23 0 6F36 6F36 80 1
+text24 0 744C 744C 134 1
+text25 0 6FB6 6FB6 8E 1
+text26 0 6E5E 6E5E 5E 1
+text27 0 6CCA 6CCA 4C 1
+text28 0 6C7E 6C7E 4C 1
+text29 0 70D8 70D8 C6 1
+text30 0 76B8 76B8 3C4 1
+text31 0 7044 7044 94 1
+text32 0 6B68 6B68 44 1
+text33 0 6C34 6C34 4A 1
+idataCOMRAM 0 69FB 69FB 2 1
+cstackCOMRAM 1 1 1 5E 1
 reset_vec 0 0 0 4 1
-mediumconst 0 7E82 7E82 17E 1
+bssBANK0 1 60 60 82 1
+idataBANK0 0 69FD 69FD 7 1
+mediumconst 0 7E54 7E54 1AC 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

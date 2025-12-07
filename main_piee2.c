@@ -43,6 +43,12 @@
 #define device_id_read 0xD1
 int sec,min,hour;
 int Day,Date,Month,Year;
+//I2c
+char secs[10],mins[10],hours[10];
+char date[10],month[10],year[10];
+char Clock_type = 0x06;
+char AM_PM = 0x05;
+char days[7] = {'0','1','2','3','4','5','6'};
 /*********************Definições FSM*****************************/
 typedef enum {
     STATE_IDLE,         // Estado inicial/ocioso
@@ -115,14 +121,15 @@ int main(void)
     Message(4);
     Beep(1);
     MSdelay(3000);
-    //I2c
-    char secs[10],mins[10],hours[10];
-    char date[10],month[10],year[10];
-    char Clock_type = 0x06;
-    char AM_PM = 0x05;
-    char days[7] = {'D','S','T','Q','Q','S','S'};
+
  
 	while(1){
+        RTC_Read_Clock(0);              /*gives second,minute and hour*/
+        I2C_Stop();
+        
+               
+        
+        
         // Atualização da FSM (não bloqueante)
         FSM_Update(&system_fsm);
         
@@ -391,9 +398,74 @@ void Message(unsigned int msg){
             break;
         case 3:
             LCD_String_xy(1,2,"Seja Bem Vindo!");
+            if(hour & (1<<Clock_type)){     /* check clock is 12hr or 24hr */
+            
+                    if(hour & (1<<AM_PM)){      /* check AM or PM */
+                        LCD_String_xy(2,14,"PM");
+                    }
+                    else{
+                        LCD_String_xy(2,14,"AM");
+                    }
+
+                    hour = hour & (0x1f);
+                    sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
+                    sprintf(mins,"%x:",min);    
+                    sprintf(hours,"Tim:%x:",hour);  
+                    LCD_String_xy(2,0,hours);            
+                    LCD_String(mins);
+                    LCD_String(secs);
+             }
+            else{
+
+                hour = hour & (0x3f);
+                sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
+                sprintf(mins,"%x:",min);    
+                sprintf(hours,"Tim:%x:",hour);  
+                LCD_String_xy(2,0,hours);            
+                LCD_String(mins);
+                LCD_String(secs); 
+            }
+        
+                RTC_Read_Calendar(3);        /*gives day, date, month, year*/        
+                I2C_Stop();
+                sprintf(date,"Cal %x-",Date);
+                sprintf(month,"%x-",Month);
+                sprintf(year,"%x ",Year);
+                LCD_String_xy(3,0,date);
+                LCD_String(month);
+                LCD_String(year);
+
+                /* find day */
+                switch(days[Day])
+                {
+                    case '0':
+                                LCD_String("Dom");
+                                break;
+                    case '1':
+                                LCD_String("Seg");
+                                break;                
+                    case '2':
+                                LCD_String("Tec");
+                                break;                
+                    case '3':   
+                                LCD_String("Qua");
+                                break;                
+                    case '4':
+                                LCD_String("Qui");
+                                break;
+                    case '5':
+                                LCD_String("Sex");
+                                break;                
+                    case '6':
+                                LCD_String("Sab");
+                                break;
+                    default: 
+                                break;
+
+                }
             break;
         case 4:
-            LCD_String_xy(1,1,"Rele Estr-Triangulo");
+            LCD_String_xy(1,1,"Filtro Manga");
             LCD_String_xy(2,1,"Status:");
             LCD_String_xy(3,1,"Temp. Motor:##,#");
             LCD_String_xy(4,1,"Temp. Macal:##,#");
