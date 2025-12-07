@@ -115,9 +115,13 @@
 [v _Format_Data Format_Data `(v  1 e 1 0 ]
 "560
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
+"565
+[v _Ler_ADC Ler_ADC `(us  1 e 2 0 ]
+"575
+[v _Verificar_Falha_Pressao Verificar_Falha_Pressao `(v  1 e 1 0 ]
 "10 /Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
 [v _MSdelay MSdelay `(v  1 e 1 0 ]
-[s S64 . 1 `uc 1 RA0 1 0 :1:0 
+[s S73 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -126,7 +130,7 @@
 `uc 1 RA6 1 0 :1:6 
 ]
 "2353 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[s S166 . 1 `uc 1 AN0 1 0 :1:0 
+[s S175 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -134,26 +138,26 @@
 `uc 1 AN4 1 0 :1:5 
 `uc 1 OSC2 1 0 :1:6 
 ]
-[s S174 . 1 `uc 1 . 1 0 :2:0 
+[s S183 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 LVDIN 1 0 :1:5 
 ]
-[s S180 . 1 `uc 1 . 1 0 :5:0 
+[s S189 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 HLVDIN 1 0 :1:5 
 ]
-[s S183 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S192 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S185 . 1 `S64 1 . 1 0 `S166 1 . 1 0 `S174 1 . 1 0 `S180 1 . 1 0 `S183 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES185  1 e 1 @3968 ]
+[u S194 . 1 `S73 1 . 1 0 `S175 1 . 1 0 `S183 1 . 1 0 `S189 1 . 1 0 `S192 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES194  1 e 1 @3968 ]
 "2563
 [v _PORTC PORTC `VEuc  1 e 1 @3970 ]
 "2705
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
 "3073
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S56 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S65 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -162,11 +166,11 @@
 `uc 1 TRISA6 1 0 :1:6 
 ]
 "3457
-[u S72 . 1 `S56 1 . 1 0 `S64 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES72  1 e 1 @3986 ]
+[u S81 . 1 `S65 1 . 1 0 `S73 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES81  1 e 1 @3986 ]
 "3625
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S449 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S458 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -176,7 +180,7 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "3657
-[s S458 . 1 `uc 1 RB0 1 0 :1:0 
+[s S467 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -185,8 +189,8 @@
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
-[u S467 . 1 `S449 1 . 1 0 `S458 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES467  1 e 1 @3987 ]
+[u S476 . 1 `S458 1 . 1 0 `S467 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES476  1 e 1 @3987 ]
 "3847
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
 "4001
@@ -197,45 +201,45 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "6666
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S244 . 1 `uc 1 . 1 0 :1:0 
+[s S253 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "6710
-[s S247 . 1 `uc 1 ADON 1 0 :1:0 
+[s S256 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 ]
-[s S251 . 1 `uc 1 . 1 0 :1:0 
+[s S260 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S258 . 1 `uc 1 . 1 0 :1:0 
+[s S267 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S261 . 1 `uc 1 . 1 0 :1:0 
+[s S270 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[s S264 . 1 `uc 1 . 1 0 :1:0 
+[s S273 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S267 . 1 `uc 1 . 1 0 :1:0 
+[s S276 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S270 . 1 `uc 1 . 1 0 :1:0 
+[s S279 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S273 . 1 `S244 1 . 1 0 `S247 1 . 1 0 `S251 1 . 1 0 `S258 1 . 1 0 `S261 1 . 1 0 `S264 1 . 1 0 `S267 1 . 1 0 `S270 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES273  1 e 1 @4034 ]
+[u S282 . 1 `S253 1 . 1 0 `S256 1 . 1 0 `S260 1 . 1 0 `S267 1 . 1 0 `S270 1 . 1 0 `S273 1 . 1 0 `S276 1 . 1 0 `S279 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES282  1 e 1 @4034 ]
 "6792
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "6799
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
 "6806
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @4037 ]
-[s S493 . 1 `uc 1 SEN 1 0 :1:0 
+[s S502 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -245,20 +249,20 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "6823
-[u S502 . 1 `S493 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES502  1 e 1 @4037 ]
+[u S511 . 1 `S502 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES511  1 e 1 @4037 ]
 "6868
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
 "6938
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S522 . 1 `uc 1 . 1 0 :2:0 
+[s S531 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "7021
-[s S525 . 1 `uc 1 . 1 0 :5:0 
+[s S534 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S528 . 1 `uc 1 BF 1 0 :1:0 
+[s S537 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -267,56 +271,56 @@
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S537 . 1 `uc 1 . 1 0 :2:0 
+[s S546 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S542 . 1 `uc 1 . 1 0 :2:0 
+[s S551 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S548 . 1 `uc 1 . 1 0 :2:0 
+[s S557 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S553 . 1 `uc 1 . 1 0 :2:0 
+[s S562 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S556 . 1 `uc 1 . 1 0 :5:0 
+[s S565 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S559 . 1 `uc 1 . 1 0 :2:0 
+[s S568 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S564 . 1 `uc 1 . 1 0 :2:0 
+[s S573 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S569 . 1 `uc 1 . 1 0 :2:0 
+[s S578 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S574 . 1 `uc 1 . 1 0 :2:0 
+[s S583 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S580 . 1 `uc 1 . 1 0 :2:0 
+[s S589 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S585 . 1 `S522 1 . 1 0 `S525 1 . 1 0 `S528 1 . 1 0 `S537 1 . 1 0 `S542 1 . 1 0 `S548 1 . 1 0 `S553 1 . 1 0 `S556 1 . 1 0 `S559 1 . 1 0 `S564 1 . 1 0 `S569 1 . 1 0 `S574 1 . 1 0 `S580 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES585  1 e 1 @4039 ]
+[u S594 . 1 `S531 1 . 1 0 `S534 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 `S557 1 . 1 0 `S562 1 . 1 0 `S565 1 . 1 0 `S568 1 . 1 0 `S573 1 . 1 0 `S578 1 . 1 0 `S583 1 . 1 0 `S589 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES594  1 e 1 @4039 ]
 "7186
 [v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
 "7193
@@ -387,6 +391,8 @@
 [v _ciclo_em_andamento ciclo_em_andamento `uc  1 e 1 0 ]
 "80
 [v _temporizador temporizador `us  1 e 2 0 ]
+"81
+[v _adc_pressao adc_pressao `us  1 e 2 0 ]
 "82
 [v _falha_pressao falha_pressao `uc  1 e 1 0 ]
 "105
@@ -395,6 +401,11 @@
 "176
 [v main@blink_timer blink_timer `us  1 s 2 blink_timer ]
 "188
+} 0
+"575
+[v _Verificar_Falha_Pressao Verificar_Falha_Pressao `(v  1 e 1 0 ]
+{
+"584
 } 0
 "191
 [v _System_Init System_Init `(v  1 e 1 0 ]
@@ -438,6 +449,14 @@
 [v _ADC_Init ADC_Init `(v  1 e 1 0 ]
 {
 "563
+} 0
+"565
+[v _Ler_ADC Ler_ADC `(us  1 e 2 0 ]
+{
+[v Ler_ADC@canal canal `uc  1 a 1 wreg ]
+[v Ler_ADC@canal canal `uc  1 a 1 wreg ]
+[v Ler_ADC@canal canal `uc  1 a 1 10 ]
+"573
 } 0
 "216
 [v _Display_Mensagens_Iniciais Display_Mensagens_Iniciais `(v  1 e 1 0 ]
@@ -576,10 +595,10 @@
 "9 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S1181 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[u S1190 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
 "13
-[s S1184 _IO_FILE 12 `S1181 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v sprintf@f f `S1184  1 a 12 78 ]
+[s S1193 _IO_FILE 12 `S1190 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v sprintf@f f `S1193  1 a 12 78 ]
 "12
 [v sprintf@ap ap `[1]*.39v  1 a 2 76 ]
 "9
@@ -592,9 +611,9 @@
 {
 "1549
 [v vfprintf@cfmt cfmt `*.25uc  1 a 2 64 ]
-[s S1216 _IO_FILE 0 ]
+[s S1225 _IO_FILE 0 ]
 "1546
-[v vfprintf@fp fp `*.39S1216  1 p 2 58 ]
+[v vfprintf@fp fp `*.39S1225  1 p 2 58 ]
 [v vfprintf@fmt fmt `*.25Cuc  1 p 2 60 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 62 ]
 "1569
@@ -602,16 +621,16 @@
 "1048
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S1245 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
+[u S1254 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
 "1059
-[v vfpfcnvrt@convarg convarg `S1245  1 a 4 48 ]
+[v vfpfcnvrt@convarg convarg `S1254  1 a 4 48 ]
 "1050
 [v vfpfcnvrt@cp cp `*.25uc  1 a 2 56 ]
 "1051
 [v vfpfcnvrt@done done `i  1 a 2 52 ]
-[s S1216 _IO_FILE 0 ]
+[s S1225 _IO_FILE 0 ]
 "1048
-[v vfpfcnvrt@fp fp `*.39S1216  1 p 2 40 ]
+[v vfpfcnvrt@fp fp `*.39S1225  1 p 2 40 ]
 [v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 42 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 44 ]
 "1543
@@ -641,9 +660,9 @@
 "865
 [v stoa@w w `i  1 a 2 23 ]
 [v stoa@i i `i  1 a 2 21 ]
-[s S1216 _IO_FILE 0 ]
+[s S1225 _IO_FILE 0 ]
 "862
-[v stoa@fp fp `*.39S1216  1 p 2 9 ]
+[v stoa@fp fp `*.39S1225  1 p 2 9 ]
 [v stoa@s s `*.39uc  1 p 2 11 ]
 "864
 [v stoa@F1156 F1156 `[7]uc  1 s 7 F1156 ]
@@ -689,9 +708,9 @@
 [v dtoa@p p `i  1 a 2 33 ]
 "472
 [v dtoa@s s `uc  1 a 1 39 ]
-[s S1216 _IO_FILE 0 ]
+[s S1225 _IO_FILE 0 ]
 "470
-[v dtoa@fp fp `*.39S1216  1 p 2 27 ]
+[v dtoa@fp fp `*.39S1225  1 p 2 27 ]
 [v dtoa@d d `i  1 p 2 29 ]
 "527
 } 0
@@ -701,9 +720,9 @@
 "154
 [v pad@w w `i  1 a 2 25 ]
 [v pad@i i `i  1 a 2 23 ]
-[s S1216 _IO_FILE 0 ]
+[s S1225 _IO_FILE 0 ]
 "152
-[v pad@fp fp `*.39S1216  1 p 2 16 ]
+[v pad@fp fp `*.39S1225  1 p 2 16 ]
 [v pad@buf buf `*.39uc  1 p 2 18 ]
 [v pad@p p `i  1 p 2 20 ]
 "183
@@ -717,18 +736,18 @@
 [v fputs@c c `uc  1 a 1 13 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 9 ]
-[u S1181 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S1184 _IO_FILE 12 `S1181 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v fputs@fp fp `*.39S1184  1 p 2 11 ]
+[u S1190 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1193 _IO_FILE 12 `S1190 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputs@fp fp `*.39S1193  1 p 2 11 ]
 "19
 } 0
 "8 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 0 ]
-[u S1181 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S1184 _IO_FILE 12 `S1181 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v fputc@fp fp `*.39S1184  1 p 2 2 ]
+[u S1190 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1193 _IO_FILE 12 `S1190 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputc@fp fp `*.39S1193  1 p 2 2 ]
 "24
 } 0
 "7 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/putch.c

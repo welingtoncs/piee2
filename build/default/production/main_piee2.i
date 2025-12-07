@@ -6102,6 +6102,11 @@ int main(void) {
     Beep(2);
 # 124 "main_piee2.c"
     while(1) {
+
+        adc_pressao = Ler_ADC(0);
+
+
+        Verificar_Falha_Pressao();
 # 176 "main_piee2.c"
         static uint16_t blink_timer = 0;
         if(blink_timer++ >= 50) {

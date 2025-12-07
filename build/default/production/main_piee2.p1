@@ -16,6 +16,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "86
 [; ;main_piee2.c: 86: void Display_Mensagens_Iniciais(void);
 [v _Display_Mensagens_Iniciais `(v ~T0 @X0 0 ef ]
+"100
+[; ;main_piee2.c: 100: uint16_t Ler_ADC(uint8_t canal);
+[v _Ler_ADC `(us ~T0 @X0 0 ef1`uc ]
+"101
+[; ;main_piee2.c: 101: void Verificar_Falha_Pressao(void);
+[v _Verificar_Falha_Pressao `(v ~T0 @X0 0 ef ]
 "9994 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9994: extern volatile __bit LATD1 __attribute__((address(0x7C61)));
 [v _LATD1 `Vb ~T0 @X0 0 e@31841 ]
@@ -874,6 +880,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 124:     while(1) {
 [e :U 373 ]
 {
+"126
+[; ;main_piee2.c: 126:         adc_pressao = Ler_ADC(0);
+[e = _adc_pressao ( _Ler_ADC (1 -> -> 0 `i `uc ]
+"129
+[; ;main_piee2.c: 129:         Verificar_Falha_Pressao();
+[e ( _Verificar_Falha_Pressao ..  ]
 "176
 [; ;main_piee2.c: 176:         static uint16_t blink_timer = 0;
 [v F3781 `us ~T0 @X0 1 s blink_timer ]

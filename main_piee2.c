@@ -122,11 +122,11 @@ int main(void) {
 //    rtc.year = 0x25;
     
     while(1) {
-//        // Ler pressão diferencial
-//        adc_pressao = Ler_ADC(0);
-//        
-//        // Verificar falha de pressão
-//        Verificar_Falha_Pressao();
+        // Ler pressão diferencial
+        adc_pressao = Ler_ADC(0);
+        
+        // Verificar falha de pressão
+        Verificar_Falha_Pressao();
 //        
 //        // Verificar botão reset
 //        if(Bt_reset == 0) {
