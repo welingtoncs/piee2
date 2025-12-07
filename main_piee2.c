@@ -135,7 +135,7 @@ int main(void) {
                 if(modo_operacao == 1) {  // Modo automático
                     contador_ciclos = 0;
                     Salvar_Contador_EEPROM();
-                    //Beep(2);  // Bipe duplo para confirmar reset
+                    Beep(2);  // Bipe duplo para confirmar reset
                 } else {  // Modo manual
                     // Aciona todas as válvulas
                     PORTC = 0xFF;
@@ -158,7 +158,7 @@ int main(void) {
                 PORTC = 0x00;  // Desliga todas as válvulas
                 Val8 = 0;
                 led_ativo = 0;
-                //Beep(1);  // Bipe curto para confirmar mudança
+                Beep(1);  // Bipe curto para confirmar mudança
             }
         }
         last_man_aut = Bt_man_aut;
@@ -565,8 +565,7 @@ uint16_t Ler_ADC(uint8_t canal) {
     MSdelay(1);                    // Tempo de aquisição
     
     ADCON0bits.GO = 1;            // Inicia conversão
-    MSdelay(1);
-//    while(ADCON0bits.GO);         // Aguarda conversão
+    while(ADCON0bits.GO);         // Aguarda conversão
     
     return ((ADRESH << 8) | ADRESL);
 }

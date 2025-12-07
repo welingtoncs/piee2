@@ -6115,7 +6115,7 @@ int main(void) {
                 if(modo_operacao == 1) {
                     contador_ciclos = 0;
                     Salvar_Contador_EEPROM();
-
+                    Beep(2);
                 } else {
 
                     PORTC = 0xFF;
@@ -6138,7 +6138,7 @@ int main(void) {
                 PORTC = 0x00;
                 LATD7 = 0;
                 LATD3 = 0;
-
+                Beep(1);
             }
         }
         last_man_aut = PORTAbits.RA2;
@@ -6538,8 +6538,7 @@ uint16_t Ler_ADC(uint8_t canal) {
     MSdelay(1);
 
     ADCON0bits.GO = 1;
-    MSdelay(1);
-
+    while(ADCON0bits.GO);
 
     return ((ADRESH << 8) | ADRESL);
 }

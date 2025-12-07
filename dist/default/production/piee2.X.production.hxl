@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- /tmp/xc5CZFG9T/driver_tmp_3.o
+ /tmp/xcb223tRE/driver_tmp_3.o
  -Odist/default/production/piee2.X.production.hex
  -logfile=dist/default/production/piee2.X.production.hxl
  -addressing=1
@@ -9,26 +9,27 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(/tmp/xc5CZFG9T/driver_tmp_3.o)
-  63ECh - 63F7h		(/tmp/xc5CZFG9T/driver_tmp_3.o)
-  63F9h - 7FFEh		(/tmp/xc5CZFG9T/driver_tmp_3.o)
-  300000h - 30000Dh		(/tmp/xc5CZFG9T/driver_tmp_3.o)
+  0h - 3h		(/tmp/xcb223tRE/driver_tmp_3.o)
+  63DEh - 63E9h		(/tmp/xcb223tRE/driver_tmp_3.o)
+  63EBh - 7FFEh		(/tmp/xcb223tRE/driver_tmp_3.o)
+  300000h - 30000Dh		(/tmp/xcb223tRE/driver_tmp_3.o)
  Unused ranges:
-  4h - 63EBh
-  63F8h - 63F8h
+  4h - 63DDh
+  63EAh - 63EAh
   7FFFh - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (/tmp/xc5CZFG9T/driver_tmp_3.o)
+  H1 = Input file             (/tmp/xcb223tRE/driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
-000063E0 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
-000063F0 | H1 H1 H1 H1 H1 H1 H1 H1 -- H1 H1 H1 H1 H1 H1 H1
+000063D0 | -- -- -- -- -- -- -- -- -- -- -- -- -- -- H1 H1
+000063E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- H1 H1 H1 H1 H1
+000063F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006400 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006410 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00006420 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
