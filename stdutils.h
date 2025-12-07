@@ -25,9 +25,16 @@
  * Comments:
  * Revision history: 
  */
+/*
+ * File:   stdutil.h
+ * Author: welingtonsouza
+ *
+ * Created on December 7, 2025, 9:54 AM
+ */
 
-#ifndef _STD_UTIL_H_
-#define	_STD_UTIL_H_
+#ifndef STDUTILS_H
+#define STDUTILS_H
+
 
 /***************************************************************************************************
     Basic data types for 8051/PIC/AVR 8bit controllers
@@ -238,5 +245,4 @@ typedef enum
 /**************************************************************************************************/
 
 
-#endif	
-
+#endif

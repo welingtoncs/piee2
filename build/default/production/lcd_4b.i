@@ -5724,8 +5724,8 @@ unsigned char __t3rd16on(void);
 # 34 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/xc.h" 2 3
 # 35 "./lcd_4b.h" 2
 # 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
+# 15 "./msdelay.h"
+void MSdelay(unsigned int val);
 # 36 "./lcd_4b.h" 2
 # 45 "./lcd_4b.h"
 void LCD_Init();

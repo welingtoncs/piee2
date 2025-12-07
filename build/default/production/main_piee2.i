@@ -7,7 +7,7 @@
 # 1 "/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_piee2.c" 2
-# 11 "main_piee2.c"
+# 10 "main_piee2.c"
 # 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/stdio.h" 1 3
 
 
@@ -172,6 +172,64 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
+# 11 "main_piee2.c" 2
+# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/string.h" 1 3
+# 25 "/Applications/microchip/xc8/v2.41/pic/include/c99/string.h" 3
+# 1 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
+# 411 "/Applications/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef struct __locale_struct * locale_t;
+# 26 "/Applications/microchip/xc8/v2.41/pic/include/c99/string.h" 2 3
+
+void *memcpy (void *restrict, const void *restrict, size_t);
+void *memmove (void *, const void *, size_t);
+void *memset (void *, int, size_t);
+int memcmp (const void *, const void *, size_t);
+void *memchr (const void *, int, size_t);
+
+char *strcpy (char *restrict, const char *restrict);
+char *strncpy (char *restrict, const char *restrict, size_t);
+
+char *strcat (char *restrict, const char *restrict);
+char *strncat (char *restrict, const char *restrict, size_t);
+
+int strcmp (const char *, const char *);
+int strncmp (const char *, const char *, size_t);
+
+int strcoll (const char *, const char *);
+size_t strxfrm (char *restrict, const char *restrict, size_t);
+
+char *strchr (const char *, int);
+char *strrchr (const char *, int);
+
+size_t strcspn (const char *, const char *);
+size_t strspn (const char *, const char *);
+char *strpbrk (const char *, const char *);
+char *strstr (const char *, const char *);
+char *strtok (char *restrict, const char *restrict);
+
+size_t strlen (const char *);
+
+char *strerror (int);
+
+
+
+
+char *strtok_r (char *restrict, const char *restrict, char **restrict);
+int strerror_r (int, char *, size_t);
+char *stpcpy(char *restrict, const char *restrict);
+char *stpncpy(char *restrict, const char *restrict, size_t);
+size_t strnlen (const char *, size_t);
+char *strdup (const char *);
+char *strndup (const char *, size_t);
+char *strsignal(int);
+char *strerror_l (int, locale_t);
+int strcoll_l (const char *, const char *, locale_t);
+size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
+
+
+
+
+void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 12 "main_piee2.c" 2
 # 1 "./config_header.h" 1
 # 34 "./config_header.h"
@@ -5928,15 +5986,10 @@ unsigned char __t3rd16on(void);
 # 13 "main_piee2.c" 2
 
 # 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
+# 15 "./msdelay.h"
+void MSdelay(unsigned int val);
 # 15 "main_piee2.c" 2
 # 1 "./lcd_4b.h" 1
-# 35 "./lcd_4b.h"
-# 1 "./msdelay.h" 1
-# 36 "./msdelay.h"
-void MSdelay(unsigned int);
-# 36 "./lcd_4b.h" 2
 # 45 "./lcd_4b.h"
 void LCD_Init();
 void LCD_Command(unsigned char);
@@ -5948,7 +6001,7 @@ void LCD_Clear();
 # 1 "./i2c.h" 1
 # 36 "./i2c.h"
 # 1 "./stdutils.h" 1
-# 48 "./stdutils.h"
+# 55 "./stdutils.h"
 typedef signed char sint8_t;
 typedef unsigned char uint8_t;
 
@@ -5957,7 +6010,7 @@ typedef unsigned short uint16_t;
 
 typedef signed long int sint32_t;
 typedef unsigned long uint32_t;
-# 143 "./stdutils.h"
+# 150 "./stdutils.h"
 typedef enum
 {
    E_FALSE,
@@ -5985,866 +6038,462 @@ void I2C_Start();
 void I2C_Stop(void);
 void I2C_Write(uint8_t );
 uint8_t I2C_Read(uint8_t);
+void I2C_Restart();
 # 17 "main_piee2.c" 2
-# 60 "main_piee2.c"
-typedef enum {
-    STATE_IDLE,
-    STATE_INIT,
-    STATE_READY,
-    STATE_STARTING,
-    STATE_RUNNING,
-    STATE_STOPPING,
-    STATE_BLOCKED,
-    STATE_FAILURE
-} system_state_t;
-
+# 56 "main_piee2.c"
 typedef struct {
-    system_state_t current_state;
-    system_state_t next_state;
-    unsigned int timer_counter;
-    unsigned int start_timer;
-    unsigned int blink_counter;
-    unsigned int beep_counter;
-    unsigned char last_liga_state;
-    unsigned char last_desliga_state;
-    unsigned char last_interlock_state;
-} fsm_data_t;
+    uint8_t sec;
+    uint8_t min;
+    uint8_t hour;
+    uint8_t weekDay;
+    uint8_t date;
+    uint8_t month;
+    uint8_t year;
+} rtc_t;
 
 
-typedef struct
-{
-  uint8_t sec;
-  uint8_t min;
-  uint8_t hour;
-  uint8_t weekDay;
-  uint8_t date;
-  uint8_t month;
-  uint8_t year;
-}rtc_t;
+
+
+
+
 
 rtc_t rtc;
-char data[50];
-# 109 "main_piee2.c"
-void Message(unsigned int);
-void Beep(unsigned int);
+char lcd_buffer[17];
+uint16_t contador_ciclos = 0;
+uint8_t modo_operacao = 0;
+uint8_t valvula_selecionada = 0;
+uint8_t ciclo_em_andamento = 0;
+uint16_t temporizador = 0;
+uint16_t adc_pressao = 0;
+uint8_t falha_pressao = 0;
 
 
-
+void System_Init(void);
+void Display_Mensagens_Iniciais(void);
+void Display_Menu_Principal(void);
+void Beep(uint8_t tipo);
+void Sequenciador_Automatico(void);
+void Modo_Manual(void);
+uint8_t Ler_EEPROM(uint16_t endereco);
+void Escrever_EEPROM(uint16_t endereco, uint8_t dado);
+void Ler_Contador_EEPROM(void);
+void Salvar_Contador_EEPROM(void);
 void RTC_Init(void);
-void RTC_SetDateTime(rtc_t *rtc);
 void RTC_GetDateTime(rtc_t *rtc);
-
-void menu_ajustar_rtc(void);
-void converteDecToHex(int converte);
-
-uint8_t acerto;
+void ADC_Init(void);
+uint16_t Ler_ADC(uint8_t canal);
+void Verificar_Falha_Pressao(void);
 
 
-void FSM_Init(fsm_data_t *fsm);
-void FSM_Update(fsm_data_t *fsm);
-void FSM_ExecuteState(fsm_data_t *fsm);
-void FSM_CheckTransitions(fsm_data_t *fsm);
-void FSM_UpdateDisplay(fsm_data_t *fsm);
-void atualiza_data();
-
-
-fsm_data_t system_fsm;
-
-int main(void)
-{
+int main(void) {
 
     OSCCON = 0x72;
 
 
-    LCD_Init();
-
-    RTC_Init();
-    rtc.hour = 0x19;
-    rtc.min = 0x31;
-    rtc.sec = 0x30;
-
-    rtc.date = 0x03;
-    rtc.month = 0x03;
-    rtc.year = 0x21;
-    rtc.weekDay = 3;
     TRISD = 0x00;
     TRISC = 0x00;
     PORTC = 0x00;
+    PORTD = 0x00;
 
 
+    TRISAbits.TRISA2 = 1;
+    TRISAbits.TRISA3 = 1;
+    TRISAbits.TRISA4 = 1;
+    TRISAbits.TRISA5 = 1;
+    TRISAbits.TRISA6 = 1;
+    TRISAbits.TRISA0 = 1;
 
 
+    LCD_Init();
+    RTC_Init();
+    ADC_Init();
+    I2C_Init();
 
-    FSM_Init(&system_fsm);
+
+    Ler_Contador_EEPROM();
 
 
-    Beep(2);
-    Message(1);
-    MSdelay(3000);
-    Message(2);
-    MSdelay(3000);
-    Message(3);
-    MSdelay(3000);
-    Message(4);
     Beep(1);
-    MSdelay(3000);
+    Display_Mensagens_Iniciais();
+    Beep(2);
 
 
- while(1){
+    rtc.hour = 0x12;
+    rtc.min = 0x00;
+    rtc.sec = 0x00;
+    rtc.date = 0x07;
+    rtc.month = 0x12;
+    rtc.year = 0x25;
+
+    while(1) {
+
+        adc_pressao = Ler_ADC(0);
 
 
+        Verificar_Falha_Pressao();
 
 
-        FSM_Update(&system_fsm);
+        if(PORTAbits.RA6 == 0) {
+            MSdelay(50);
+            if(PORTAbits.RA6 == 0) {
+                if(modo_operacao == 1) {
+                    contador_ciclos = 0;
+                    Salvar_Contador_EEPROM();
+                } else {
+
+                    PORTC = 0xFF;
+                    LATD7 = 1;
+                    MSdelay(2000);
+                    PORTC = 0x00;
+                    LATD7 = 0;
+                }
+                while(PORTAbits.RA6 == 0);
+            }
+        }
+
+
+        if(PORTAbits.RA2 == 0 && modo_operacao == 1) {
+            modo_operacao = 0;
+            ciclo_em_andamento = 0;
+            PORTC = 0x00;
+            LATD7 = 0;
+            LATD3 = 0;
+        } else if(PORTAbits.RA2 == 1 && modo_operacao == 0) {
+            modo_operacao = 1;
+        }
+
+
+        if(modo_operacao == 0) {
+            Modo_Manual();
+        } else {
+            Sequenciador_Automatico();
+        }
+
+
+        Display_Menu_Principal();
 
 
         MSdelay(10);
+        temporizador++;
     }
+
+    return 0;
 }
 
 
+void System_Init(void) {
 
-void FSM_Init(fsm_data_t *fsm)
-{
-    fsm->current_state = STATE_INIT;
-    fsm->next_state = STATE_INIT;
-    fsm->timer_counter = 0;
-    fsm->start_timer = 0;
-    fsm->blink_counter = 0;
-    fsm->beep_counter = 0;
-    fsm->last_liga_state = 1;
-    fsm->last_desliga_state = 1;
-    fsm->last_interlock_state = 1;
-
-
-
-    LATD3 = 0;
-    LATD2 = 0;
-    LATD1 = 0;
 }
 
-void FSM_Update(fsm_data_t *fsm)
-{
+void Display_Mensagens_Iniciais(void) {
 
-    FSM_CheckTransitions(fsm);
-
-
-    FSM_ExecuteState(fsm);
-
-
-    FSM_UpdateDisplay(fsm);
+    LCD_Clear();
+    LCD_String_xy(1, 4, "UNIUBE");
+    LCD_String_xy(2, 1, "Engenharia Eletrica");
+    MSdelay(3000);
 
 
-    fsm->timer_counter++;
-    fsm->blink_counter++;
+    LCD_Clear();
+    LCD_String_xy(1, 2, "Welington Correia");
+    LCD_String_xy(2, 4, "RA: 1063677");
+    MSdelay(3000);
 
 
-    if(fsm->blink_counter >= 50) {
-        fsm->blink_counter = 0;
-        LATD1 ^= 1;
-    }
+    LCD_Clear();
+    LCD_String_xy(1, 1, "Seq. Limpeza");
+    LCD_String_xy(2, 1, "Filtro de Manga");
+    MSdelay(3000);
+
+
+    LCD_Clear();
+    LCD_String_xy(1, 4, "Bem-vindo!");
+    MSdelay(3000);
 }
-void FSM_CheckTransitions(fsm_data_t *fsm)
-{
-    unsigned char current_interlock = PORTCbits.RC2;
+
+void Display_Menu_Principal(void) {
+    static uint16_t display_timer = 0;
+    static uint8_t linha_toggle = 0;
+
+    if(display_timer++ >= 50) {
+        display_timer = 0;
+        linha_toggle ^= 1;
+
+        LCD_String_xy(1, 1, "                ");
+
+        if(linha_toggle) {
+
+            sprintf(lcd_buffer, "%s Cic:%04d",
+                    modo_operacao ? "Auto" : "Man ",
+                    contador_ciclos);
+            LCD_String_xy(1, 1, lcd_buffer);
 
 
-    unsigned char interlock_pressed = (fsm->last_interlock_state == 1 && current_interlock == 0);
-    fsm->last_interlock_state = current_interlock;
+            uint16_t pressao_mv = (adc_pressao * 5000) / 1024;
+            sprintf(lcd_buffer, "Press:%4dmV", pressao_mv);
+            LCD_String_xy(2, 1, lcd_buffer);
+        } else {
+
+            RTC_GetDateTime(&rtc);
+            sprintf(lcd_buffer, "%02x/%02x %02x:%02x",
+                    rtc.date, rtc.month,
+                    rtc.hour, rtc.min);
+            LCD_String_xy(1, 1, lcd_buffer);
 
 
-    unsigned char liga_pressed = (fsm->last_liga_state == 1 && PORTCbits.RC0 == 0);
-    fsm->last_liga_state = PORTCbits.RC0;
-
-
-    unsigned char desliga_pressed = (fsm->last_desliga_state == 1 && PORTCbits.RC1 == 0);
-    fsm->last_desliga_state = PORTCbits.RC1;
-
-
-    switch(fsm->current_state)
-    {
-        case STATE_INIT:
-            if(fsm->timer_counter > 300) {
-                fsm->next_state = STATE_READY;
+            if(falha_pressao) {
+                LCD_String_xy(2, 1, "FALHA! Press Alta");
+            } else if(ciclo_em_andamento) {
+                LCD_String_xy(2, 1, "Ciclo Ativo     ");
+            } else {
+                LCD_String_xy(2, 1, "Pronto          ");
             }
-            break;
-
-        case STATE_READY:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_BLOCKED;
-            }
-            else if(liga_pressed) {
-                fsm->next_state = STATE_STARTING;
-                fsm->start_timer = 0;
-            }
-            break;
-
-        case STATE_STARTING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(fsm->start_timer >= 30) {
-                fsm->next_state = STATE_RUNNING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-
-        case STATE_RUNNING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-
-        case STATE_STOPPING:
-            if(fsm->timer_counter > 50) {
-                if(current_interlock == 0) {
-                    fsm->next_state = STATE_BLOCKED;
-                }
-                else {
-                    fsm->next_state = STATE_READY;
-                }
-            }
-            break;
-
-        case STATE_BLOCKED:
-            if(current_interlock == 1) {
-                fsm->next_state = STATE_READY;
-            }
-            break;
-
-        case STATE_FAILURE:
-
-            if(fsm->timer_counter > 1000) {
-                fsm->next_state = STATE_READY;
-            }
-            break;
-
-        default:
-            fsm->next_state = STATE_IDLE;
-            break;
-    }
-
-    if(fsm->current_state != fsm->next_state) {
-        fsm->current_state = fsm->next_state;
-        fsm->timer_counter = 0;
-    }
-}
-void FSM_ExecuteState(fsm_data_t *fsm)
-{
-    switch(fsm->current_state)
-    {
-        case STATE_IDLE:
-
-            break;
-
-        case STATE_INIT:
-
-            LATD3 = 0;
-            break;
-
-        case STATE_READY:
-
-            LATD3 = 0;
-            break;
-
-        case STATE_STARTING:
-
-
-
-
-            LATD3 = 0;
-
-
-            if(fsm->timer_counter >= 100) {
-                fsm->timer_counter = 0;
-                fsm->start_timer++;
-            }
-            break;
-
-        case STATE_RUNNING:
-
-
-
-
-            LATD3 = 0;
-            break;
-
-        case STATE_STOPPING:
-
-
-
-
-            break;
-
-        case STATE_BLOCKED:
-
-
-
-
-            LATD3 = 1;
-            break;
-
-        case STATE_FAILURE:
-
-
-
-
-            LATD2 = 1;
-            break;
-    }
-}
-void FSM_UpdateDisplay(fsm_data_t *fsm)
-{
-
-    static unsigned int display_counter = 0;
-    display_counter++;
-
-    if(display_counter >= 10) {
-        display_counter = 0;
-
-        switch(fsm->current_state)
-        {
-            case STATE_INIT:
-                LCD_String_xy(2,1,"Status: Inicializando");
-                break;
-
-            case STATE_READY:
-                LCD_String_xy(2,1,"Status: Pronto       ");
-                break;
-
-            case STATE_STARTING:
-                LCD_String_xy(2,1,"Status: Partindo     ");
-                break;
-
-            case STATE_RUNNING:
-                LCD_String_xy(2,1,"Status: Funcionando  ");
-                break;
-
-            case STATE_STOPPING:
-                LCD_String_xy(2,1,"Status: Parando      ");
-                break;
-
-            case STATE_BLOCKED:
-                LCD_String_xy(2,1,"Status: Bloqueado    ");
-                break;
-
-            case STATE_FAILURE:
-                LCD_String_xy(2,1,"Status: Falha        ");
-                break;
-
-            default:
-                LCD_String_xy(2,1,"Status: Desconhecido ");
-                break;
         }
     }
 }
 
+void Beep(uint8_t tipo) {
+    if(tipo == 1) {
+        LATD0 = 1;
+        MSdelay(2000);
+        LATD0 = 0;
+    } else if(tipo == 2) {
+        LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
+        LATD0 = 1; MSdelay(250); LATD0 = 0;
+    }
+}
 
-void Message(unsigned int msg){
-    LCD_Clear();
-    switch(msg){
+
+void Sequenciador_Automatico(void) {
+    static uint8_t valvula_atual = 0;
+    static uint16_t estado_timer = 0;
+    static uint8_t estado = 0;
+
+    if(falha_pressao) {
+        ciclo_em_andamento = 0;
+        LATD3 = 0;
+        PORTC = 0x00;
+        LATD7 = 0;
+        return;
+    }
+
+    switch(estado) {
+        case 0:
+            ciclo_em_andamento = 0;
+            LATD3 = 0;
+            if(estado_timer++ >= 3000) {
+                estado = 1;
+                estado_timer = 0;
+                valvula_atual = 0;
+                ciclo_em_andamento = 1;
+                LATD3 = 1;
+                contador_ciclos++;
+                Salvar_Contador_EEPROM();
+            }
+            break;
+
         case 1:
-            LCD_String_xy(1,7,"UNIUBE");
-            LCD_String_xy(2,0,"Engenharia Eletrica");
-            LCD_String_xy(3,2,"Projeto Integrado");
-            LCD_String_xy(4,3,"Em Eletrica II");
+
+            switch(valvula_atual) {
+                case 0: LATC0 = 1; break;
+                case 1: LATC1 = 1; break;
+                case 2: LATC2 = 1; break;
+                case 3: LATC2 = 1; break;
+                case 4: LATC2 = 1; break;
+                case 5: LATC6 = 1; break;
+                case 6: LATC7 = 1; break;
+                case 7: LATD7 = 1; break;
+            }
+
+            if(estado_timer++ >= 200) {
+
+                switch(valvula_atual) {
+                    case 0: LATC0 = 0; break;
+                    case 1: LATC1 = 0; break;
+                    case 2: LATC2 = 0; break;
+                    case 3: LATC2 = 0; break;
+                    case 4: LATC2 = 0; break;
+                    case 5: LATC6 = 0; break;
+                    case 6: LATC7 = 0; break;
+                    case 7: LATD7 = 0; break;
+                }
+
+                estado = 2;
+                estado_timer = 0;
+            }
             break;
+
         case 2:
-            LCD_String_xy(1,2,"Welington Correia");
-            LCD_String_xy(2,4,"RA : 1063677");
-            LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
-            LCD_String_xy(4,3,"Filtro de Manga");
+            if(estado_timer++ >= 500) {
+                estado = 1;
+                estado_timer = 0;
+                valvula_atual++;
+
+                if(valvula_atual >= 8) {
+                    estado = 3;
+                    estado_timer = 0;
+                    ciclo_em_andamento = 0;
+                    LATD3 = 0;
+                }
+            }
             break;
+
         case 3:
-            LCD_String_xy(4,2,"Seja Bem Vindo!");
-            atualiza_data();
-
-            break;
-        case 4:
-
-
-
-
-              atualiza_data();
-
-              LCD_String_xy(4,2,"Filtro Manga");
+            if(estado_timer++ >= 100) {
+                estado = 0;
+                estado_timer = 0;
+            }
             break;
     }
-
 }
 
 
-void Beep(unsigned val){
- unsigned int i;
- for(i=0;i<val;i++)
-    {
-     LATD0 = 1;
-     MSdelay(500);
-     LATD0 = 0;
-     MSdelay(500);
+void Modo_Manual(void) {
+    static uint8_t last_inc = 1;
+    static uint8_t last_dow = 1;
+    static uint8_t last_ent = 1;
+
+
+    if(PORTAbits.RA3 == 0 && last_inc == 1) {
+        MSdelay(50);
+        if(PORTAbits.RA3 == 0) {
+            valvula_selecionada++;
+            if(valvula_selecionada >= 8) {
+                valvula_selecionada = 0;
+            }
+        }
     }
+    last_inc = PORTAbits.RA3;
+
+    if(PORTAbits.RA4 == 0 && last_dow == 1) {
+        MSdelay(50);
+        if(PORTAbits.RA4 == 0) {
+            if(valvula_selecionada == 0) {
+                valvula_selecionada = 8 - 1;
+            } else {
+                valvula_selecionada--;
+            }
+        }
+    }
+    last_dow = PORTAbits.RA4;
 
 
+    if(PORTAbits.RA5 == 0 && last_ent == 1) {
+        MSdelay(50);
+        if(PORTAbits.RA5 == 0) {
+
+            switch(valvula_selecionada) {
+                case 0: LATC0 = 1; MSdelay(2000); LATC0 = 0; break;
+                case 1: LATC1 = 1; MSdelay(2000); LATC1 = 0; break;
+                case 2: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
+                case 3: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
+                case 4: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
+                case 5: LATC6 = 1; MSdelay(2000); LATC6 = 0; break;
+                case 6: LATC7 = 1; MSdelay(2000); LATC7 = 0; break;
+                case 7: LATD7 = 1; MSdelay(2000); LATD7 = 0; break;
+            }
+        }
+    }
+    last_ent = PORTAbits.RA5;
+
+
+    static uint16_t manual_display_timer = 0;
+    if(manual_display_timer++ >= 100) {
+        manual_display_timer = 0;
+        sprintf(lcd_buffer, "Manual V:%d    ", valvula_selecionada + 1);
+        LCD_String_xy(2, 1, lcd_buffer);
+    }
 }
-# 503 "main_piee2.c"
-void atualiza_data(){
-    RTC_GetDateTime(&rtc);
-    sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-    LCD_String_xy(2,0,data);
-# 573 "main_piee2.c"
+
+
+uint8_t Ler_EEPROM(uint16_t endereco) {
+    uint8_t dado;
+
+    I2C_Start();
+    I2C_Write(0xA0);
+    I2C_Write((endereco >> 8) & 0xFF);
+    I2C_Write(endereco & 0xFF);
+    I2C_Restart();
+    I2C_Write(0xA1);
+    dado = I2C_Read(0);
+    I2C_Stop();
+
+    return dado;
 }
-# 583 "main_piee2.c"
-void RTC_Init(void)
-{
+
+void Escrever_EEPROM(uint16_t endereco, uint8_t dado) {
+    I2C_Start();
+    I2C_Write(0xA0);
+    I2C_Write((endereco >> 8) & 0xFF);
+    I2C_Write(endereco & 0xFF);
+    I2C_Write(dado);
+    I2C_Stop();
+
+    MSdelay(10);
+}
+
+void Ler_Contador_EEPROM(void) {
+    uint8_t high = Ler_EEPROM(0x0000);
+    uint8_t low = Ler_EEPROM(0x0000 + 1);
+    contador_ciclos = (high << 8) | low;
+}
+
+void Salvar_Contador_EEPROM(void) {
+    Escrever_EEPROM(0x0000, (contador_ciclos >> 8) & 0xFF);
+    Escrever_EEPROM(0x0000 + 1, contador_ciclos & 0xFF);
+}
+
+
+void RTC_Init(void) {
     I2C_Init();
+
     I2C_Start();
-
-    I2C_Write(0xD0u);
-    I2C_Write(0x07u);
-
+    I2C_Write(0xD0);
+    I2C_Write(0x07);
     I2C_Write(0x00);
-
     I2C_Stop();
 }
-# 608 "main_piee2.c"
-void RTC_SetDateTime(rtc_t *rtc)
-{
+
+void RTC_GetDateTime(rtc_t *rtc) {
     I2C_Start();
-
-    I2C_Write(0xD0u);
-    I2C_Write(0x00u);
-
-    I2C_Write(rtc->sec);
-    I2C_Write(rtc->min);
-    I2C_Write(rtc->hour);
-    I2C_Write(rtc->weekDay);
-    I2C_Write(rtc->date);
-    I2C_Write(rtc->month);
-    I2C_Write(rtc->year);
-
-    I2C_Stop();
-}
-# 637 "main_piee2.c"
-void RTC_GetDateTime(rtc_t *rtc)
-{
-    I2C_Start();
-
-    I2C_Write(0xD0u);
-    I2C_Write(0x00u);
-
-    I2C_Stop();
-
-    I2C_Start();
-    I2C_Write(0xD1u);
+    I2C_Write(0xD0);
+    I2C_Write(0x00);
+    I2C_Restart();
+    I2C_Write(0xD1);
 
     rtc->sec = I2C_Read(1);
     rtc->min = I2C_Read(1);
-    rtc->hour= I2C_Read(1);
+    rtc->hour = I2C_Read(1);
     rtc->weekDay = I2C_Read(1);
-    rtc->date= I2C_Read(1);
-    rtc->month=I2C_Read(1);
-    rtc->year =I2C_Read(0);
+    rtc->date = I2C_Read(1);
+    rtc->month = I2C_Read(1);
+    rtc->year = I2C_Read(0);
 
     I2C_Stop();
 }
 
 
-void menu_ajustar_rtc(void){
-    char data[50];
-    unsigned int i=0;
-    char cvt1=0;
-    LCD_Command(0x01);
-    LCD_String_xy(1,1,"Ajustar Data e Hora ");
-
-    while(1){
-        if(i<200){
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Hora        ");
-                RTC_GetDateTime(&rtc);
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!(PORTAbits.RA0)){
-                    while(!(PORTAbits.RA0));
-                    break;
-
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1++;
-                    if(cvt1>23){cvt1=0;}
-                    converteDecToHex(cvt1);
-                    rtc.hour = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 23;}
-                    converteDecToHex(cvt1);
-                    rtc.hour = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Minutos     ");
-                RTC_GetDateTime(&rtc);
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!(PORTAbits.RA0)){
-                    while(!(PORTAbits.RA0));
-                    break;
-
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1++;
-                    if(cvt1>59){cvt1=0;}
-                    converteDecToHex(cvt1);
-                    rtc.min = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 59;}
-                    converteDecToHex(cvt1);
-                    rtc.min = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Dia         ");
-                RTC_GetDateTime(&rtc);
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!(PORTAbits.RA0)){
-                    while(!(PORTAbits.RA0));
-                    break;
-
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1++;
-                    if(cvt1>31){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.date = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 31;}
-                    converteDecToHex(cvt1);
-                    rtc.date = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Mes         ");
-                RTC_GetDateTime(&rtc);
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!(PORTAbits.RA0)){
-                    while(!(PORTAbits.RA0));
-                    break;
-
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1++;
-                    if(cvt1>12){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.month = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 12;}
-                    converteDecToHex(cvt1);
-                    rtc.month = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-
-
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Ano         ");
-                RTC_GetDateTime(&rtc);
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!(PORTAbits.RA0)){
-                    while(!(PORTAbits.RA0));
-                    break;
-
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1++;
-                    if(cvt1>99){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.year = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!(PORTAbits.RA0)){
-                    i=0;
-                    while(!(PORTAbits.RA0));MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 99;}
-                    converteDecToHex(cvt1);
-                    rtc.year = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-
-
-        }
-        i = 200;
-        LCD_Command(0x01);
-        LCD_String_xy(1,1,"Sair Ajuste         ");
-        if((PORTAbits.RA0)){
-            while((PORTAbits.RA0));
-            break;
-
-        }
-
-    }
-
-
-
-
-
+void ADC_Init(void) {
+    ADCON1 = 0x0E;
+    ADCON2 = 0xBE;
 }
 
+uint16_t Ler_ADC(uint8_t canal) {
+    ADCON0 = (canal << 2) | 0x01;
+    MSdelay(1);
 
-void converteDecToHex(int converte){
-    switch(converte){
-        case 0:
-            acerto = 0x00;
-            break;
-        case 1:
-            acerto = 0x01;
-            break;
-        case 2:
-            acerto = 0x02;
-            break;
-        case 3:
-            acerto = 0x03;
-            break;
-        case 4:
-            acerto = 0x04;
-            break;
-        case 5:
-            acerto = 0x05;
-            break;
-        case 6:
-            acerto = 0x06;
-            break;
-        case 7:
-            acerto = 0x07;
-            break;
-        case 8:
-            acerto = 0x08;
-            break;
-        case 9:
-            acerto = 0x09;
-            break;
-        case 10:
-            acerto = 0x10;
-            break;
-        case 11:
-            acerto = 0x11;
-            break;
-        case 12:
-            acerto = 0x12;
-            break;
-        case 13:
-            acerto = 0x13;
-            break;
-        case 14:
-            acerto = 0x14;
-            break;
-        case 15:
-            acerto = 0x15;
-            break;
-        case 16:
-            acerto = 0x16;
-            break;
-        case 17:
-            acerto = 0x17;
-            break;
-        case 18:
-            acerto = 0x18;
-            break;
-        case 19:
-            acerto = 0x19;
-            break;
-        case 20:
-            acerto = 0x20;
-            break;
-        case 21:
-            acerto = 0x21;
-            break;
-        case 22:
-            acerto = 0x22;
-            break;
-        case 23:
-            acerto = 0x23;
-            break;
+    ADCON0bits.GO = 1;
+    while(ADCON0bits.GO);
 
-        case 24:
-            acerto = 0x24;
-            break;
-        case 25:
-            acerto = 0x25;
-            break;
-        case 26:
-            acerto = 0x26;
-            break;
-        case 27:
-            acerto = 0x27;
-            break;
-        case 28:
-            acerto = 0x28;
-            break;
-        case 29:
-            acerto = 0x29;
-            break;
-        case 30:
-            acerto = 0x30;
-            break;
-        case 31:
-            acerto = 0x31;
-            break;
-        case 32:
-            acerto = 0x32;
-            break;
-        case 33:
-            acerto = 0x33;
-            break;
-        case 34:
-            acerto = 0x34;
-            break;
-        case 35:
-            acerto = 0x35;
-            break;
-        case 36:
-            acerto = 0x36;
-            break;
-        case 37:
-            acerto = 0x37;
-            break;
-        case 38:
-            acerto = 0x38;
-            break;
-        case 39:
-            acerto = 0x39;
-            break;
-        case 40:
-            acerto = 0x40;
-            break;
-        case 41:
-            acerto = 0x41;
-            break;
-        case 42:
-            acerto = 0x42;
-            break;
-        case 43:
-            acerto = 0x43;
-            break;
-        case 44:
-            acerto = 0x44;
-            break;
-        case 45:
-            acerto = 0x45;
-            break;
-        case 46:
-            acerto = 0x46;
-            break;
-        case 47:
-            acerto = 0x47;
-            break;
+    return ((ADRESH << 8) | ADRESL);
+}
 
-        case 48:
-            acerto = 0x48;
-            break;
-        case 49:
-            acerto = 0x49;
-            break;
-        case 50:
-            acerto = 0x50;
-            break;
-        case 51:
-            acerto = 0x51;
-            break;
-        case 52:
-            acerto = 0x52;
-            break;
-        case 53:
-            acerto = 0x53;
-            break;
-        case 54:
-            acerto = 0x54;
-            break;
+void Verificar_Falha_Pressao(void) {
 
-
-        case 55:
-            acerto = 0x55;
-            break;
-        case 56:
-            acerto = 0x56;
-            break;
-        case 57:
-            acerto = 0x57;
-            break;
-        case 58:
-            acerto = 0x58;
-            break;
-        case 59:
-            acerto = 0x59;
-            break;
-
-
-
-        default :
-            acerto = 0x00;
-            break;
-
+    if(adc_pressao > 819) {
+        falha_pressao = 1;
+        LATD2 = 1;
+    } else {
+        falha_pressao = 0;
+        LATD2 = 0;
     }
 }

@@ -17,7 +17,7 @@
 # 1 "./delay.h" 1
 # 44 "./delay.h"
 # 1 "./stdutils.h" 1
-# 48 "./stdutils.h"
+# 55 "./stdutils.h"
 typedef signed char sint8_t;
 typedef unsigned char uint8_t;
 
@@ -26,7 +26,7 @@ typedef unsigned short uint16_t;
 
 typedef signed long int sint32_t;
 typedef unsigned long uint32_t;
-# 143 "./stdutils.h"
+# 150 "./stdutils.h"
 typedef enum
 {
    E_FALSE,
@@ -5768,6 +5768,7 @@ void I2C_Start();
 void I2C_Stop(void);
 void I2C_Write(uint8_t );
 uint8_t I2C_Read(uint8_t);
+void I2C_Restart();
 # 10 "i2c.c" 2
 # 1 "./config_header.h" 1
 # 44 "./config_header.h"

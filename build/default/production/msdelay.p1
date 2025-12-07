@@ -509,122 +509,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"44 ./config_header.h
-[p x PLLDIV  =  1        ]
-"45
-[p x CPUDIV  =  OSC1_PLL2 ]
-"46
-[p x USBDIV  =  1        ]
-"49
-[p x FOSC  =  INTOSC_EC  ]
-"50
-[p x FCMEN  =  OFF       ]
-"51
-[p x IESO  =  OFF        ]
-"54
-[p x PWRT  =  OFF        ]
-"55
-[p x BOR  =  OFF          ]
-"56
-[p x BORV  =  3          ]
-"57
-[p x VREGEN  =  OFF      ]
-"60
-[p x WDT  =  OFF         ]
-"61
-[p x WDTPS  =  32768     ]
-"64
-[p x CCP2MX  =  ON       ]
-"65
-[p x PBADEN  =  OFF      ]
-"66
-[p x LPT1OSC  =  OFF     ]
-"67
-[p x MCLRE  =  OFF        ]
-"70
-[p x STVREN  =  ON       ]
-"71
-[p x LVP  =  OFF          ]
-"72
-[p x ICPRT  =  OFF       ]
-"73
-[p x XINST  =  OFF       ]
-"76
-[p x CP0  =  OFF         ]
-"77
-[p x CP1  =  OFF         ]
-"78
-[p x CP2  =  OFF         ]
-"79
-[p x CP3  =  OFF         ]
-"82
-[p x CPB  =  OFF         ]
-"83
-[p x CPD  =  OFF         ]
-"86
-[p x WRT0  =  OFF        ]
-"87
-[p x WRT1  =  OFF        ]
-"88
-[p x WRT2  =  OFF        ]
-"89
-[p x WRT3  =  OFF        ]
-"92
-[p x WRTC  =  OFF        ]
-"93
-[p x WRTB  =  OFF        ]
-"94
-[p x WRTD  =  OFF        ]
-"97
-[p x EBTR0  =  OFF       ]
-"98
-[p x EBTR1  =  OFF       ]
-"99
-[p x EBTR2  =  OFF       ]
-"100
-[p x EBTR3  =  OFF       ]
-"103
-[p x EBTRB  =  OFF       ]
-"14 msdelay.c
-[; ;msdelay.c: 14: void MSdelay(unsigned int val)
+"10 msdelay.c
+[; ;msdelay.c: 10: void MSdelay(unsigned int val) {
 [v _MSdelay `(v ~T0 @X0 1 ef1`ui ]
-"15
-[; ;msdelay.c: 15: {
 {
 [e :U _MSdelay ]
-"14
-[; ;msdelay.c: 14: void MSdelay(unsigned int val)
 [v _val `ui ~T0 @X0 1 r1 ]
-"15
-[; ;msdelay.c: 15: {
 [f ]
-"16
-[; ;msdelay.c: 16:  unsigned int i,j;
+"11
+[; ;msdelay.c: 11:     unsigned int i, j;
 [v _i `ui ~T0 @X0 1 a ]
 [v _j `ui ~T0 @X0 1 a ]
-"17
-[; ;msdelay.c: 17:  for(i=0;i<val;i++)
+"12
+[; ;msdelay.c: 12:     for(i = 0; i < val; i++)
 {
 [e = _i -> -> 0 `i `ui ]
-[e $U 373  ]
-[e :U 370 ]
-"18
-[; ;msdelay.c: 18:      for(j=0;j<165;j++);
+[e $U 371  ]
+[e :U 368 ]
+"13
+[; ;msdelay.c: 13:         for(j = 0; j < 165; j++);
 {
 [e = _j -> -> 0 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 374  ]
-[e $U 375  ]
-[e :U 374 ]
+[e $ < _j -> -> 165 `i `ui 372  ]
+[e $U 373  ]
+[e :U 372 ]
 [e ++ _j -> -> 1 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 374  ]
-[e :U 375 ]
+[e $ < _j -> -> 165 `i `ui 372  ]
+[e :U 373 ]
 }
 [e ++ _i -> -> 1 `i `ui ]
-[e :U 373 ]
-[e $ < _i _val 370  ]
 [e :U 371 ]
+[e $ < _i _val 368  ]
+[e :U 369 ]
 }
-"19
-[; ;msdelay.c: 19: }
-[e :UE 369 ]
+"14
+[; ;msdelay.c: 14: }
+[e :UE 367 ]
 }

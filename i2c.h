@@ -53,6 +53,7 @@ void I2C_Start();
 void I2C_Stop(void);
 void I2C_Write(uint8_t );
 uint8_t I2C_Read(uint8_t);
+void I2C_Restart();
 
 #endif
 

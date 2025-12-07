@@ -5,1052 +5,507 @@
  * Sequenciador eletrônico para Limpeza de Filtro de Manga
  * 
  * Created on 06 de dezembro de 2025, 17:36
- * Base copia piee1
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "config_header.h"
 #include <pic18f4550.h>
 #include "msdelay.h"
 #include "lcd_4b.h"
 #include "i2c.h"
 
-
-/*********************Definições beep*****************************/
-#define beep        LATD0  
+/**************** Saidas *****************************************/
+/********************* beep*****************************/
+#define beep            LATD0  
 /*********************Definições led*****************************/
-#define led_run     LATD1  
-#define falha       LATD2 
-#define ativo       LATD3
-/*********************Definições reles*****************************/
-#define KEY2_TRIS		(TRISAbits.TRISA0) //key1
-#define	KEY2_IO          (PORTAbits.RA0)
-#define KEY1_TRIS		(TRISAbits.TRISA0) //key2
-#define	KEY1_IO          (PORTAbits.RA0)
-#define KEY4_TRIS		(TRISAbits.TRISA0) //key3
-#define	KEY4_IO          (PORTAbits.RA0)
-#define KEY3_TRIS		(TRISAbits.TRISA0) //key4
-#define	KEY3_IO          (PORTAbits.RA0)
-/*********************Definições saídas*****************************/
-#define V1          LATC0  
-#define V2          LATC1   
-#define V3          LATC2 
-#define V4          LATC4
-#define V5          LATC5
-#define V6          LATC6 
-#define V7          LATC7 
-#define V8          LATD7
-/*********************Definições botoes*****************************/
-#define Btliga      PORTCbits.RC0  
-#define Btdesliga   PORTCbits.RC1
-#define Btinterlock PORTCbits.RC2 
+#define led_run         LATD1  
+#define led_falha       LATD2 
+#define led_ativo       LATD3
+
+/******************** Definições saídas - válvulas ***************/
+#define Val1              LATC0  
+#define Val2              LATC1   
+#define Val3              LATC2 
+#define Val4              LATC2
+#define Val5              LATC2
+#define Val6              LATC6 
+#define Val7              LATC7 
+#define Val8              LATD7
+
+/********************** Entradas **********************************/
+/*********************Definições botões*****************************/
+#define Bt_man_aut      PORTAbits.RA2 
+#define Bt_inc          PORTAbits.RA3 
+#define Bt_dow          PORTAbits.RA4 
+#define Bt_ent          PORTAbits.RA5 
+#define Bt_reset        PORTAbits.RA6  // Botão reset adicionado
+
+/*********************Definições Analógica*****************************/
+#define An_pres         PORTAbits.RA0 
+
+/*********************Definições do Sistema*****************************/
+#define NUM_VALVULAS    8
+#define TEMPO_VALVULA   200      // 2 segundos (200 * 10ms)
+#define TEMPO_INTERVALO 500      // 5 segundos (500 * 10ms)
+// RA: 10.636.77 ? 1+0+6+3+6+7+7 = 30 segundos
+#define TEMPO_CICLO     3000     // 30 segundos (3000 * 10ms)
 
 /******************** I2C *****************************************/
-//#define device_id_write 0xD0
-//#define device_id_read 0xD1
-//int sec,min,hour;
-//int Day,Date,Month,Year;
-////I2c
-//char secs[10],mins[10],hours[10];
-//char date[10],month[10],year[10];
-//char Clock_type = 0x06;
-//char AM_PM = 0x05;
-//char days[7] = {'0','1','2','3','4','5','6'};
-/*********************Definições FSM*****************************/
-typedef enum {
-    STATE_IDLE,         // Estado inicial/ocioso
-    STATE_INIT,         // Inicialização do sistema
-    STATE_READY,        // Pronto para operar
-    STATE_STARTING,     // Partida do motor (estrela)
-    STATE_RUNNING,      // Motor em funcionamento (triângulo)
-    STATE_STOPPING,     // Parada do motor
-    STATE_BLOCKED,      // Bloqueado por intertravamento
-    STATE_FAILURE       // Estado de falha
-} system_state_t;
-
+// DS1307 RTC
 typedef struct {
-    system_state_t  current_state;
-    system_state_t  next_state;
-    unsigned int    timer_counter;
-    unsigned int    start_timer;
-    unsigned int    blink_counter;
-    unsigned int    beep_counter;
-    unsigned char   last_liga_state;
-    unsigned char   last_desliga_state;
-    unsigned char   last_interlock_state;
-} fsm_data_t;
+    uint8_t sec;
+    uint8_t min;
+    uint8_t hour;
+    uint8_t weekDay;
+    uint8_t date;
+    uint8_t month;
+    uint8_t year;  
+} rtc_t;
 
-//DS1307 I2C
-typedef struct
-{
-  uint8_t sec;
-  uint8_t min;
-  uint8_t hour;
-  uint8_t weekDay;
-  uint8_t date;
-  uint8_t month;
-  uint8_t year;  
-}rtc_t;
-
-rtc_t rtc;
-char data[50];
-
-#define C_Ds1307ReadMode_U8   0xD1u  // DS1307 ID
-#define C_Ds1307WriteMode_U8  0xD0u  // DS1307 ID
-
-#define C_Ds1307SecondRegAddress_U8   0x00u   // Address to access Ds1307 SEC register
-#define C_Ds1307DateRegAddress_U8     0x04u   // Address to access Ds1307 DATE register
-#define C_Ds1307ControlRegAddress_U8  0x07u   // Address to access Ds1307 CONTROL register
-
-/*********************Declarações Proto-Type*****************************/
-
-     
-
-void Message(unsigned int);
-void Beep(unsigned int);
-
-//void RTC_Read_Clock(char read_clock_address);
-//void RTC_Read_Calendar(char read_calendar_address);
-void RTC_Init(void);
-void RTC_SetDateTime(rtc_t *rtc);
-void RTC_GetDateTime(rtc_t *rtc);
-
-void menu_ajustar_rtc(void);
-void converteDecToHex(int converte);
-
-uint8_t acerto;
-
-// Funções da FSM
-void FSM_Init(fsm_data_t *fsm);
-void FSM_Update(fsm_data_t *fsm);
-void FSM_ExecuteState(fsm_data_t *fsm);
-void FSM_CheckTransitions(fsm_data_t *fsm);
-void FSM_UpdateDisplay(fsm_data_t *fsm);
-void atualiza_data();
+// 24C32 EEPROM
+#define EEPROM_ADDR_WRITE 0xA0
+#define EEPROM_ADDR_READ  0xA1
+#define EEPROM_CICLO_ADDR 0x0000  // Endereço para armazenar contador de ciclos
 
 /*********************Variáveis Globais*****************************/
-fsm_data_t system_fsm;
+rtc_t rtc;
+char lcd_buffer[17];
+uint16_t contador_ciclos = 0;
+uint8_t modo_operacao = 0;      // 0=Manual, 1=Automático
+uint8_t valvula_selecionada = 0;
+uint8_t ciclo_em_andamento = 0;
+uint16_t temporizador = 0;
+uint16_t adc_pressao = 0;
+uint8_t falha_pressao = 0;
 
-int main(void)
-{
+/*********************Declarações Prototype*****************************/
+void System_Init(void);
+void Display_Mensagens_Iniciais(void);
+void Display_Menu_Principal(void);
+void Beep(uint8_t tipo);
+void Sequenciador_Automatico(void);
+void Modo_Manual(void);
+uint8_t Ler_EEPROM(uint16_t endereco);
+void Escrever_EEPROM(uint16_t endereco, uint8_t dado);
+void Ler_Contador_EEPROM(void);
+void Salvar_Contador_EEPROM(void);
+void RTC_Init(void);
+void RTC_GetDateTime(rtc_t *rtc);
+void ADC_Init(void);
+uint16_t Ler_ADC(uint8_t canal);
+void Verificar_Falha_Pressao(void);
+
+/*********************Função Principal*****************************/
+int main(void) {
     // Configuração do sistema
     OSCCON = 0x72; 
-                   
-	// Inicialização de portas
+    
+    // Inicialização de portas
+    TRISD = 0x00;   // Saídas: beep, LEDs, V8
+    TRISC = 0x00;   // Saídas: V1-V7
+    PORTC = 0x00;   // Desliga todas as válvulas
+    PORTD = 0x00;   // Desliga beep e LEDs
+    
+    // Configurar entradas
+    TRISAbits.TRISA2 = 1;  // Bt_man_aut
+    TRISAbits.TRISA3 = 1;  // Bt_inc
+    TRISAbits.TRISA4 = 1;  // Bt_dow
+    TRISAbits.TRISA5 = 1;  // Bt_ent
+    TRISAbits.TRISA6 = 1;  // Bt_reset
+    TRISAbits.TRISA0 = 1;  // An_pres (ADC)
+    
+    // Inicializações
     LCD_Init();
-    
     RTC_Init();
-    rtc.hour = 0x19; //  10:40:20 am
-    rtc.min =  0x31;
-    rtc.sec =  0x30;
-
-    rtc.date = 0x03; //1st Jan 2016
-    rtc.month = 0x03;
-    rtc.year = 0x21;
-    rtc.weekDay = 3; // Friday: 5th day of week considering monday as first day.
-    TRISD = 0x00;
-    TRISC = 0x00;
-    PORTC = 0x00;
+    ADC_Init();
+    I2C_Init();
     
-    // Inicialização dos relés
-
-
-    // Inicialização da FSM
-    FSM_Init(&system_fsm);    
-
-    // Sequência inicial    
-    Beep(2);
-    Message(1);
-    MSdelay(3000);
-    Message(2);
-    MSdelay(3000);
-    Message(3);
-    MSdelay(3000);
-    Message(4);
-    Beep(1);
-    MSdelay(3000);
-
- 
-	while(1){
-//        RTC_Read_Clock(0);              /*gives second,minute and hour*/
-//        I2C_Stop();
-                
-        // Atualização da FSM (não bloqueante)
-        FSM_Update(&system_fsm);
+    // Ler contador de ciclos da EEPROM
+    Ler_Contador_EEPROM();
+    
+    // Sequência inicial
+    Beep(1);  // Bipe longo de 2 segundos
+    Display_Mensagens_Iniciais();
+    Beep(2);  // Bipe duplo
+    
+    // Inicializar RTC com valores padrão
+    rtc.hour = 0x12;
+    rtc.min = 0x00;
+    rtc.sec = 0x00;
+    rtc.date = 0x07;
+    rtc.month = 0x12;
+    rtc.year = 0x25;
+    
+    while(1) {
+        // Ler pressão diferencial
+        adc_pressao = Ler_ADC(0);
         
-        // Pequeno delay para estabilidade
-        MSdelay(10); 
-    }		
-}
-
-/****************************Funções FSM********************************/
-
-void FSM_Init(fsm_data_t *fsm)
-{
-    fsm->current_state = STATE_INIT;
-    fsm->next_state = STATE_INIT;
-    fsm->timer_counter = 0;
-    fsm->start_timer = 0;
-    fsm->blink_counter = 0;
-    fsm->beep_counter = 0;
-    fsm->last_liga_state = 1;        // Assume botão não pressionado (pull-up)
-    fsm->last_desliga_state = 1;
-    fsm->last_interlock_state = 1;
-    
-    // Inicialização dos relés
-
-    ativo = 0;
-    falha = 0;
-    led_run = 0;
-}
-
-void FSM_Update(fsm_data_t *fsm)
-{
-    // Verifica transições de estado
-    FSM_CheckTransitions(fsm);
-    
-    // Executa ações do estado atual
-    FSM_ExecuteState(fsm);
-    
-    // Atualiza display
-    FSM_UpdateDisplay(fsm);
-    
-    // Atualiza contadores de tempo
-    fsm->timer_counter++;
-    fsm->blink_counter++;
-    
-    // Controla o LED de run (pisca a cada 500ms)
-    if(fsm->blink_counter >= 50) {  // 50 * 10ms = 500ms
-        fsm->blink_counter = 0;
-        led_run ^= 1;
-    }
-}
-void FSM_CheckTransitions(fsm_data_t *fsm)
-{
-    unsigned char current_interlock = Btinterlock;
-    
-    // Verifica mudança no botão interlock (borda de descida)
-    unsigned char interlock_pressed = (fsm->last_interlock_state == 1 && current_interlock == 0);
-    fsm->last_interlock_state = current_interlock;
-    
-    // Verifica botão liga (borda de descida)
-    unsigned char liga_pressed = (fsm->last_liga_state == 1 && Btliga == 0);
-    fsm->last_liga_state = Btliga;
-    
-    // Verifica botão desliga (borda de descida)
-    unsigned char desliga_pressed = (fsm->last_desliga_state == 1 && Btdesliga == 0);
-    fsm->last_desliga_state = Btdesliga;
-    
-    // Transições baseadas no estado atual
-    switch(fsm->current_state)
-    {
-        case STATE_INIT:
-            if(fsm->timer_counter > 300) {  // 3 segundos de inicialização
-                fsm->next_state = STATE_READY;
-            }
-            break;
-            
-        case STATE_READY:
-            if(current_interlock == 0) {  // Intertravamento ativo
-                fsm->next_state = STATE_BLOCKED;
-            }
-            else if(liga_pressed) {
-                fsm->next_state = STATE_STARTING;
-                fsm->start_timer = 0;
-            }
-            break;
-            
-        case STATE_STARTING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(fsm->start_timer >= 30) {  // 30 segundos em estrela
-                fsm->next_state = STATE_RUNNING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-            
-        case STATE_RUNNING:
-            if(current_interlock == 0) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            else if(desliga_pressed) {
-                fsm->next_state = STATE_STOPPING;
-            }
-            break;
-            
-        case STATE_STOPPING:
-            if(fsm->timer_counter > 50) {  // 500ms para desligar
-                if(current_interlock == 0) {
-                    fsm->next_state = STATE_BLOCKED;
-                }
-                else {
-                    fsm->next_state = STATE_READY;
-                }
-            }
-            break;
-            
-        case STATE_BLOCKED:
-            if(current_interlock == 1) {  // Intertravamento liberado
-                fsm->next_state = STATE_READY;
-            }
-            break;
-            
-        case STATE_FAILURE:
-            // Recuperação manual após reset
-            if(fsm->timer_counter > 1000) {  // 10 segundos
-                fsm->next_state = STATE_READY;
-            }
-            break;
-            
-        default:
-            fsm->next_state = STATE_IDLE;
-            break;
-    }
-     // Aplica transição de estado
-    if(fsm->current_state != fsm->next_state) {
-        fsm->current_state = fsm->next_state;
-        fsm->timer_counter = 0;  // Reinicia timer ao mudar de estado
-    }
-}
-void FSM_ExecuteState(fsm_data_t *fsm)
-{
-    switch(fsm->current_state)
-    {
-        case STATE_IDLE:
-            // Nada a fazer
-            break;
-            
-        case STATE_INIT:
-            // Inicialização do sistema
-            ativo = 0;
-            break;
-            
-        case STATE_READY:
-            // Estado pronto
-            ativo = 0;
-            break;
-            
-        case STATE_STARTING:
-            // Partida em estrela
-//            k1 = 1;
-//            k3 = 1;
-//            k2 = 0;
-            ativo = 0;
-            
-            // Incrementa timer de partida
-            if(fsm->timer_counter >= 100) {  // 100 * 10ms = 1 segundo
-                fsm->timer_counter = 0;
-                fsm->start_timer++;
-            }
-            break;
-            
-        case STATE_RUNNING:
-            // Funcionamento em triângulo
-//            k1 = 1;
-//            k2 = 1;
-//            k3 = 0;
-            ativo = 0;
-            break;
-            
-        case STATE_STOPPING:
-            // Desligamento
-//            k1 = 0;
-//            k2 = 0;
-//            k3 = 0;
-            break;
-            
-        case STATE_BLOCKED:
-            // Bloqueado por intertravamento
-//            k1 = 0;
-//            k2 = 0;
-//            k3 = 0;
-            ativo = 1;
-            break;
-            
-        case STATE_FAILURE:
-            // Estado de falha
-//            k1 = 0;
-//            k2 = 0;
-//            k3 = 0;
-            falha = 1;
-            break;
-    }
-}
-void FSM_UpdateDisplay(fsm_data_t *fsm)
-{
-    // Atualiza display apenas a cada 100ms para evitar flicker
-    static unsigned int display_counter = 0;
-    display_counter++;
-    
-    if(display_counter >= 10) {  // 10 * 10ms = 100ms
-        display_counter = 0;
+        // Verificar falha de pressão
+        Verificar_Falha_Pressao();
         
-        switch(fsm->current_state)
-        {
-            case STATE_INIT:
-                LCD_String_xy(2,1,"Status: Inicializando");
-                break;
-                
-            case STATE_READY:
-                LCD_String_xy(2,1,"Status: Pronto       ");
-                break;
-                
-            case STATE_STARTING:
-                LCD_String_xy(2,1,"Status: Partindo     ");
-                break;
-                
-            case STATE_RUNNING:
-                LCD_String_xy(2,1,"Status: Funcionando  ");
-                break;
-                
-            case STATE_STOPPING:
-                LCD_String_xy(2,1,"Status: Parando      ");
-                break;
-                
-            case STATE_BLOCKED:
-                LCD_String_xy(2,1,"Status: Bloqueado    ");
-                break;
-                
-            case STATE_FAILURE:
-                LCD_String_xy(2,1,"Status: Falha        ");
-                break;
-                
-            default:
-                LCD_String_xy(2,1,"Status: Desconhecido ");
-                break;
+        // Verificar botão reset
+        if(Bt_reset == 0) {
+            MSdelay(50);  // Debounce
+            if(Bt_reset == 0) {
+                if(modo_operacao == 1) {  // Modo automático
+                    contador_ciclos = 0;
+                    Salvar_Contador_EEPROM();
+                } else {  // Modo manual
+                    // Aciona todas as válvulas
+                    PORTC = 0xFF;
+                    Val8 = 1;
+                    MSdelay(2000);
+                    PORTC = 0x00;
+                    Val8 = 0;
+                }
+                while(Bt_reset == 0);  // Aguarda soltar botão
+            }
         }
+        
+        // Verificar mudança de modo
+        if(Bt_man_aut == 0 && modo_operacao == 1) {
+            modo_operacao = 0;
+            ciclo_em_andamento = 0;
+            PORTC = 0x00;  // Desliga todas as válvulas
+            Val8 = 0;
+            led_ativo = 0;
+        } else if(Bt_man_aut == 1 && modo_operacao == 0) {
+            modo_operacao = 1;
+        }
+        
+        // Executar modo atual
+        if(modo_operacao == 0) {
+            Modo_Manual();
+        } else {
+            Sequenciador_Automatico();
+        }
+        
+        // Atualizar display
+        Display_Menu_Principal();
+        
+        // Delay não-bloqueante (10ms)
+        MSdelay(10);
+        temporizador++;
     }
+    
+    return 0;
 }
-/****************************Functions********************************/
 
-void Message(unsigned int msg){
+/*********************Inicialização do Sistema*****************************/
+void System_Init(void) {
+    // Configurações já feitas no main
+}
+
+void Display_Mensagens_Iniciais(void) {
+    // Mensagem 1: Universidade e Disciplina
     LCD_Clear();
-    switch(msg){
-        case 1:
-            LCD_String_xy(1,7,"UNIUBE");
-            LCD_String_xy(2,0,"Engenharia Eletrica");
-            LCD_String_xy(3,2,"Projeto Integrado");
-            LCD_String_xy(4,3,"Em Eletrica II");
-            break;
-        case 2:
-            LCD_String_xy(1,2,"Welington Correia");
-            LCD_String_xy(2,4,"RA : 1063677");
-            LCD_String_xy(3,1,"Seq.Eletr.Limpeza");
-            LCD_String_xy(4,3,"Filtro de Manga");
-            break;
-        case 3:
-            LCD_String_xy(4,2,"Seja Bem Vindo!");
-            atualiza_data();
- 
-            break;
-        case 4:
-//            LCD_String_xy(1,1,"Filtro Manga");
-//            LCD_String_xy(2,1,"Status:");
-//            LCD_String_xy(3,1,"Temp. Motor:##,#");
-//            LCD_String_xy(4,1,"Temp. Macal:##,#");
-              atualiza_data();
-
-              LCD_String_xy(4,2,"Filtro Manga");
-            break;
-    }
-
-}
-//Sequenciador eletrônico para Limpeza de Filtro de Manga
-
-void Beep(unsigned val){
- unsigned int i;
- for(i=0;i<val;i++)
-    {
-     beep = 1;
-     MSdelay(500);
-     beep = 0;
-     MSdelay(500);
-    }
-
- 
-}
-
-
-/************************ I2C ******************************/
-//void RTC_Read_Clock(char read_clock_address)
-//{
-//////    I2C_Start(device_id_write);
-////    I2C_Start();
-////    I2C_Write(read_clock_address);     /* address from where time needs to be read*/
-//////    I2C_Repeated_Start(device_id_read);
-////    sec = I2C_Read(0);                 /*read data and send ack for continuous reading*/
-////    min = I2C_Read(0);                 /*read data and send ack for continuous reading*/
-////    hour= I2C_Read(1);                 /*read data and send nack for indicating stop reading*/
-//    
-//}
-
-//void RTC_Read_Calendar(char read_calendar_address)
-//{   
-//////    I2C_Start(device_id_write);
-////    I2C_Start();
-////    I2C_Write(read_calendar_address); /* address from where time needs to be read*/
-//////    I2C_Repeated_Start(device_id_read);
-////    Day = I2C_Read(0);                /*read data and send ack for continuous reading*/
-////    Date = I2C_Read(0);               /*read data and send ack for continuous reading*/
-////    Month = I2C_Read(0);              /*read data and send ack for continuous reading*/
-////    Year = I2C_Read(1);               /*read data and send nack for indicating stop reading*/
-////    I2C_Stop();
-//}
-
-void atualiza_data(){
-    RTC_GetDateTime(&rtc);
-    sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-    LCD_String_xy(2,0,data);
-
-//    if(hour & (1<<Clock_type)){     /* check clock is 12hr or 24hr */
-//
-//         if(hour & (1<<AM_PM)){      /* check AM or PM */
-//             LCD_String_xy(1,17,"PM");
-//         }
-//         else{
-//             LCD_String_xy(1,17,"AM");
-//         }
-//
-//         hour = hour & (0x1f);
-//         sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
-//         sprintf(mins,"%x:",min);    
-//         sprintf(hours,"Hora:%x:",hour);  
-//         LCD_String_xy(1,0,hours);            
-//         LCD_String(mins);
-//         LCD_String(secs);
-//  }
-// else{
-//
-//     hour = hour & (0x3f);
-//     sprintf(secs,"%x ",sec);   /*%x for reading BCD format from RTC DS1307*/
-//     sprintf(mins,"%x:",min);    
-//     sprintf(hours,"Hora:%x:",hour);  
-//     LCD_String_xy(1,0,hours);            
-//     LCD_String(mins);
-//     LCD_String(secs); 
-// }
-//
-//     RTC_Read_Calendar(3);        /*gives day, date, month, year*/        
-//     I2C_Stop();
-//     sprintf(date,"Data %x-",Date);
-//     sprintf(month,"%x-",Month);
-//     sprintf(year,"%x ",Year);
-//     LCD_String_xy(2,0,date);
-//     LCD_String(month);
-//     LCD_String(year);
-//
-//     /* find day */
-//     switch(days[Day])
-//     {
-//         case '0':
-//                     LCD_String("Dom");
-//                     break;
-//         case '1':
-//                     LCD_String("Seg");
-//                     break;                
-//         case '2':
-//                     LCD_String("Tec");
-//                     break;                
-//         case '3':   
-//                     LCD_String("Qua");
-//                     break;                
-//         case '4':
-//                     LCD_String("Qui");
-//                     break;
-//         case '5':
-//                     LCD_String("Sex");
-//                     break;                
-//         case '6':
-//                     LCD_String("Sab");
-//                     break;
-//         default: 
-//                     break;
-//
-//     }
-}
-
-/***************************************************************************************************
-                         void RTC_Init(void)
-****************************************************************************************************
- * I/P Arguments: none.
- * Return value    : none
-
- * description :This function is used to Initialize the Ds1307 RTC.
-***************************************************************************************************/
-void RTC_Init(void)
-{
-    I2C_Init();                             // Initialize the I2c module.
-    I2C_Start();                            // Start I2C communication
-
-    I2C_Write(C_Ds1307WriteMode_U8);        // Connect to DS1307 by sending its ID on I2c Bus
-    I2C_Write(C_Ds1307ControlRegAddress_U8);// Select the Ds1307 ControlRegister to configure Ds1307
-
-    I2C_Write(0x00);                        // Write 0x00 to Control register to disable SQW-Out
-
-    I2C_Stop();                             // Stop I2C communication after initializing DS1307
-}
-
-/***************************************************************************************************
-                    void RTC_SetDateTime(rtc_t *rtc)
-****************************************************************************************************
- * I/P Arguments: rtc_t *: Pointer to structure of type rtc_t. Structure contains hour,min,sec,day,date,month and year 
- * Return value    : none
-
- * description  :This function is used to update the Date and time of Ds1307 RTC.
-                 The new Date and time will be updated into the non volatile memory of Ds1307.
-        Note: The date and time should be of BCD format, 
-             like 0x12,0x39,0x26 for 12hr,39min and 26sec.    
-                  0x15,0x08,0x47 for 15th day,8th month and 47th year.                 
-***************************************************************************************************/
-void RTC_SetDateTime(rtc_t *rtc)
-{
-    I2C_Start();                          // Start I2C communication
-
-    I2C_Write(C_Ds1307WriteMode_U8);      // connect to DS1307 by sending its ID on I2c Bus
-    I2C_Write(C_Ds1307SecondRegAddress_U8); // Request sec RAM address at 00H
-
-    I2C_Write(rtc->sec);                    // Write sec from RAM address 00H
-    I2C_Write(rtc->min);                    // Write min from RAM address 01H
-    I2C_Write(rtc->hour);                    // Write hour from RAM address 02H
-    I2C_Write(rtc->weekDay);                // Write weekDay on RAM address 03H
-    I2C_Write(rtc->date);                    // Write date on RAM address 04H
-    I2C_Write(rtc->month);                    // Write month on RAM address 05H
-    I2C_Write(rtc->year);                    // Write year on RAM address 06h
-
-    I2C_Stop();                              // Stop I2C communication after Setting the Date
-}
-/***************************************************************************************************
-                     void RTC_GetDateTime(rtc_t *rtc)
-****************************************************************************************************
- * I/P Arguments: rtc_t *: Pointer to structure of type rtc_t. Structure contains hour,min,sec,day,date,month and year 
- * Return value    : none
-
- * description  :This function is used to get the Date(d,m,y) from Ds1307 RTC.
-
-    Note: The date and time read from Ds1307 will be of BCD format, 
-          like 0x12,0x39,0x26 for 12hr,39min and 26sec.    
-               0x15,0x08,0x47 for 15th day,8th month and 47th year.              
-***************************************************************************************************/
-void RTC_GetDateTime(rtc_t *rtc)
-{
-    I2C_Start();                            // Start I2C communication
-
-    I2C_Write(C_Ds1307WriteMode_U8);        // connect to DS1307 by sending its ID on I2c Bus
-    I2C_Write(C_Ds1307SecondRegAddress_U8); // Request Sec RAM address at 00H
-
-    I2C_Stop();                                // Stop I2C communication after selecting Sec Register
-
-    I2C_Start();                            // Start I2C communication
-    I2C_Write(C_Ds1307ReadMode_U8);            // connect to DS1307(Read mode) by sending its ID
-
-    rtc->sec = I2C_Read(1);                // read second and return Positive ACK
-    rtc->min = I2C_Read(1);                 // read minute and return Positive ACK
-    rtc->hour= I2C_Read(1);               // read hour and return Negative/No ACK
-    rtc->weekDay = I2C_Read(1);           // read weekDay and return Positive ACK
-    rtc->date= I2C_Read(1);              // read Date and return Positive ACK
-    rtc->month=I2C_Read(1);            // read Month and return Positive ACK
-    rtc->year =I2C_Read(0);             // read Year and return Negative/No ACK
-
-    I2C_Stop();                              // Stop I2C communication after reading the Date
-}
-
-//Ajustar RTC DF1307
-void menu_ajustar_rtc(void){
-    char data[50];
-    unsigned int i=0;
-    char cvt1=0;
-    LCD_Command(0x01);
-    LCD_String_xy(1,1,"Ajustar Data e Hora ");
+    LCD_String_xy(1, 4, "UNIUBE");
+    LCD_String_xy(2, 1, "Engenharia Eletrica");
+    MSdelay(3000);
     
-    while(1){
-        if(i<200){
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Hora        ");
-                RTC_GetDateTime(&rtc); 
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
+    // Mensagem 2: Aluno e RA
+    LCD_Clear();
+    LCD_String_xy(1, 2, "Welington Correia");
+    LCD_String_xy(2, 4, "RA: 1063677");
+    MSdelay(3000);
+    
+    // Mensagem 3: Equipamento
+    LCD_Clear();
+    LCD_String_xy(1, 1, "Seq. Limpeza");
+    LCD_String_xy(2, 1, "Filtro de Manga");
+    MSdelay(3000);
+    
+    // Mensagem 4: Boas vindas
+    LCD_Clear();
+    LCD_String_xy(1, 4, "Bem-vindo!");
+    MSdelay(3000);
+}
 
-                if(!KEY2_IO){
-                    while(!KEY2_IO);
-                    break;
-
-                }
-                else if (!KEY3_IO){
-                    i=0;
-                    while(!KEY3_IO);MSdelay(300);
-                    cvt1++;
-                    if(cvt1>23){cvt1=0;}
-                    converteDecToHex(cvt1);
-                    rtc.hour = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!KEY4_IO){
-                    i=0;
-                    while(!KEY4_IO);MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 23;}
-                    converteDecToHex(cvt1);
-                    rtc.hour = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Minutos     ");
-                RTC_GetDateTime(&rtc); 
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!KEY2_IO){
-                    while(!KEY2_IO);
-                    break;
-
-                }
-                else if (!KEY3_IO){
-                    i=0;
-                    while(!KEY3_IO);MSdelay(300);
-                    cvt1++;
-                    if(cvt1>59){cvt1=0;}
-                    converteDecToHex(cvt1);
-                    rtc.min = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!KEY4_IO){
-                    i=0;
-                    while(!KEY4_IO);MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 59;}
-                    converteDecToHex(cvt1);
-                    rtc.min = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }
-            
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Dia         ");
-                RTC_GetDateTime(&rtc); 
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!KEY2_IO){
-                    while(!KEY2_IO);
-                    break;
-
-                }
-                else if (!KEY3_IO){
-                    i=0;
-                    while(!KEY3_IO);MSdelay(300);
-                    cvt1++;
-                    if(cvt1>31){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.date = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!KEY4_IO){
-                    i=0;
-                    while(!KEY4_IO);MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 31;}
-                    converteDecToHex(cvt1);
-                    rtc.date = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }            
-            
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Mes         ");
-                RTC_GetDateTime(&rtc); 
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!KEY2_IO){
-                    while(!KEY2_IO);
-                    break;
-
-                }
-                else if (!KEY3_IO){
-                    i=0;
-                    while(!KEY3_IO);MSdelay(300);
-                    cvt1++;
-                    if(cvt1>12){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.month = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!KEY4_IO){
-                    i=0;
-                    while(!KEY4_IO);MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 12;}
-                    converteDecToHex(cvt1);
-                    rtc.month = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }            
-            
-            
-            LCD_Command(0x01);
-            for(i=0; i<200; i++){
-                LCD_String_xy(1,1,"Ajustar Ano         ");
-                RTC_GetDateTime(&rtc); 
-                sprintf(data,"Hora:%2x:%2x:%2x    \nDate:%2x/%2x/%0x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-                LCD_String_xy(2,1,data);
-
-                if(!KEY2_IO){
-                    while(!KEY2_IO);
-                    break;
-
-                }
-                else if (!KEY3_IO){
-                    i=0;
-                    while(!KEY3_IO);MSdelay(300);
-                    cvt1++;
-                    if(cvt1>99){cvt1=1;}
-                    converteDecToHex(cvt1);
-                    rtc.year = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-                else if (!KEY4_IO){
-                    i=0;
-                    while(!KEY4_IO);MSdelay(300);
-                    cvt1--;
-                    if(cvt1 == 255){cvt1 = 99;}
-                    converteDecToHex(cvt1);
-                    rtc.year = acerto;
-                    RTC_SetDateTime(&rtc);
-                }
-
-
-            }     
-            
-           
-        }
-        i = 200;
-        LCD_Command(0x01);    
-        LCD_String_xy(1,1,"Sair Ajuste         ");        
-        if(KEY2_IO){
-            while(KEY2_IO);
-            break;
-
-        }        
+void Display_Menu_Principal(void) {
+    static uint16_t display_timer = 0;
+    static uint8_t linha_toggle = 0;
+    
+    if(display_timer++ >= 50) {  // Atualizar a cada 500ms
+        display_timer = 0;
+        linha_toggle ^= 1;
         
-    }
-
-
-
-
-
-}
-
-
-void converteDecToHex(int converte){
-    switch(converte){
-        case 0:
-            acerto = 0x00;
-            break;
-        case 1:
-            acerto = 0x01;
-            break;
-        case 2:
-            acerto = 0x02;
-            break;
-        case 3:
-            acerto = 0x03;
-            break;
-        case 4:
-            acerto = 0x04;
-            break;
-        case 5:
-            acerto = 0x05;
-            break;
-        case 6:
-            acerto = 0x06;
-            break;
-        case 7:
-            acerto = 0x07;
-            break;
-        case 8:
-            acerto = 0x08;
-            break;
-        case 9:
-            acerto = 0x09;
-            break;
-        case 10:
-            acerto = 0x10;
-            break;
-        case 11:
-            acerto = 0x11;
-            break;
-        case 12:
-            acerto = 0x12;
-            break;
-        case 13:
-            acerto = 0x13;
-            break;
-        case 14:
-            acerto = 0x14;
-            break;
-        case 15:
-            acerto = 0x15;
-            break;
-        case 16:
-            acerto = 0x16;
-            break;
-        case 17:
-            acerto = 0x17;
-            break;
-        case 18:
-            acerto = 0x18;
-            break;
-        case 19:
-            acerto = 0x19;
-            break;
-        case 20:
-            acerto = 0x20;
-            break;
-        case 21:
-            acerto = 0x21;
-            break;
-        case 22:
-            acerto = 0x22;
-            break;
-        case 23:
-            acerto = 0x23;
-            break;
-
-        case 24:
-            acerto = 0x24;
-            break;
-        case 25:
-            acerto = 0x25;
-            break;
-        case 26:
-            acerto = 0x26;
-            break;
-        case 27:
-            acerto = 0x27;
-            break;
-        case 28:
-            acerto = 0x28;
-            break;
-        case 29:
-            acerto = 0x29;
-            break;
-        case 30:
-            acerto = 0x30;
-            break;
-        case 31:
-            acerto = 0x31;
-            break;
-        case 32:
-            acerto = 0x32;
-            break;
-        case 33:
-            acerto = 0x33;
-            break;
-        case 34:
-            acerto = 0x34;
-            break;
-        case 35:
-            acerto = 0x35;
-            break;
-        case 36:
-            acerto = 0x36;
-            break;
-        case 37:
-            acerto = 0x37;
-            break;
-        case 38:
-            acerto = 0x38;
-            break;
-        case 39:
-            acerto = 0x39;
-            break;
-        case 40:
-            acerto = 0x40;
-            break;
-        case 41:
-            acerto = 0x41;
-            break;
-        case 42:
-            acerto = 0x42;
-            break;
-        case 43:
-            acerto = 0x43;
-            break;
-        case 44:
-            acerto = 0x44;
-            break;
-        case 45:
-            acerto = 0x45;
-            break;
-        case 46:
-            acerto = 0x46;
-            break;
-        case 47:
-            acerto = 0x47;
-            break;            
+        LCD_String_xy(1, 1, "                ");
+        
+        if(linha_toggle) {
+            // Linha 1: Modo e Ciclos
+            sprintf(lcd_buffer, "%s Cic:%04d", 
+                    modo_operacao ? "Auto" : "Man ", 
+                    contador_ciclos);
+            LCD_String_xy(1, 1, lcd_buffer);
             
-        case 48:
-            acerto = 0x48;
-            break;
-        case 49:
-            acerto = 0x49;
-            break;
-        case 50:
-            acerto = 0x50;
-            break;
-        case 51:
-            acerto = 0x51;
-            break;
-        case 52:
-            acerto = 0x52;
-            break;
-        case 53:
-            acerto = 0x53;
-            break;
-        case 54:
-            acerto = 0x54;
-            break;            
+            // Linha 2: Pressão
+            uint16_t pressao_mv = (adc_pressao * 5000) / 1024;  // Converter para mV
+            sprintf(lcd_buffer, "Press:%4dmV", pressao_mv);
+            LCD_String_xy(2, 1, lcd_buffer);
+        } else {
+            // Linha 1: Data e Hora
+            RTC_GetDateTime(&rtc);
+            sprintf(lcd_buffer, "%02x/%02x %02x:%02x", 
+                    rtc.date, rtc.month, 
+                    rtc.hour, rtc.min);
+            LCD_String_xy(1, 1, lcd_buffer);
             
-            
-        case 55:
-            acerto = 0x55;
-            break;
-        case 56:
-            acerto = 0x56;
-            break;
-        case 57:
-            acerto = 0x57;
-            break;
-        case 58:
-            acerto = 0x58;
-            break;
-        case 59:
-            acerto = 0x59;
-            break;            
-            
-           
-             
-        default :
-            acerto = 0x00;
-            break;
-            
+            // Linha 2: Status
+            if(falha_pressao) {
+                LCD_String_xy(2, 1, "FALHA! Press Alta");
+            } else if(ciclo_em_andamento) {
+                LCD_String_xy(2, 1, "Ciclo Ativo     ");
+            } else {
+                LCD_String_xy(2, 1, "Pronto          ");
+            }
+        }
     }
 }
 
+void Beep(uint8_t tipo) {
+    if(tipo == 1) {  // Bipe longo (2 segundos)
+        beep = 1;
+        MSdelay(2000);
+        beep = 0;
+    } else if(tipo == 2) {  // Bipe duplo
+        beep = 1; MSdelay(250); beep = 0; MSdelay(100);
+        beep = 1; MSdelay(250); beep = 0;
+    }
+}
 
+/*********************Sequenciador Automático*****************************/
+void Sequenciador_Automatico(void) {
+    static uint8_t valvula_atual = 0;
+    static uint16_t estado_timer = 0;
+    static uint8_t estado = 0;  // 0=espera, 1=válvula ligada, 2=intervalo, 3=entre ciclos
+    
+    if(falha_pressao) {
+        ciclo_em_andamento = 0;
+        led_ativo = 0;
+        PORTC = 0x00;
+        Val8 = 0;
+        return;
+    }
+    
+    switch(estado) {
+        case 0:  // Espera para iniciar ciclo
+            ciclo_em_andamento = 0;
+            led_ativo = 0;
+            if(estado_timer++ >= TEMPO_CICLO) {
+                estado = 1;
+                estado_timer = 0;
+                valvula_atual = 0;
+                ciclo_em_andamento = 1;
+                led_ativo = 1;
+                contador_ciclos++;
+                Salvar_Contador_EEPROM();
+            }
+            break;
+            
+        case 1:  // Válvula ligada
+            // Acionar válvula atual
+            switch(valvula_atual) {
+                case 0: Val1 = 1; break;
+                case 1: Val2 = 1; break;
+                case 2: Val3 = 1; break;
+                case 3: Val4 = 1; break;
+                case 4: Val5 = 1; break;
+                case 5: Val6 = 1; break;
+                case 6: Val7 = 1; break;
+                case 7: Val8 = 1; break;
+            }
+            
+            if(estado_timer++ >= TEMPO_VALVULA) {
+                // Desligar válvula atual
+                switch(valvula_atual) {
+                    case 0: Val1 = 0; break;
+                    case 1: Val2 = 0; break;
+                    case 2: Val3 = 0; break;
+                    case 3: Val4 = 0; break;
+                    case 4: Val5 = 0; break;
+                    case 5: Val6 = 0; break;
+                    case 6: Val7 = 0; break;
+                    case 7: Val8 = 0; break;
+                }
+                
+                estado = 2;
+                estado_timer = 0;
+            }
+            break;
+            
+        case 2:  // Intervalo entre válvulas
+            if(estado_timer++ >= TEMPO_INTERVALO) {
+                estado = 1;
+                estado_timer = 0;
+                valvula_atual++;
+                
+                if(valvula_atual >= NUM_VALVULAS) {
+                    estado = 3;  // Todas válvulas foram acionadas
+                    estado_timer = 0;
+                    ciclo_em_andamento = 0;
+                    led_ativo = 0;
+                }
+            }
+            break;
+            
+        case 3:  // Espera entre ciclos (já contado no estado 0)
+            if(estado_timer++ >= 100) {  // Pequeno delay
+                estado = 0;
+                estado_timer = 0;
+            }
+            break;
+    }
+}
+
+/*********************Modo Manual*****************************/
+void Modo_Manual(void) {
+    static uint8_t last_inc = 1;
+    static uint8_t last_dow = 1;
+    static uint8_t last_ent = 1;
+    
+    // Seleção de válvula com Bt_inc e Bt_dow
+    if(Bt_inc == 0 && last_inc == 1) {
+        MSdelay(50);  // Debounce
+        if(Bt_inc == 0) {
+            valvula_selecionada++;
+            if(valvula_selecionada >= NUM_VALVULAS) {
+                valvula_selecionada = 0;
+            }
+        }
+    }
+    last_inc = Bt_inc;
+    
+    if(Bt_dow == 0 && last_dow == 1) {
+        MSdelay(50);
+        if(Bt_dow == 0) {
+            if(valvula_selecionada == 0) {
+                valvula_selecionada = NUM_VALVULAS - 1;
+            } else {
+                valvula_selecionada--;
+            }
+        }
+    }
+    last_dow = Bt_dow;
+    
+    // Acionamento com Bt_ent
+    if(Bt_ent == 0 && last_ent == 1) {
+        MSdelay(50);
+        if(Bt_ent == 0) {
+            // Aciona a válvula selecionada por 2 segundos
+            switch(valvula_selecionada) {
+                case 0: Val1 = 1; MSdelay(2000); Val1 = 0; break;
+                case 1: Val2 = 1; MSdelay(2000); Val2 = 0; break;
+                case 2: Val3 = 1; MSdelay(2000); Val3 = 0; break;
+                case 3: Val4 = 1; MSdelay(2000); Val4 = 0; break;
+                case 4: Val5 = 1; MSdelay(2000); Val5 = 0; break;
+                case 5: Val6 = 1; MSdelay(2000); Val6 = 0; break;
+                case 6: Val7 = 1; MSdelay(2000); Val7 = 0; break;
+                case 7: Val8 = 1; MSdelay(2000); Val8 = 0; break;
+            }
+        }
+    }
+    last_ent = Bt_ent;
+    
+    // Mostrar válvula selecionada no display
+    static uint16_t manual_display_timer = 0;
+    if(manual_display_timer++ >= 100) {
+        manual_display_timer = 0;
+        sprintf(lcd_buffer, "Manual V:%d    ", valvula_selecionada + 1);
+        LCD_String_xy(2, 1, lcd_buffer);
+    }
+}
+
+/*********************EEPROM 24C32*****************************/
+uint8_t Ler_EEPROM(uint16_t endereco) {
+    uint8_t dado;
+    
+    I2C_Start();
+    I2C_Write(EEPROM_ADDR_WRITE);
+    I2C_Write((endereco >> 8) & 0xFF);  // Endereço alto
+    I2C_Write(endereco & 0xFF);         // Endereço baixo
+    I2C_Restart();
+    I2C_Write(EEPROM_ADDR_READ);
+    dado = I2C_Read(0);  // NACK no último byte
+    I2C_Stop();
+    
+    return dado;
+}
+
+void Escrever_EEPROM(uint16_t endereco, uint8_t dado) {
+    I2C_Start();
+    I2C_Write(EEPROM_ADDR_WRITE);
+    I2C_Write((endereco >> 8) & 0xFF);  // Endereço alto
+    I2C_Write(endereco & 0xFF);         // Endereço baixo
+    I2C_Write(dado);
+    I2C_Stop();
+    
+    MSdelay(10);  // Espera escrita completar
+}
+
+void Ler_Contador_EEPROM(void) {
+    uint8_t high = Ler_EEPROM(EEPROM_CICLO_ADDR);
+    uint8_t low = Ler_EEPROM(EEPROM_CICLO_ADDR + 1);
+    contador_ciclos = (high << 8) | low;
+}
+
+void Salvar_Contador_EEPROM(void) {
+    Escrever_EEPROM(EEPROM_CICLO_ADDR, (contador_ciclos >> 8) & 0xFF);
+    Escrever_EEPROM(EEPROM_CICLO_ADDR + 1, contador_ciclos & 0xFF);
+}
+
+/*********************RTC DS1307*****************************/
+void RTC_Init(void) {
+    I2C_Init();
+    
+    I2C_Start();
+    I2C_Write(0xD0);        // Endereço DS1307 em modo escrita
+    I2C_Write(0x07);        // Registro de controle
+    I2C_Write(0x00);        // Desabilitar saída SQW
+    I2C_Stop();
+}
+
+void RTC_GetDateTime(rtc_t *rtc) {
+    I2C_Start();
+    I2C_Write(0xD0);        // Endereço DS1307 em modo escrita
+    I2C_Write(0x00);        // Endereço do registro de segundos
+    I2C_Restart();
+    I2C_Write(0xD1);        // Endereço DS1307 em modo leitura
+    
+    rtc->sec = I2C_Read(1);
+    rtc->min = I2C_Read(1);
+    rtc->hour = I2C_Read(1);
+    rtc->weekDay = I2C_Read(1);
+    rtc->date = I2C_Read(1);
+    rtc->month = I2C_Read(1);
+    rtc->year = I2C_Read(0);
+    
+    I2C_Stop();
+}
+
+/*********************ADC para Pressão*****************************/
+void ADC_Init(void) {
+    ADCON1 = 0x0E;      // AN0 analógico, VREF+ = VDD, VREF- = VSS
+    ADCON2 = 0xBE;      // A/D conversão clock = FOSC/64, justificado à direita
+}
+
+uint16_t Ler_ADC(uint8_t canal) {
+    ADCON0 = (canal << 2) | 0x01;  // Seleciona canal e liga ADC
+    MSdelay(1);                    // Tempo de aquisição
+    
+    ADCON0bits.GO = 1;            // Inicia conversão
+    while(ADCON0bits.GO);         // Aguarda conversão
+    
+    return ((ADRESH << 8) | ADRESL);
+}
+
+void Verificar_Falha_Pressao(void) {
+    // Se pressão > 80% do fundo de escala, ativa falha
+    if(adc_pressao > 819) {  // 80% de 1024
+        falha_pressao = 1;
+        led_falha = 1;
+    } else {
+        falha_pressao = 0;
+        led_falha = 0;
+    }
+}
