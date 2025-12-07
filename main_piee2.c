@@ -388,6 +388,8 @@ void FSM_UpdateDisplay(fsm_data_t *fsm)
     static unsigned int display_counter = 0;
     display_counter++;
     
+     atualiza_data();
+    
     if(display_counter >= 10) {  // 10 * 10ms = 100ms
         display_counter = 0;
         

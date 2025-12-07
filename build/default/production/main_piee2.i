@@ -6307,6 +6307,8 @@ void FSM_UpdateDisplay(fsm_data_t *fsm)
     static unsigned int display_counter = 0;
     display_counter++;
 
+     atualiza_data();
+
     if(display_counter >= 10) {
         display_counter = 0;
 
@@ -6394,14 +6396,14 @@ void Beep(unsigned val){
 
 
 }
-# 506 "main_piee2.c"
+# 508 "main_piee2.c"
 void atualiza_data(){
     RTC_GetDateTime(&rtc);
     sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
     LCD_String_xy(1,0,data);
-# 576 "main_piee2.c"
+# 578 "main_piee2.c"
 }
-# 586 "main_piee2.c"
+# 588 "main_piee2.c"
 void RTC_Init(void)
 {
     I2C_Init();
@@ -6414,7 +6416,7 @@ void RTC_Init(void)
 
     I2C_Stop();
 }
-# 611 "main_piee2.c"
+# 613 "main_piee2.c"
 void RTC_SetDateTime(rtc_t *rtc)
 {
     I2C_Start();
@@ -6432,7 +6434,7 @@ void RTC_SetDateTime(rtc_t *rtc)
 
     I2C_Stop();
 }
-# 640 "main_piee2.c"
+# 642 "main_piee2.c"
 void RTC_GetDateTime(rtc_t *rtc)
 {
     I2C_Start();
