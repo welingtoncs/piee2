@@ -847,198 +847,201 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 55:     MSdelay(10);
 [e ( _MSdelay (1 -> -> 10 `i `ui ]
 "56
-[; ;main_piee2.c: 56:     while(1)
-[e :U 373 ]
+[; ;main_piee2.c: 56:     LCD_String_xy(1,0,"Teste DS1307");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc :s 1C ]
 "57
-[; ;main_piee2.c: 57:     {
-{
+[; ;main_piee2.c: 57:     while(1)
+[e :U 373 ]
 "58
-[; ;main_piee2.c: 58:         RTC_Read_Clock(0);
-[e ( _RTC_Read_Clock (1 -> -> 0 `i `uc ]
+[; ;main_piee2.c: 58:     {
+{
 "59
-[; ;main_piee2.c: 59:         I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 59:         RTC_Read_Clock(0);
+[e ( _RTC_Read_Clock (1 -> -> 0 `i `uc ]
 "60
-[; ;main_piee2.c: 60:         if(hour & (1<<Clock_type)){
+[; ;main_piee2.c: 60:         I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"61
+[; ;main_piee2.c: 61:         if(hour & (1<<Clock_type)){
 [e $ ! != & _hour << -> 1 `i -> _Clock_type `i -> 0 `i 375  ]
 {
-"62
-[; ;main_piee2.c: 62:             if(hour & (1<<AM_PM)){
+"63
+[; ;main_piee2.c: 63:             if(hour & (1<<AM_PM)){
 [e $ ! != & _hour << -> 1 `i -> _AM_PM `i -> 0 `i 376  ]
 {
-"63
-[; ;main_piee2.c: 63:                 LCD_String_xy(1,14,"PM");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 1C ]
 "64
-[; ;main_piee2.c: 64:             }
+[; ;main_piee2.c: 64:                 LCD_String_xy(1,14,"PM");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 2C ]
+"65
+[; ;main_piee2.c: 65:             }
 }
 [e $U 377  ]
-"65
-[; ;main_piee2.c: 65:             else{
+"66
+[; ;main_piee2.c: 66:             else{
 [e :U 376 ]
 {
-"66
-[; ;main_piee2.c: 66:                 LCD_String_xy(1,14,"AM");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 2C ]
 "67
-[; ;main_piee2.c: 67:             }
+[; ;main_piee2.c: 67:                 LCD_String_xy(1,14,"AM");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 14 `i `uc :s 3C ]
+"68
+[; ;main_piee2.c: 68:             }
 }
 [e :U 377 ]
-"69
-[; ;main_piee2.c: 69:             hour = hour & (0x1f);
-[e = _hour & _hour -> 31 `i ]
 "70
-[; ;main_piee2.c: 70:             sprintf(secs,"%x ",sec);
-[e ( _sprintf (1 , (. , &U _secs :s 3C _sec ]
+[; ;main_piee2.c: 70:             hour = hour & (0x1f);
+[e = _hour & _hour -> 31 `i ]
 "71
-[; ;main_piee2.c: 71:             sprintf(mins,"%x:",min);
-[e ( _sprintf (1 , (. , &U _mins :s 4C _min ]
+[; ;main_piee2.c: 71:             sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 4C _sec ]
 "72
-[; ;main_piee2.c: 72:             sprintf(hours,"Tim:%x:",hour);
-[e ( _sprintf (1 , (. , &U _hours :s 5C _hour ]
+[; ;main_piee2.c: 72:             sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 5C _min ]
 "73
-[; ;main_piee2.c: 73:             LCD_String_xy(0,0,hours);
-[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+[; ;main_piee2.c: 73:             sprintf(hours,"Tim:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 6C _hour ]
 "74
-[; ;main_piee2.c: 74:             LCD_String(mins);
-[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+[; ;main_piee2.c: 74:             LCD_String_xy(0,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
 "75
-[; ;main_piee2.c: 75:             LCD_String(secs);
-[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+[; ;main_piee2.c: 75:             LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
 "76
-[; ;main_piee2.c: 76:         }
+[; ;main_piee2.c: 76:             LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"77
+[; ;main_piee2.c: 77:         }
 }
 [e $U 378  ]
-"77
-[; ;main_piee2.c: 77:         else{
+"78
+[; ;main_piee2.c: 78:         else{
 [e :U 375 ]
 {
-"79
-[; ;main_piee2.c: 79:             hour = hour & (0x3f);
-[e = _hour & _hour -> 63 `i ]
 "80
-[; ;main_piee2.c: 80:             sprintf(secs,"%x ",sec);
-[e ( _sprintf (1 , (. , &U _secs :s 6C _sec ]
+[; ;main_piee2.c: 80:             hour = hour & (0x3f);
+[e = _hour & _hour -> 63 `i ]
 "81
-[; ;main_piee2.c: 81:             sprintf(mins,"%x:",min);
-[e ( _sprintf (1 , (. , &U _mins :s 7C _min ]
+[; ;main_piee2.c: 81:             sprintf(secs,"%x ",sec);
+[e ( _sprintf (1 , (. , &U _secs :s 7C _sec ]
 "82
-[; ;main_piee2.c: 82:             sprintf(hours,"Tim:%x:",hour);
-[e ( _sprintf (1 , (. , &U _hours :s 8C _hour ]
+[; ;main_piee2.c: 82:             sprintf(mins,"%x:",min);
+[e ( _sprintf (1 , (. , &U _mins :s 8C _min ]
 "83
-[; ;main_piee2.c: 83:             LCD_String_xy(0,0,hours);
-[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
+[; ;main_piee2.c: 83:             sprintf(hours,"Tim:%x:",hour);
+[e ( _sprintf (1 , (. , &U _hours :s 9C _hour ]
 "84
-[; ;main_piee2.c: 84:             LCD_String(mins);
-[e ( _LCD_String (1 -> &U _mins `*Cuc ]
+[; ;main_piee2.c: 84:             LCD_String_xy(0,0,hours);
+[e ( _LCD_String_xy (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _hours `*Cuc ]
 "85
-[; ;main_piee2.c: 85:             LCD_String(secs);
-[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+[; ;main_piee2.c: 85:             LCD_String(mins);
+[e ( _LCD_String (1 -> &U _mins `*Cuc ]
 "86
-[; ;main_piee2.c: 86:         }
+[; ;main_piee2.c: 86:             LCD_String(secs);
+[e ( _LCD_String (1 -> &U _secs `*Cuc ]
+"87
+[; ;main_piee2.c: 87:         }
 }
 [e :U 378 ]
-"88
-[; ;main_piee2.c: 88:         RTC_Read_Calendar(3);
-[e ( _RTC_Read_Calendar (1 -> -> 3 `i `uc ]
 "89
-[; ;main_piee2.c: 89:         I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 89:         RTC_Read_Calendar(3);
+[e ( _RTC_Read_Calendar (1 -> -> 3 `i `uc ]
 "90
-[; ;main_piee2.c: 90:         sprintf(date,"Cal %x-",Date);
-[e ( _sprintf (1 , (. , &U _date :s 9C _Date ]
+[; ;main_piee2.c: 90:         I2C_Stop();
+[e ( _I2C_Stop ..  ]
 "91
-[; ;main_piee2.c: 91:         sprintf(month,"%x-",Month);
-[e ( _sprintf (1 , (. , &U _month :s 10C _Month ]
+[; ;main_piee2.c: 91:         sprintf(date,"Cal %x-",Date);
+[e ( _sprintf (1 , (. , &U _date :s 10C _Date ]
 "92
-[; ;main_piee2.c: 92:         sprintf(year,"%x ",Year);
-[e ( _sprintf (1 , (. , &U _year :s 11C _Year ]
+[; ;main_piee2.c: 92:         sprintf(month,"%x-",Month);
+[e ( _sprintf (1 , (. , &U _month :s 11C _Month ]
 "93
-[; ;main_piee2.c: 93:         LCD_String_xy(2,0,date);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _date `*Cuc ]
+[; ;main_piee2.c: 93:         sprintf(year,"%x ",Year);
+[e ( _sprintf (1 , (. , &U _year :s 12C _Year ]
 "94
-[; ;main_piee2.c: 94:         LCD_String(month);
-[e ( _LCD_String (1 -> &U _month `*Cuc ]
+[; ;main_piee2.c: 94:         LCD_String_xy(2,0,date);
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _date `*Cuc ]
 "95
-[; ;main_piee2.c: 95:         LCD_String(year);
+[; ;main_piee2.c: 95:         LCD_String(month);
+[e ( _LCD_String (1 -> &U _month `*Cuc ]
+"96
+[; ;main_piee2.c: 96:         LCD_String(year);
 [e ( _LCD_String (1 -> &U _year `*Cuc ]
-"98
-[; ;main_piee2.c: 98:         switch(days[Day])
-[e $U 380  ]
 "99
-[; ;main_piee2.c: 99:         {
-{
+[; ;main_piee2.c: 99:         switch(days[Day])
+[e $U 380  ]
 "100
-[; ;main_piee2.c: 100:             case 'S':
-[e :U 381 ]
+[; ;main_piee2.c: 100:         {
+{
 "101
-[; ;main_piee2.c: 101:                         LCD_String("Sun");
-[e ( _LCD_String (1 :s 12C ]
+[; ;main_piee2.c: 101:             case 'S':
+[e :U 381 ]
 "102
-[; ;main_piee2.c: 102:                         break;
-[e $U 379  ]
-"103
-[; ;main_piee2.c: 103:             case 'M':
-[e :U 382 ]
-"104
-[; ;main_piee2.c: 104:                         LCD_String("Mon");
+[; ;main_piee2.c: 102:                         LCD_String("Sun");
 [e ( _LCD_String (1 :s 13C ]
+"103
+[; ;main_piee2.c: 103:                         break;
+[e $U 379  ]
+"104
+[; ;main_piee2.c: 104:             case 'M':
+[e :U 382 ]
 "105
-[; ;main_piee2.c: 105:                         break;
-[e $U 379  ]
-"106
-[; ;main_piee2.c: 106:             case 'T':
-[e :U 383 ]
-"107
-[; ;main_piee2.c: 107:                         LCD_String("Tue");
+[; ;main_piee2.c: 105:                         LCD_String("Mon");
 [e ( _LCD_String (1 :s 14C ]
+"106
+[; ;main_piee2.c: 106:                         break;
+[e $U 379  ]
+"107
+[; ;main_piee2.c: 107:             case 'T':
+[e :U 383 ]
 "108
-[; ;main_piee2.c: 108:                         break;
-[e $U 379  ]
-"109
-[; ;main_piee2.c: 109:             case 'W':
-[e :U 384 ]
-"110
-[; ;main_piee2.c: 110:                         LCD_String("Wed");
+[; ;main_piee2.c: 108:                         LCD_String("Tue");
 [e ( _LCD_String (1 :s 15C ]
+"109
+[; ;main_piee2.c: 109:                         break;
+[e $U 379  ]
+"110
+[; ;main_piee2.c: 110:             case 'W':
+[e :U 384 ]
 "111
-[; ;main_piee2.c: 111:                         break;
-[e $U 379  ]
-"112
-[; ;main_piee2.c: 112:             case 't':
-[e :U 385 ]
-"113
-[; ;main_piee2.c: 113:                         LCD_String("Thu");
+[; ;main_piee2.c: 111:                         LCD_String("Wed");
 [e ( _LCD_String (1 :s 16C ]
+"112
+[; ;main_piee2.c: 112:                         break;
+[e $U 379  ]
+"113
+[; ;main_piee2.c: 113:             case 't':
+[e :U 385 ]
 "114
-[; ;main_piee2.c: 114:                         break;
-[e $U 379  ]
-"115
-[; ;main_piee2.c: 115:             case 'F':
-[e :U 386 ]
-"116
-[; ;main_piee2.c: 116:                         LCD_String("Fri");
+[; ;main_piee2.c: 114:                         LCD_String("Thu");
 [e ( _LCD_String (1 :s 17C ]
+"115
+[; ;main_piee2.c: 115:                         break;
+[e $U 379  ]
+"116
+[; ;main_piee2.c: 116:             case 'F':
+[e :U 386 ]
 "117
-[; ;main_piee2.c: 117:                         break;
-[e $U 379  ]
-"118
-[; ;main_piee2.c: 118:             case 's':
-[e :U 387 ]
-"119
-[; ;main_piee2.c: 119:                         LCD_String("Sat");
+[; ;main_piee2.c: 117:                         LCD_String("Fri");
 [e ( _LCD_String (1 :s 18C ]
+"118
+[; ;main_piee2.c: 118:                         break;
+[e $U 379  ]
+"119
+[; ;main_piee2.c: 119:             case 's':
+[e :U 387 ]
 "120
-[; ;main_piee2.c: 120:                         break;
-[e $U 379  ]
+[; ;main_piee2.c: 120:                         LCD_String("Sat");
+[e ( _LCD_String (1 :s 19C ]
 "121
-[; ;main_piee2.c: 121:             default:
-[e :U 388 ]
-"122
-[; ;main_piee2.c: 122:                         break;
+[; ;main_piee2.c: 121:                         break;
 [e $U 379  ]
-"124
-[; ;main_piee2.c: 124:         }
+"122
+[; ;main_piee2.c: 122:             default:
+[e :U 388 ]
+"123
+[; ;main_piee2.c: 123:                         break;
+[e $U 379  ]
+"125
+[; ;main_piee2.c: 125:         }
 }
 [e $U 379  ]
 [e :U 380 ]
@@ -1051,32 +1054,33 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 115 `ui `i 387
  388 ]
 [e :U 379 ]
-"126
-[; ;main_piee2.c: 126:     }
+"127
+[; ;main_piee2.c: 127:     }
 }
 [e :U 372 ]
 [e $U 373  ]
 [e :U 374 ]
-"127
-[; ;main_piee2.c: 127: }
+"128
+[; ;main_piee2.c: 128: }
 [e :UE 371 ]
 }
 [p f _sprintf 12582912 ]
-[a 16C 84 104 117 0 ]
-[a 18C 83 97 116 0 ]
-[a 12C 83 117 110 0 ]
-[a 13C 77 111 110 0 ]
-[a 17C 70 114 105 0 ]
-[a 14C 84 117 101 0 ]
-[a 15C 87 101 100 0 ]
-[a 1C 80 77 0 ]
-[a 2C 65 77 0 ]
-[a 5C 84 105 109 58 37 120 58 0 ]
-[a 8C 84 105 109 58 37 120 58 0 ]
-[a 4C 37 120 58 0 ]
-[a 7C 37 120 58 0 ]
-[a 9C 67 97 108 32 37 120 45 0 ]
-[a 10C 37 120 45 0 ]
-[a 3C 37 120 32 0 ]
-[a 6C 37 120 32 0 ]
-[a 11C 37 120 32 0 ]
+[a 17C 84 104 117 0 ]
+[a 19C 83 97 116 0 ]
+[a 13C 83 117 110 0 ]
+[a 14C 77 111 110 0 ]
+[a 18C 70 114 105 0 ]
+[a 15C 84 117 101 0 ]
+[a 16C 87 101 100 0 ]
+[a 2C 80 77 0 ]
+[a 3C 65 77 0 ]
+[a 6C 84 105 109 58 37 120 58 0 ]
+[a 9C 84 105 109 58 37 120 58 0 ]
+[a 5C 37 120 58 0 ]
+[a 8C 37 120 58 0 ]
+[a 1C 84 101 115 116 101 32 68 83 49 51 48 55 0 ]
+[a 10C 67 97 108 32 37 120 45 0 ]
+[a 11C 37 120 45 0 ]
+[a 4C 37 120 32 0 ]
+[a 7C 37 120 32 0 ]
+[a 12C 37 120 32 0 ]

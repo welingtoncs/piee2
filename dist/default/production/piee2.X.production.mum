@@ -1,6 +1,6 @@
 
 Memory Summary:
-    Program space        used   C09h (  3081) of  8000h bytes   (  9.4%)
+    Program space        used   C29h (  3113) of  8000h bytes   (  9.5%)
     Data space           used    D7h (   215) of   800h bytes   ( 10.5%)
     Configuration bits   used     7h (     7) of     7h words   (100.0%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)

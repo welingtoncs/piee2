@@ -6069,6 +6069,7 @@ void main()
     LCD_Init();
     LCD_Clear();
     MSdelay(10);
+    LCD_String_xy(1,0,"Teste DS1307");
     while(1)
     {
         RTC_Read_Clock(0);

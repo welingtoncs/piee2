@@ -53,6 +53,7 @@ void main()
     LCD_Init();                     /*initialize LCD16x2*/    
     LCD_Clear();
     MSdelay(10);
+    LCD_String_xy(1,0,"Teste DS1307");
     while(1)
     { 
         RTC_Read_Clock(0);              /*gives second,minute and hour*/
