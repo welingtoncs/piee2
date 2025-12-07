@@ -6067,6 +6067,9 @@ int main(void)
     rtc.month = 0x03;
     rtc.year = 0x21;
     rtc.weekDay = 3;
+
+    RTC_SetDateTime(&rtc);
+
     TRISD = 0x00;
     TRISC = 0x00;
     PORTC = 0x00;
@@ -6391,14 +6394,14 @@ void Beep(unsigned val){
 
 
 }
-# 503 "main_piee2.c"
+# 506 "main_piee2.c"
 void atualiza_data(){
     RTC_GetDateTime(&rtc);
     sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-    LCD_String_xy(2,0,data);
-# 573 "main_piee2.c"
+    LCD_String_xy(1,0,data);
+# 576 "main_piee2.c"
 }
-# 583 "main_piee2.c"
+# 586 "main_piee2.c"
 void RTC_Init(void)
 {
     I2C_Init();
@@ -6411,7 +6414,7 @@ void RTC_Init(void)
 
     I2C_Stop();
 }
-# 608 "main_piee2.c"
+# 611 "main_piee2.c"
 void RTC_SetDateTime(rtc_t *rtc)
 {
     I2C_Start();
@@ -6429,7 +6432,7 @@ void RTC_SetDateTime(rtc_t *rtc)
 
     I2C_Stop();
 }
-# 637 "main_piee2.c"
+# 640 "main_piee2.c"
 void RTC_GetDateTime(rtc_t *rtc)
 {
     I2C_Start();

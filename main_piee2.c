@@ -148,6 +148,9 @@ int main(void)
     rtc.month = 0x03;
     rtc.year = 0x21;
     rtc.weekDay = 3; // Friday: 5th day of week considering monday as first day.
+    
+    RTC_SetDateTime(&rtc);  //  10:40:20 am, 1st Jan 2016
+    
     TRISD = 0x00;
     TRISC = 0x00;
     PORTC = 0x00;
@@ -503,7 +506,7 @@ void Beep(unsigned val){
 void atualiza_data(){
     RTC_GetDateTime(&rtc);
     sprintf(data,"Hora:%2x:%2x:%2x    AB\nDate:%2x/%2x/%2x",(uint16_t)rtc.hour,(uint16_t)rtc.min,(uint16_t)rtc.sec,(uint16_t)rtc.date,(uint16_t)rtc.month,(uint16_t)rtc.year);
-    LCD_String_xy(2,0,data);
+    LCD_String_xy(1,0,data);
 
 //    if(hour & (1<<Clock_type)){     /* check clock is 12hr or 24hr */
 //
