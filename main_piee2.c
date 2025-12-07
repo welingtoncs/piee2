@@ -123,7 +123,7 @@ int main(void) {
     
     while(1) {
         // Ler pressão diferencial
-        //adc_pressao = Ler_ADC(0);
+        adc_pressao = Ler_ADC(0);
         
         // Verificar falha de pressão
         Verificar_Falha_Pressao();
@@ -144,13 +144,13 @@ int main(void) {
                     PORTC = 0x00;
                     Val8 = 0;
                 }
-                //while(Bt_reset == 0);  // Aguarda soltar botão
+                while(Bt_reset == 0);  // Aguarda soltar botão
             }
         }
         
         // Verificar mudança de modo
         static uint8_t last_man_aut = 1;
-        if(Bt_man_aut == 0 && modo_operacao == 1) {
+        if(Bt_man_aut == 0) {
             MSdelay(50);
             if(Bt_man_aut == 0) {
                 modo_operacao = !modo_operacao;  // Alterna entre Manual e Auto
@@ -160,6 +160,7 @@ int main(void) {
                 led_ativo = 0;
                 Beep(1);  // Bipe curto para confirmar mudança
             }
+            while(Bt_man_aut == 0);  // Aguarda soltar botão
         }
         last_man_aut = Bt_man_aut;
         
@@ -167,6 +168,7 @@ int main(void) {
         if(modo_operacao == 0) {
             Modo_Manual();
         } else {
+            modo_operacao == 1;
             Sequenciador_Automatico();
         }
         

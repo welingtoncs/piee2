@@ -16,6 +16,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "86
 [; ;main_piee2.c: 86: void Display_Mensagens_Iniciais(void);
 [v _Display_Mensagens_Iniciais `(v ~T0 @X0 0 ef ]
+"100
+[; ;main_piee2.c: 100: uint16_t Ler_ADC(uint8_t canal);
+[v _Ler_ADC `(us ~T0 @X0 0 ef1`uc ]
 "101
 [; ;main_piee2.c: 101: void Verificar_Falha_Pressao(void);
 [v _Verificar_Falha_Pressao `(v ~T0 @X0 0 ef ]
@@ -883,6 +886,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 124:     while(1) {
 [e :U 373 ]
 {
+"126
+[; ;main_piee2.c: 126:         adc_pressao = Ler_ADC(0);
+[e = _adc_pressao ( _Ler_ADC (1 -> -> 0 `i `uc ]
 "129
 [; ;main_piee2.c: 129:         Verificar_Falha_Pressao();
 [e ( _Verificar_Falha_Pressao ..  ]
@@ -935,6 +941,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 146:                 }
 }
 [e :U 378 ]
+"147
+[; ;main_piee2.c: 147:                 while(PORTAbits.RA6 == 0);
+[e $U 379  ]
+[e :U 380 ]
+[e :U 379 ]
+[e $ == -> . . _PORTAbits 0 6 `i -> 0 `i 380  ]
+[e :U 381 ]
 "148
 [; ;main_piee2.c: 148:             }
 }
@@ -950,15 +963,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 "153
-[; ;main_piee2.c: 153:         if(PORTAbits.RA2 == 0 && modo_operacao == 1) {
-[e $ ! && == -> . . _PORTAbits 0 2 `i -> 0 `i == -> _modo_operacao `i -> 1 `i 379  ]
+[; ;main_piee2.c: 153:         if(PORTAbits.RA2 == 0) {
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 0 `i 382  ]
 {
 "154
 [; ;main_piee2.c: 154:             MSdelay(50);
 [e ( _MSdelay (1 -> -> 50 `i `ui ]
 "155
 [; ;main_piee2.c: 155:             if(PORTAbits.RA2 == 0) {
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 0 `i 380  ]
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 0 `i 383  ]
 {
 "156
 [; ;main_piee2.c: 156:                 modo_operacao = !modo_operacao;
@@ -981,1180 +994,1190 @@ Version 4.0 HI-TECH Software Intermediate Code
 "162
 [; ;main_piee2.c: 162:             }
 }
-[e :U 380 ]
+[e :U 383 ]
 "163
-[; ;main_piee2.c: 163:         }
-}
-[e :U 379 ]
+[; ;main_piee2.c: 163:             while(PORTAbits.RA2 == 0);
+[e $U 384  ]
+[e :U 385 ]
+[e :U 384 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 0 `i 385  ]
+[e :U 386 ]
 "164
-[; ;main_piee2.c: 164:         last_man_aut = PORTAbits.RA2;
-[e = F3781 . . _PORTAbits 0 2 ]
-"167
-[; ;main_piee2.c: 167:         if(modo_operacao == 0) {
-[e $ ! == -> _modo_operacao `i -> 0 `i 381  ]
-{
-"168
-[; ;main_piee2.c: 168:             Modo_Manual();
-[e ( _Modo_Manual ..  ]
-"169
-[; ;main_piee2.c: 169:         } else {
-}
-[e $U 382  ]
-[e :U 381 ]
-{
-"170
-[; ;main_piee2.c: 170:             Sequenciador_Automatico();
-[e ( _Sequenciador_Automatico ..  ]
-"171
-[; ;main_piee2.c: 171:         }
+[; ;main_piee2.c: 164:         }
 }
 [e :U 382 ]
-"174
-[; ;main_piee2.c: 174:         static uint16_t blink_timer = 0;
+"165
+[; ;main_piee2.c: 165:         last_man_aut = PORTAbits.RA2;
+[e = F3781 . . _PORTAbits 0 2 ]
+"168
+[; ;main_piee2.c: 168:         if(modo_operacao == 0) {
+[e $ ! == -> _modo_operacao `i -> 0 `i 387  ]
+{
+"169
+[; ;main_piee2.c: 169:             Modo_Manual();
+[e ( _Modo_Manual ..  ]
+"170
+[; ;main_piee2.c: 170:         } else {
+}
+[e $U 388  ]
+[e :U 387 ]
+{
+"171
+[; ;main_piee2.c: 171:             modo_operacao == 1;
+[e == -> _modo_operacao `i -> 1 `i ]
+"172
+[; ;main_piee2.c: 172:             Sequenciador_Automatico();
+[e ( _Sequenciador_Automatico ..  ]
+"173
+[; ;main_piee2.c: 173:         }
+}
+[e :U 388 ]
+"176
+[; ;main_piee2.c: 176:         static uint16_t blink_timer = 0;
 [v F3782 `us ~T0 @X0 1 s blink_timer ]
 [i F3782
 -> -> 0 `i `us
 ]
-"175
-[; ;main_piee2.c: 175:         if(blink_timer++ >= 50) {
-[e $ ! >= -> ++ F3782 -> -> 1 `i `us `ui -> -> 50 `i `ui 383  ]
-{
-"176
-[; ;main_piee2.c: 176:             blink_timer = 0;
-[e = F3782 -> -> 0 `i `us ]
 "177
-[; ;main_piee2.c: 177:             LATD1 ^= 1;
-[e =^ _LATD1 -> -> -> 1 `i `b `Vb ]
+[; ;main_piee2.c: 177:         if(blink_timer++ >= 50) {
+[e $ ! >= -> ++ F3782 -> -> 1 `i `us `ui -> -> 50 `i `ui 389  ]
+{
 "178
-[; ;main_piee2.c: 178:         }
+[; ;main_piee2.c: 178:             blink_timer = 0;
+[e = F3782 -> -> 0 `i `us ]
+"179
+[; ;main_piee2.c: 179:             LATD1 ^= 1;
+[e =^ _LATD1 -> -> -> 1 `i `b `Vb ]
+"180
+[; ;main_piee2.c: 180:         }
 }
-[e :U 383 ]
-"181
-[; ;main_piee2.c: 181:         MSdelay(10);
-[e ( _MSdelay (1 -> -> 10 `i `ui ]
-"182
-[; ;main_piee2.c: 182:         temporizador++;
-[e ++ _temporizador -> -> 1 `i `us ]
+[e :U 389 ]
 "183
-[; ;main_piee2.c: 183:     }
+[; ;main_piee2.c: 183:         MSdelay(10);
+[e ( _MSdelay (1 -> -> 10 `i `ui ]
+"184
+[; ;main_piee2.c: 184:         temporizador++;
+[e ++ _temporizador -> -> 1 `i `us ]
+"185
+[; ;main_piee2.c: 185:     }
 }
 [e :U 372 ]
 [e $U 373  ]
 [e :U 374 ]
-"185
-[; ;main_piee2.c: 185:     return 0;
+"187
+[; ;main_piee2.c: 187:     return 0;
 [e ) -> 0 `i ]
 [e $UE 371  ]
-"186
-[; ;main_piee2.c: 186: }
+"188
+[; ;main_piee2.c: 188: }
 [e :UE 371 ]
 }
-"189
-[; ;main_piee2.c: 189: void System_Init(void) {
+"191
+[; ;main_piee2.c: 191: void System_Init(void) {
 [v _System_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _System_Init ]
 [f ]
-"191
-[; ;main_piee2.c: 191:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
-"192
-[; ;main_piee2.c: 192:     TRISC = 0x00;
-[e = _TRISC -> -> 0 `i `uc ]
 "193
-[; ;main_piee2.c: 193:     PORTC = 0x00;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main_piee2.c: 193:     TRISD = 0x00;
+[e = _TRISD -> -> 0 `i `uc ]
 "194
-[; ;main_piee2.c: 194:     PORTD = 0x00;
+[; ;main_piee2.c: 194:     TRISC = 0x00;
+[e = _TRISC -> -> 0 `i `uc ]
+"195
+[; ;main_piee2.c: 195:     PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"196
+[; ;main_piee2.c: 196:     PORTD = 0x00;
 [e = _PORTD -> -> 0 `i `uc ]
-"197
-[; ;main_piee2.c: 197:     TRISAbits.TRISA2 = 1;
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-"198
-[; ;main_piee2.c: 198:     TRISAbits.TRISA3 = 1;
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
 "199
-[; ;main_piee2.c: 199:     TRISAbits.TRISA4 = 1;
-[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 199:     TRISAbits.TRISA2 = 1;
+[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
 "200
-[; ;main_piee2.c: 200:     TRISAbits.TRISA5 = 1;
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 200:     TRISAbits.TRISA3 = 1;
+[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
 "201
-[; ;main_piee2.c: 201:     TRISAbits.TRISA6 = 1;
-[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 201:     TRISAbits.TRISA4 = 1;
+[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
 "202
-[; ;main_piee2.c: 202:     TRISAbits.TRISA0 = 1;
+[; ;main_piee2.c: 202:     TRISAbits.TRISA5 = 1;
+[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+"203
+[; ;main_piee2.c: 203:     TRISAbits.TRISA6 = 1;
+[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
+"204
+[; ;main_piee2.c: 204:     TRISAbits.TRISA0 = 1;
 [e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-"205
-[; ;main_piee2.c: 205:     LCD_Init();
-[e ( _LCD_Init ..  ]
-"206
-[; ;main_piee2.c: 206:     RTC_Init();
-[e ( _RTC_Init ..  ]
 "207
-[; ;main_piee2.c: 207:     ADC_Init();
-[e ( _ADC_Init ..  ]
+[; ;main_piee2.c: 207:     LCD_Init();
+[e ( _LCD_Init ..  ]
 "208
-[; ;main_piee2.c: 208:     I2C_Init();
+[; ;main_piee2.c: 208:     RTC_Init();
+[e ( _RTC_Init ..  ]
+"209
+[; ;main_piee2.c: 209:     ADC_Init();
+[e ( _ADC_Init ..  ]
+"210
+[; ;main_piee2.c: 210:     I2C_Init();
 [e ( _I2C_Init ..  ]
-"211
-[; ;main_piee2.c: 211:     Ler_Contador_EEPROM();
+"213
+[; ;main_piee2.c: 213:     Ler_Contador_EEPROM();
 [e ( _Ler_Contador_EEPROM ..  ]
-"212
-[; ;main_piee2.c: 212: }
-[e :UE 384 ]
-}
 "214
-[; ;main_piee2.c: 214: void Display_Mensagens_Iniciais(void) {
+[; ;main_piee2.c: 214: }
+[e :UE 390 ]
+}
+"216
+[; ;main_piee2.c: 216: void Display_Mensagens_Iniciais(void) {
 [v _Display_Mensagens_Iniciais `(v ~T0 @X0 1 ef ]
 {
 [e :U _Display_Mensagens_Iniciais ]
 [f ]
-"216
-[; ;main_piee2.c: 216:     LCD_Clear();
-[e ( _LCD_Clear ..  ]
-"217
-[; ;main_piee2.c: 217:     LCD_String_xy(1, 7, "UNIUBE");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 7 `i `uc :s 1C ]
 "218
-[; ;main_piee2.c: 218:     LCD_String_xy(2, 0, "Engenharia Eletrica");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc :s 2C ]
+[; ;main_piee2.c: 218:     LCD_Clear();
+[e ( _LCD_Clear ..  ]
 "219
-[; ;main_piee2.c: 219:     LCD_String_xy(3, 2, "Projeto Integrado");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 2 `i `uc :s 3C ]
+[; ;main_piee2.c: 219:     LCD_String_xy(1, 7, "UNIUBE");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 7 `i `uc :s 1C ]
 "220
-[; ;main_piee2.c: 220:     LCD_String_xy(4, 3, "Em Eletrica II");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 4C ]
+[; ;main_piee2.c: 220:     LCD_String_xy(2, 0, "Engenharia Eletrica");
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc :s 2C ]
 "221
-[; ;main_piee2.c: 221:     MSdelay(3000);
+[; ;main_piee2.c: 221:     LCD_String_xy(3, 2, "Projeto Integrado");
+[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 2 `i `uc :s 3C ]
+"222
+[; ;main_piee2.c: 222:     LCD_String_xy(4, 3, "Em Eletrica II");
+[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 4C ]
+"223
+[; ;main_piee2.c: 223:     MSdelay(3000);
 [e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"224
-[; ;main_piee2.c: 224:     LCD_Clear();
-[e ( _LCD_Clear ..  ]
-"225
-[; ;main_piee2.c: 225:     LCD_String_xy(1, 2, "Welington Correia");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 5C ]
 "226
-[; ;main_piee2.c: 226:     LCD_String_xy(2, 4, "RA : 1063677");
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 4 `i `uc :s 6C ]
+[; ;main_piee2.c: 226:     LCD_Clear();
+[e ( _LCD_Clear ..  ]
 "227
-[; ;main_piee2.c: 227:     LCD_String_xy(3, 1, "Seq.Eletr.Limpeza");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 7C ]
+[; ;main_piee2.c: 227:     LCD_String_xy(1, 2, "Welington Correia");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 5C ]
 "228
-[; ;main_piee2.c: 228:     LCD_String_xy(4, 3, "Filtro de Manga");
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 8C ]
+[; ;main_piee2.c: 228:     LCD_String_xy(2, 4, "RA : 1063677");
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 4 `i `uc :s 6C ]
 "229
-[; ;main_piee2.c: 229:     MSdelay(3000);
+[; ;main_piee2.c: 229:     LCD_String_xy(3, 1, "Seq.Eletr.Limpeza");
+[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 1 `i `uc :s 7C ]
+"230
+[; ;main_piee2.c: 230:     LCD_String_xy(4, 3, "Filtro de Manga");
+[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 3 `i `uc :s 8C ]
+"231
+[; ;main_piee2.c: 231:     MSdelay(3000);
 [e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"232
-[; ;main_piee2.c: 232:     LCD_Clear();
+"234
+[; ;main_piee2.c: 234:     LCD_Clear();
 [e ( _LCD_Clear ..  ]
-"233
-[; ;main_piee2.c: 233:     LCD_String_xy(1, 2, "Seja Bem Vindo!");
+"235
+[; ;main_piee2.c: 235:     LCD_String_xy(1, 2, "Seja Bem Vindo!");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 2 `i `uc :s 9C ]
-"236
-[; ;main_piee2.c: 236:     RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"237
-[; ;main_piee2.c: 237:     Format_Hora(hora_buffer, &rtc);
-[e ( _Format_Hora (2 , &U _hora_buffer &U _rtc ]
 "238
-[; ;main_piee2.c: 238:     Format_Data(data_buffer, &rtc);
-[e ( _Format_Data (2 , &U _data_buffer &U _rtc ]
+[; ;main_piee2.c: 238:     RTC_GetDateTime(&rtc);
+[e ( _RTC_GetDateTime (1 &U _rtc ]
+"239
+[; ;main_piee2.c: 239:     Format_Hora(hora_buffer, &rtc);
+[e ( _Format_Hora (2 , &U _hora_buffer &U _rtc ]
 "240
-[; ;main_piee2.c: 240:     LCD_String_xy(2, 0, hora_buffer);
+[; ;main_piee2.c: 240:     Format_Data(data_buffer, &rtc);
+[e ( _Format_Data (2 , &U _data_buffer &U _rtc ]
+"242
+[; ;main_piee2.c: 242:     LCD_String_xy(2, 0, hora_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _hora_buffer `*Cuc ]
-"241
-[; ;main_piee2.c: 241:     LCD_String_xy(3, 0, data_buffer);
+"243
+[; ;main_piee2.c: 243:     LCD_String_xy(3, 0, data_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> &U _data_buffer `*Cuc ]
-"244
-[; ;main_piee2.c: 244:     sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
-[e ( _sprintf (1 , (. , &U _lcd_buffer :s 10C -> _contador_ciclos `ui ]
-"245
-[; ;main_piee2.c: 245:     LCD_String_xy(4, 0, lcd_buffer);
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
 "246
-[; ;main_piee2.c: 246:     MSdelay(3000);
-[e ( _MSdelay (1 -> -> 3000 `i `ui ]
-"249
-[; ;main_piee2.c: 249:     LCD_Clear();
-[e ( _LCD_Clear ..  ]
-"250
-[; ;main_piee2.c: 250:     LCD_String_xy(1, 3, "Filtro de Manga");
-[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 3 `i `uc :s 11C ]
-"253
-[; ;main_piee2.c: 253:     sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
-[e ( _sprintf (1 , , (. , &U _lcd_buffer :s 12C &U _hora_buffer &U _data_buffer ]
-"254
-[; ;main_piee2.c: 254:     LCD_String_xy(2, 0, lcd_buffer);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
-"257
-[; ;main_piee2.c: 257:     LCD_String_xy(3, 0, modo_operacao ? "Modo: Automatico   " : "Modo: Manual       ");
-[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> ? != -> _modo_operacao `i -> 0 `i : :s 13C :s 14C `*Cuc ]
-"260
-[; ;main_piee2.c: 260:     sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
-[e ( _sprintf (1 , (. , &U _lcd_buffer :s 15C -> _contador_ciclos `ui ]
-"261
-[; ;main_piee2.c: 261:     LCD_String_xy(4, 0, lcd_buffer);
+[; ;main_piee2.c: 246:     sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+[e ( _sprintf (1 , (. , &U _lcd_buffer :s 10C -> _contador_ciclos `ui ]
+"247
+[; ;main_piee2.c: 247:     LCD_String_xy(4, 0, lcd_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
-"262
-[; ;main_piee2.c: 262:     MSdelay(3000);
+"248
+[; ;main_piee2.c: 248:     MSdelay(3000);
 [e ( _MSdelay (1 -> -> 3000 `i `ui ]
+"251
+[; ;main_piee2.c: 251:     LCD_Clear();
+[e ( _LCD_Clear ..  ]
+"252
+[; ;main_piee2.c: 252:     LCD_String_xy(1, 3, "Filtro de Manga");
+[e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 3 `i `uc :s 11C ]
+"255
+[; ;main_piee2.c: 255:     sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+[e ( _sprintf (1 , , (. , &U _lcd_buffer :s 12C &U _hora_buffer &U _data_buffer ]
+"256
+[; ;main_piee2.c: 256:     LCD_String_xy(2, 0, lcd_buffer);
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
+"259
+[; ;main_piee2.c: 259:     LCD_String_xy(3, 0, modo_operacao ? "Modo: Automatico   " : "Modo: Manual       ");
+[e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> ? != -> _modo_operacao `i -> 0 `i : :s 13C :s 14C `*Cuc ]
+"262
+[; ;main_piee2.c: 262:     sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+[e ( _sprintf (1 , (. , &U _lcd_buffer :s 15C -> _contador_ciclos `ui ]
 "263
-[; ;main_piee2.c: 263: }
-[e :UE 385 ]
+[; ;main_piee2.c: 263:     LCD_String_xy(4, 0, lcd_buffer);
+[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
+"264
+[; ;main_piee2.c: 264:     MSdelay(3000);
+[e ( _MSdelay (1 -> -> 3000 `i `ui ]
+"265
+[; ;main_piee2.c: 265: }
+[e :UE 391 ]
 }
-"266
-[; ;main_piee2.c: 266: void Atualizar_Display_Principal(void) {
+"268
+[; ;main_piee2.c: 268: void Atualizar_Display_Principal(void) {
 [v _Atualizar_Display_Principal `(v ~T0 @X0 1 ef ]
 {
 [e :U _Atualizar_Display_Principal ]
 [f ]
-"267
-[; ;main_piee2.c: 267:     static uint16_t display_timer = 0;
+"269
+[; ;main_piee2.c: 269:     static uint16_t display_timer = 0;
 [v F3786 `us ~T0 @X0 1 s display_timer ]
 [i F3786
 -> -> 0 `i `us
 ]
-"269
-[; ;main_piee2.c: 269:     if(display_timer++ >= 100) {
-[e $ ! >= -> ++ F3786 -> -> 1 `i `us `ui -> -> 100 `i `ui 387  ]
+"271
+[; ;main_piee2.c: 271:     if(display_timer++ >= 100) {
+[e $ ! >= -> ++ F3786 -> -> 1 `i `us `ui -> -> 100 `i `ui 393  ]
 {
-"270
-[; ;main_piee2.c: 270:         display_timer = 0;
+"272
+[; ;main_piee2.c: 272:         display_timer = 0;
 [e = F3786 -> -> 0 `i `us ]
-"273
-[; ;main_piee2.c: 273:         LCD_String_xy(1, 3, "Filtro de Manga    ");
+"275
+[; ;main_piee2.c: 275:         LCD_String_xy(1, 3, "Filtro de Manga    ");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 3 `i `uc :s 16C ]
-"276
-[; ;main_piee2.c: 276:         RTC_GetDateTime(&rtc);
-[e ( _RTC_GetDateTime (1 &U _rtc ]
-"277
-[; ;main_piee2.c: 277:         Format_Hora(hora_buffer, &rtc);
-[e ( _Format_Hora (2 , &U _hora_buffer &U _rtc ]
 "278
-[; ;main_piee2.c: 278:         Format_Data(data_buffer, &rtc);
-[e ( _Format_Data (2 , &U _data_buffer &U _rtc ]
+[; ;main_piee2.c: 278:         RTC_GetDateTime(&rtc);
+[e ( _RTC_GetDateTime (1 &U _rtc ]
+"279
+[; ;main_piee2.c: 279:         Format_Hora(hora_buffer, &rtc);
+[e ( _Format_Hora (2 , &U _hora_buffer &U _rtc ]
 "280
-[; ;main_piee2.c: 280:         sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+[; ;main_piee2.c: 280:         Format_Data(data_buffer, &rtc);
+[e ( _Format_Data (2 , &U _data_buffer &U _rtc ]
+"282
+[; ;main_piee2.c: 282:         sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
 [e ( _sprintf (1 , , (. , &U _lcd_buffer :s 17C &U _hora_buffer &U _data_buffer ]
-"281
-[; ;main_piee2.c: 281:         LCD_String_xy(2, 0, lcd_buffer);
+"283
+[; ;main_piee2.c: 283:         LCD_String_xy(2, 0, lcd_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
-"284
-[; ;main_piee2.c: 284:         if(falha_pressao) {
-[e $ ! != -> _falha_pressao `i -> 0 `i 388  ]
-{
-"285
-[; ;main_piee2.c: 285:             sprintf(lcd_buffer, "FALHA! Press Alta  ");
-[e ( _sprintf (1 , &U _lcd_buffer :s 18C ]
 "286
-[; ;main_piee2.c: 286:         } else if(modo_operacao) {
-}
-[e $U 389  ]
-[e :U 388 ]
-[e $ ! != -> _modo_operacao `i -> 0 `i 390  ]
+[; ;main_piee2.c: 286:         if(falha_pressao) {
+[e $ ! != -> _falha_pressao `i -> 0 `i 394  ]
 {
 "287
-[; ;main_piee2.c: 287:             if(ciclo_em_andamento) {
-[e $ ! != -> _ciclo_em_andamento `i -> 0 `i 391  ]
-{
+[; ;main_piee2.c: 287:             sprintf(lcd_buffer, "FALHA! Press Alta  ");
+[e ( _sprintf (1 , &U _lcd_buffer :s 18C ]
 "288
-[; ;main_piee2.c: 288:                 sprintf(lcd_buffer, "Auto - Ciclo Ativo ");
-[e ( _sprintf (1 , &U _lcd_buffer :s 19C ]
-"289
-[; ;main_piee2.c: 289:             } else {
+[; ;main_piee2.c: 288:         } else if(modo_operacao) {
 }
-[e $U 392  ]
-[e :U 391 ]
+[e $U 395  ]
+[e :U 394 ]
+[e $ ! != -> _modo_operacao `i -> 0 `i 396  ]
+{
+"289
+[; ;main_piee2.c: 289:             if(ciclo_em_andamento) {
+[e $ ! != -> _ciclo_em_andamento `i -> 0 `i 397  ]
 {
 "290
-[; ;main_piee2.c: 290:                 sprintf(lcd_buffer, "Auto - Aguardando  ");
-[e ( _sprintf (1 , &U _lcd_buffer :s 20C ]
+[; ;main_piee2.c: 290:                 sprintf(lcd_buffer, "Auto - Ciclo Ativo ");
+[e ( _sprintf (1 , &U _lcd_buffer :s 19C ]
 "291
-[; ;main_piee2.c: 291:             }
+[; ;main_piee2.c: 291:             } else {
 }
-[e :U 392 ]
-"292
-[; ;main_piee2.c: 292:         } else {
-}
-[e $U 393  ]
-[e :U 390 ]
+[e $U 398  ]
+[e :U 397 ]
 {
+"292
+[; ;main_piee2.c: 292:                 sprintf(lcd_buffer, "Auto - Aguardando  ");
+[e ( _sprintf (1 , &U _lcd_buffer :s 20C ]
 "293
-[; ;main_piee2.c: 293:             sprintf(lcd_buffer, "Manual - V:%d      ", valvula_selecionada + 1);
-[e ( _sprintf (1 , (. , &U _lcd_buffer :s 21C + -> _valvula_selecionada `i -> 1 `i ]
-"294
-[; ;main_piee2.c: 294:         }
+[; ;main_piee2.c: 293:             }
 }
-[e :U 393 ]
-[e :U 389 ]
+[e :U 398 ]
+"294
+[; ;main_piee2.c: 294:         } else {
+}
+[e $U 399  ]
+[e :U 396 ]
+{
 "295
-[; ;main_piee2.c: 295:         LCD_String_xy(3, 0, lcd_buffer);
+[; ;main_piee2.c: 295:             sprintf(lcd_buffer, "Manual - V:%d      ", valvula_selecionada + 1);
+[e ( _sprintf (1 , (. , &U _lcd_buffer :s 21C + -> _valvula_selecionada `i -> 1 `i ]
+"296
+[; ;main_piee2.c: 296:         }
+}
+[e :U 399 ]
+[e :U 395 ]
+"297
+[; ;main_piee2.c: 297:         LCD_String_xy(3, 0, lcd_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
-"298
-[; ;main_piee2.c: 298:         uint16_t pressao_percent = (adc_pressao * 100) / 1024;
+"300
+[; ;main_piee2.c: 300:         uint16_t pressao_percent = (adc_pressao * 100) / 1024;
 [v _pressao_percent `us ~T0 @X0 1 a ]
 [e = _pressao_percent -> / * -> _adc_pressao `ui -> -> 100 `i `ui -> -> 1024 `i `ui `us ]
-"299
-[; ;main_piee2.c: 299:         sprintf(lcd_buffer, "C:%04d P:%3d%%     ", contador_ciclos, pressao_percent);
-[e ( _sprintf (1 , , (. , &U _lcd_buffer :s 22C -> _contador_ciclos `ui -> _pressao_percent `ui ]
-"300
-[; ;main_piee2.c: 300:         LCD_String_xy(4, 0, lcd_buffer);
-[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
 "301
-[; ;main_piee2.c: 301:     }
-}
-[e :U 387 ]
+[; ;main_piee2.c: 301:         sprintf(lcd_buffer, "C:%04d P:%3d%%     ", contador_ciclos, pressao_percent);
+[e ( _sprintf (1 , , (. , &U _lcd_buffer :s 22C -> _contador_ciclos `ui -> _pressao_percent `ui ]
 "302
-[; ;main_piee2.c: 302: }
-[e :UE 386 ]
+[; ;main_piee2.c: 302:         LCD_String_xy(4, 0, lcd_buffer);
+[e ( _LCD_String_xy (3 , , -> -> 4 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
+"303
+[; ;main_piee2.c: 303:     }
 }
+[e :U 393 ]
 "304
-[; ;main_piee2.c: 304: void Beep(uint8_t tipo) {
+[; ;main_piee2.c: 304: }
+[e :UE 392 ]
+}
+"306
+[; ;main_piee2.c: 306: void Beep(uint8_t tipo) {
 [v _Beep `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Beep ]
 [v _tipo `uc ~T0 @X0 1 r1 ]
 [f ]
-"305
-[; ;main_piee2.c: 305:     switch(tipo) {
-[e $U 396  ]
-{
-"306
-[; ;main_piee2.c: 306:         case 1:
-[e :U 397 ]
 "307
-[; ;main_piee2.c: 307:             LATD0 = 1;
-[e = _LATD0 -> -> 1 `i `b ]
+[; ;main_piee2.c: 307:     switch(tipo) {
+[e $U 402  ]
+{
 "308
-[; ;main_piee2.c: 308:             MSdelay(2000);
-[e ( _MSdelay (1 -> -> 2000 `i `ui ]
+[; ;main_piee2.c: 308:         case 1:
+[e :U 403 ]
 "309
-[; ;main_piee2.c: 309:             LATD0 = 0;
-[e = _LATD0 -> -> 0 `i `b ]
+[; ;main_piee2.c: 309:             LATD0 = 1;
+[e = _LATD0 -> -> 1 `i `b ]
 "310
-[; ;main_piee2.c: 310:             break;
-[e $U 395  ]
+[; ;main_piee2.c: 310:             MSdelay(2000);
+[e ( _MSdelay (1 -> -> 2000 `i `ui ]
+"311
+[; ;main_piee2.c: 311:             LATD0 = 0;
+[e = _LATD0 -> -> 0 `i `b ]
 "312
-[; ;main_piee2.c: 312:         case 2:
-[e :U 398 ]
-"313
-[; ;main_piee2.c: 313:             LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
-[e = _LATD0 -> -> 1 `i `b ]
-[e ( _MSdelay (1 -> -> 250 `i `ui ]
-[e = _LATD0 -> -> 0 `i `b ]
-[e ( _MSdelay (1 -> -> 100 `i `ui ]
+[; ;main_piee2.c: 312:             break;
+[e $U 401  ]
 "314
-[; ;main_piee2.c: 314:             LATD0 = 1; MSdelay(250); LATD0 = 0;
+[; ;main_piee2.c: 314:         case 2:
+[e :U 404 ]
+"315
+[; ;main_piee2.c: 315:             LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
 [e = _LATD0 -> -> 1 `i `b ]
 [e ( _MSdelay (1 -> -> 250 `i `ui ]
 [e = _LATD0 -> -> 0 `i `b ]
-"315
-[; ;main_piee2.c: 315:             break;
-[e $U 395  ]
-"317
-[; ;main_piee2.c: 317:         case 3:
-[e :U 399 ]
-"318
-[; ;main_piee2.c: 318:             LATD0 = 1;
-[e = _LATD0 -> -> 1 `i `b ]
-"319
-[; ;main_piee2.c: 319:             MSdelay(100);
 [e ( _MSdelay (1 -> -> 100 `i `ui ]
-"320
-[; ;main_piee2.c: 320:             LATD0 = 0;
+"316
+[; ;main_piee2.c: 316:             LATD0 = 1; MSdelay(250); LATD0 = 0;
+[e = _LATD0 -> -> 1 `i `b ]
+[e ( _MSdelay (1 -> -> 250 `i `ui ]
 [e = _LATD0 -> -> 0 `i `b ]
+"317
+[; ;main_piee2.c: 317:             break;
+[e $U 401  ]
+"319
+[; ;main_piee2.c: 319:         case 3:
+[e :U 405 ]
+"320
+[; ;main_piee2.c: 320:             LATD0 = 1;
+[e = _LATD0 -> -> 1 `i `b ]
 "321
-[; ;main_piee2.c: 321:             break;
-[e $U 395  ]
+[; ;main_piee2.c: 321:             MSdelay(100);
+[e ( _MSdelay (1 -> -> 100 `i `ui ]
 "322
-[; ;main_piee2.c: 322:     }
-}
-[e $U 395  ]
-[e :U 396 ]
-[e [\ -> _tipo `i , $ -> 1 `i 397
- , $ -> 2 `i 398
- , $ -> 3 `i 399
- 395 ]
-[e :U 395 ]
+[; ;main_piee2.c: 322:             LATD0 = 0;
+[e = _LATD0 -> -> 0 `i `b ]
 "323
-[; ;main_piee2.c: 323: }
-[e :UE 394 ]
+[; ;main_piee2.c: 323:             break;
+[e $U 401  ]
+"324
+[; ;main_piee2.c: 324:     }
 }
-"326
-[; ;main_piee2.c: 326: void Sequenciador_Automatico(void) {
+[e $U 401  ]
+[e :U 402 ]
+[e [\ -> _tipo `i , $ -> 1 `i 403
+ , $ -> 2 `i 404
+ , $ -> 3 `i 405
+ 401 ]
+[e :U 401 ]
+"325
+[; ;main_piee2.c: 325: }
+[e :UE 400 ]
+}
+"328
+[; ;main_piee2.c: 328: void Sequenciador_Automatico(void) {
 [v _Sequenciador_Automatico `(v ~T0 @X0 1 ef ]
 {
 [e :U _Sequenciador_Automatico ]
 [f ]
-"327
-[; ;main_piee2.c: 327:     static uint8_t valvula_atual = 0;
+"329
+[; ;main_piee2.c: 329:     static uint8_t valvula_atual = 0;
 [v F3791 `uc ~T0 @X0 1 s valvula_atual ]
 [i F3791
 -> -> 0 `i `uc
 ]
-"328
-[; ;main_piee2.c: 328:     static uint16_t estado_timer = 0;
+"330
+[; ;main_piee2.c: 330:     static uint16_t estado_timer = 0;
 [v F3792 `us ~T0 @X0 1 s estado_timer ]
 [i F3792
 -> -> 0 `i `us
 ]
-"329
-[; ;main_piee2.c: 329:     static uint8_t estado = 0;
+"331
+[; ;main_piee2.c: 331:     static uint8_t estado = 0;
 [v F3793 `uc ~T0 @X0 1 s estado ]
 [i F3793
 -> -> 0 `i `uc
 ]
-"331
-[; ;main_piee2.c: 331:     if(falha_pressao) {
-[e $ ! != -> _falha_pressao `i -> 0 `i 401  ]
-{
-"332
-[; ;main_piee2.c: 332:         ciclo_em_andamento = 0;
-[e = _ciclo_em_andamento -> -> 0 `i `uc ]
 "333
-[; ;main_piee2.c: 333:         LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
+[; ;main_piee2.c: 333:     if(falha_pressao) {
+[e $ ! != -> _falha_pressao `i -> 0 `i 407  ]
+{
 "334
-[; ;main_piee2.c: 334:         PORTC = 0x00;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main_piee2.c: 334:         ciclo_em_andamento = 0;
+[e = _ciclo_em_andamento -> -> 0 `i `uc ]
 "335
-[; ;main_piee2.c: 335:         LATD7 = 0;
-[e = _LATD7 -> -> 0 `i `b ]
+[; ;main_piee2.c: 335:         LATD3 = 0;
+[e = _LATD3 -> -> 0 `i `b ]
 "336
-[; ;main_piee2.c: 336:         return;
-[e $UE 400  ]
-"337
-[; ;main_piee2.c: 337:     }
-}
-[e :U 401 ]
-"339
-[; ;main_piee2.c: 339:     switch(estado) {
-[e $U 403  ]
-{
-"340
-[; ;main_piee2.c: 340:         case 0:
-[e :U 404 ]
-"341
-[; ;main_piee2.c: 341:             ciclo_em_andamento = 0;
-[e = _ciclo_em_andamento -> -> 0 `i `uc ]
-"342
-[; ;main_piee2.c: 342:             LATD3 = 0;
-[e = _LATD3 -> -> 0 `i `b ]
-"343
-[; ;main_piee2.c: 343:             if(estado_timer++ >= 3000) {
-[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 3000 `i `ui 405  ]
-{
-"344
-[; ;main_piee2.c: 344:                 estado = 1;
-[e = F3793 -> -> 1 `i `uc ]
-"345
-[; ;main_piee2.c: 345:                 estado_timer = 0;
-[e = F3792 -> -> 0 `i `us ]
-"346
-[; ;main_piee2.c: 346:                 valvula_atual = 0;
-[e = F3791 -> -> 0 `i `uc ]
-"347
-[; ;main_piee2.c: 347:                 ciclo_em_andamento = 1;
-[e = _ciclo_em_andamento -> -> 1 `i `uc ]
-"348
-[; ;main_piee2.c: 348:                 LATD3 = 1;
-[e = _LATD3 -> -> 1 `i `b ]
-"349
-[; ;main_piee2.c: 349:                 contador_ciclos++;
-[e ++ _contador_ciclos -> -> 1 `i `us ]
-"350
-[; ;main_piee2.c: 350:                 Salvar_Contador_EEPROM();
-[e ( _Salvar_Contador_EEPROM ..  ]
-"351
-[; ;main_piee2.c: 351:             }
-}
-[e :U 405 ]
-"352
-[; ;main_piee2.c: 352:             break;
-[e $U 402  ]
-"354
-[; ;main_piee2.c: 354:         case 1:
-[e :U 406 ]
-"356
-[; ;main_piee2.c: 356:             switch(valvula_atual) {
-[e $U 408  ]
-{
-"357
-[; ;main_piee2.c: 357:                 case 0: LATC0 = 1; break;
-[e :U 409 ]
-[e = _LATC0 -> -> 1 `i `b ]
-[e $U 407  ]
-"358
-[; ;main_piee2.c: 358:                 case 1: LATC1 = 1; break;
-[e :U 410 ]
-[e = _LATC1 -> -> 1 `i `b ]
-[e $U 407  ]
-"359
-[; ;main_piee2.c: 359:                 case 2: LATC2 = 1; break;
-[e :U 411 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 407  ]
-"360
-[; ;main_piee2.c: 360:                 case 3: LATC2 = 1; break;
-[e :U 412 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 407  ]
-"361
-[; ;main_piee2.c: 361:                 case 4: LATC2 = 1; break;
-[e :U 413 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 407  ]
-"362
-[; ;main_piee2.c: 362:                 case 5: LATC6 = 1; break;
-[e :U 414 ]
-[e = _LATC6 -> -> 1 `i `b ]
-[e $U 407  ]
-"363
-[; ;main_piee2.c: 363:                 case 6: LATC7 = 1; break;
-[e :U 415 ]
-[e = _LATC7 -> -> 1 `i `b ]
-[e $U 407  ]
-"364
-[; ;main_piee2.c: 364:                 case 7: LATD7 = 1; break;
-[e :U 416 ]
-[e = _LATD7 -> -> 1 `i `b ]
-[e $U 407  ]
-"365
-[; ;main_piee2.c: 365:             }
-}
-[e $U 407  ]
-[e :U 408 ]
-[e [\ -> F3791 `i , $ -> 0 `i 409
- , $ -> 1 `i 410
- , $ -> 2 `i 411
- , $ -> 3 `i 412
- , $ -> 4 `i 413
- , $ -> 5 `i 414
- , $ -> 6 `i 415
- , $ -> 7 `i 416
- 407 ]
-[e :U 407 ]
-"367
-[; ;main_piee2.c: 367:             if(estado_timer++ >= 200) {
-[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 200 `i `ui 417  ]
-{
-"369
-[; ;main_piee2.c: 369:                 PORTC = 0x00;
+[; ;main_piee2.c: 336:         PORTC = 0x00;
 [e = _PORTC -> -> 0 `i `uc ]
-"370
-[; ;main_piee2.c: 370:                 LATD7 = 0;
+"337
+[; ;main_piee2.c: 337:         LATD7 = 0;
 [e = _LATD7 -> -> 0 `i `b ]
-"372
-[; ;main_piee2.c: 372:                 estado = 2;
-[e = F3793 -> -> 2 `i `uc ]
-"373
-[; ;main_piee2.c: 373:                 estado_timer = 0;
-[e = F3792 -> -> 0 `i `us ]
-"374
-[; ;main_piee2.c: 374:                 valvula_atual++;
-[e ++ F3791 -> -> 1 `i `uc ]
-"376
-[; ;main_piee2.c: 376:                 if(valvula_atual >= 8) {
-[e $ ! >= -> F3791 `i -> 8 `i 418  ]
+"338
+[; ;main_piee2.c: 338:         return;
+[e $UE 406  ]
+"339
+[; ;main_piee2.c: 339:     }
+}
+[e :U 407 ]
+"341
+[; ;main_piee2.c: 341:     switch(estado) {
+[e $U 409  ]
 {
-"378
-[; ;main_piee2.c: 378:                     estado = 0;
-[e = F3793 -> -> 0 `i `uc ]
-"379
-[; ;main_piee2.c: 379:                     estado_timer = 0;
-[e = F3792 -> -> 0 `i `us ]
-"380
-[; ;main_piee2.c: 380:                     ciclo_em_andamento = 0;
+"342
+[; ;main_piee2.c: 342:         case 0:
+[e :U 410 ]
+"343
+[; ;main_piee2.c: 343:             ciclo_em_andamento = 0;
 [e = _ciclo_em_andamento -> -> 0 `i `uc ]
-"381
-[; ;main_piee2.c: 381:                     LATD3 = 0;
+"344
+[; ;main_piee2.c: 344:             LATD3 = 0;
 [e = _LATD3 -> -> 0 `i `b ]
-"382
-[; ;main_piee2.c: 382:                 }
-}
-[e :U 418 ]
-"383
-[; ;main_piee2.c: 383:             }
-}
-[e :U 417 ]
-"384
-[; ;main_piee2.c: 384:             break;
-[e $U 402  ]
-"386
-[; ;main_piee2.c: 386:         case 2:
-[e :U 419 ]
-"387
-[; ;main_piee2.c: 387:             if(estado_timer++ >= 500) {
-[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 500 `i `ui 420  ]
+"345
+[; ;main_piee2.c: 345:             if(estado_timer++ >= 3000) {
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 3000 `i `ui 411  ]
 {
-"388
-[; ;main_piee2.c: 388:                 estado = 1;
+"346
+[; ;main_piee2.c: 346:                 estado = 1;
 [e = F3793 -> -> 1 `i `uc ]
-"389
-[; ;main_piee2.c: 389:                 estado_timer = 0;
+"347
+[; ;main_piee2.c: 347:                 estado_timer = 0;
 [e = F3792 -> -> 0 `i `us ]
-"390
-[; ;main_piee2.c: 390:             }
+"348
+[; ;main_piee2.c: 348:                 valvula_atual = 0;
+[e = F3791 -> -> 0 `i `uc ]
+"349
+[; ;main_piee2.c: 349:                 ciclo_em_andamento = 1;
+[e = _ciclo_em_andamento -> -> 1 `i `uc ]
+"350
+[; ;main_piee2.c: 350:                 LATD3 = 1;
+[e = _LATD3 -> -> 1 `i `b ]
+"351
+[; ;main_piee2.c: 351:                 contador_ciclos++;
+[e ++ _contador_ciclos -> -> 1 `i `us ]
+"352
+[; ;main_piee2.c: 352:                 Salvar_Contador_EEPROM();
+[e ( _Salvar_Contador_EEPROM ..  ]
+"353
+[; ;main_piee2.c: 353:             }
 }
+[e :U 411 ]
+"354
+[; ;main_piee2.c: 354:             break;
+[e $U 408  ]
+"356
+[; ;main_piee2.c: 356:         case 1:
+[e :U 412 ]
+"358
+[; ;main_piee2.c: 358:             switch(valvula_atual) {
+[e $U 414  ]
+{
+"359
+[; ;main_piee2.c: 359:                 case 0: LATC0 = 1; break;
+[e :U 415 ]
+[e = _LATC0 -> -> 1 `i `b ]
+[e $U 413  ]
+"360
+[; ;main_piee2.c: 360:                 case 1: LATC1 = 1; break;
+[e :U 416 ]
+[e = _LATC1 -> -> 1 `i `b ]
+[e $U 413  ]
+"361
+[; ;main_piee2.c: 361:                 case 2: LATC2 = 1; break;
+[e :U 417 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 413  ]
+"362
+[; ;main_piee2.c: 362:                 case 3: LATC2 = 1; break;
+[e :U 418 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 413  ]
+"363
+[; ;main_piee2.c: 363:                 case 4: LATC2 = 1; break;
+[e :U 419 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 413  ]
+"364
+[; ;main_piee2.c: 364:                 case 5: LATC6 = 1; break;
 [e :U 420 ]
+[e = _LATC6 -> -> 1 `i `b ]
+[e $U 413  ]
+"365
+[; ;main_piee2.c: 365:                 case 6: LATC7 = 1; break;
+[e :U 421 ]
+[e = _LATC7 -> -> 1 `i `b ]
+[e $U 413  ]
+"366
+[; ;main_piee2.c: 366:                 case 7: LATD7 = 1; break;
+[e :U 422 ]
+[e = _LATD7 -> -> 1 `i `b ]
+[e $U 413  ]
+"367
+[; ;main_piee2.c: 367:             }
+}
+[e $U 413  ]
+[e :U 414 ]
+[e [\ -> F3791 `i , $ -> 0 `i 415
+ , $ -> 1 `i 416
+ , $ -> 2 `i 417
+ , $ -> 3 `i 418
+ , $ -> 4 `i 419
+ , $ -> 5 `i 420
+ , $ -> 6 `i 421
+ , $ -> 7 `i 422
+ 413 ]
+[e :U 413 ]
+"369
+[; ;main_piee2.c: 369:             if(estado_timer++ >= 200) {
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 200 `i `ui 423  ]
+{
+"371
+[; ;main_piee2.c: 371:                 PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"372
+[; ;main_piee2.c: 372:                 LATD7 = 0;
+[e = _LATD7 -> -> 0 `i `b ]
+"374
+[; ;main_piee2.c: 374:                 estado = 2;
+[e = F3793 -> -> 2 `i `uc ]
+"375
+[; ;main_piee2.c: 375:                 estado_timer = 0;
+[e = F3792 -> -> 0 `i `us ]
+"376
+[; ;main_piee2.c: 376:                 valvula_atual++;
+[e ++ F3791 -> -> 1 `i `uc ]
+"378
+[; ;main_piee2.c: 378:                 if(valvula_atual >= 8) {
+[e $ ! >= -> F3791 `i -> 8 `i 424  ]
+{
+"380
+[; ;main_piee2.c: 380:                     estado = 0;
+[e = F3793 -> -> 0 `i `uc ]
+"381
+[; ;main_piee2.c: 381:                     estado_timer = 0;
+[e = F3792 -> -> 0 `i `us ]
+"382
+[; ;main_piee2.c: 382:                     ciclo_em_andamento = 0;
+[e = _ciclo_em_andamento -> -> 0 `i `uc ]
+"383
+[; ;main_piee2.c: 383:                     LATD3 = 0;
+[e = _LATD3 -> -> 0 `i `b ]
+"384
+[; ;main_piee2.c: 384:                 }
+}
+[e :U 424 ]
+"385
+[; ;main_piee2.c: 385:             }
+}
+[e :U 423 ]
+"386
+[; ;main_piee2.c: 386:             break;
+[e $U 408  ]
+"388
+[; ;main_piee2.c: 388:         case 2:
+[e :U 425 ]
+"389
+[; ;main_piee2.c: 389:             if(estado_timer++ >= 500) {
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 500 `i `ui 426  ]
+{
+"390
+[; ;main_piee2.c: 390:                 estado = 1;
+[e = F3793 -> -> 1 `i `uc ]
 "391
-[; ;main_piee2.c: 391:             break;
-[e $U 402  ]
+[; ;main_piee2.c: 391:                 estado_timer = 0;
+[e = F3792 -> -> 0 `i `us ]
+"392
+[; ;main_piee2.c: 392:             }
+}
+[e :U 426 ]
 "393
-[; ;main_piee2.c: 393:     }
+[; ;main_piee2.c: 393:             break;
+[e $U 408  ]
+"395
+[; ;main_piee2.c: 395:     }
 }
-[e $U 402  ]
-[e :U 403 ]
-[e [\ -> F3793 `i , $ -> 0 `i 404
- , $ -> 1 `i 406
- , $ -> 2 `i 419
- 402 ]
-[e :U 402 ]
-"394
-[; ;main_piee2.c: 394: }
-[e :UE 400 ]
+[e $U 408  ]
+[e :U 409 ]
+[e [\ -> F3793 `i , $ -> 0 `i 410
+ , $ -> 1 `i 412
+ , $ -> 2 `i 425
+ 408 ]
+[e :U 408 ]
+"396
+[; ;main_piee2.c: 396: }
+[e :UE 406 ]
 }
-"397
-[; ;main_piee2.c: 397: void Modo_Manual(void) {
+"399
+[; ;main_piee2.c: 399: void Modo_Manual(void) {
 [v _Modo_Manual `(v ~T0 @X0 1 ef ]
 {
 [e :U _Modo_Manual ]
 [f ]
-"398
-[; ;main_piee2.c: 398:     static uint8_t last_inc = 1;
+"400
+[; ;main_piee2.c: 400:     static uint8_t last_inc = 1;
 [v F3795 `uc ~T0 @X0 1 s last_inc ]
 [i F3795
 -> -> 1 `i `uc
 ]
-"399
-[; ;main_piee2.c: 399:     static uint8_t last_dow = 1;
+"401
+[; ;main_piee2.c: 401:     static uint8_t last_dow = 1;
 [v F3796 `uc ~T0 @X0 1 s last_dow ]
 [i F3796
 -> -> 1 `i `uc
 ]
-"400
-[; ;main_piee2.c: 400:     static uint8_t last_ent = 1;
+"402
+[; ;main_piee2.c: 402:     static uint8_t last_ent = 1;
 [v F3797 `uc ~T0 @X0 1 s last_ent ]
 [i F3797
 -> -> 1 `i `uc
 ]
-"403
-[; ;main_piee2.c: 403:     if(PORTAbits.RA3 == 0 && last_inc == 1) {
-[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i == -> F3795 `i -> 1 `i 422  ]
-{
-"404
-[; ;main_piee2.c: 404:         MSdelay(50);
-[e ( _MSdelay (1 -> -> 50 `i `ui ]
 "405
-[; ;main_piee2.c: 405:         if(PORTAbits.RA3 == 0) {
-[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 423  ]
+[; ;main_piee2.c: 405:     if(PORTAbits.RA3 == 0 && last_inc == 1) {
+[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i == -> F3795 `i -> 1 `i 428  ]
 {
 "406
-[; ;main_piee2.c: 406:             valvula_selecionada++;
-[e ++ _valvula_selecionada -> -> 1 `i `uc ]
+[; ;main_piee2.c: 406:         MSdelay(50);
+[e ( _MSdelay (1 -> -> 50 `i `ui ]
 "407
-[; ;main_piee2.c: 407:             if(valvula_selecionada >= 8) {
-[e $ ! >= -> _valvula_selecionada `i -> 8 `i 424  ]
+[; ;main_piee2.c: 407:         if(PORTAbits.RA3 == 0) {
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 429  ]
 {
 "408
-[; ;main_piee2.c: 408:                 valvula_selecionada = 0;
-[e = _valvula_selecionada -> -> 0 `i `uc ]
+[; ;main_piee2.c: 408:             valvula_selecionada++;
+[e ++ _valvula_selecionada -> -> 1 `i `uc ]
 "409
-[; ;main_piee2.c: 409:             }
-}
-[e :U 424 ]
+[; ;main_piee2.c: 409:             if(valvula_selecionada >= 8) {
+[e $ ! >= -> _valvula_selecionada `i -> 8 `i 430  ]
+{
 "410
-[; ;main_piee2.c: 410:         }
-}
-[e :U 423 ]
+[; ;main_piee2.c: 410:                 valvula_selecionada = 0;
+[e = _valvula_selecionada -> -> 0 `i `uc ]
 "411
-[; ;main_piee2.c: 411:     }
-}
-[e :U 422 ]
-"412
-[; ;main_piee2.c: 412:     last_inc = PORTAbits.RA3;
-[e = F3795 . . _PORTAbits 0 3 ]
-"414
-[; ;main_piee2.c: 414:     if(PORTAbits.RA4 == 0 && last_dow == 1) {
-[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i == -> F3796 `i -> 1 `i 425  ]
-{
-"415
-[; ;main_piee2.c: 415:         MSdelay(50);
-[e ( _MSdelay (1 -> -> 50 `i `ui ]
-"416
-[; ;main_piee2.c: 416:         if(PORTAbits.RA4 == 0) {
-[e $ ! == -> . . _PORTAbits 0 4 `i -> 0 `i 426  ]
-{
-"417
-[; ;main_piee2.c: 417:             if(valvula_selecionada == 0) {
-[e $ ! == -> _valvula_selecionada `i -> 0 `i 427  ]
-{
-"418
-[; ;main_piee2.c: 418:                 valvula_selecionada = 8 - 1;
-[e = _valvula_selecionada -> - -> 8 `i -> 1 `i `uc ]
-"419
-[; ;main_piee2.c: 419:             } else {
-}
-[e $U 428  ]
-[e :U 427 ]
-{
-"420
-[; ;main_piee2.c: 420:                 valvula_selecionada--;
-[e -- _valvula_selecionada -> -> 1 `i `uc ]
-"421
-[; ;main_piee2.c: 421:             }
-}
-[e :U 428 ]
-"423
-[; ;main_piee2.c: 423:         }
-}
-[e :U 426 ]
-"424
-[; ;main_piee2.c: 424:     }
-}
-[e :U 425 ]
-"425
-[; ;main_piee2.c: 425:     last_dow = PORTAbits.RA4;
-[e = F3796 . . _PORTAbits 0 4 ]
-"428
-[; ;main_piee2.c: 428:     if(PORTAbits.RA5 == 0 && last_ent == 1) {
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> F3797 `i -> 1 `i 429  ]
-{
-"429
-[; ;main_piee2.c: 429:        MSdelay(50);
-[e ( _MSdelay (1 -> -> 50 `i `ui ]
-"430
-[; ;main_piee2.c: 430:         if(PORTAbits.RA5 == 0) {
-[e $ ! == -> . . _PORTAbits 0 5 `i -> 0 `i 430  ]
-{
-"432
-[; ;main_piee2.c: 432:             PORTC = 0x00;
-[e = _PORTC -> -> 0 `i `uc ]
-"433
-[; ;main_piee2.c: 433:             LATD7 = 0;
-[e = _LATD7 -> -> 0 `i `b ]
-"436
-[; ;main_piee2.c: 436:             switch(valvula_selecionada) {
-[e $U 432  ]
-{
-"437
-[; ;main_piee2.c: 437:                 case 0: LATC0 = 1; break;
-[e :U 433 ]
-[e = _LATC0 -> -> 1 `i `b ]
-[e $U 431  ]
-"438
-[; ;main_piee2.c: 438:                 case 1: LATC1 = 1; break;
-[e :U 434 ]
-[e = _LATC1 -> -> 1 `i `b ]
-[e $U 431  ]
-"439
-[; ;main_piee2.c: 439:                 case 2: LATC2 = 1; break;
-[e :U 435 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 431  ]
-"440
-[; ;main_piee2.c: 440:                 case 3: LATC2 = 1; break;
-[e :U 436 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 431  ]
-"441
-[; ;main_piee2.c: 441:                 case 4: LATC2 = 1; break;
-[e :U 437 ]
-[e = _LATC2 -> -> 1 `i `b ]
-[e $U 431  ]
-"442
-[; ;main_piee2.c: 442:                 case 5: LATC6 = 1; break;
-[e :U 438 ]
-[e = _LATC6 -> -> 1 `i `b ]
-[e $U 431  ]
-"443
-[; ;main_piee2.c: 443:                 case 6: LATC7 = 1; break;
-[e :U 439 ]
-[e = _LATC7 -> -> 1 `i `b ]
-[e $U 431  ]
-"444
-[; ;main_piee2.c: 444:                 case 7: LATD7 = 1; break;
-[e :U 440 ]
-[e = _LATD7 -> -> 1 `i `b ]
-[e $U 431  ]
-"445
-[; ;main_piee2.c: 445:             }
-}
-[e $U 431  ]
-[e :U 432 ]
-[e [\ -> _valvula_selecionada `i , $ -> 0 `i 433
- , $ -> 1 `i 434
- , $ -> 2 `i 435
- , $ -> 3 `i 436
- , $ -> 4 `i 437
- , $ -> 5 `i 438
- , $ -> 6 `i 439
- , $ -> 7 `i 440
- 431 ]
-[e :U 431 ]
-"447
-[; ;main_piee2.c: 447:             MSdelay(2000);
-[e ( _MSdelay (1 -> -> 2000 `i `ui ]
-"450
-[; ;main_piee2.c: 450:             PORTC = 0x00;
-[e = _PORTC -> -> 0 `i `uc ]
-"451
-[; ;main_piee2.c: 451:             LATD7 = 0;
-[e = _LATD7 -> -> 0 `i `b ]
-"454
-[; ;main_piee2.c: 454:         }
+[; ;main_piee2.c: 411:             }
 }
 [e :U 430 ]
-"455
-[; ;main_piee2.c: 455:     }
+"412
+[; ;main_piee2.c: 412:         }
 }
 [e :U 429 ]
-"456
-[; ;main_piee2.c: 456:     last_ent = PORTAbits.RA5;
-[e = F3797 . . _PORTAbits 0 5 ]
-"465
-[; ;main_piee2.c: 465: }
-[e :UE 421 ]
+"413
+[; ;main_piee2.c: 413:     }
 }
-"468
-[; ;main_piee2.c: 468: uint8_t Ler_EEPROM(uint16_t endereco) {
+[e :U 428 ]
+"414
+[; ;main_piee2.c: 414:     last_inc = PORTAbits.RA3;
+[e = F3795 . . _PORTAbits 0 3 ]
+"416
+[; ;main_piee2.c: 416:     if(PORTAbits.RA4 == 0 && last_dow == 1) {
+[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i == -> F3796 `i -> 1 `i 431  ]
+{
+"417
+[; ;main_piee2.c: 417:         MSdelay(50);
+[e ( _MSdelay (1 -> -> 50 `i `ui ]
+"418
+[; ;main_piee2.c: 418:         if(PORTAbits.RA4 == 0) {
+[e $ ! == -> . . _PORTAbits 0 4 `i -> 0 `i 432  ]
+{
+"419
+[; ;main_piee2.c: 419:             if(valvula_selecionada == 0) {
+[e $ ! == -> _valvula_selecionada `i -> 0 `i 433  ]
+{
+"420
+[; ;main_piee2.c: 420:                 valvula_selecionada = 8 - 1;
+[e = _valvula_selecionada -> - -> 8 `i -> 1 `i `uc ]
+"421
+[; ;main_piee2.c: 421:             } else {
+}
+[e $U 434  ]
+[e :U 433 ]
+{
+"422
+[; ;main_piee2.c: 422:                 valvula_selecionada--;
+[e -- _valvula_selecionada -> -> 1 `i `uc ]
+"423
+[; ;main_piee2.c: 423:             }
+}
+[e :U 434 ]
+"425
+[; ;main_piee2.c: 425:         }
+}
+[e :U 432 ]
+"426
+[; ;main_piee2.c: 426:     }
+}
+[e :U 431 ]
+"427
+[; ;main_piee2.c: 427:     last_dow = PORTAbits.RA4;
+[e = F3796 . . _PORTAbits 0 4 ]
+"430
+[; ;main_piee2.c: 430:     if(PORTAbits.RA5 == 0 && last_ent == 1) {
+[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> F3797 `i -> 1 `i 435  ]
+{
+"431
+[; ;main_piee2.c: 431:        MSdelay(50);
+[e ( _MSdelay (1 -> -> 50 `i `ui ]
+"432
+[; ;main_piee2.c: 432:         if(PORTAbits.RA5 == 0) {
+[e $ ! == -> . . _PORTAbits 0 5 `i -> 0 `i 436  ]
+{
+"434
+[; ;main_piee2.c: 434:             PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"435
+[; ;main_piee2.c: 435:             LATD7 = 0;
+[e = _LATD7 -> -> 0 `i `b ]
+"438
+[; ;main_piee2.c: 438:             switch(valvula_selecionada) {
+[e $U 438  ]
+{
+"439
+[; ;main_piee2.c: 439:                 case 0: LATC0 = 1; break;
+[e :U 439 ]
+[e = _LATC0 -> -> 1 `i `b ]
+[e $U 437  ]
+"440
+[; ;main_piee2.c: 440:                 case 1: LATC1 = 1; break;
+[e :U 440 ]
+[e = _LATC1 -> -> 1 `i `b ]
+[e $U 437  ]
+"441
+[; ;main_piee2.c: 441:                 case 2: LATC2 = 1; break;
+[e :U 441 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 437  ]
+"442
+[; ;main_piee2.c: 442:                 case 3: LATC2 = 1; break;
+[e :U 442 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 437  ]
+"443
+[; ;main_piee2.c: 443:                 case 4: LATC2 = 1; break;
+[e :U 443 ]
+[e = _LATC2 -> -> 1 `i `b ]
+[e $U 437  ]
+"444
+[; ;main_piee2.c: 444:                 case 5: LATC6 = 1; break;
+[e :U 444 ]
+[e = _LATC6 -> -> 1 `i `b ]
+[e $U 437  ]
+"445
+[; ;main_piee2.c: 445:                 case 6: LATC7 = 1; break;
+[e :U 445 ]
+[e = _LATC7 -> -> 1 `i `b ]
+[e $U 437  ]
+"446
+[; ;main_piee2.c: 446:                 case 7: LATD7 = 1; break;
+[e :U 446 ]
+[e = _LATD7 -> -> 1 `i `b ]
+[e $U 437  ]
+"447
+[; ;main_piee2.c: 447:             }
+}
+[e $U 437  ]
+[e :U 438 ]
+[e [\ -> _valvula_selecionada `i , $ -> 0 `i 439
+ , $ -> 1 `i 440
+ , $ -> 2 `i 441
+ , $ -> 3 `i 442
+ , $ -> 4 `i 443
+ , $ -> 5 `i 444
+ , $ -> 6 `i 445
+ , $ -> 7 `i 446
+ 437 ]
+[e :U 437 ]
+"449
+[; ;main_piee2.c: 449:             MSdelay(2000);
+[e ( _MSdelay (1 -> -> 2000 `i `ui ]
+"452
+[; ;main_piee2.c: 452:             PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"453
+[; ;main_piee2.c: 453:             LATD7 = 0;
+[e = _LATD7 -> -> 0 `i `b ]
+"456
+[; ;main_piee2.c: 456:         }
+}
+[e :U 436 ]
+"457
+[; ;main_piee2.c: 457:     }
+}
+[e :U 435 ]
+"458
+[; ;main_piee2.c: 458:     last_ent = PORTAbits.RA5;
+[e = F3797 . . _PORTAbits 0 5 ]
+"467
+[; ;main_piee2.c: 467: }
+[e :UE 427 ]
+}
+"470
+[; ;main_piee2.c: 470: uint8_t Ler_EEPROM(uint16_t endereco) {
 [v _Ler_EEPROM `(uc ~T0 @X0 1 ef1`us ]
 {
 [e :U _Ler_EEPROM ]
 [v _endereco `us ~T0 @X0 1 r1 ]
 [f ]
-"469
-[; ;main_piee2.c: 469:     uint8_t dado;
-[v _dado `uc ~T0 @X0 1 a ]
 "471
-[; ;main_piee2.c: 471:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"472
-[; ;main_piee2.c: 472:     I2C_Write(0xA0);
-[e ( _I2C_Write (1 -> -> 160 `i `uc ]
+[; ;main_piee2.c: 471:     uint8_t dado;
+[v _dado `uc ~T0 @X0 1 a ]
 "473
-[; ;main_piee2.c: 473:     I2C_Write((endereco >> 8) & 0xFF);
-[e ( _I2C_Write (1 -> & >> -> _endereco `ui -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;main_piee2.c: 473:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "474
-[; ;main_piee2.c: 474:     I2C_Write(endereco & 0xFF);
-[e ( _I2C_Write (1 -> & -> _endereco `ui -> -> 255 `i `ui `uc ]
+[; ;main_piee2.c: 474:     I2C_Write(0xA0);
+[e ( _I2C_Write (1 -> -> 160 `i `uc ]
 "475
-[; ;main_piee2.c: 475:     I2C_Restart();
-[e ( _I2C_Restart ..  ]
+[; ;main_piee2.c: 475:     I2C_Write((endereco >> 8) & 0xFF);
+[e ( _I2C_Write (1 -> & >> -> _endereco `ui -> 8 `i -> -> 255 `i `ui `uc ]
 "476
-[; ;main_piee2.c: 476:     I2C_Write(0xA1);
-[e ( _I2C_Write (1 -> -> 161 `i `uc ]
+[; ;main_piee2.c: 476:     I2C_Write(endereco & 0xFF);
+[e ( _I2C_Write (1 -> & -> _endereco `ui -> -> 255 `i `ui `uc ]
 "477
-[; ;main_piee2.c: 477:     dado = I2C_Read(0);
-[e = _dado ( _I2C_Read (1 -> -> 0 `i `uc ]
+[; ;main_piee2.c: 477:     I2C_Restart();
+[e ( _I2C_Restart ..  ]
 "478
-[; ;main_piee2.c: 478:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 478:     I2C_Write(0xA1);
+[e ( _I2C_Write (1 -> -> 161 `i `uc ]
+"479
+[; ;main_piee2.c: 479:     dado = I2C_Read(0);
+[e = _dado ( _I2C_Read (1 -> -> 0 `i `uc ]
 "480
-[; ;main_piee2.c: 480:     return dado;
+[; ;main_piee2.c: 480:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"482
+[; ;main_piee2.c: 482:     return dado;
 [e ) _dado ]
-[e $UE 441  ]
-"481
-[; ;main_piee2.c: 481: }
-[e :UE 441 ]
-}
+[e $UE 447  ]
 "483
-[; ;main_piee2.c: 483: void Escrever_EEPROM(uint16_t endereco, uint8_t dado) {
+[; ;main_piee2.c: 483: }
+[e :UE 447 ]
+}
+"485
+[; ;main_piee2.c: 485: void Escrever_EEPROM(uint16_t endereco, uint8_t dado) {
 [v _Escrever_EEPROM `(v ~T0 @X0 1 ef2`us`uc ]
 {
 [e :U _Escrever_EEPROM ]
 [v _endereco `us ~T0 @X0 1 r1 ]
 [v _dado `uc ~T0 @X0 1 r2 ]
 [f ]
-"484
-[; ;main_piee2.c: 484:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"485
-[; ;main_piee2.c: 485:     I2C_Write(0xA0);
-[e ( _I2C_Write (1 -> -> 160 `i `uc ]
 "486
-[; ;main_piee2.c: 486:     I2C_Write((endereco >> 8) & 0xFF);
-[e ( _I2C_Write (1 -> & >> -> _endereco `ui -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;main_piee2.c: 486:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "487
-[; ;main_piee2.c: 487:     I2C_Write(endereco & 0xFF);
-[e ( _I2C_Write (1 -> & -> _endereco `ui -> -> 255 `i `ui `uc ]
+[; ;main_piee2.c: 487:     I2C_Write(0xA0);
+[e ( _I2C_Write (1 -> -> 160 `i `uc ]
 "488
-[; ;main_piee2.c: 488:     I2C_Write(dado);
-[e ( _I2C_Write (1 _dado ]
+[; ;main_piee2.c: 488:     I2C_Write((endereco >> 8) & 0xFF);
+[e ( _I2C_Write (1 -> & >> -> _endereco `ui -> 8 `i -> -> 255 `i `ui `uc ]
 "489
-[; ;main_piee2.c: 489:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 489:     I2C_Write(endereco & 0xFF);
+[e ( _I2C_Write (1 -> & -> _endereco `ui -> -> 255 `i `ui `uc ]
+"490
+[; ;main_piee2.c: 490:     I2C_Write(dado);
+[e ( _I2C_Write (1 _dado ]
 "491
-[; ;main_piee2.c: 491:     MSdelay(10);
+[; ;main_piee2.c: 491:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"493
+[; ;main_piee2.c: 493:     MSdelay(10);
 [e ( _MSdelay (1 -> -> 10 `i `ui ]
-"492
-[; ;main_piee2.c: 492: }
-[e :UE 442 ]
-}
 "494
-[; ;main_piee2.c: 494: void Ler_Contador_EEPROM(void) {
+[; ;main_piee2.c: 494: }
+[e :UE 448 ]
+}
+"496
+[; ;main_piee2.c: 496: void Ler_Contador_EEPROM(void) {
 [v _Ler_Contador_EEPROM `(v ~T0 @X0 1 ef ]
 {
 [e :U _Ler_Contador_EEPROM ]
 [f ]
-"495
-[; ;main_piee2.c: 495:     uint8_t high = Ler_EEPROM(0x0000);
+"497
+[; ;main_piee2.c: 497:     uint8_t high = Ler_EEPROM(0x0000);
 [v _high `uc ~T0 @X0 1 a ]
 [e = _high ( _Ler_EEPROM (1 -> -> 0 `i `us ]
-"496
-[; ;main_piee2.c: 496:     uint8_t low = Ler_EEPROM(0x0000 + 1);
+"498
+[; ;main_piee2.c: 498:     uint8_t low = Ler_EEPROM(0x0000 + 1);
 [v _low `uc ~T0 @X0 1 a ]
 [e = _low ( _Ler_EEPROM (1 -> + -> 0 `i -> 1 `i `us ]
-"497
-[; ;main_piee2.c: 497:     contador_ciclos = (high << 8) | low;
+"499
+[; ;main_piee2.c: 499:     contador_ciclos = (high << 8) | low;
 [e = _contador_ciclos -> | << -> _high `i -> 8 `i -> _low `i `us ]
-"500
-[; ;main_piee2.c: 500:     if(contador_ciclos == 0xFFFF) {
-[e $ ! == -> _contador_ciclos `ui -> 65535 `ui 444  ]
-{
-"501
-[; ;main_piee2.c: 501:         contador_ciclos = 0;
-[e = _contador_ciclos -> -> 0 `i `us ]
 "502
-[; ;main_piee2.c: 502:     }
-}
-[e :U 444 ]
+[; ;main_piee2.c: 502:     if(contador_ciclos == 0xFFFF) {
+[e $ ! == -> _contador_ciclos `ui -> 65535 `ui 450  ]
+{
 "503
-[; ;main_piee2.c: 503: }
-[e :UE 443 ]
+[; ;main_piee2.c: 503:         contador_ciclos = 0;
+[e = _contador_ciclos -> -> 0 `i `us ]
+"504
+[; ;main_piee2.c: 504:     }
 }
+[e :U 450 ]
 "505
-[; ;main_piee2.c: 505: void Salvar_Contador_EEPROM(void) {
+[; ;main_piee2.c: 505: }
+[e :UE 449 ]
+}
+"507
+[; ;main_piee2.c: 507: void Salvar_Contador_EEPROM(void) {
 [v _Salvar_Contador_EEPROM `(v ~T0 @X0 1 ef ]
 {
 [e :U _Salvar_Contador_EEPROM ]
 [f ]
-"506
-[; ;main_piee2.c: 506:     Escrever_EEPROM(0x0000, (contador_ciclos >> 8) & 0xFF);
-[e ( _Escrever_EEPROM (2 , -> -> 0 `i `us -> & >> -> _contador_ciclos `ui -> 8 `i -> -> 255 `i `ui `uc ]
-"507
-[; ;main_piee2.c: 507:     Escrever_EEPROM(0x0000 + 1, contador_ciclos & 0xFF);
-[e ( _Escrever_EEPROM (2 , -> + -> 0 `i -> 1 `i `us -> & -> _contador_ciclos `ui -> -> 255 `i `ui `uc ]
 "508
-[; ;main_piee2.c: 508: }
-[e :UE 445 ]
+[; ;main_piee2.c: 508:     Escrever_EEPROM(0x0000, (contador_ciclos >> 8) & 0xFF);
+[e ( _Escrever_EEPROM (2 , -> -> 0 `i `us -> & >> -> _contador_ciclos `ui -> 8 `i -> -> 255 `i `ui `uc ]
+"509
+[; ;main_piee2.c: 509:     Escrever_EEPROM(0x0000 + 1, contador_ciclos & 0xFF);
+[e ( _Escrever_EEPROM (2 , -> + -> 0 `i -> 1 `i `us -> & -> _contador_ciclos `ui -> -> 255 `i `ui `uc ]
+"510
+[; ;main_piee2.c: 510: }
+[e :UE 451 ]
 }
-"511
-[; ;main_piee2.c: 511: void RTC_Init(void) {
+"513
+[; ;main_piee2.c: 513: void RTC_Init(void) {
 [v _RTC_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _RTC_Init ]
 [f ]
-"512
-[; ;main_piee2.c: 512:     I2C_Init();
-[e ( _I2C_Init ..  ]
 "514
-[; ;main_piee2.c: 514:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"515
-[; ;main_piee2.c: 515:     I2C_Write(0xD0);
-[e ( _I2C_Write (1 -> -> 208 `i `uc ]
+[; ;main_piee2.c: 514:     I2C_Init();
+[e ( _I2C_Init ..  ]
 "516
-[; ;main_piee2.c: 516:     I2C_Write(0x07);
-[e ( _I2C_Write (1 -> -> 7 `i `uc ]
+[; ;main_piee2.c: 516:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "517
-[; ;main_piee2.c: 517:     I2C_Write(0x00);
-[e ( _I2C_Write (1 -> -> 0 `i `uc ]
+[; ;main_piee2.c: 517:     I2C_Write(0xD0);
+[e ( _I2C_Write (1 -> -> 208 `i `uc ]
 "518
-[; ;main_piee2.c: 518:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;main_piee2.c: 518:     I2C_Write(0x07);
+[e ( _I2C_Write (1 -> -> 7 `i `uc ]
 "519
-[; ;main_piee2.c: 519: }
-[e :UE 446 ]
-}
+[; ;main_piee2.c: 519:     I2C_Write(0x00);
+[e ( _I2C_Write (1 -> -> 0 `i `uc ]
+"520
+[; ;main_piee2.c: 520:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
 "521
-[; ;main_piee2.c: 521: void RTC_GetDateTime(rtc_t *rtc) {
+[; ;main_piee2.c: 521: }
+[e :UE 452 ]
+}
+"523
+[; ;main_piee2.c: 523: void RTC_GetDateTime(rtc_t *rtc) {
 [v _RTC_GetDateTime `(v ~T0 @X0 1 ef1`*S370 ]
 {
 [e :U _RTC_GetDateTime ]
 [v _rtc `*S370 ~T0 @X0 1 r1 ]
 [f ]
-"522
-[; ;main_piee2.c: 522:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"523
-[; ;main_piee2.c: 523:     I2C_Write(0xD0);
-[e ( _I2C_Write (1 -> -> 208 `i `uc ]
 "524
-[; ;main_piee2.c: 524:     I2C_Write(0x00);
-[e ( _I2C_Write (1 -> -> 0 `i `uc ]
+[; ;main_piee2.c: 524:     I2C_Start();
+[e ( _I2C_Start ..  ]
 "525
-[; ;main_piee2.c: 525:     I2C_Restart();
-[e ( _I2C_Restart ..  ]
+[; ;main_piee2.c: 525:     I2C_Write(0xD0);
+[e ( _I2C_Write (1 -> -> 208 `i `uc ]
 "526
-[; ;main_piee2.c: 526:     I2C_Write(0xD1);
-[e ( _I2C_Write (1 -> -> 209 `i `uc ]
+[; ;main_piee2.c: 526:     I2C_Write(0x00);
+[e ( _I2C_Write (1 -> -> 0 `i `uc ]
+"527
+[; ;main_piee2.c: 527:     I2C_Restart();
+[e ( _I2C_Restart ..  ]
 "528
-[; ;main_piee2.c: 528:     rtc->sec = I2C_Read(1);
-[e = . *U _rtc 0 ( _I2C_Read (1 -> -> 1 `i `uc ]
-"529
-[; ;main_piee2.c: 529:     rtc->min = I2C_Read(1);
-[e = . *U _rtc 1 ( _I2C_Read (1 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 528:     I2C_Write(0xD1);
+[e ( _I2C_Write (1 -> -> 209 `i `uc ]
 "530
-[; ;main_piee2.c: 530:     rtc->hour = I2C_Read(1);
-[e = . *U _rtc 2 ( _I2C_Read (1 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 530:     rtc->sec = I2C_Read(1);
+[e = . *U _rtc 0 ( _I2C_Read (1 -> -> 1 `i `uc ]
 "531
-[; ;main_piee2.c: 531:     rtc->weekDay = I2C_Read(1);
-[e = . *U _rtc 3 ( _I2C_Read (1 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 531:     rtc->min = I2C_Read(1);
+[e = . *U _rtc 1 ( _I2C_Read (1 -> -> 1 `i `uc ]
 "532
-[; ;main_piee2.c: 532:     rtc->date = I2C_Read(1);
-[e = . *U _rtc 4 ( _I2C_Read (1 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 532:     rtc->hour = I2C_Read(1);
+[e = . *U _rtc 2 ( _I2C_Read (1 -> -> 1 `i `uc ]
 "533
-[; ;main_piee2.c: 533:     rtc->month = I2C_Read(1);
-[e = . *U _rtc 5 ( _I2C_Read (1 -> -> 1 `i `uc ]
+[; ;main_piee2.c: 533:     rtc->weekDay = I2C_Read(1);
+[e = . *U _rtc 3 ( _I2C_Read (1 -> -> 1 `i `uc ]
 "534
-[; ;main_piee2.c: 534:     rtc->year = I2C_Read(0);
-[e = . *U _rtc 6 ( _I2C_Read (1 -> -> 0 `i `uc ]
+[; ;main_piee2.c: 534:     rtc->date = I2C_Read(1);
+[e = . *U _rtc 4 ( _I2C_Read (1 -> -> 1 `i `uc ]
+"535
+[; ;main_piee2.c: 535:     rtc->month = I2C_Read(1);
+[e = . *U _rtc 5 ( _I2C_Read (1 -> -> 1 `i `uc ]
 "536
-[; ;main_piee2.c: 536:     I2C_Stop();
+[; ;main_piee2.c: 536:     rtc->year = I2C_Read(0);
+[e = . *U _rtc 6 ( _I2C_Read (1 -> -> 0 `i `uc ]
+"538
+[; ;main_piee2.c: 538:     I2C_Stop();
 [e ( _I2C_Stop ..  ]
-"537
-[; ;main_piee2.c: 537: }
-[e :UE 447 ]
-}
 "539
-[; ;main_piee2.c: 539: void Format_Hora(char *buffer, rtc_t *rtc) {
+[; ;main_piee2.c: 539: }
+[e :UE 453 ]
+}
+"541
+[; ;main_piee2.c: 541: void Format_Hora(char *buffer, rtc_t *rtc) {
 [v _Format_Hora `(v ~T0 @X0 1 ef2`*uc`*S370 ]
 {
 [e :U _Format_Hora ]
 [v _buffer `*uc ~T0 @X0 1 r1 ]
 [v _rtc `*S370 ~T0 @X0 1 r2 ]
 [f ]
-"541
-[; ;main_piee2.c: 541:     uint8_t hora = ((rtc->hour >> 4) * 10) + (rtc->hour & 0x0F);
+"543
+[; ;main_piee2.c: 543:     uint8_t hora = ((rtc->hour >> 4) * 10) + (rtc->hour & 0x0F);
 [v _hora `uc ~T0 @X0 1 a ]
 [e = _hora -> + * >> -> . *U _rtc 2 `i -> 4 `i -> 10 `i & -> . *U _rtc 2 `i -> 15 `i `uc ]
-"542
-[; ;main_piee2.c: 542:     uint8_t min = ((rtc->min >> 4) * 10) + (rtc->min & 0x0F);
+"544
+[; ;main_piee2.c: 544:     uint8_t min = ((rtc->min >> 4) * 10) + (rtc->min & 0x0F);
 [v _min `uc ~T0 @X0 1 a ]
 [e = _min -> + * >> -> . *U _rtc 1 `i -> 4 `i -> 10 `i & -> . *U _rtc 1 `i -> 15 `i `uc ]
-"543
-[; ;main_piee2.c: 543:     uint8_t seg = ((rtc->sec >> 4) * 10) + (rtc->sec & 0x0F);
+"545
+[; ;main_piee2.c: 545:     uint8_t seg = ((rtc->sec >> 4) * 10) + (rtc->sec & 0x0F);
 [v _seg `uc ~T0 @X0 1 a ]
 [e = _seg -> + * >> -> . *U _rtc 0 `i -> 4 `i -> 10 `i & -> . *U _rtc 0 `i -> 15 `i `uc ]
-"545
-[; ;main_piee2.c: 545:     sprintf(buffer, "%02d:%02d:%02d", hora, min, seg);
+"547
+[; ;main_piee2.c: 547:     sprintf(buffer, "%02d:%02d:%02d", hora, min, seg);
 [e ( _sprintf (1 , , , (. , _buffer :s 23C -> _hora `i -> _min `i -> _seg `i ]
-"546
-[; ;main_piee2.c: 546: }
-[e :UE 448 ]
-}
 "548
-[; ;main_piee2.c: 548: void Format_Data(char *buffer, rtc_t *rtc) {
+[; ;main_piee2.c: 548: }
+[e :UE 454 ]
+}
+"550
+[; ;main_piee2.c: 550: void Format_Data(char *buffer, rtc_t *rtc) {
 [v _Format_Data `(v ~T0 @X0 1 ef2`*uc`*S370 ]
 {
 [e :U _Format_Data ]
 [v _buffer `*uc ~T0 @X0 1 r1 ]
 [v _rtc `*S370 ~T0 @X0 1 r2 ]
 [f ]
-"550
-[; ;main_piee2.c: 550:     uint8_t dia = ((rtc->date >> 4) * 10) + (rtc->date & 0x0F);
+"552
+[; ;main_piee2.c: 552:     uint8_t dia = ((rtc->date >> 4) * 10) + (rtc->date & 0x0F);
 [v _dia `uc ~T0 @X0 1 a ]
 [e = _dia -> + * >> -> . *U _rtc 4 `i -> 4 `i -> 10 `i & -> . *U _rtc 4 `i -> 15 `i `uc ]
-"551
-[; ;main_piee2.c: 551:     uint8_t mes = ((rtc->month >> 4) * 10) + (rtc->month & 0x0F);
+"553
+[; ;main_piee2.c: 553:     uint8_t mes = ((rtc->month >> 4) * 10) + (rtc->month & 0x0F);
 [v _mes `uc ~T0 @X0 1 a ]
 [e = _mes -> + * >> -> . *U _rtc 5 `i -> 4 `i -> 10 `i & -> . *U _rtc 5 `i -> 15 `i `uc ]
-"552
-[; ;main_piee2.c: 552:     uint8_t ano = ((rtc->year >> 4) * 10) + (rtc->year & 0x0F) + 2000;
+"554
+[; ;main_piee2.c: 554:     uint8_t ano = ((rtc->year >> 4) * 10) + (rtc->year & 0x0F) + 2000;
 [v _ano `uc ~T0 @X0 1 a ]
 [e = _ano -> + + * >> -> . *U _rtc 6 `i -> 4 `i -> 10 `i & -> . *U _rtc 6 `i -> 15 `i -> 2000 `i `uc ]
-"554
-[; ;main_piee2.c: 554:     sprintf(buffer, "%02d/%02d/%04d", dia, mes, ano);
+"556
+[; ;main_piee2.c: 556:     sprintf(buffer, "%02d/%02d/%04d", dia, mes, ano);
 [e ( _sprintf (1 , , , (. , _buffer :s 24C -> _dia `i -> _mes `i -> _ano `i ]
-"555
-[; ;main_piee2.c: 555: }
-[e :UE 449 ]
+"557
+[; ;main_piee2.c: 557: }
+[e :UE 455 ]
 }
-"558
-[; ;main_piee2.c: 558: void ADC_Init(void) {
+"560
+[; ;main_piee2.c: 560: void ADC_Init(void) {
 [v _ADC_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _ADC_Init ]
 [f ]
-"559
-[; ;main_piee2.c: 559:     ADCON1 = 0x0E;
-[e = _ADCON1 -> -> 14 `i `uc ]
-"560
-[; ;main_piee2.c: 560:     ADCON2 = 0xBE;
-[e = _ADCON2 -> -> 190 `i `uc ]
 "561
-[; ;main_piee2.c: 561: }
-[e :UE 450 ]
-}
+[; ;main_piee2.c: 561:     ADCON1 = 0x0E;
+[e = _ADCON1 -> -> 14 `i `uc ]
+"562
+[; ;main_piee2.c: 562:     ADCON2 = 0xBE;
+[e = _ADCON2 -> -> 190 `i `uc ]
 "563
-[; ;main_piee2.c: 563: uint16_t Ler_ADC(uint8_t canal) {
+[; ;main_piee2.c: 563: }
+[e :UE 456 ]
+}
+"565
+[; ;main_piee2.c: 565: uint16_t Ler_ADC(uint8_t canal) {
 [v _Ler_ADC `(us ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Ler_ADC ]
 [v _canal `uc ~T0 @X0 1 r1 ]
 [f ]
-"564
-[; ;main_piee2.c: 564:     ADCON0 = (canal << 2) | 0x01;
+"566
+[; ;main_piee2.c: 566:     ADCON0 = (canal << 2) | 0x01;
 [e = _ADCON0 -> | << -> _canal `i -> 2 `i -> 1 `i `uc ]
-"565
-[; ;main_piee2.c: 565:     MSdelay(1);
-[e ( _MSdelay (1 -> -> 1 `i `ui ]
 "567
-[; ;main_piee2.c: 567:     ADCON0bits.GO = 1;
+[; ;main_piee2.c: 567:     MSdelay(1);
+[e ( _MSdelay (1 -> -> 1 `i `ui ]
+"569
+[; ;main_piee2.c: 569:     ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
-"568
-[; ;main_piee2.c: 568:     while(ADCON0bits.GO);
-[e $U 452  ]
-[e :U 453 ]
-[e :U 452 ]
-[e $ != -> . . _ADCON0bits 4 1 `i -> 0 `i 453  ]
-[e :U 454 ]
 "570
-[; ;main_piee2.c: 570:     return ((ADRESH << 8) | ADRESL);
+[; ;main_piee2.c: 570:     while(ADCON0bits.GO);
+[e $U 458  ]
+[e :U 459 ]
+[e :U 458 ]
+[e $ != -> . . _ADCON0bits 4 1 `i -> 0 `i 459  ]
+[e :U 460 ]
+"572
+[; ;main_piee2.c: 572:     return ((ADRESH << 8) | ADRESL);
 [e ) -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
-[e $UE 451  ]
-"571
-[; ;main_piee2.c: 571: }
-[e :UE 451 ]
-}
+[e $UE 457  ]
 "573
-[; ;main_piee2.c: 573: void Verificar_Falha_Pressao(void) {
+[; ;main_piee2.c: 573: }
+[e :UE 457 ]
+}
+"575
+[; ;main_piee2.c: 575: void Verificar_Falha_Pressao(void) {
 [v _Verificar_Falha_Pressao `(v ~T0 @X0 1 ef ]
 {
 [e :U _Verificar_Falha_Pressao ]
 [f ]
-"575
-[; ;main_piee2.c: 575:     if(adc_pressao > 819) {
-[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 456  ]
-{
-"576
-[; ;main_piee2.c: 576:         falha_pressao = 1;
-[e = _falha_pressao -> -> 1 `i `uc ]
 "577
-[; ;main_piee2.c: 577:         LATD2 = 1;
-[e = _LATD2 -> -> 1 `i `b ]
-"578
-[; ;main_piee2.c: 578:     } else {
-}
-[e $U 457  ]
-[e :U 456 ]
+[; ;main_piee2.c: 577:     if(adc_pressao > 819) {
+[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 462  ]
 {
+"578
+[; ;main_piee2.c: 578:         falha_pressao = 1;
+[e = _falha_pressao -> -> 1 `i `uc ]
 "579
-[; ;main_piee2.c: 579:         falha_pressao = 0;
-[e = _falha_pressao -> -> 0 `i `uc ]
+[; ;main_piee2.c: 579:         LATD2 = 1;
+[e = _LATD2 -> -> 1 `i `b ]
 "580
-[; ;main_piee2.c: 580:         LATD2 = 0;
-[e = _LATD2 -> -> 0 `i `b ]
-"581
-[; ;main_piee2.c: 581:     }
+[; ;main_piee2.c: 580:     } else {
 }
-[e :U 457 ]
+[e $U 463  ]
+[e :U 462 ]
+{
+"581
+[; ;main_piee2.c: 581:         falha_pressao = 0;
+[e = _falha_pressao -> -> 0 `i `uc ]
 "582
-[; ;main_piee2.c: 582: }
-[e :UE 455 ]
+[; ;main_piee2.c: 582:         LATD2 = 0;
+[e = _LATD2 -> -> 0 `i `b ]
+"583
+[; ;main_piee2.c: 583:     }
+}
+[e :U 463 ]
+"584
+[; ;main_piee2.c: 584: }
+[e :UE 461 ]
 }
 [p f _sprintf 9732228 ]
 [a 12C 37 115 32 32 37 115 0 ]

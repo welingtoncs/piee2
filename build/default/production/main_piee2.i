@@ -6103,7 +6103,7 @@ int main(void) {
 # 124 "main_piee2.c"
     while(1) {
 
-
+        adc_pressao = Ler_ADC(0);
 
 
         Verificar_Falha_Pressao();
@@ -6124,13 +6124,13 @@ int main(void) {
                     PORTC = 0x00;
                     LATD7 = 0;
                 }
-
+                while(PORTAbits.RA6 == 0);
             }
         }
 
 
         static uint8_t last_man_aut = 1;
-        if(PORTAbits.RA2 == 0 && modo_operacao == 1) {
+        if(PORTAbits.RA2 == 0) {
             MSdelay(50);
             if(PORTAbits.RA2 == 0) {
                 modo_operacao = !modo_operacao;
@@ -6140,6 +6140,7 @@ int main(void) {
                 LATD3 = 0;
                 Beep(1);
             }
+            while(PORTAbits.RA2 == 0);
         }
         last_man_aut = PORTAbits.RA2;
 
@@ -6147,6 +6148,7 @@ int main(void) {
         if(modo_operacao == 0) {
             Modo_Manual();
         } else {
+            modo_operacao == 1;
             Sequenciador_Automatico();
         }
 
@@ -6434,7 +6436,7 @@ void Modo_Manual(void) {
         }
     }
     last_ent = PORTAbits.RA5;
-# 465 "main_piee2.c"
+# 467 "main_piee2.c"
 }
 
 
