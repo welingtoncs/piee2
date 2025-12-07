@@ -123,7 +123,7 @@ int main(void) {
     
     while(1) {
         // Ler pressão diferencial
-        adc_pressao = Ler_ADC(0);
+        //adc_pressao = Ler_ADC(0);
         
         // Verificar falha de pressão
         Verificar_Falha_Pressao();
@@ -144,7 +144,7 @@ int main(void) {
                     PORTC = 0x00;
                     Val8 = 0;
                 }
-                while(Bt_reset == 0);  // Aguarda soltar botão
+                //while(Bt_reset == 0);  // Aguarda soltar botão
             }
         }
         
@@ -188,8 +188,8 @@ int main(void) {
 /*********************Inicialização do Sistema*****************************/
 void System_Init(void) {
     // Inicialização de portas
-    TRISD = 0x00;   // Saídas: beep, LEDs, V8
-    TRISC = 0x00;   // Saídas: V1-V7
+    TRISD = 0x00;   // Saídas: beep, LEDs, Val8
+    TRISC = 0x00;   // Saídas: Val1-Val7
     PORTC = 0x00;   // Desliga todas as válvulas
     PORTD = 0x00;   // Desliga beep e LEDs
     

@@ -6103,7 +6103,7 @@ int main(void) {
 # 124 "main_piee2.c"
     while(1) {
 
-        adc_pressao = Ler_ADC(0);
+
 
 
         Verificar_Falha_Pressao();
@@ -6124,7 +6124,7 @@ int main(void) {
                     PORTC = 0x00;
                     LATD7 = 0;
                 }
-                while(PORTAbits.RA6 == 0);
+
             }
         }
 
