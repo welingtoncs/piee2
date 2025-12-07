@@ -49,16 +49,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2353
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS103 ~T0 @X0 0 e@3968 ]
-"10000
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10000: extern volatile __bit LATD3 __attribute__((address(0x7C63)));
-[v _LATD3 `Vb ~T0 @X0 0 e@31843 ]
-"9994
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9994: extern volatile __bit LATD1 __attribute__((address(0x7C61)));
-[v _LATD1 `Vb ~T0 @X0 0 e@31841 ]
 "15 ./msdelay.h
 [; ;./msdelay.h: 15: void MSdelay(unsigned int val);
 [v _MSdelay `(v ~T0 @X0 0 ef1`ui ]
-"3427 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
+"94 main_piee2.c
+[; ;main_piee2.c: 94: void Salvar_Contador_EEPROM(void);
+[v _Salvar_Contador_EEPROM `(v ~T0 @X0 0 ef ]
+"2563 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2563: extern volatile unsigned char PORTC __attribute__((address(0xF82)));
+[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
+"10012
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10012: extern volatile __bit LATD7 __attribute__((address(0x7C67)));
+[v _LATD7 `Vb ~T0 @X0 0 e@31847 ]
+"10000
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10000: extern volatile __bit LATD3 __attribute__((address(0x7C63)));
+[v _LATD3 `Vb ~T0 @X0 0 e@31843 ]
+"90 main_piee2.c
+[; ;main_piee2.c: 90: void Modo_Manual(void);
+[v _Modo_Manual `(v ~T0 @X0 0 ef ]
+"89
+[; ;main_piee2.c: 89: void Sequenciador_Automatico(void);
+[v _Sequenciador_Automatico `(v ~T0 @X0 0 ef ]
+"9994 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
+[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9994: extern volatile __bit LATD1 __attribute__((address(0x7C61)));
+[v _LATD1 `Vb ~T0 @X0 0 e@31841 ]
+"3427
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 3427: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "4001
@@ -70,9 +85,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2314
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2314: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
 [v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
-"2563
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2563: extern volatile unsigned char PORTC __attribute__((address(0xF82)));
-[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
 "2705
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 2705: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
 [v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
@@ -112,13 +124,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9991 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9991: extern volatile __bit LATD0 __attribute__((address(0x7C60)));
 [v _LATD0 `Vb ~T0 @X0 0 e@31840 ]
-"10012
-[; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 10012: extern volatile __bit LATD7 __attribute__((address(0x7C67)));
-[v _LATD7 `Vb ~T0 @X0 0 e@31847 ]
-"94 main_piee2.c
-[; ;main_piee2.c: 94: void Salvar_Contador_EEPROM(void);
-[v _Salvar_Contador_EEPROM `(v ~T0 @X0 0 ef ]
-"9976 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
+"9976
 [; ;/Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h: 9976: extern volatile __bit LATC0 __attribute__((address(0x7C58)));
 [v _LATC0 `Vb ~T0 @X0 0 e@31832 ]
 "9979
@@ -878,37 +884,165 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_piee2.c: 129:         Verificar_Falha_Pressao();
 [e ( _Verificar_Falha_Pressao ..  ]
 "132
-[; ;main_piee2.c: 132:         if(PORTAbits.RA6 == 0) {LATD3 ^= 1; while(PORTAbits.RA6 == 0); }
+[; ;main_piee2.c: 132:         if(PORTAbits.RA6 == 0) {
 [e $ ! == -> . . _PORTAbits 0 6 `i -> 0 `i 375  ]
 {
-[e =^ _LATD3 -> -> -> 1 `i `b `Vb ]
-[e $U 376  ]
+"133
+[; ;main_piee2.c: 133:             MSdelay(50);
+[e ( _MSdelay (1 -> -> 50 `i `ui ]
+"134
+[; ;main_piee2.c: 134:             if(PORTAbits.RA6 == 0) {
+[e $ ! == -> . . _PORTAbits 0 6 `i -> 0 `i 376  ]
+{
+"135
+[; ;main_piee2.c: 135:                 if(modo_operacao == 1) {
+[e $ ! == -> _modo_operacao `i -> 1 `i 377  ]
+{
+"136
+[; ;main_piee2.c: 136:                     contador_ciclos = 0;
+[e = _contador_ciclos -> -> 0 `i `us ]
+"137
+[; ;main_piee2.c: 137:                     Salvar_Contador_EEPROM();
+[e ( _Salvar_Contador_EEPROM ..  ]
+"138
+[; ;main_piee2.c: 138:                     Beep(2);
+[e ( _Beep (1 -> -> 2 `i `uc ]
+"139
+[; ;main_piee2.c: 139:                 } else {
+}
+[e $U 378  ]
 [e :U 377 ]
-[e :U 376 ]
-[e $ == -> . . _PORTAbits 0 6 `i -> 0 `i 377  ]
+{
+"141
+[; ;main_piee2.c: 141:                     PORTC = 0xFF;
+[e = _PORTC -> -> 255 `i `uc ]
+"142
+[; ;main_piee2.c: 142:                     LATD7 = 1;
+[e = _LATD7 -> -> 1 `i `b ]
+"143
+[; ;main_piee2.c: 143:                     MSdelay(2000);
+[e ( _MSdelay (1 -> -> 2000 `i `ui ]
+"144
+[; ;main_piee2.c: 144:                     PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"145
+[; ;main_piee2.c: 145:                     LATD7 = 0;
+[e = _LATD7 -> -> 0 `i `b ]
+"146
+[; ;main_piee2.c: 146:                 }
+}
 [e :U 378 ]
+"147
+[; ;main_piee2.c: 147:                 while(PORTAbits.RA6 == 0);
+[e $U 379  ]
+[e :U 380 ]
+[e :U 379 ]
+[e $ == -> . . _PORTAbits 0 6 `i -> 0 `i 380  ]
+[e :U 381 ]
+"148
+[; ;main_piee2.c: 148:             }
+}
+[e :U 376 ]
+"149
+[; ;main_piee2.c: 149:         }
 }
 [e :U 375 ]
+"152
+[; ;main_piee2.c: 152:         static uint8_t last_man_aut = 1;
+[v F3781 `uc ~T0 @X0 1 s last_man_aut ]
+[i F3781
+-> -> 1 `i `uc
+]
+"153
+[; ;main_piee2.c: 153:         if(PORTAbits.RA2 == 0) {
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 0 `i 382  ]
+{
+"154
+[; ;main_piee2.c: 154:             MSdelay(50);
+[e ( _MSdelay (1 -> -> 50 `i `ui ]
+"155
+[; ;main_piee2.c: 155:             if(PORTAbits.RA2 == 0) {
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 0 `i 383  ]
+{
+"156
+[; ;main_piee2.c: 156:                 modo_operacao = !modo_operacao;
+[e = _modo_operacao -> -> ! != -> _modo_operacao `i -> 0 `i `i `uc ]
+"157
+[; ;main_piee2.c: 157:                 ciclo_em_andamento = 0;
+[e = _ciclo_em_andamento -> -> 0 `i `uc ]
+"158
+[; ;main_piee2.c: 158:                 PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"159
+[; ;main_piee2.c: 159:                 LATD7 = 0;
+[e = _LATD7 -> -> 0 `i `b ]
+"160
+[; ;main_piee2.c: 160:                 LATD3 = 0;
+[e = _LATD3 -> -> 0 `i `b ]
+"161
+[; ;main_piee2.c: 161:                 Beep(1);
+[e ( _Beep (1 -> -> 1 `i `uc ]
+"162
+[; ;main_piee2.c: 162:             }
+}
+[e :U 383 ]
+"163
+[; ;main_piee2.c: 163:             while(PORTAbits.RA2 == 0);
+[e $U 384  ]
+[e :U 385 ]
+[e :U 384 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 0 `i 385  ]
+[e :U 386 ]
+"164
+[; ;main_piee2.c: 164:         }
+}
+[e :U 382 ]
+"165
+[; ;main_piee2.c: 165:         last_man_aut = PORTAbits.RA2;
+[e = F3781 . . _PORTAbits 0 2 ]
+"168
+[; ;main_piee2.c: 168:         if(modo_operacao == 0) {
+[e $ ! == -> _modo_operacao `i -> 0 `i 387  ]
+{
+"169
+[; ;main_piee2.c: 169:             Modo_Manual();
+[e ( _Modo_Manual ..  ]
+"170
+[; ;main_piee2.c: 170:         } else {
+}
+[e $U 388  ]
+[e :U 387 ]
+{
+"171
+[; ;main_piee2.c: 171:             modo_operacao == 1;
+[e == -> _modo_operacao `i -> 1 `i ]
+"172
+[; ;main_piee2.c: 172:             Sequenciador_Automatico();
+[e ( _Sequenciador_Automatico ..  ]
+"173
+[; ;main_piee2.c: 173:         }
+}
+[e :U 388 ]
 "176
 [; ;main_piee2.c: 176:         static uint16_t blink_timer = 0;
-[v F3781 `us ~T0 @X0 1 s blink_timer ]
-[i F3781
+[v F3782 `us ~T0 @X0 1 s blink_timer ]
+[i F3782
 -> -> 0 `i `us
 ]
 "177
 [; ;main_piee2.c: 177:         if(blink_timer++ >= 50) {
-[e $ ! >= -> ++ F3781 -> -> 1 `i `us `ui -> -> 50 `i `ui 379  ]
+[e $ ! >= -> ++ F3782 -> -> 1 `i `us `ui -> -> 50 `i `ui 389  ]
 {
 "178
 [; ;main_piee2.c: 178:             blink_timer = 0;
-[e = F3781 -> -> 0 `i `us ]
+[e = F3782 -> -> 0 `i `us ]
 "179
 [; ;main_piee2.c: 179:             LATD1 ^= 1;
 [e =^ _LATD1 -> -> -> 1 `i `b `Vb ]
 "180
 [; ;main_piee2.c: 180:         }
 }
-[e :U 379 ]
+[e :U 389 ]
 "183
 [; ;main_piee2.c: 183:         MSdelay(10);
 [e ( _MSdelay (1 -> -> 10 `i `ui ]
@@ -970,7 +1104,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Ler_Contador_EEPROM ..  ]
 "216
 [; ;main_piee2.c: 216: }
-[e :UE 380 ]
+[e :UE 390 ]
 }
 "218
 [; ;main_piee2.c: 218: void Display_Mensagens_Iniciais(void) {
@@ -1070,7 +1204,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _MSdelay (1 -> -> 3000 `i `ui ]
 "267
 [; ;main_piee2.c: 267: }
-[e :UE 381 ]
+[e :UE 391 ]
 }
 "270
 [; ;main_piee2.c: 270: void Atualizar_Display_Principal(void) {
@@ -1080,17 +1214,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "271
 [; ;main_piee2.c: 271:     static uint16_t display_timer = 0;
-[v F3785 `us ~T0 @X0 1 s display_timer ]
-[i F3785
+[v F3786 `us ~T0 @X0 1 s display_timer ]
+[i F3786
 -> -> 0 `i `us
 ]
 "273
 [; ;main_piee2.c: 273:     if(display_timer++ >= 100) {
-[e $ ! >= -> ++ F3785 -> -> 1 `i `us `ui -> -> 100 `i `ui 383  ]
+[e $ ! >= -> ++ F3786 -> -> 1 `i `us `ui -> -> 100 `i `ui 393  ]
 {
 "274
 [; ;main_piee2.c: 274:         display_timer = 0;
-[e = F3785 -> -> 0 `i `us ]
+[e = F3786 -> -> 0 `i `us ]
 "277
 [; ;main_piee2.c: 277:         LCD_String_xy(1, 3, "Filtro de Manga    ");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 3 `i `uc :s 16C ]
@@ -1111,7 +1245,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
 "288
 [; ;main_piee2.c: 288:         if(falha_pressao) {
-[e $ ! != -> _falha_pressao `i -> 0 `i 384  ]
+[e $ ! != -> _falha_pressao `i -> 0 `i 394  ]
 {
 "289
 [; ;main_piee2.c: 289:             sprintf(lcd_buffer, "FALHA! Press Alta  ");
@@ -1119,13 +1253,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "290
 [; ;main_piee2.c: 290:         } else if(modo_operacao) {
 }
-[e $U 385  ]
-[e :U 384 ]
-[e $ ! != -> _modo_operacao `i -> 0 `i 386  ]
+[e $U 395  ]
+[e :U 394 ]
+[e $ ! != -> _modo_operacao `i -> 0 `i 396  ]
 {
 "291
 [; ;main_piee2.c: 291:             if(ciclo_em_andamento) {
-[e $ ! != -> _ciclo_em_andamento `i -> 0 `i 387  ]
+[e $ ! != -> _ciclo_em_andamento `i -> 0 `i 397  ]
 {
 "292
 [; ;main_piee2.c: 292:                 sprintf(lcd_buffer, "Auto - Ciclo Ativo ");
@@ -1133,8 +1267,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "293
 [; ;main_piee2.c: 293:             } else {
 }
-[e $U 388  ]
-[e :U 387 ]
+[e $U 398  ]
+[e :U 397 ]
 {
 "294
 [; ;main_piee2.c: 294:                 sprintf(lcd_buffer, "Auto - Aguardando  ");
@@ -1142,12 +1276,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "295
 [; ;main_piee2.c: 295:             }
 }
-[e :U 388 ]
+[e :U 398 ]
 "296
 [; ;main_piee2.c: 296:         } else {
 }
-[e $U 389  ]
-[e :U 386 ]
+[e $U 399  ]
+[e :U 396 ]
 {
 "297
 [; ;main_piee2.c: 297:             sprintf(lcd_buffer, "Manual - V:%d      ", valvula_selecionada + 1);
@@ -1155,8 +1289,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "298
 [; ;main_piee2.c: 298:         }
 }
-[e :U 389 ]
-[e :U 385 ]
+[e :U 399 ]
+[e :U 395 ]
 "299
 [; ;main_piee2.c: 299:         LCD_String_xy(3, 0, lcd_buffer);
 [e ( _LCD_String_xy (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> &U _lcd_buffer `*Cuc ]
@@ -1173,10 +1307,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "305
 [; ;main_piee2.c: 305:     }
 }
-[e :U 383 ]
+[e :U 393 ]
 "306
 [; ;main_piee2.c: 306: }
-[e :UE 382 ]
+[e :UE 392 ]
 }
 "308
 [; ;main_piee2.c: 308: void Beep(uint8_t tipo) {
@@ -1187,11 +1321,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "309
 [; ;main_piee2.c: 309:     switch(tipo) {
-[e $U 392  ]
+[e $U 402  ]
 {
 "310
 [; ;main_piee2.c: 310:         case 1:
-[e :U 393 ]
+[e :U 403 ]
 "311
 [; ;main_piee2.c: 311:             LATD0 = 1;
 [e = _LATD0 -> -> 1 `i `b ]
@@ -1203,10 +1337,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD0 -> -> 0 `i `b ]
 "314
 [; ;main_piee2.c: 314:             break;
-[e $U 391  ]
+[e $U 401  ]
 "316
 [; ;main_piee2.c: 316:         case 2:
-[e :U 394 ]
+[e :U 404 ]
 "317
 [; ;main_piee2.c: 317:             LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
 [e = _LATD0 -> -> 1 `i `b ]
@@ -1220,10 +1354,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD0 -> -> 0 `i `b ]
 "319
 [; ;main_piee2.c: 319:             break;
-[e $U 391  ]
+[e $U 401  ]
 "321
 [; ;main_piee2.c: 321:         case 3:
-[e :U 395 ]
+[e :U 405 ]
 "322
 [; ;main_piee2.c: 322:             LATD0 = 1;
 [e = _LATD0 -> -> 1 `i `b ]
@@ -1235,20 +1369,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD0 -> -> 0 `i `b ]
 "325
 [; ;main_piee2.c: 325:             break;
-[e $U 391  ]
+[e $U 401  ]
 "326
 [; ;main_piee2.c: 326:     }
 }
-[e $U 391  ]
-[e :U 392 ]
-[e [\ -> _tipo `i , $ -> 1 `i 393
- , $ -> 2 `i 394
- , $ -> 3 `i 395
- 391 ]
-[e :U 391 ]
+[e $U 401  ]
+[e :U 402 ]
+[e [\ -> _tipo `i , $ -> 1 `i 403
+ , $ -> 2 `i 404
+ , $ -> 3 `i 405
+ 401 ]
+[e :U 401 ]
 "327
 [; ;main_piee2.c: 327: }
-[e :UE 390 ]
+[e :UE 400 ]
 }
 "330
 [; ;main_piee2.c: 330: void Sequenciador_Automatico(void) {
@@ -1258,25 +1392,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "331
 [; ;main_piee2.c: 331:     static uint8_t valvula_atual = 0;
-[v F3790 `uc ~T0 @X0 1 s valvula_atual ]
-[i F3790
+[v F3791 `uc ~T0 @X0 1 s valvula_atual ]
+[i F3791
 -> -> 0 `i `uc
 ]
 "332
 [; ;main_piee2.c: 332:     static uint16_t estado_timer = 0;
-[v F3791 `us ~T0 @X0 1 s estado_timer ]
-[i F3791
+[v F3792 `us ~T0 @X0 1 s estado_timer ]
+[i F3792
 -> -> 0 `i `us
 ]
 "333
 [; ;main_piee2.c: 333:     static uint8_t estado = 0;
-[v F3792 `uc ~T0 @X0 1 s estado ]
-[i F3792
+[v F3793 `uc ~T0 @X0 1 s estado ]
+[i F3793
 -> -> 0 `i `uc
 ]
 "335
 [; ;main_piee2.c: 335:     if(falha_pressao) {
-[e $ ! != -> _falha_pressao `i -> 0 `i 397  ]
+[e $ ! != -> _falha_pressao `i -> 0 `i 407  ]
 {
 "336
 [; ;main_piee2.c: 336:         ciclo_em_andamento = 0;
@@ -1292,18 +1426,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD7 -> -> 0 `i `b ]
 "340
 [; ;main_piee2.c: 340:         return;
-[e $UE 396  ]
+[e $UE 406  ]
 "341
 [; ;main_piee2.c: 341:     }
 }
-[e :U 397 ]
+[e :U 407 ]
 "343
 [; ;main_piee2.c: 343:     switch(estado) {
-[e $U 399  ]
+[e $U 409  ]
 {
 "344
 [; ;main_piee2.c: 344:         case 0:
-[e :U 400 ]
+[e :U 410 ]
 "345
 [; ;main_piee2.c: 345:             ciclo_em_andamento = 0;
 [e = _ciclo_em_andamento -> -> 0 `i `uc ]
@@ -1312,17 +1446,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD3 -> -> 0 `i `b ]
 "347
 [; ;main_piee2.c: 347:             if(estado_timer++ >= 3000) {
-[e $ ! >= -> ++ F3791 -> -> 1 `i `us `ui -> -> 3000 `i `ui 401  ]
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 3000 `i `ui 411  ]
 {
 "348
 [; ;main_piee2.c: 348:                 estado = 1;
-[e = F3792 -> -> 1 `i `uc ]
+[e = F3793 -> -> 1 `i `uc ]
 "349
 [; ;main_piee2.c: 349:                 estado_timer = 0;
-[e = F3791 -> -> 0 `i `us ]
+[e = F3792 -> -> 0 `i `us ]
 "350
 [; ;main_piee2.c: 350:                 valvula_atual = 0;
-[e = F3790 -> -> 0 `i `uc ]
+[e = F3791 -> -> 0 `i `uc ]
 "351
 [; ;main_piee2.c: 351:                 ciclo_em_andamento = 1;
 [e = _ciclo_em_andamento -> -> 1 `i `uc ]
@@ -1338,75 +1472,75 @@ Version 4.0 HI-TECH Software Intermediate Code
 "355
 [; ;main_piee2.c: 355:             }
 }
-[e :U 401 ]
+[e :U 411 ]
 "356
 [; ;main_piee2.c: 356:             break;
-[e $U 398  ]
+[e $U 408  ]
 "358
 [; ;main_piee2.c: 358:         case 1:
-[e :U 402 ]
+[e :U 412 ]
 "360
 [; ;main_piee2.c: 360:             switch(valvula_atual) {
-[e $U 404  ]
+[e $U 414  ]
 {
 "361
 [; ;main_piee2.c: 361:                 case 0: LATC0 = 1; break;
-[e :U 405 ]
+[e :U 415 ]
 [e = _LATC0 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "362
 [; ;main_piee2.c: 362:                 case 1: LATC1 = 1; break;
-[e :U 406 ]
+[e :U 416 ]
 [e = _LATC1 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "363
 [; ;main_piee2.c: 363:                 case 2: LATC2 = 1; break;
-[e :U 407 ]
+[e :U 417 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "364
 [; ;main_piee2.c: 364:                 case 3: LATC2 = 1; break;
-[e :U 408 ]
+[e :U 418 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "365
 [; ;main_piee2.c: 365:                 case 4: LATC2 = 1; break;
-[e :U 409 ]
+[e :U 419 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "366
 [; ;main_piee2.c: 366:                 case 5: LATC6 = 1; break;
-[e :U 410 ]
+[e :U 420 ]
 [e = _LATC6 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "367
 [; ;main_piee2.c: 367:                 case 6: LATC7 = 1; break;
-[e :U 411 ]
+[e :U 421 ]
 [e = _LATC7 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "368
 [; ;main_piee2.c: 368:                 case 7: LATD7 = 1; break;
-[e :U 412 ]
+[e :U 422 ]
 [e = _LATD7 -> -> 1 `i `b ]
-[e $U 403  ]
+[e $U 413  ]
 "369
 [; ;main_piee2.c: 369:             }
 }
-[e $U 403  ]
-[e :U 404 ]
-[e [\ -> F3790 `i , $ -> 0 `i 405
- , $ -> 1 `i 406
- , $ -> 2 `i 407
- , $ -> 3 `i 408
- , $ -> 4 `i 409
- , $ -> 5 `i 410
- , $ -> 6 `i 411
- , $ -> 7 `i 412
- 403 ]
-[e :U 403 ]
+[e $U 413  ]
+[e :U 414 ]
+[e [\ -> F3791 `i , $ -> 0 `i 415
+ , $ -> 1 `i 416
+ , $ -> 2 `i 417
+ , $ -> 3 `i 418
+ , $ -> 4 `i 419
+ , $ -> 5 `i 420
+ , $ -> 6 `i 421
+ , $ -> 7 `i 422
+ 413 ]
+[e :U 413 ]
 "371
 [; ;main_piee2.c: 371:             if(estado_timer++ >= 200) {
-[e $ ! >= -> ++ F3791 -> -> 1 `i `us `ui -> -> 200 `i `ui 413  ]
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 200 `i `ui 423  ]
 {
 "373
 [; ;main_piee2.c: 373:                 PORTC = 0x00;
@@ -1416,23 +1550,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD7 -> -> 0 `i `b ]
 "376
 [; ;main_piee2.c: 376:                 estado = 2;
-[e = F3792 -> -> 2 `i `uc ]
+[e = F3793 -> -> 2 `i `uc ]
 "377
 [; ;main_piee2.c: 377:                 estado_timer = 0;
-[e = F3791 -> -> 0 `i `us ]
+[e = F3792 -> -> 0 `i `us ]
 "378
 [; ;main_piee2.c: 378:                 valvula_atual++;
-[e ++ F3790 -> -> 1 `i `uc ]
+[e ++ F3791 -> -> 1 `i `uc ]
 "380
 [; ;main_piee2.c: 380:                 if(valvula_atual >= 8) {
-[e $ ! >= -> F3790 `i -> 8 `i 414  ]
+[e $ ! >= -> F3791 `i -> 8 `i 424  ]
 {
 "382
 [; ;main_piee2.c: 382:                     estado = 0;
-[e = F3792 -> -> 0 `i `uc ]
+[e = F3793 -> -> 0 `i `uc ]
 "383
 [; ;main_piee2.c: 383:                     estado_timer = 0;
-[e = F3791 -> -> 0 `i `us ]
+[e = F3792 -> -> 0 `i `us ]
 "384
 [; ;main_piee2.c: 384:                     ciclo_em_andamento = 0;
 [e = _ciclo_em_andamento -> -> 0 `i `uc ]
@@ -1442,47 +1576,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 "386
 [; ;main_piee2.c: 386:                 }
 }
-[e :U 414 ]
+[e :U 424 ]
 "387
 [; ;main_piee2.c: 387:             }
 }
-[e :U 413 ]
+[e :U 423 ]
 "388
 [; ;main_piee2.c: 388:             break;
-[e $U 398  ]
+[e $U 408  ]
 "390
 [; ;main_piee2.c: 390:         case 2:
-[e :U 415 ]
+[e :U 425 ]
 "391
 [; ;main_piee2.c: 391:             if(estado_timer++ >= 500) {
-[e $ ! >= -> ++ F3791 -> -> 1 `i `us `ui -> -> 500 `i `ui 416  ]
+[e $ ! >= -> ++ F3792 -> -> 1 `i `us `ui -> -> 500 `i `ui 426  ]
 {
 "392
 [; ;main_piee2.c: 392:                 estado = 1;
-[e = F3792 -> -> 1 `i `uc ]
+[e = F3793 -> -> 1 `i `uc ]
 "393
 [; ;main_piee2.c: 393:                 estado_timer = 0;
-[e = F3791 -> -> 0 `i `us ]
+[e = F3792 -> -> 0 `i `us ]
 "394
 [; ;main_piee2.c: 394:             }
 }
-[e :U 416 ]
+[e :U 426 ]
 "395
 [; ;main_piee2.c: 395:             break;
-[e $U 398  ]
+[e $U 408  ]
 "397
 [; ;main_piee2.c: 397:     }
 }
-[e $U 398  ]
-[e :U 399 ]
-[e [\ -> F3792 `i , $ -> 0 `i 400
- , $ -> 1 `i 402
- , $ -> 2 `i 415
- 398 ]
-[e :U 398 ]
+[e $U 408  ]
+[e :U 409 ]
+[e [\ -> F3793 `i , $ -> 0 `i 410
+ , $ -> 1 `i 412
+ , $ -> 2 `i 425
+ 408 ]
+[e :U 408 ]
 "398
 [; ;main_piee2.c: 398: }
-[e :UE 396 ]
+[e :UE 406 ]
 }
 "401
 [; ;main_piee2.c: 401: void Modo_Manual(void) {
@@ -1492,39 +1626,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "402
 [; ;main_piee2.c: 402:     static uint8_t last_inc = 1;
-[v F3794 `uc ~T0 @X0 1 s last_inc ]
-[i F3794
+[v F3795 `uc ~T0 @X0 1 s last_inc ]
+[i F3795
 -> -> 1 `i `uc
 ]
 "403
 [; ;main_piee2.c: 403:     static uint8_t last_dow = 1;
-[v F3795 `uc ~T0 @X0 1 s last_dow ]
-[i F3795
+[v F3796 `uc ~T0 @X0 1 s last_dow ]
+[i F3796
 -> -> 1 `i `uc
 ]
 "404
 [; ;main_piee2.c: 404:     static uint8_t last_ent = 1;
-[v F3796 `uc ~T0 @X0 1 s last_ent ]
-[i F3796
+[v F3797 `uc ~T0 @X0 1 s last_ent ]
+[i F3797
 -> -> 1 `i `uc
 ]
 "407
 [; ;main_piee2.c: 407:     if(PORTAbits.RA3 == 0 && last_inc == 1) {
-[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i == -> F3794 `i -> 1 `i 418  ]
+[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i == -> F3795 `i -> 1 `i 428  ]
 {
 "408
 [; ;main_piee2.c: 408:         MSdelay(50);
 [e ( _MSdelay (1 -> -> 50 `i `ui ]
 "409
 [; ;main_piee2.c: 409:         if(PORTAbits.RA3 == 0) {
-[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 419  ]
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 429  ]
 {
 "410
 [; ;main_piee2.c: 410:             valvula_selecionada++;
 [e ++ _valvula_selecionada -> -> 1 `i `uc ]
 "411
 [; ;main_piee2.c: 411:             if(valvula_selecionada >= 8) {
-[e $ ! >= -> _valvula_selecionada `i -> 8 `i 420  ]
+[e $ ! >= -> _valvula_selecionada `i -> 8 `i 430  ]
 {
 "412
 [; ;main_piee2.c: 412:                 valvula_selecionada = 0;
@@ -1532,32 +1666,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "413
 [; ;main_piee2.c: 413:             }
 }
-[e :U 420 ]
+[e :U 430 ]
 "414
 [; ;main_piee2.c: 414:         }
 }
-[e :U 419 ]
+[e :U 429 ]
 "415
 [; ;main_piee2.c: 415:     }
 }
-[e :U 418 ]
+[e :U 428 ]
 "416
 [; ;main_piee2.c: 416:     last_inc = PORTAbits.RA3;
-[e = F3794 . . _PORTAbits 0 3 ]
+[e = F3795 . . _PORTAbits 0 3 ]
 "418
 [; ;main_piee2.c: 418:     if(PORTAbits.RA4 == 0 && last_dow == 1) {
-[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i == -> F3795 `i -> 1 `i 421  ]
+[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i == -> F3796 `i -> 1 `i 431  ]
 {
 "419
 [; ;main_piee2.c: 419:         MSdelay(50);
 [e ( _MSdelay (1 -> -> 50 `i `ui ]
 "420
 [; ;main_piee2.c: 420:         if(PORTAbits.RA4 == 0) {
-[e $ ! == -> . . _PORTAbits 0 4 `i -> 0 `i 422  ]
+[e $ ! == -> . . _PORTAbits 0 4 `i -> 0 `i 432  ]
 {
 "421
 [; ;main_piee2.c: 421:             if(valvula_selecionada == 0) {
-[e $ ! == -> _valvula_selecionada `i -> 0 `i 423  ]
+[e $ ! == -> _valvula_selecionada `i -> 0 `i 433  ]
 {
 "422
 [; ;main_piee2.c: 422:                 valvula_selecionada = 8 - 1;
@@ -1565,8 +1699,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "423
 [; ;main_piee2.c: 423:             } else {
 }
-[e $U 424  ]
-[e :U 423 ]
+[e $U 434  ]
+[e :U 433 ]
 {
 "424
 [; ;main_piee2.c: 424:                 valvula_selecionada--;
@@ -1574,28 +1708,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "425
 [; ;main_piee2.c: 425:             }
 }
-[e :U 424 ]
+[e :U 434 ]
 "427
 [; ;main_piee2.c: 427:         }
 }
-[e :U 422 ]
+[e :U 432 ]
 "428
 [; ;main_piee2.c: 428:     }
 }
-[e :U 421 ]
+[e :U 431 ]
 "429
 [; ;main_piee2.c: 429:     last_dow = PORTAbits.RA4;
-[e = F3795 . . _PORTAbits 0 4 ]
+[e = F3796 . . _PORTAbits 0 4 ]
 "432
 [; ;main_piee2.c: 432:     if(PORTAbits.RA5 == 0 && last_ent == 1) {
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> F3796 `i -> 1 `i 425  ]
+[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> F3797 `i -> 1 `i 435  ]
 {
 "433
 [; ;main_piee2.c: 433:        MSdelay(50);
 [e ( _MSdelay (1 -> -> 50 `i `ui ]
 "434
 [; ;main_piee2.c: 434:         if(PORTAbits.RA5 == 0) {
-[e $ ! == -> . . _PORTAbits 0 5 `i -> 0 `i 426  ]
+[e $ ! == -> . . _PORTAbits 0 5 `i -> 0 `i 436  ]
 {
 "436
 [; ;main_piee2.c: 436:             PORTC = 0x00;
@@ -1605,63 +1739,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _LATD7 -> -> 0 `i `b ]
 "440
 [; ;main_piee2.c: 440:             switch(valvula_selecionada) {
-[e $U 428  ]
+[e $U 438  ]
 {
 "441
 [; ;main_piee2.c: 441:                 case 0: LATC0 = 1; break;
-[e :U 429 ]
+[e :U 439 ]
 [e = _LATC0 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "442
 [; ;main_piee2.c: 442:                 case 1: LATC1 = 1; break;
-[e :U 430 ]
+[e :U 440 ]
 [e = _LATC1 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "443
 [; ;main_piee2.c: 443:                 case 2: LATC2 = 1; break;
-[e :U 431 ]
+[e :U 441 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "444
 [; ;main_piee2.c: 444:                 case 3: LATC2 = 1; break;
-[e :U 432 ]
+[e :U 442 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "445
 [; ;main_piee2.c: 445:                 case 4: LATC2 = 1; break;
-[e :U 433 ]
+[e :U 443 ]
 [e = _LATC2 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "446
 [; ;main_piee2.c: 446:                 case 5: LATC6 = 1; break;
-[e :U 434 ]
+[e :U 444 ]
 [e = _LATC6 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "447
 [; ;main_piee2.c: 447:                 case 6: LATC7 = 1; break;
-[e :U 435 ]
+[e :U 445 ]
 [e = _LATC7 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "448
 [; ;main_piee2.c: 448:                 case 7: LATD7 = 1; break;
-[e :U 436 ]
+[e :U 446 ]
 [e = _LATD7 -> -> 1 `i `b ]
-[e $U 427  ]
+[e $U 437  ]
 "449
 [; ;main_piee2.c: 449:             }
 }
-[e $U 427  ]
-[e :U 428 ]
-[e [\ -> _valvula_selecionada `i , $ -> 0 `i 429
- , $ -> 1 `i 430
- , $ -> 2 `i 431
- , $ -> 3 `i 432
- , $ -> 4 `i 433
- , $ -> 5 `i 434
- , $ -> 6 `i 435
- , $ -> 7 `i 436
- 427 ]
-[e :U 427 ]
+[e $U 437  ]
+[e :U 438 ]
+[e [\ -> _valvula_selecionada `i , $ -> 0 `i 439
+ , $ -> 1 `i 440
+ , $ -> 2 `i 441
+ , $ -> 3 `i 442
+ , $ -> 4 `i 443
+ , $ -> 5 `i 444
+ , $ -> 6 `i 445
+ , $ -> 7 `i 446
+ 437 ]
+[e :U 437 ]
 "451
 [; ;main_piee2.c: 451:             MSdelay(2000);
 [e ( _MSdelay (1 -> -> 2000 `i `ui ]
@@ -1674,17 +1808,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "458
 [; ;main_piee2.c: 458:         }
 }
-[e :U 426 ]
+[e :U 436 ]
 "459
 [; ;main_piee2.c: 459:     }
 }
-[e :U 425 ]
+[e :U 435 ]
 "460
 [; ;main_piee2.c: 460:     last_ent = PORTAbits.RA5;
-[e = F3796 . . _PORTAbits 0 5 ]
+[e = F3797 . . _PORTAbits 0 5 ]
 "469
 [; ;main_piee2.c: 469: }
-[e :UE 417 ]
+[e :UE 427 ]
 }
 "472
 [; ;main_piee2.c: 472: uint8_t Ler_EEPROM(uint16_t endereco) {
@@ -1723,10 +1857,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "484
 [; ;main_piee2.c: 484:     return dado;
 [e ) _dado ]
-[e $UE 437  ]
+[e $UE 447  ]
 "485
 [; ;main_piee2.c: 485: }
-[e :UE 437 ]
+[e :UE 447 ]
 }
 "487
 [; ;main_piee2.c: 487: void Escrever_EEPROM(uint16_t endereco, uint8_t dado) {
@@ -1759,7 +1893,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _MSdelay (1 -> -> 10 `i `ui ]
 "496
 [; ;main_piee2.c: 496: }
-[e :UE 438 ]
+[e :UE 448 ]
 }
 "498
 [; ;main_piee2.c: 498: void Ler_Contador_EEPROM(void) {
@@ -1780,7 +1914,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _contador_ciclos -> | << -> _high `i -> 8 `i -> _low `i `us ]
 "504
 [; ;main_piee2.c: 504:     if(contador_ciclos == 0xFFFF) {
-[e $ ! == -> _contador_ciclos `ui -> 65535 `ui 440  ]
+[e $ ! == -> _contador_ciclos `ui -> 65535 `ui 450  ]
 {
 "505
 [; ;main_piee2.c: 505:         contador_ciclos = 0;
@@ -1788,10 +1922,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "506
 [; ;main_piee2.c: 506:     }
 }
-[e :U 440 ]
+[e :U 450 ]
 "507
 [; ;main_piee2.c: 507: }
-[e :UE 439 ]
+[e :UE 449 ]
 }
 "509
 [; ;main_piee2.c: 509: void Salvar_Contador_EEPROM(void) {
@@ -1807,7 +1941,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Escrever_EEPROM (2 , -> + -> 0 `i -> 1 `i `us -> & -> _contador_ciclos `ui -> -> 255 `i `ui `uc ]
 "512
 [; ;main_piee2.c: 512: }
-[e :UE 441 ]
+[e :UE 451 ]
 }
 "515
 [; ;main_piee2.c: 515: void RTC_Init(void) {
@@ -1835,7 +1969,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _I2C_Stop ..  ]
 "523
 [; ;main_piee2.c: 523: }
-[e :UE 442 ]
+[e :UE 452 ]
 }
 "525
 [; ;main_piee2.c: 525: void RTC_GetDateTime(rtc_t *rtc) {
@@ -1885,7 +2019,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _I2C_Stop ..  ]
 "541
 [; ;main_piee2.c: 541: }
-[e :UE 443 ]
+[e :UE 453 ]
 }
 "543
 [; ;main_piee2.c: 543: void Format_Hora(char *buffer, rtc_t *rtc) {
@@ -1912,7 +2046,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _sprintf (1 , , , (. , _buffer :s 23C -> _hora `i -> _min `i -> _seg `i ]
 "550
 [; ;main_piee2.c: 550: }
-[e :UE 444 ]
+[e :UE 454 ]
 }
 "552
 [; ;main_piee2.c: 552: void Format_Data(char *buffer, rtc_t *rtc) {
@@ -1939,7 +2073,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _sprintf (1 , , , (. , _buffer :s 24C -> _dia `i -> _mes `i -> _ano `i ]
 "559
 [; ;main_piee2.c: 559: }
-[e :UE 445 ]
+[e :UE 455 ]
 }
 "562
 [; ;main_piee2.c: 562: void ADC_Init(void) {
@@ -1955,7 +2089,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADCON2 -> -> 190 `i `uc ]
 "565
 [; ;main_piee2.c: 565: }
-[e :UE 446 ]
+[e :UE 456 ]
 }
 "567
 [; ;main_piee2.c: 567: uint16_t Ler_ADC(uint8_t canal) {
@@ -1975,18 +2109,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
 "572
 [; ;main_piee2.c: 572:     while(ADCON0bits.GO);
-[e $U 448  ]
-[e :U 449 ]
-[e :U 448 ]
-[e $ != -> . . _ADCON0bits 4 1 `i -> 0 `i 449  ]
-[e :U 450 ]
+[e $U 458  ]
+[e :U 459 ]
+[e :U 458 ]
+[e $ != -> . . _ADCON0bits 4 1 `i -> 0 `i 459  ]
+[e :U 460 ]
 "574
 [; ;main_piee2.c: 574:     return ((ADRESH << 8) | ADRESL);
 [e ) -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
-[e $UE 447  ]
+[e $UE 457  ]
 "575
 [; ;main_piee2.c: 575: }
-[e :UE 447 ]
+[e :UE 457 ]
 }
 "577
 [; ;main_piee2.c: 577: void Verificar_Falha_Pressao(void) {
@@ -1996,7 +2130,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "579
 [; ;main_piee2.c: 579:     if(adc_pressao > 819) {
-[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 452  ]
+[e $ ! > -> _adc_pressao `ui -> -> 819 `i `ui 462  ]
 {
 "580
 [; ;main_piee2.c: 580:         falha_pressao = 1;
@@ -2007,8 +2141,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "582
 [; ;main_piee2.c: 582:     } else {
 }
-[e $U 453  ]
-[e :U 452 ]
+[e $U 463  ]
+[e :U 462 ]
 {
 "583
 [; ;main_piee2.c: 583:         falha_pressao = 0;
@@ -2019,10 +2153,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "585
 [; ;main_piee2.c: 585:     }
 }
-[e :U 453 ]
+[e :U 463 ]
 "586
 [; ;main_piee2.c: 586: }
-[e :UE 451 ]
+[e :UE 461 ]
 }
 [p f _sprintf 9732228 ]
 [a 12C 37 115 32 32 37 115 0 ]
