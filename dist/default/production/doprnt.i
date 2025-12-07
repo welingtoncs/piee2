@@ -976,49 +976,7 @@ static void stoa(FILE *fp, char *s)
 
 
 }
-# 955 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-static void xtoa(FILE *fp, vfpf_uint_t d)
-
-
-{
- char c;
-    int i, p, w;
-
-
-
-
-
-
-    if (!(prec < 0)) {
-        flags &= ~(1 << 1);
-    }
-
-    p = (0 <= prec) ? prec : 1;
-    w = width;
-# 981 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-    i = sizeof(dbuf) - 1;
-    dbuf[i] = '\0';
-    while (!(i < 2) && (d || (0 < p)
-
-    || ((0 < w) && (flags & (1 << 1)))
-
-    )) {
-        --i;
-        c = d & 0x0f;
-
-        c = (c < 10) ? (int)'0' + c : (int)'a' + (c - 10);
-# 1000 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-        dbuf[i] = (char)c;
-        --p;
-        --w;
-        d = d >> 4;
-    }
-# 1023 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-    return (void) pad(fp, &dbuf[i], w);
-}
-
-
-
+# 1028 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
 static int
 read_prec_or_width (const char **fmt, va_list *ap) {
     int n = 0;
@@ -1097,34 +1055,21 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
    *fmt = cp+1;
    return (void) dtoa(fp, convarg.sint);
   }
-
-
-
-
-  if (0
-
-    || *cp == 'x'
-# 1278 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-    ) {
-# 1321 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-   convarg.uint = (vfpf_uint_t)(unsigned int)(*(unsigned int *)__va_arg(*(unsigned int **)ap, (unsigned int)0));
-
-   *fmt = cp+1;
-   switch (*cp) {
-# 1338 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
-    case 'x':
-
-     return (void) xtoa(fp,convarg.uint);
-
-   }
-  }
 # 1409 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
         if (*fmt[0] == 's' || !strncmp(*fmt, "lls", ((sizeof("lls")/sizeof("lls"[0]))-1))) {
 
    *fmt += *fmt[0] == 's' ? 1 : ((sizeof("lls")/sizeof("lls"[0]))-1);
             return (void) stoa(fp, (*(char * *)__va_arg(*(char * **)ap, (char *)0)));
         }
-# 1535 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
+# 1527 "/Applications/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c"
+        if ((*fmt)[0] == '%') {
+            ++*fmt;
+            fputc((int)'%', fp);
+            return (void) 1;
+        }
+
+
+
         ++*fmt;
         return (void) 0;
     }

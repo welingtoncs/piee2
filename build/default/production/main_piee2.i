@@ -6058,7 +6058,9 @@ typedef struct {
 
 
 rtc_t rtc;
-char lcd_buffer[17];
+char lcd_buffer[21];
+char hora_buffer[9];
+char data_buffer[11];
 uint16_t contador_ciclos = 0;
 uint8_t modo_operacao = 0;
 uint8_t valvula_selecionada = 0;
@@ -6080,15 +6082,91 @@ void Ler_Contador_EEPROM(void);
 void Salvar_Contador_EEPROM(void);
 void RTC_Init(void);
 void RTC_GetDateTime(rtc_t *rtc);
+void Format_Hora(char *buffer, rtc_t *rtc);
+void Format_Data(char *buffer, rtc_t *rtc);
 void ADC_Init(void);
 uint16_t Ler_ADC(uint8_t canal);
 void Verificar_Falha_Pressao(void);
+void Atualizar_Display_Principal(void);
 
 
 int main(void) {
 
     OSCCON = 0x72;
+    System_Init();
 
+
+
+    Beep(1);
+    Display_Mensagens_Iniciais();
+    Beep(2);
+# 124 "main_piee2.c"
+    while(1) {
+
+        adc_pressao = Ler_ADC(0);
+
+
+        Verificar_Falha_Pressao();
+
+
+        if(PORTAbits.RA6 == 0) {
+            MSdelay(50);
+            if(PORTAbits.RA6 == 0) {
+                if(modo_operacao == 1) {
+                    contador_ciclos = 0;
+                    Salvar_Contador_EEPROM();
+
+                } else {
+
+                    PORTC = 0xFF;
+                    LATD7 = 1;
+                    MSdelay(2000);
+                    PORTC = 0x00;
+                    LATD7 = 0;
+                }
+                while(PORTAbits.RA6 == 0);
+            }
+        }
+
+
+        static uint8_t last_man_aut = 1;
+        if(PORTAbits.RA2 == 0 && modo_operacao == 1) {
+            MSdelay(50);
+            if(PORTAbits.RA2 == 0) {
+                modo_operacao = !modo_operacao;
+                ciclo_em_andamento = 0;
+                PORTC = 0x00;
+                LATD7 = 0;
+                LATD3 = 0;
+
+            }
+        }
+        last_man_aut = PORTAbits.RA2;
+
+
+        if(modo_operacao == 0) {
+            Modo_Manual();
+        } else {
+            Sequenciador_Automatico();
+        }
+
+
+        static uint16_t blink_timer = 0;
+        if(blink_timer++ >= 50) {
+            blink_timer = 0;
+            LATD1 ^= 1;
+        }
+
+
+        MSdelay(10);
+        temporizador++;
+    }
+
+    return 0;
+}
+
+
+void System_Init(void) {
 
     TRISD = 0x00;
     TRISC = 0x00;
@@ -6111,154 +6189,116 @@ int main(void) {
 
 
     Ler_Contador_EEPROM();
-
-
-    Beep(1);
-    Display_Mensagens_Iniciais();
-    Beep(2);
-
-
-    rtc.hour = 0x12;
-    rtc.min = 0x00;
-    rtc.sec = 0x00;
-    rtc.date = 0x07;
-    rtc.month = 0x12;
-    rtc.year = 0x25;
-
-    while(1) {
-
-        adc_pressao = Ler_ADC(0);
-
-
-        Verificar_Falha_Pressao();
-
-
-        if(PORTAbits.RA6 == 0) {
-            MSdelay(50);
-            if(PORTAbits.RA6 == 0) {
-                if(modo_operacao == 1) {
-                    contador_ciclos = 0;
-                    Salvar_Contador_EEPROM();
-                } else {
-
-                    PORTC = 0xFF;
-                    LATD7 = 1;
-                    MSdelay(2000);
-                    PORTC = 0x00;
-                    LATD7 = 0;
-                }
-                while(PORTAbits.RA6 == 0);
-            }
-        }
-
-
-        if(PORTAbits.RA2 == 0 && modo_operacao == 1) {
-            modo_operacao = 0;
-            ciclo_em_andamento = 0;
-            PORTC = 0x00;
-            LATD7 = 0;
-            LATD3 = 0;
-        } else if(PORTAbits.RA2 == 1 && modo_operacao == 0) {
-            modo_operacao = 1;
-        }
-
-
-        if(modo_operacao == 0) {
-            Modo_Manual();
-        } else {
-            Sequenciador_Automatico();
-        }
-
-
-        Display_Menu_Principal();
-
-
-        MSdelay(10);
-        temporizador++;
-    }
-
-    return 0;
-}
-
-
-void System_Init(void) {
-
 }
 
 void Display_Mensagens_Iniciais(void) {
 
     LCD_Clear();
-    LCD_String_xy(1, 4, "UNIUBE");
-    LCD_String_xy(2, 1, "Engenharia Eletrica");
+    LCD_String_xy(1, 7, "UNIUBE");
+    LCD_String_xy(2, 0, "Engenharia Eletrica");
+    LCD_String_xy(3, 2, "Projeto Integrado");
+    LCD_String_xy(4, 3, "Em Eletrica II");
     MSdelay(3000);
 
 
     LCD_Clear();
     LCD_String_xy(1, 2, "Welington Correia");
-    LCD_String_xy(2, 4, "RA: 1063677");
+    LCD_String_xy(2, 4, "RA : 1063677");
+    LCD_String_xy(3, 1, "Seq.Eletr.Limpeza");
+    LCD_String_xy(4, 3, "Filtro de Manga");
     MSdelay(3000);
 
 
     LCD_Clear();
-    LCD_String_xy(1, 1, "Seq. Limpeza");
-    LCD_String_xy(2, 1, "Filtro de Manga");
+    LCD_String_xy(1, 2, "Seja Bem Vindo!");
+
+
+    RTC_GetDateTime(&rtc);
+    Format_Hora(hora_buffer, &rtc);
+    Format_Data(data_buffer, &rtc);
+
+    LCD_String_xy(2, 0, hora_buffer);
+    LCD_String_xy(3, 0, data_buffer);
+
+
+    sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+    LCD_String_xy(4, 0, lcd_buffer);
     MSdelay(3000);
 
 
     LCD_Clear();
-    LCD_String_xy(1, 4, "Bem-vindo!");
+    LCD_String_xy(1, 3, "Filtro de Manga");
+
+
+    sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+    LCD_String_xy(2, 0, lcd_buffer);
+
+
+    LCD_String_xy(3, 0, modo_operacao ? "Modo: Automatico   " : "Modo: Manual       ");
+
+
+    sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+    LCD_String_xy(4, 0, lcd_buffer);
     MSdelay(3000);
 }
 
-void Display_Menu_Principal(void) {
+
+void Atualizar_Display_Principal(void) {
     static uint16_t display_timer = 0;
-    static uint8_t linha_toggle = 0;
 
-    if(display_timer++ >= 50) {
+    if(display_timer++ >= 100) {
         display_timer = 0;
-        linha_toggle ^= 1;
-
-        LCD_String_xy(1, 1, "                ");
-
-        if(linha_toggle) {
-
-            sprintf(lcd_buffer, "%s Cic:%04d",
-                    modo_operacao ? "Auto" : "Man ",
-                    contador_ciclos);
-            LCD_String_xy(1, 1, lcd_buffer);
 
 
-            uint16_t pressao_mv = (adc_pressao * 5000) / 1024;
-            sprintf(lcd_buffer, "Press:%4dmV", pressao_mv);
-            LCD_String_xy(2, 1, lcd_buffer);
-        } else {
-
-            RTC_GetDateTime(&rtc);
-            sprintf(lcd_buffer, "%02x/%02x %02x:%02x",
-                    rtc.date, rtc.month,
-                    rtc.hour, rtc.min);
-            LCD_String_xy(1, 1, lcd_buffer);
+        LCD_String_xy(1, 3, "Filtro de Manga    ");
 
 
-            if(falha_pressao) {
-                LCD_String_xy(2, 1, "FALHA! Press Alta");
-            } else if(ciclo_em_andamento) {
-                LCD_String_xy(2, 1, "Ciclo Ativo     ");
+        RTC_GetDateTime(&rtc);
+        Format_Hora(hora_buffer, &rtc);
+        Format_Data(data_buffer, &rtc);
+
+        sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+        LCD_String_xy(2, 0, lcd_buffer);
+
+
+        if(falha_pressao) {
+            sprintf(lcd_buffer, "FALHA! Press Alta  ");
+        } else if(modo_operacao) {
+            if(ciclo_em_andamento) {
+                sprintf(lcd_buffer, "Auto - Ciclo Ativo ");
             } else {
-                LCD_String_xy(2, 1, "Pronto          ");
+                sprintf(lcd_buffer, "Auto - Aguardando  ");
             }
+        } else {
+            sprintf(lcd_buffer, "Manual - V:%d      ", valvula_selecionada + 1);
         }
+        LCD_String_xy(3, 0, lcd_buffer);
+
+
+        uint16_t pressao_percent = (adc_pressao * 100) / 1024;
+        sprintf(lcd_buffer, "C:%04d P:%3d%%     ", contador_ciclos, pressao_percent);
+        LCD_String_xy(4, 0, lcd_buffer);
     }
 }
 
 void Beep(uint8_t tipo) {
-    if(tipo == 1) {
-        LATD0 = 1;
-        MSdelay(2000);
-        LATD0 = 0;
-    } else if(tipo == 2) {
-        LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
-        LATD0 = 1; MSdelay(250); LATD0 = 0;
+    switch(tipo) {
+        case 1:
+            LATD0 = 1;
+            MSdelay(2000);
+            LATD0 = 0;
+            break;
+
+        case 2:
+            LATD0 = 1; MSdelay(250); LATD0 = 0; MSdelay(100);
+            LATD0 = 1; MSdelay(250); LATD0 = 0;
+            break;
+
+        case 3:
+            LATD0 = 1;
+            MSdelay(100);
+            LATD0 = 0;
+            break;
     }
 }
 
@@ -6306,30 +6346,16 @@ void Sequenciador_Automatico(void) {
 
             if(estado_timer++ >= 200) {
 
-                switch(valvula_atual) {
-                    case 0: LATC0 = 0; break;
-                    case 1: LATC1 = 0; break;
-                    case 2: LATC2 = 0; break;
-                    case 3: LATC2 = 0; break;
-                    case 4: LATC2 = 0; break;
-                    case 5: LATC6 = 0; break;
-                    case 6: LATC7 = 0; break;
-                    case 7: LATD7 = 0; break;
-                }
+                PORTC = 0x00;
+                LATD7 = 0;
 
                 estado = 2;
-                estado_timer = 0;
-            }
-            break;
-
-        case 2:
-            if(estado_timer++ >= 500) {
-                estado = 1;
                 estado_timer = 0;
                 valvula_atual++;
 
                 if(valvula_atual >= 8) {
-                    estado = 3;
+
+                    estado = 0;
                     estado_timer = 0;
                     ciclo_em_andamento = 0;
                     LATD3 = 0;
@@ -6337,12 +6363,13 @@ void Sequenciador_Automatico(void) {
             }
             break;
 
-        case 3:
-            if(estado_timer++ >= 100) {
-                estado = 0;
+        case 2:
+            if(estado_timer++ >= 500) {
+                estado = 1;
                 estado_timer = 0;
             }
             break;
+
     }
 }
 
@@ -6372,36 +6399,42 @@ void Modo_Manual(void) {
             } else {
                 valvula_selecionada--;
             }
+
         }
     }
     last_dow = PORTAbits.RA4;
 
 
     if(PORTAbits.RA5 == 0 && last_ent == 1) {
-        MSdelay(50);
+       MSdelay(50);
         if(PORTAbits.RA5 == 0) {
 
+            PORTC = 0x00;
+            LATD7 = 0;
+
+
             switch(valvula_selecionada) {
-                case 0: LATC0 = 1; MSdelay(2000); LATC0 = 0; break;
-                case 1: LATC1 = 1; MSdelay(2000); LATC1 = 0; break;
-                case 2: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
-                case 3: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
-                case 4: LATC2 = 1; MSdelay(2000); LATC2 = 0; break;
-                case 5: LATC6 = 1; MSdelay(2000); LATC6 = 0; break;
-                case 6: LATC7 = 1; MSdelay(2000); LATC7 = 0; break;
-                case 7: LATD7 = 1; MSdelay(2000); LATD7 = 0; break;
+                case 0: LATC0 = 1; break;
+                case 1: LATC1 = 1; break;
+                case 2: LATC2 = 1; break;
+                case 3: LATC2 = 1; break;
+                case 4: LATC2 = 1; break;
+                case 5: LATC6 = 1; break;
+                case 6: LATC7 = 1; break;
+                case 7: LATD7 = 1; break;
             }
+
+            MSdelay(2000);
+
+
+            PORTC = 0x00;
+            LATD7 = 0;
+
+
         }
     }
     last_ent = PORTAbits.RA5;
-
-
-    static uint16_t manual_display_timer = 0;
-    if(manual_display_timer++ >= 100) {
-        manual_display_timer = 0;
-        sprintf(lcd_buffer, "Manual V:%d    ", valvula_selecionada + 1);
-        LCD_String_xy(2, 1, lcd_buffer);
-    }
+# 465 "main_piee2.c"
 }
 
 
@@ -6435,6 +6468,11 @@ void Ler_Contador_EEPROM(void) {
     uint8_t high = Ler_EEPROM(0x0000);
     uint8_t low = Ler_EEPROM(0x0000 + 1);
     contador_ciclos = (high << 8) | low;
+
+
+    if(contador_ciclos == 0xFFFF) {
+        contador_ciclos = 0;
+    }
 }
 
 void Salvar_Contador_EEPROM(void) {
@@ -6469,6 +6507,24 @@ void RTC_GetDateTime(rtc_t *rtc) {
     rtc->year = I2C_Read(0);
 
     I2C_Stop();
+}
+
+void Format_Hora(char *buffer, rtc_t *rtc) {
+
+    uint8_t hora = ((rtc->hour >> 4) * 10) + (rtc->hour & 0x0F);
+    uint8_t min = ((rtc->min >> 4) * 10) + (rtc->min & 0x0F);
+    uint8_t seg = ((rtc->sec >> 4) * 10) + (rtc->sec & 0x0F);
+
+    sprintf(buffer, "%02d:%02d:%02d", hora, min, seg);
+}
+
+void Format_Data(char *buffer, rtc_t *rtc) {
+
+    uint8_t dia = ((rtc->date >> 4) * 10) + (rtc->date & 0x0F);
+    uint8_t mes = ((rtc->month >> 4) * 10) + (rtc->month & 0x0F);
+    uint8_t ano = ((rtc->year >> 4) * 10) + (rtc->year & 0x0F) + 2000;
+
+    sprintf(buffer, "%02d/%02d/%04d", dia, mes, ano);
 }
 
 

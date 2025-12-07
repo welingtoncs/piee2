@@ -39,7 +39,7 @@
 #define Bt_inc          PORTAbits.RA3 
 #define Bt_dow          PORTAbits.RA4 
 #define Bt_ent          PORTAbits.RA5 
-#define Bt_reset        PORTAbits.RA6  // Botão reset adicionado
+#define Bt_reset        PORTAbits.RA6
 
 /*********************Definições Analógica*****************************/
 #define An_pres         PORTAbits.RA0 
@@ -70,7 +70,9 @@ typedef struct {
 
 /*********************Variáveis Globais*****************************/
 rtc_t rtc;
-char lcd_buffer[17];
+char lcd_buffer[21];  // Buffer para 20 caracteres + null terminator
+char hora_buffer[9];  // HH:MM:SS
+char data_buffer[11]; // DD/MM/AAAA
 uint16_t contador_ciclos = 0;
 uint8_t modo_operacao = 0;      // 0=Manual, 1=Automático
 uint8_t valvula_selecionada = 0;
@@ -92,15 +94,99 @@ void Ler_Contador_EEPROM(void);
 void Salvar_Contador_EEPROM(void);
 void RTC_Init(void);
 void RTC_GetDateTime(rtc_t *rtc);
+void Format_Hora(char *buffer, rtc_t *rtc);
+void Format_Data(char *buffer, rtc_t *rtc);
 void ADC_Init(void);
 uint16_t Ler_ADC(uint8_t canal);
 void Verificar_Falha_Pressao(void);
+void Atualizar_Display_Principal(void);
 
 /*********************Função Principal*****************************/
 int main(void) {
     // Configuração do sistema
     OSCCON = 0x72; 
+    System_Init();
+
     
+    // Sequência inicial
+    Beep(1);  // Bipe longo de 2 segundos
+    Display_Mensagens_Iniciais();
+    Beep(2);  // Bipe duplo
+    
+    // Inicializar RTC com valores padrão
+//    rtc.hour = 0x12;
+//    rtc.min = 0x00;
+//    rtc.sec = 0x00;
+//    rtc.date = 0x07;
+//    rtc.month = 0x12;
+//    rtc.year = 0x25;
+    
+    while(1) {
+        // Ler pressão diferencial
+        adc_pressao = Ler_ADC(0);
+        
+        // Verificar falha de pressão
+        Verificar_Falha_Pressao();
+        
+        // Verificar botão reset
+        if(Bt_reset == 0) {
+            MSdelay(50);  // Debounce
+            if(Bt_reset == 0) {
+                if(modo_operacao == 1) {  // Modo automático
+                    contador_ciclos = 0;
+                    Salvar_Contador_EEPROM();
+                    //Beep(2);  // Bipe duplo para confirmar reset
+                } else {  // Modo manual
+                    // Aciona todas as válvulas
+                    PORTC = 0xFF;
+                    Val8 = 1;
+                    MSdelay(2000);
+                    PORTC = 0x00;
+                    Val8 = 0;
+                }
+                while(Bt_reset == 0);  // Aguarda soltar botão
+            }
+        }
+        
+        // Verificar mudança de modo
+        static uint8_t last_man_aut = 1;
+        if(Bt_man_aut == 0 && modo_operacao == 1) {
+            MSdelay(50);
+            if(Bt_man_aut == 0) {
+                modo_operacao = !modo_operacao;  // Alterna entre Manual e Auto
+                ciclo_em_andamento = 0;
+                PORTC = 0x00;  // Desliga todas as válvulas
+                Val8 = 0;
+                led_ativo = 0;
+                //Beep(1);  // Bipe curto para confirmar mudança
+            }
+        }
+        last_man_aut = Bt_man_aut;
+        
+        // Executar modo atual
+        if(modo_operacao == 0) {
+            Modo_Manual();
+        } else {
+            Sequenciador_Automatico();
+        }
+        
+        // LED run piscando (indicador de sistema ativo)
+        static uint16_t blink_timer = 0;
+        if(blink_timer++ >= 50) {  // Pisca a cada 500ms
+            blink_timer = 0;
+            led_run ^= 1;
+        }
+        
+        // Delay não-bloqueante (10ms)
+        MSdelay(10);
+        temporizador++;
+    }
+    
+    return 0;
+}
+
+/*********************Inicialização do Sistema*****************************/
+void System_Init(void) {
     // Inicialização de portas
     TRISD = 0x00;   // Saídas: beep, LEDs, V8
     TRISC = 0x00;   // Saídas: V1-V7
@@ -123,154 +209,116 @@ int main(void) {
     
     // Ler contador de ciclos da EEPROM
     Ler_Contador_EEPROM();
-    
-    // Sequência inicial
-    Beep(1);  // Bipe longo de 2 segundos
-    Display_Mensagens_Iniciais();
-    Beep(2);  // Bipe duplo
-    
-    // Inicializar RTC com valores padrão
-    rtc.hour = 0x12;
-    rtc.min = 0x00;
-    rtc.sec = 0x00;
-    rtc.date = 0x07;
-    rtc.month = 0x12;
-    rtc.year = 0x25;
-    
-    while(1) {
-        // Ler pressão diferencial
-        adc_pressao = Ler_ADC(0);
-        
-        // Verificar falha de pressão
-        Verificar_Falha_Pressao();
-        
-        // Verificar botão reset
-        if(Bt_reset == 0) {
-            MSdelay(50);  // Debounce
-            if(Bt_reset == 0) {
-                if(modo_operacao == 1) {  // Modo automático
-                    contador_ciclos = 0;
-                    Salvar_Contador_EEPROM();
-                } else {  // Modo manual
-                    // Aciona todas as válvulas
-                    PORTC = 0xFF;
-                    Val8 = 1;
-                    MSdelay(2000);
-                    PORTC = 0x00;
-                    Val8 = 0;
-                }
-                while(Bt_reset == 0);  // Aguarda soltar botão
-            }
-        }
-        
-        // Verificar mudança de modo
-        if(Bt_man_aut == 0 && modo_operacao == 1) {
-            modo_operacao = 0;
-            ciclo_em_andamento = 0;
-            PORTC = 0x00;  // Desliga todas as válvulas
-            Val8 = 0;
-            led_ativo = 0;
-        } else if(Bt_man_aut == 1 && modo_operacao == 0) {
-            modo_operacao = 1;
-        }
-        
-        // Executar modo atual
-        if(modo_operacao == 0) {
-            Modo_Manual();
-        } else {
-            Sequenciador_Automatico();
-        }
-        
-        // Atualizar display
-        Display_Menu_Principal();
-        
-        // Delay não-bloqueante (10ms)
-        MSdelay(10);
-        temporizador++;
-    }
-    
-    return 0;
-}
-
-/*********************Inicialização do Sistema*****************************/
-void System_Init(void) {
-    // Configurações já feitas no main
 }
 
 void Display_Mensagens_Iniciais(void) {
-    // Mensagem 1: Universidade e Disciplina
+    // Primeira tela
     LCD_Clear();
-    LCD_String_xy(1, 4, "UNIUBE");
-    LCD_String_xy(2, 1, "Engenharia Eletrica");
+    LCD_String_xy(1, 7, "UNIUBE");
+    LCD_String_xy(2, 0, "Engenharia Eletrica");
+    LCD_String_xy(3, 2, "Projeto Integrado");
+    LCD_String_xy(4, 3, "Em Eletrica II");
     MSdelay(3000);
     
-    // Mensagem 2: Aluno e RA
+    // Segunda tela
     LCD_Clear();
     LCD_String_xy(1, 2, "Welington Correia");
-    LCD_String_xy(2, 4, "RA: 1063677");
+    LCD_String_xy(2, 4, "RA : 1063677");
+    LCD_String_xy(3, 1, "Seq.Eletr.Limpeza");
+    LCD_String_xy(4, 3, "Filtro de Manga");
     MSdelay(3000);
     
-    // Mensagem 3: Equipamento
+    // Terceira tela
     LCD_Clear();
-    LCD_String_xy(1, 1, "Seq. Limpeza");
-    LCD_String_xy(2, 1, "Filtro de Manga");
+    LCD_String_xy(1, 2, "Seja Bem Vindo!");
+    
+    // Obter data e hora do RTC
+    RTC_GetDateTime(&rtc);
+    Format_Hora(hora_buffer, &rtc);
+    Format_Data(data_buffer, &rtc);
+    
+    LCD_String_xy(2, 0, hora_buffer);
+    LCD_String_xy(3, 0, data_buffer);
+    
+    // Mostrar número de ciclos
+    sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+    LCD_String_xy(4, 0, lcd_buffer);
     MSdelay(3000);
     
-    // Mensagem 4: Boas vindas
+    // Quarta tela (tela principal inicial)
     LCD_Clear();
-    LCD_String_xy(1, 4, "Bem-vindo!");
+    LCD_String_xy(1, 3, "Filtro de Manga");
+    
+    // Mostrar data e hora juntos
+    sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+    LCD_String_xy(2, 0, lcd_buffer);
+    
+    // Modo de operação
+    LCD_String_xy(3, 0, modo_operacao ? "Modo: Automatico   " : "Modo: Manual       ");
+    
+    // Ciclos
+    sprintf(lcd_buffer, "Ciclos: %04d", contador_ciclos);
+    LCD_String_xy(4, 0, lcd_buffer);
     MSdelay(3000);
 }
 
-void Display_Menu_Principal(void) {
+
+void Atualizar_Display_Principal(void) {
     static uint16_t display_timer = 0;
-    static uint8_t linha_toggle = 0;
     
-    if(display_timer++ >= 50) {  // Atualizar a cada 500ms
+    if(display_timer++ >= 100) {  // Atualizar a cada 1 segundo
         display_timer = 0;
-        linha_toggle ^= 1;
         
-        LCD_String_xy(1, 1, "                ");
+        // Linha 1: Título fixo
+        LCD_String_xy(1, 3, "Filtro de Manga    ");
         
-        if(linha_toggle) {
-            // Linha 1: Modo e Ciclos
-            sprintf(lcd_buffer, "%s Cic:%04d", 
-                    modo_operacao ? "Auto" : "Man ", 
-                    contador_ciclos);
-            LCD_String_xy(1, 1, lcd_buffer);
-            
-            // Linha 2: Pressão
-            uint16_t pressao_mv = (adc_pressao * 5000) / 1024;  // Converter para mV
-            sprintf(lcd_buffer, "Press:%4dmV", pressao_mv);
-            LCD_String_xy(2, 1, lcd_buffer);
-        } else {
-            // Linha 1: Data e Hora
-            RTC_GetDateTime(&rtc);
-            sprintf(lcd_buffer, "%02x/%02x %02x:%02x", 
-                    rtc.date, rtc.month, 
-                    rtc.hour, rtc.min);
-            LCD_String_xy(1, 1, lcd_buffer);
-            
-            // Linha 2: Status
-            if(falha_pressao) {
-                LCD_String_xy(2, 1, "FALHA! Press Alta");
-            } else if(ciclo_em_andamento) {
-                LCD_String_xy(2, 1, "Ciclo Ativo     ");
+        // Linha 2: Data e Hora
+        RTC_GetDateTime(&rtc);
+        Format_Hora(hora_buffer, &rtc);
+        Format_Data(data_buffer, &rtc);
+        
+        sprintf(lcd_buffer, "%s  %s", hora_buffer, data_buffer);
+        LCD_String_xy(2, 0, lcd_buffer);
+        
+        // Linha 3: Modo de operação e status
+        if(falha_pressao) {
+            sprintf(lcd_buffer, "FALHA! Press Alta  ");
+        } else if(modo_operacao) {
+            if(ciclo_em_andamento) {
+                sprintf(lcd_buffer, "Auto - Ciclo Ativo ");
             } else {
-                LCD_String_xy(2, 1, "Pronto          ");
+                sprintf(lcd_buffer, "Auto - Aguardando  ");
             }
+        } else {
+            sprintf(lcd_buffer, "Manual - V:%d      ", valvula_selecionada + 1);
         }
+        LCD_String_xy(3, 0, lcd_buffer);
+        
+        // Linha 4: Ciclos e pressão
+        uint16_t pressao_percent = (adc_pressao * 100) / 1024;
+        sprintf(lcd_buffer, "C:%04d P:%3d%%     ", contador_ciclos, pressao_percent);
+        LCD_String_xy(4, 0, lcd_buffer);
     }
 }
 
 void Beep(uint8_t tipo) {
-    if(tipo == 1) {  // Bipe longo (2 segundos)
-        beep = 1;
-        MSdelay(2000);
-        beep = 0;
-    } else if(tipo == 2) {  // Bipe duplo
-        beep = 1; MSdelay(250); beep = 0; MSdelay(100);
-        beep = 1; MSdelay(250); beep = 0;
+    switch(tipo) {
+        case 1:  // Bipe longo (2 segundos)
+            beep = 1;
+            MSdelay(2000);
+            beep = 0;
+            break;
+            
+        case 2:  // Bipe duplo
+            beep = 1; MSdelay(250); beep = 0; MSdelay(100);
+            beep = 1; MSdelay(250); beep = 0;
+            break;
+            
+        case 3:  // Bipe curto (confirmação)
+            beep = 1;
+            MSdelay(100);
+            beep = 0;
+            break;
     }
 }
 
@@ -318,30 +366,16 @@ void Sequenciador_Automatico(void) {
             
             if(estado_timer++ >= TEMPO_VALVULA) {
                 // Desligar válvula atual
-                switch(valvula_atual) {
-                    case 0: Val1 = 0; break;
-                    case 1: Val2 = 0; break;
-                    case 2: Val3 = 0; break;
-                    case 3: Val4 = 0; break;
-                    case 4: Val5 = 0; break;
-                    case 5: Val6 = 0; break;
-                    case 6: Val7 = 0; break;
-                    case 7: Val8 = 0; break;
-                }
+                PORTC = 0x00;
+                Val8 = 0;
                 
                 estado = 2;
-                estado_timer = 0;
-            }
-            break;
-            
-        case 2:  // Intervalo entre válvulas
-            if(estado_timer++ >= TEMPO_INTERVALO) {
-                estado = 1;
                 estado_timer = 0;
                 valvula_atual++;
                 
                 if(valvula_atual >= NUM_VALVULAS) {
-                    estado = 3;  // Todas válvulas foram acionadas
+                    // Todas válvulas foram acionadas
+                    estado = 0;  // Volta para espera entre ciclos
                     estado_timer = 0;
                     ciclo_em_andamento = 0;
                     led_ativo = 0;
@@ -349,12 +383,13 @@ void Sequenciador_Automatico(void) {
             }
             break;
             
-        case 3:  // Espera entre ciclos (já contado no estado 0)
-            if(estado_timer++ >= 100) {  // Pequeno delay
-                estado = 0;
+        case 2:  // Intervalo entre válvulas
+            if(estado_timer++ >= TEMPO_INTERVALO) {
+                estado = 1;
                 estado_timer = 0;
             }
             break;
+            
     }
 }
 
@@ -384,36 +419,49 @@ void Modo_Manual(void) {
             } else {
                 valvula_selecionada--;
             }
+            //Beep(3);  // Bipe curto para feedback
         }
     }
     last_dow = Bt_dow;
     
     // Acionamento com Bt_ent
     if(Bt_ent == 0 && last_ent == 1) {
-        MSdelay(50);
+       MSdelay(50);
         if(Bt_ent == 0) {
+            // Desliga todas as válvulas primeiro
+            PORTC = 0x00;
+            Val8 = 0;
+            
             // Aciona a válvula selecionada por 2 segundos
             switch(valvula_selecionada) {
-                case 0: Val1 = 1; MSdelay(2000); Val1 = 0; break;
-                case 1: Val2 = 1; MSdelay(2000); Val2 = 0; break;
-                case 2: Val3 = 1; MSdelay(2000); Val3 = 0; break;
-                case 3: Val4 = 1; MSdelay(2000); Val4 = 0; break;
-                case 4: Val5 = 1; MSdelay(2000); Val5 = 0; break;
-                case 5: Val6 = 1; MSdelay(2000); Val6 = 0; break;
-                case 6: Val7 = 1; MSdelay(2000); Val7 = 0; break;
-                case 7: Val8 = 1; MSdelay(2000); Val8 = 0; break;
+                case 0: Val1 = 1; break;
+                case 1: Val2 = 1; break;
+                case 2: Val3 = 1; break;
+                case 3: Val4 = 1; break;
+                case 4: Val5 = 1; break;
+                case 5: Val6 = 1; break;
+                case 6: Val7 = 1; break;
+                case 7: Val8 = 1; break;
             }
+            
+            MSdelay(2000);  // Mantém ligado por 2 segundos
+            
+            // Desliga a válvula
+            PORTC = 0x00;
+            Val8 = 0;
+            
+            //Beep(2);  // Bipe duplo para confirmar acionamento
         }
     }
     last_ent = Bt_ent;
     
     // Mostrar válvula selecionada no display
-    static uint16_t manual_display_timer = 0;
-    if(manual_display_timer++ >= 100) {
-        manual_display_timer = 0;
-        sprintf(lcd_buffer, "Manual V:%d    ", valvula_selecionada + 1);
-        LCD_String_xy(2, 1, lcd_buffer);
-    }
+//    static uint16_t manual_display_timer = 0;
+//    if(manual_display_timer++ >= 100) {
+//        manual_display_timer = 0;
+//        sprintf(lcd_buffer, "Manual V:%d    ", valvula_selecionada + 1);
+//        LCD_String_xy(2, 1, lcd_buffer);
+//    }
 }
 
 /*********************EEPROM 24C32*****************************/
@@ -447,6 +495,11 @@ void Ler_Contador_EEPROM(void) {
     uint8_t high = Ler_EEPROM(EEPROM_CICLO_ADDR);
     uint8_t low = Ler_EEPROM(EEPROM_CICLO_ADDR + 1);
     contador_ciclos = (high << 8) | low;
+    
+    // Se for a primeira leitura (valores 0xFFFF), inicializa com 0
+    if(contador_ciclos == 0xFFFF) {
+        contador_ciclos = 0;
+    }
 }
 
 void Salvar_Contador_EEPROM(void) {
@@ -481,6 +534,24 @@ void RTC_GetDateTime(rtc_t *rtc) {
     rtc->year = I2C_Read(0);
     
     I2C_Stop();
+}
+
+void Format_Hora(char *buffer, rtc_t *rtc) {
+    // Converter BCD para decimal e formatar HH:MM:SS
+    uint8_t hora = ((rtc->hour >> 4) * 10) + (rtc->hour & 0x0F);
+    uint8_t min = ((rtc->min >> 4) * 10) + (rtc->min & 0x0F);
+    uint8_t seg = ((rtc->sec >> 4) * 10) + (rtc->sec & 0x0F);
+    
+    sprintf(buffer, "%02d:%02d:%02d", hora, min, seg);
+}
+
+void Format_Data(char *buffer, rtc_t *rtc) {
+    // Converter BCD para decimal e formatar DD/MM/AAAA
+    uint8_t dia = ((rtc->date >> 4) * 10) + (rtc->date & 0x0F);
+    uint8_t mes = ((rtc->month >> 4) * 10) + (rtc->month & 0x0F);
+    uint8_t ano = ((rtc->year >> 4) * 10) + (rtc->year & 0x0F) + 2000;
+    
+    sprintf(buffer, "%02d/%02d/%04d", dia, mes, ano);
 }
 
 /*********************ADC para Pressão*****************************/
