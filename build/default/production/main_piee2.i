@@ -6107,6 +6107,9 @@ int main(void) {
 
 
         Verificar_Falha_Pressao();
+
+
+        if(PORTAbits.RA6 == 0) {LATD3 ^= 1; while(PORTAbits.RA6 == 0); }
 # 176 "main_piee2.c"
         static uint16_t blink_timer = 0;
         if(blink_timer++ >= 50) {

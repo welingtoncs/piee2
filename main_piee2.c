@@ -127,9 +127,9 @@ int main(void) {
         
         // Verificar falha de pressão
         Verificar_Falha_Pressao();
-//        
-//        // Verificar botão reset
-//        if(Bt_reset == 0) {
+        
+        // Verificar botão reset
+        if(Bt_reset == 0) {led_ativo ^= 1; while(Bt_reset == 0); }
 //            MSdelay(50);  // Debounce
 //            if(Bt_reset == 0) {
 //                if(modo_operacao == 1) {  // Modo automático

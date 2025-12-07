@@ -121,7 +121,7 @@
 [v _Verificar_Falha_Pressao Verificar_Falha_Pressao `(v  1 e 1 0 ]
 "10 /Users/welingtonsouza/MPLABXProjects/piee2.X/msdelay.c
 [v _MSdelay MSdelay `(v  1 e 1 0 ]
-[s S73 . 1 `uc 1 RA0 1 0 :1:0 
+[s S55 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -130,7 +130,7 @@
 `uc 1 RA6 1 0 :1:6 
 ]
 "2353 /Applications/microchip/mplabx/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8/pic/include/proc/pic18f4550.h
-[s S175 . 1 `uc 1 AN0 1 0 :1:0 
+[s S63 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -138,26 +138,26 @@
 `uc 1 AN4 1 0 :1:5 
 `uc 1 OSC2 1 0 :1:6 
 ]
-[s S183 . 1 `uc 1 . 1 0 :2:0 
+[s S71 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 LVDIN 1 0 :1:5 
 ]
-[s S189 . 1 `uc 1 . 1 0 :5:0 
+[s S77 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 HLVDIN 1 0 :1:5 
 ]
-[s S192 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S80 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S194 . 1 `S73 1 . 1 0 `S175 1 . 1 0 `S183 1 . 1 0 `S189 1 . 1 0 `S192 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES194  1 e 1 @3968 ]
+[u S82 . 1 `S55 1 . 1 0 `S63 1 . 1 0 `S71 1 . 1 0 `S77 1 . 1 0 `S80 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES82  1 e 1 @3968 ]
 "2563
 [v _PORTC PORTC `VEuc  1 e 1 @3970 ]
 "2705
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
 "3073
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S65 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S127 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -166,8 +166,8 @@
 `uc 1 TRISA6 1 0 :1:6 
 ]
 "3457
-[u S81 . 1 `S65 1 . 1 0 `S73 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES81  1 e 1 @3986 ]
+[u S143 . 1 `S127 1 . 1 0 `S55 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES143  1 e 1 @3986 ]
 "3625
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
 [s S458 . 1 `uc 1 TRISB0 1 0 :1:0 
